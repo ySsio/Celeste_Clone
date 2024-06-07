@@ -1,0 +1,102 @@
+#pragma once
+#include "CManager.h"
+
+//class CTexture;
+//class CAnimation;
+//class CSound;
+
+#include "CTexture.h"
+#include "CAnimation.h"
+#include "CSound.h"
+
+class CAssetMgr :
+    public CManager
+{
+    SINGLE(CAssetMgr)
+
+private:
+    unordered_map<wstring, CTexture*>   m_mapTex;
+    unordered_map<wstring, CAnimation*> m_mapAnim;
+    unordered_map<wstring, CSound*>     m_mapSound;
+
+public:
+    template <typename T>
+    void AddAsset(const wstring& _strName, T* _pAsset);
+
+    template <typename T>
+    T* FindAsset(const wstring& _strName);
+
+    template <typename T>
+    T* LoadAsset(const wstring& _strName, const wstring& _strFilePath);
+
+public:
+    virtual void Init() override;
+
+private:
+    void AddTexture(const wstring& _strName, CTexture* _pAsset) { m_mapTex.emplace(_strName, _pAsset); }
+    void AddAnimation(const wstring& _strName, CAnimation* _pAsset) { m_mapAnim.emplace(_strName, _pAsset); }
+    void AddSound(const wstring& _strName, CSound* _pAsset) { m_mapSound.emplace(_strName, _pAsset); }
+
+};
+
+template <typename T>
+void CAssetMgr::AddAsset(const wstring& _strName, T* _pAsset)
+{
+    if (typeid(T) == typeid(CTexture))
+    {
+        AddTexture(_strName, (CTexture*)_pAsset);
+    }
+    else if (typeid(T) == typeid(CAnimation))
+    {
+        AddAnimation(_strName, (CAnimation*)_pAsset);
+    }
+    else if (typeid(T) == typeid(CSound))
+    {
+        AddSound(_strName, (CSound*)_pAsset);
+    }
+}
+
+#include <typeinfo>
+template <typename T>
+T* CAssetMgr::FindAsset(const wstring& _strName)
+{
+    if (typeid(T) == typeid(CTexture))
+    {
+        auto iter = m_mapTex.find(_strName);
+        if (iter == m_mapTex.end()) return nullptr;
+        else return (T*)(m_mapTex.find(_strName)->second);
+    }
+    else if (typeid(T) == typeid(CAnimation))
+    {
+        auto iter = m_mapAnim.find(_strName);
+        if (iter == m_mapAnim.end()) return nullptr;
+        else return (T*)(m_mapAnim.find(_strName)->second);
+    }
+    else if (typeid(T) == typeid(CSound))
+    {
+        auto iter = m_mapSound.find(_strName);
+        if (iter == m_mapSound.end()) return nullptr;
+        else return (T*)(m_mapSound.find(_strName)->second);
+    }
+
+    return nullptr;
+}
+
+
+template <typename T>
+T* CAssetMgr::LoadAsset(const wstring& _strName, const wstring& _strFilePath)
+{
+    T* pAsset = FindAsset<T>(_strName);
+
+    if (pAsset)
+        return pAsset;
+
+    pAsset = new T;
+
+    pAsset->SetName(_strName);
+    pAsset->Load(_strFilePath);
+
+    AddAsset(_strName, pAsset);
+
+    return pAsset;
+}
