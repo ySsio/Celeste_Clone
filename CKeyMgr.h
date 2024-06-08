@@ -8,12 +8,17 @@ enum class KEY
     S,
     D,
 
+    C,
+    X,
+
     UP,
     LEFT,
     DOWN,
     RIGHT,
 
     SPACE,
+    ESC,
+    ENTER,
 
     END,
 };

@@ -7,6 +7,8 @@
 #include "CPathMgr.h"
 #include "CAssetMgr.h"
 #include "CCamera.h"
+#include "CCollisionMgr.h"
+#include "CDebugMgr.h"
 
 CEngine::CEngine()
 	: m_MainHwnd(nullptr)
@@ -49,6 +51,7 @@ void CEngine::CreateGDIObject()
 	m_ArrBrush[(UINT)BRUSH_TYPE::RED] = CreateSolidBrush(RGB(255, 0, 0));
 	m_ArrBrush[(UINT)BRUSH_TYPE::GREEN] = CreateSolidBrush(RGB(0, 255, 0));
 	m_ArrBrush[(UINT)BRUSH_TYPE::BLUE] = CreateSolidBrush(RGB(0, 0, 255));
+	m_ArrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
 }
 
 void CEngine::Init(HWND _hwnd, int _Width, int _Height)
@@ -83,8 +86,9 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 	CPathMgr::Get()->Init();
 	CAssetMgr::Get()->Init();
 	CLevelMgr::Get()->Init();
+	CCollisionMgr::Get()->Init();
 	CCamera::Get()->Init();
-	
+	CDebugMgr::Get()->Init();
 }
 
 void CEngine::Progress()
@@ -94,13 +98,16 @@ void CEngine::Progress()
 	CTimeMgr::Get()->Tick();
 	CCamera::Get()->Tick();
 	CLevelMgr::Get()->Tick();
+	CDebugMgr::Get()->Tick();
 
 	// render
 	Render();
 
 	// final tick
 	CTimeMgr::Get()->FinalTick();
-
+	CLevelMgr::Get()->FinalTick();
+	CCollisionMgr::Get()->Tick();
+	
 }
 
 void CEngine::Render()
@@ -110,8 +117,11 @@ void CEngine::Render()
 	SelectObject(m_BackBufferDC, hOriBrush);
 
 	// BackBuffer에 렌더
-	CLevelMgr::Get()->Render(m_BackBufferDC);
-	CTimeMgr::Get()->Render(m_BackBufferDC);
+	CLevelMgr::Get()->Render();
+	CTimeMgr::Get()->Render();
+	
+
+	CDebugMgr::Get()->Render();
 
 	// MainBuffer에 복사
 	BitBlt(m_MainDC

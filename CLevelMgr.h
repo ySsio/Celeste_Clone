@@ -14,7 +14,8 @@ private:
 
 public:
     void Tick();
-    void Render(HDC _hDC);
+    void FinalTick();
+    void Render();
 
 public:
     CLevel* GetCurLevel() { return m_ArrLevel[(UINT)m_CurLevelType]; }

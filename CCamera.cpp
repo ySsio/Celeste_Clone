@@ -23,19 +23,19 @@ void CCamera::Init()
 
 void CCamera::Tick()
 {
-	if (KEY_PRESSED(KEY::UP))
+	if (KEY_PRESSED(KEY::W))
 	{
 		m_CamPos.y -= 300.f * fDT;
 	}
-	if (KEY_PRESSED(KEY::DOWN))
+	if (KEY_PRESSED(KEY::S))
 	{
 		m_CamPos.y += 300.f * fDT;
 	}
-	if (KEY_PRESSED(KEY::LEFT))
+	if (KEY_PRESSED(KEY::A))
 	{
 		m_CamPos.x -= 300.f * fDT;
 	}
-	if (KEY_PRESSED(KEY::RIGHT))
+	if (KEY_PRESSED(KEY::D))
 	{
 		m_CamPos.x += 300.f * fDT;
 	}

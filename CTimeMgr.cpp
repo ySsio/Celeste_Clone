@@ -47,7 +47,7 @@ void CTimeMgr::Tick()
 
 }
 
-void CTimeMgr::Render(HDC _hDC)
+void CTimeMgr::Render()
 {
 	// 1초마다 FPS와 delta time 출력 (Text Out을 매 틱마다 출력)
 	// tempDT : 1초마다 fDT를 받아둬서 출력할 때 사용
@@ -62,7 +62,7 @@ void CTimeMgr::Render(HDC _hDC)
 	text += std::to_wstring(m_FPS) + L", DeltaTime : ";
 	text += std::to_wstring(tempDT);
 
-	TextOut(_hDC, 0, 0, text.c_str(), (int)text.length());
+	TextOut(BackDC, 0, 0, text.c_str(), (int)text.length());
 }
 
 void CTimeMgr::FinalTick()

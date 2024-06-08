@@ -14,6 +14,9 @@ public:
     void SetOwner(CObj* _Owner) { m_Owner = _Owner; }
 
 public:
+    virtual void FinalTick() {}
+
+public:
     CComponent();
     ~CComponent();
 };

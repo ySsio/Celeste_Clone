@@ -18,6 +18,7 @@ enum class BRUSH_TYPE
 	RED,
 	GREEN,
 	BLUE,
+	HOLLOW,
 
 	END,
 };
@@ -32,14 +33,19 @@ enum class LEVEL_TYPE
 	END,
 };
 
-enum class GROUP_TYPE
+enum class LAYER_TYPE
 {
 	BACKGROUND,
 	PLAYER,
-	MONSTER,
 	TILE,
-	PLAYER_PROJECTILE,
-	MONSTER_PROJECTILE,
+	PLATFORM,
 
-	END,
+	END = 32,
+};
+
+enum class DEBUG_SHAPE
+{
+	RECTANGLE,
+	ELLIPSE,
+	LINE,
 };

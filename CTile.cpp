@@ -1,0 +1,21 @@
+#include "pch.h"
+#include "CTile.h"
+
+
+CTile::CTile()
+	: m_Tex(nullptr)
+{
+}
+
+CTile::~CTile()
+{
+}
+
+void CTile::Save(const wstring& _strRelativeFilePath)
+{
+}
+
+void CTile::Load(const wstring& _strRelativeFilePath)
+{
+}
+

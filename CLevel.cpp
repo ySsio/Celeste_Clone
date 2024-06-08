@@ -6,6 +6,7 @@
 #include "CObj.h"
 #include "CTexture.h"
 
+
 CLevel::CLevel()
 	: m_BackGround(nullptr)
 {
@@ -15,27 +16,33 @@ CLevel::~CLevel()
 {
 	for (auto& group : m_ArrGroupObj)
 	{
-		for (auto& obj : group)
-		{
-			delete obj;
-		}
-		group.clear();
+		Release_Vector(group);
 	}
 }
 
-
-
-void CLevel::Exit()
+void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 {
+	m_ArrGroupObj[(UINT)_Type].push_back(_Obj); _Obj->SetLayerType(_Type);
 }
 
 void CLevel::Tick()
 {
 	for (auto& group : m_ArrGroupObj)
 	{
-		for (auto& obj : group)
+		for (auto obj : group)
 		{
 			obj->Tick();
+		}
+	}
+}
+
+void CLevel::FinalTick()
+{
+	for (auto& group : m_ArrGroupObj)
+	{
+		for (auto obj : group)
+		{
+			obj->FinalTick();
 		}
 	}
 }
@@ -53,8 +60,8 @@ void CLevel::Render(HDC _hDC)
 
 		AlphaBlend(_hDC
 			, 0, 0
-			, vRes.x
-			, vRes.y
+			, (int)vRes.x
+			, (int)vRes.y
 			, m_BackGround->GetDC()
 			, 0, 0
 			, m_BackGround->GetWidth()

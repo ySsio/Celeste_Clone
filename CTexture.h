@@ -17,6 +17,7 @@ public:
     CTexture* Scale(float _Coef) { return Stretch(Vec2(m_BitMapInfo.bmWidth * _Coef, m_BitMapInfo.bmHeight * _Coef)); }
 
 public:
+    void CreateTexture(UINT _Width, UINT _Height);
 
 public:
     virtual void Load(const wstring& _strRelativeFilePath) override;

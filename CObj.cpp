@@ -3,26 +3,46 @@
 #include "CEngine.h"
 #include "CCamera.h"
 
+#include "CPlayer.h"
+
+#include "CCollisionMgr.h"
+
 CObj::CObj()
+	: m_Type(LAYER_TYPE::END)
+	, m_Dead(false)
 {
 }
 
 CObj::CObj(const CObj& _other)
 	: CBase(_other)
+	, m_Type(_other.m_Type)
 	, m_Pos(_other.m_Pos)
+	, m_Dead(false)
 {
 }
 
 CObj::~CObj()
 {
+	Release_Vector(m_vecComponent);
 }
 
-#include "CAssetMgr.h"
-#include "CTexture.h"
 
 Vec2 CObj::GetRenderPos()
 {
 	return CCamera::Get()->GetRenderPos(GetPos());
+}
+
+void CObj::FinalTick()
+{
+	for (auto comp : m_vecComponent)
+	{
+		comp->FinalTick();
+		CCollider* pCol = dynamic_cast<CCollider*>(comp);
+		if (pCol)
+		{
+			CCollisionMgr::Get()->RegisterCollider(pCol, m_Type);
+		}
+	}
 }
 
 void CObj::Render()

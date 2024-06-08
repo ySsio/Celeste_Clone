@@ -1,5 +1,6 @@
 #pragma once
 
+#include "enum.h"
 #include "assert.h"
 
 struct Vec2
@@ -75,3 +76,22 @@ struct Vec2
 		return *this /= Length();
 	}
 };
+
+
+struct tDebugShapeInfo
+{
+	DEBUG_SHAPE		Shape;
+	Vec2			Position;
+	Vec2			Scale;
+	PEN_TYPE		Pen;
+	BRUSH_TYPE		Brush;
+	float			Duration;
+	float			AccTime;	// duration을 체크하기 위한 누적용 변수
+};
+
+//struct tLog
+//{
+//	wstring strLog;
+//	float Time;
+//	LOG_LEVEL Level;
+//};

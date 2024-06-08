@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "CLevelMgr.h"
-#include "CLevel.h"
 
 #include "CLevel_Start.h"
 #include "CLevel_Editor.h"
 #include "CLevel_Level_01.h"
+
+#include "CEngine.h"
 
 CLevelMgr::CLevelMgr()
 	: m_ArrLevel{}
@@ -17,7 +18,10 @@ CLevelMgr::CLevelMgr()
 
 CLevelMgr::~CLevelMgr()
 {
-
+	for (auto Level : m_ArrLevel)
+	{
+		delete Level;
+	}
 }
 
 void CLevelMgr::Tick()
@@ -25,9 +29,14 @@ void CLevelMgr::Tick()
 	m_ArrLevel[(UINT)m_CurLevelType]->Tick();
 }
 
-void CLevelMgr::Render(HDC _hDC)
+void CLevelMgr::FinalTick()
 {
-	m_ArrLevel[(UINT)m_CurLevelType]->Render(_hDC);
+	m_ArrLevel[(UINT)m_CurLevelType]->FinalTick();
+}
+
+void CLevelMgr::Render()
+{
+	m_ArrLevel[(UINT)m_CurLevelType]->Render(BackDC);
 }
 
 void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)

@@ -25,7 +25,7 @@ public:
 public:
     virtual void Init() override;
     void Tick();
-    void Render(HDC _hDC);
+    void Render();
     void FinalTick();
 };
 

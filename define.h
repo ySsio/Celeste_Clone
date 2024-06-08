@@ -3,9 +3,9 @@
 #define SINGLE(type)	public:														   \
 							static type* Get()								   \
 							{														   \
-								static type* inst = new type;					   \
+								static type inst{};					   \
 																					   \
-								return inst;										   \
+								return &inst;										   \
 							}														   \
 																					   \
 						public:														   \
@@ -34,3 +34,13 @@
 
 #define MainDC	CEngine::Get()->GetMainDC()
 #define BackDC	CEngine::Get()->GetBackDC()
+
+//#ifdef _DEBUG
+//	#ifndef DBG_NEW
+//		#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+//		#define new DBG_NEW
+//	#endif
+//#endif
+
+#define SELECT_PEN(DC, PEN)		CSelectObject SelectPen(DC,PEN)
+#define SELECT_BRUSH(DC, BRUSH) CSelectObject SelectBrush(DC,BRUSH)

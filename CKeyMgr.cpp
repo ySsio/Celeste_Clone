@@ -8,12 +8,17 @@ array<int, (UINT)KEY::END> KEY_MAP
     'S',
     'D',
 
+    'C',
+    'X',
+
     VK_UP,
     VK_LEFT,
     VK_DOWN,
     VK_RIGHT,
 
-    VK_SPACE
+    VK_SPACE,
+    VK_ESCAPE,
+    VK_RETURN
 };
 
 CKeyMgr::CKeyMgr()

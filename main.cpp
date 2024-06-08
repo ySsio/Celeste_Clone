@@ -19,6 +19,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+    // 메모리 누수 체크 - 프로그램 종료되면 콘솔에 메모리 누수 내역 나옴
+    // shift+f5로 디버깅 종료하는 경우는 안나오니까 프로세스 정상종료 했을 떄 확인
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+    // 메모리 누수 남으면 메모리 누수 남은 부분 숫자가 콘솔에 나오는데 그걸 밑에 매크로 함수 입력으로 넣어주면
+    // 해당 메모리 누수 난 코드에 break 걸림
+    //_CrtSetBreakAlloc(1387);
+
     MyRegisterClass(hInstance);
 
     hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.

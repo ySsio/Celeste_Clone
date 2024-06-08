@@ -8,6 +8,7 @@
 #include "CTexture.h"
 #include "CAnimation.h"
 #include "CSound.h"
+#include "CTile.h"
 
 class CAssetMgr :
     public CManager
@@ -18,6 +19,7 @@ private:
     unordered_map<wstring, CTexture*>   m_mapTex;
     unordered_map<wstring, CAnimation*> m_mapAnim;
     unordered_map<wstring, CSound*>     m_mapSound;
+    unordered_map<wstring, CTile*>      m_mapTile;
 
 public:
     template <typename T>
@@ -32,11 +34,14 @@ public:
 public:
     virtual void Init() override;
 
-private:
-    void AddTexture(const wstring& _strName, CTexture* _pAsset) { m_mapTex.emplace(_strName, _pAsset); }
-    void AddAnimation(const wstring& _strName, CAnimation* _pAsset) { m_mapAnim.emplace(_strName, _pAsset); }
-    void AddSound(const wstring& _strName, CSound* _pAsset) { m_mapSound.emplace(_strName, _pAsset); }
+public:
+    CTexture* CreateFlippedTexture(const wstring& _strName, CTexture * _pTex);
 
+private:
+	void AddTexture(const wstring& _strName, CTexture* _pAsset) { m_mapTex.emplace(_strName, _pAsset); _pAsset->SetName(_strName); }
+	void AddAnimation(const wstring& _strName, CAnimation* _pAsset) { m_mapAnim.emplace(_strName, _pAsset); _pAsset->SetName(_strName); }
+	void AddSound(const wstring& _strName, CSound* _pAsset) { m_mapSound.emplace(_strName, _pAsset); _pAsset->SetName(_strName); }
+    void AddTile(const wstring& _strName, CTile* _pAsset) { m_mapTile.emplace(_strName, _pAsset); _pAsset->SetName(_strName); }
 };
 
 template <typename T>
@@ -53,6 +58,10 @@ void CAssetMgr::AddAsset(const wstring& _strName, T* _pAsset)
     else if (typeid(T) == typeid(CSound))
     {
         AddSound(_strName, (CSound*)_pAsset);
+    }
+    else if (typeid(T) == typeid(CTile))
+    {
+        AddTile(_strName, (CTile*)_pAsset);
     }
 }
 
@@ -77,6 +86,12 @@ T* CAssetMgr::FindAsset(const wstring& _strName)
         auto iter = m_mapSound.find(_strName);
         if (iter == m_mapSound.end()) return nullptr;
         else return (T*)(m_mapSound.find(_strName)->second);
+    }
+    else if (typeid(T) == typeid(CTile))
+    {
+        auto iter = m_mapTile.find(_strName);
+        if (iter == m_mapTile.end()) return nullptr;
+        else return (T*)(m_mapTile.find(_strName)->second);
     }
 
     return nullptr;

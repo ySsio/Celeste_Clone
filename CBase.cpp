@@ -16,4 +16,5 @@ CBase::CBase(const CBase& _other)
 
 CBase::~CBase()
 {
+	
 }

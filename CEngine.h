@@ -20,6 +20,9 @@ public:
 	HWND GetMainHwnd() { return m_MainHwnd; }
 	HDC GetMainDC() { return m_MainDC; }
 	HDC GetBackDC() { return m_BackBufferDC; }
+	HBITMAP GetBackBitmap() { return m_BackBuffer; }
+	HPEN GetPen(PEN_TYPE _Type) { return m_ArrPen[(UINT)_Type]; }
+	HBRUSH GetBrush(BRUSH_TYPE _Type) { return m_ArrBrush[(UINT)_Type]; }
 
 public:
 	Vec2 GetResolution() { return m_Resolution; }

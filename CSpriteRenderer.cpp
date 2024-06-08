@@ -5,8 +5,12 @@
 #include "CEngine.h"
 #include "CTexture.h"
 
+#include "CAssetMgr.h"
+
 CSpriteRenderer::CSpriteRenderer()
 	: m_Tex(nullptr)
+	, m_FlippedTex(nullptr)
+	, m_FlipX(false)
 {
 }
 
@@ -14,11 +18,34 @@ CSpriteRenderer::~CSpriteRenderer()
 {
 }
 
+void CSpriteRenderer::SetTexture(CTexture* _pTex)
+{
+	m_Tex = _pTex;
+
+	wstring strKey = _pTex->GetName();
+	strKey += L"_FlipX";
+
+	m_FlippedTex = CAssetMgr::Get()->CreateFlippedTexture(strKey, _pTex);
+}
+
 void CSpriteRenderer::Render()
 {
+	if (!m_Tex || (m_FlipX && !m_FlippedTex))
+		return;
+
 	CObj* pOwner = GetOwner();
 
-	Vec2 vPos = pOwner->GetRenderPos() + m_Offset;
+	Vec2 FinalOffset = m_Offset;
+	CTexture* RenderTex = m_Tex;
+	if (m_FlipX)
+	{
+		FinalOffset.x *= -1;
+		RenderTex = m_FlippedTex;
+	}
+
+	Vec2 vPos = pOwner->GetRenderPos() + FinalOffset;
+	int Width = RenderTex->GetWidth();
+	int Height = RenderTex->GetHeight();
 
 	BLENDFUNCTION blend{};
 	blend.BlendOp = AC_SRC_OVER;
@@ -27,11 +54,11 @@ void CSpriteRenderer::Render()
 	blend.AlphaFormat = AC_SRC_ALPHA;
 
 	AlphaBlend(BackDC
-		, (int)(vPos.x - m_Tex->GetWidth() / 2.f)
-		, (int)(vPos.y - m_Tex->GetHeight() / 2.f)
-		, m_Tex->GetWidth(), m_Tex->GetHeight()
-		, m_Tex->GetDC()
+		, (int)(vPos.x - Width / 2.f)
+		, (int)(vPos.y - Height / 2.f)
+		, Width, Height
+		, RenderTex->GetDC()
 		, 0, 0
-		, m_Tex->GetWidth(), m_Tex->GetHeight()
+		, Width, Height
 		, blend);
 }

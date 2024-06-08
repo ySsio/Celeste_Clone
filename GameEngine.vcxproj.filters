@@ -77,6 +77,27 @@
     <Filter Include="Game\07. Component\Animator">
       <UniqueIdentifier>{45786cfc-51be-4ce1-96e6-6ed24e4e4573}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07. Component\Collider">
+      <UniqueIdentifier>{3470db7b-ab6f-40c8-abcc-c5c47f7ddb6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Manager\CollisionMgr">
+      <UniqueIdentifier>{fbfe3402-2a55-46f5-9371-7af869ced034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Manager\DebugMgr">
+      <UniqueIdentifier>{1b72272d-5554-41e0-bff2-d08f03796f01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module">
+      <UniqueIdentifier>{33e9505d-14eb-4dcf-ade2-dcb662500d38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Asset\Tile">
+      <UniqueIdentifier>{55642015-523e-4917-8d94-e042e1e8185a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Component\TileMap">
+      <UniqueIdentifier>{84396389-a1bc-44b4-8235-6e04fe15e593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\02. Platform">
+      <UniqueIdentifier>{a5eee87b-5f44-45e5-a636-fc2c136551fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -160,6 +181,30 @@
     <ClInclude Include="CAnimator.h">
       <Filter>Game\07. Component\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="function.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Game\07. Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Game\05. Manager\CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CDebugMgr.h">
+      <Filter>Game\05. Manager\DebugMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CSelectObject.h">
+      <Filter>Game\08. Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CTileMap.h">
+      <Filter>Game\07. Component\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>Game\06. Asset\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlatform.h">
+      <Filter>Game\03.Object\02. Platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -242,6 +287,30 @@
     </ClCompile>
     <ClCompile Include="CAnimator.cpp">
       <Filter>Game\07. Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Game\07. Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Game\05. Manager\CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CDebugMgr.cpp">
+      <Filter>Game\05. Manager\DebugMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSelectObject.cpp">
+      <Filter>Game\08. Module</Filter>
+    </ClCompile>
+    <ClCompile Include="function.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="CTileMap.cpp">
+      <Filter>Game\07. Component\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>Game\06. Asset\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatform.cpp">
+      <Filter>Game\03.Object\02. Platform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -18,6 +18,9 @@ CTexture::~CTexture()
 
 CTexture* CTexture::Stretch(Vec2 _Resolution)
 {
+	if (_Resolution.x == m_BitMapInfo.bmWidth && _Resolution.y == m_BitMapInfo.bmHeight)
+		return this;
+
 	HDC hStretchDC = CreateCompatibleDC(MainDC);
 	HBITMAP hStretchBitmap = CreateCompatibleBitmap(MainDC, (int)_Resolution.x, (int)_Resolution.y);
 	DeleteObject(SelectObject(hStretchDC, hStretchBitmap));
@@ -38,6 +41,15 @@ CTexture* CTexture::Stretch(Vec2 _Resolution)
 	GetObject(m_BitMap, sizeof(BITMAP), &m_BitMapInfo);
 
 	return this;
+}
+
+void CTexture::CreateTexture(UINT _Width, UINT _Height)
+{
+	m_DC = CreateCompatibleDC(MainDC);
+	m_BitMap = CreateCompatibleBitmap(MainDC, _Width, _Height);
+	DeleteObject(SelectObject(m_DC, m_BitMap));
+
+	GetObject(m_BitMap, sizeof(BITMAP), &m_BitMapInfo);
 }
 
 void CTexture::Load(const wstring& _strRelativeFilePath)

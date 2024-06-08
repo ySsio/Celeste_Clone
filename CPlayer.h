@@ -9,9 +9,10 @@ class CPlayer :
 {
 private:
     CSpriteRenderer*    m_HeadSprite;
-    CSpriteRenderer*    m_BodySprite;
     CAnimator*          m_HeadAnim;
     CAnimator*          m_BodyAnim;
+
+    CCollider*          m_Collider;
 
 public:
     virtual void Tick() override;
