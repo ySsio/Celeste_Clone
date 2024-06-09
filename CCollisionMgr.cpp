@@ -18,6 +18,14 @@ CCollisionMgr::~CCollisionMgr()
 
 }
 
+void CCollisionMgr::ClearCollider()
+{
+	for (auto& Layer : m_arrCollider)
+	{
+		Layer.clear();
+	}
+}
+
 void CCollisionMgr::RegisterCollisionLayer(LAYER_TYPE _Type1, LAYER_TYPE _Type2, bool _b)
 {
 	if ((UINT)_Type1 > (UINT)_Type2)
@@ -84,15 +92,15 @@ void CCollisionMgr::CollisionLayerCheck(UINT _Layer1, UINT _Layer2)
 	}
 }
 
-bool CCollisionMgr::CollisionCheck(CCollider* _Obj1, CCollider* _Obj2)
+bool CCollisionMgr::CollisionCheck(CCollider* _Col1, CCollider* _Col2)
 {
-	Vec2 vPos1 = _Obj1->GetFianlPos();
-	Vec2 vPos2 = _Obj2->GetFianlPos();
-	Vec2 vScale1 = _Obj1->GetScale();
-	Vec2 vScale2 = _Obj2->GetScale();
+	Vec2 vPos1 = _Col1->GetFinalPos();
+	Vec2 vPos2 = _Col2->GetFinalPos();
+	Vec2 vScale1 = _Col1->GetScale();
+	Vec2 vScale2 = _Col2->GetScale();
 
-	if (vPos1.x - vScale1.x < vPos2.x + vScale2.x
-		&& vPos2.x - vScale2.x < vPos1.x + vScale1.x)
+	if (fabs(vPos1.x - vPos2.x) <= (vScale1.x + vScale2.x) / 2.f
+		&& fabs(vPos1.y - vPos2.y) <= (vScale1.y + vScale2.y) / 2.f)
 	{
 		return true;
 	}
@@ -108,7 +116,7 @@ void CCollisionMgr::Tick()
 {
 	for (UINT row = 0; row < (UINT)LAYER_TYPE::END; ++row)
 	{
-		for (UINT col = 0; col <= row; ++col)
+		for (UINT col = 0; col < (UINT)LAYER_TYPE::END - row; ++col)
 		{
 			if (!(m_Matrix[row] & (1 << col)))
 				continue;
@@ -119,8 +127,5 @@ void CCollisionMgr::Tick()
 
 
 	// 콜라이더 모두 해제
-	for (auto& vecLayer : m_arrCollider)
-	{
-		vecLayer.clear();
-	}
+	ClearCollider();
 }

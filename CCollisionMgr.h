@@ -29,13 +29,14 @@ private:
     unordered_map<DWORD_PTR, bool> m_ColInfo;
 
 public:
+    void ClearCollider();
     void RegisterCollisionLayer(LAYER_TYPE _Type1, LAYER_TYPE _Type2, bool _b);
     void RegisterCollider(CCollider* _Collider, LAYER_TYPE _LayerType)
     {
         m_arrCollider[(UINT)_LayerType].push_back(_Collider);
     }
     void CollisionLayerCheck(UINT _Layer1, UINT _Layer2);
-    bool CollisionCheck(CCollider* _Obj1, CCollider* _Obj2);
+    bool CollisionCheck(CCollider* _Col1, CCollider* _Col2);
 
 public:
     virtual void Init() override;

@@ -9,7 +9,6 @@ private:
 
 public:
     virtual void Enter() override;
-    virtual void Exit() override;
 
 public:
     CLevel_Level_01();

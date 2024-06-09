@@ -14,22 +14,33 @@ CLevel::CLevel()
 
 CLevel::~CLevel()
 {
-	for (auto& group : m_ArrGroupObj)
+	for (auto& Layer : m_ArrLayerObj)
 	{
-		Release_Vector(group);
+		Release_Vector(Layer);
 	}
 }
 
 void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 {
-	m_ArrGroupObj[(UINT)_Type].push_back(_Obj); _Obj->SetLayerType(_Type);
+	m_ArrLayerObj[(UINT)_Type].push_back(_Obj); _Obj->SetLayerType(_Type);
 }
+
+
+void CLevel::Exit()
+{
+	for (auto& Layer : m_ArrLayerObj)
+	{
+		Release_Vector(Layer);
+	}
+}
+
+
 
 void CLevel::Tick()
 {
-	for (auto& group : m_ArrGroupObj)
+	for (auto& Layer : m_ArrLayerObj)
 	{
-		for (auto obj : group)
+		for (auto obj : Layer)
 		{
 			obj->Tick();
 		}
@@ -38,16 +49,22 @@ void CLevel::Tick()
 
 void CLevel::FinalTick()
 {
-	for (auto& group : m_ArrGroupObj)
+	for (auto& Layer : m_ArrLayerObj)
 	{
-		for (auto obj : group)
+		for (auto iter = Layer.begin(); iter != Layer.end();)
 		{
-			obj->FinalTick();
+			(*iter)->FinalTick();
+			if ((*iter)->IsDead())
+			{
+				iter = Layer.erase(iter);
+				continue;
+			}
+			++iter;
 		}
 	}
 }
 
-void CLevel::Render(HDC _hDC)
+void CLevel::Render()
 {
 	Vec2 vRes = CEngine::Get()->GetResolution();
 	if (m_BackGround)
@@ -58,7 +75,7 @@ void CLevel::Render(HDC _hDC)
 		blend.SourceConstantAlpha = 255;
 		blend.AlphaFormat = AC_SRC_ALPHA;
 
-		AlphaBlend(_hDC
+		AlphaBlend(BackDC
 			, 0, 0
 			, (int)vRes.x
 			, (int)vRes.y
@@ -69,9 +86,9 @@ void CLevel::Render(HDC _hDC)
 			, blend);
 	}
 
-	for (auto& group : m_ArrGroupObj)
+	for (auto& Layer : m_ArrLayerObj)
 	{
-		for (auto& obj : group)
+		for (auto& obj : Layer)
 		{
 			obj->Render();
 		}

@@ -14,7 +14,3 @@ void CLevel_Editor::Enter()
 {
 	
 }
-
-void CLevel_Editor::Exit()
-{
-}

@@ -2,6 +2,7 @@
 #include "CComponent.h"
 
 class CTile;
+class CCollider;
 
 // 좌상단 위치가 Position
 class CTileMap :
@@ -13,7 +14,8 @@ private:
     UINT        m_RowCnt;
     UINT        m_ColCnt;
 
-    vector<CTile*> m_vecTile;
+    vector<CTile*>      m_vecTile;
+    vector<CCollider*>  m_vecCol;
 
 public:
     UINT GetRowCnt() { return m_RowCnt; }
@@ -27,6 +29,14 @@ public:
         m_vecTile.resize(_Row * _Col);
     }
     void SetTile(UINT _Row, UINT _Col, CTile* _Tile);
+
+    Vec2 FindCollider(CCollider* _Col);
+    bool IsTileDanger(UINT _Row, UINT _Col);
+    bool IsTileDanger(Vec2 _RowCol);
+    bool IsTileDanger(CCollider* _Col);
+
+public:
+    void AddCollider();
 
 public:
     virtual void FinalTick() override;

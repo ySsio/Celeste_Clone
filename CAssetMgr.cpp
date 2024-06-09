@@ -11,6 +11,7 @@ CAssetMgr::~CAssetMgr()
 	Release_Map(m_mapTex);
 	Release_Map(m_mapAnim);
 	Release_Map(m_mapSound);
+	Release_Map(m_mapTile);
 }
 
 void CAssetMgr::Init()
@@ -55,7 +56,7 @@ void CAssetMgr::Init()
 	{
 		wstring num = i <= 9 ? L"0" + std::to_wstring(i) : std::to_wstring(i);
 
-		pTex = LoadAsset<CTexture>(L"Player_Idle_" + num, L"\\texture\\Player\\idle" + num + L".png")->Stretch(Vec2(128.f, 128.f));
+		pTex = LoadAsset<CTexture>(L"Player_Idle_" + num, L"\\texture\\Player\\idle" + num + L".png")->Stretch(Vec2(160.f, 160.f));
 		Frm.Texture = pTex;
 		pAnim->AddFrm(Frm);
 
@@ -73,7 +74,7 @@ void CAssetMgr::Init()
 	{
 		wstring num = i <= 9 ? L"0" + std::to_wstring(i) : std::to_wstring(i);
 
-		pTex = LoadAsset<CTexture>(L"Player_IdleA_" + num, L"\\texture\\Player\\idleA" + num + L".png")->Stretch(Vec2(128.f, 128.f));
+		pTex = LoadAsset<CTexture>(L"Player_IdleA_" + num, L"\\texture\\Player\\idleA" + num + L".png")->Stretch(Vec2(160.f, 160.f));
 		Frm.Texture = pTex;
 		pAnim->AddFrm(Frm);
 
@@ -91,7 +92,7 @@ void CAssetMgr::Init()
 	{
 		wstring num = i <= 9 ? L"0" + std::to_wstring(i) : std::to_wstring(i);
 
-		pTex = LoadAsset<CTexture>(L"Player_IdleB_" + num, L"\\texture\\Player\\idleB" + num + L".png")->Stretch(Vec2(128.f, 128.f));
+		pTex = LoadAsset<CTexture>(L"Player_IdleB_" + num, L"\\texture\\Player\\idleB" + num + L".png")->Stretch(Vec2(160.f, 160.f));
 		Frm.Texture = pTex;
 		pAnim->AddFrm(Frm);
 
@@ -109,7 +110,7 @@ void CAssetMgr::Init()
 	{
 		wstring num = i <= 9 ? L"0" + std::to_wstring(i) : std::to_wstring(i);
 
-		pTex = LoadAsset<CTexture>(L"Player_IdleC_" + num, L"\\texture\\Player\\idleC" + num + L".png")->Stretch(Vec2(128.f, 128.f));
+		pTex = LoadAsset<CTexture>(L"Player_IdleC_" + num, L"\\texture\\Player\\idleC" + num + L".png")->Stretch(Vec2(160.f, 160.f));
 		Frm.Texture = pTex;
 		pAnim->AddFrm(Frm);
 
@@ -126,7 +127,18 @@ void CAssetMgr::Init()
 	pTile->SetTexture(LoadAsset<CTexture>(L"Tile_Girder", L"\\tilesets\\girder.png"));
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
+	pTile->SetDanger(false);
+	pTile->SetColInfo();
 	AddTile(L"Tile_Girder_0", pTile);
+
+	pTile = new CTile;
+	pTile->SetTexture(LoadAsset<CTexture>(L"Tile_Spike_Right", L"\\tilesets\\danger\\spikes\\default_right00.png"));
+	pTile->SetScale(Vec2(8.f, 8.f));
+	pTile->SetLT(Vec2(0.f, 0.f));
+	pTile->SetDanger(true);
+	pTile->SetColInfo();
+	AddTile(L"Tile_Spike_Right", pTile);
+
 }
 
 CTexture* CAssetMgr::CreateFlippedTexture(const wstring& _strName, CTexture* _pTex)

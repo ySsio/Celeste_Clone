@@ -12,8 +12,10 @@ private:
     int     m_OverlapCount;
 
 public:
-    Vec2 GetFianlPos() { return m_FinalPos; }
+    Vec2 GetOffset() { return m_Offset; }
+    Vec2 GetFinalPos() { return m_FinalPos; }
     Vec2 GetScale() { return m_Scale; }
+    int GetOverlapCount() { return m_OverlapCount; }
 
     void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }

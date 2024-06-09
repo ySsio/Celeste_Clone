@@ -7,7 +7,6 @@ CPlatform::CPlatform()
 	: m_TileMap(nullptr)
 {
 	m_TileMap = AddComponent<CTileMap>();
-	m_TileMap->SetRowCol(10, 3);
 }
 
 CPlatform::~CPlatform()

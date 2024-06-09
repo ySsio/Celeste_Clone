@@ -36,9 +36,8 @@ enum class LEVEL_TYPE
 enum class LAYER_TYPE
 {
 	BACKGROUND,
-	PLAYER,
-	TILE,
 	PLATFORM,
+	PLAYER,
 
 	END = 32,
 };
@@ -48,4 +47,12 @@ enum class DEBUG_SHAPE
 	RECTANGLE,
 	ELLIPSE,
 	LINE,
+};
+
+enum class TASK_TYPE
+{
+	CREATE_OBJECT,	// wParam : Object Address (CObj*) , lParam : Layer Type (LAYER_TYPE)
+	DELETE_OBJECT,	// wParam : Object Address (CObj*)
+	CHANGE_LEVEL,	// wParam : Level Address (CLevel*)
+
 };

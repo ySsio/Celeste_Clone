@@ -10,7 +10,7 @@ class CLevelMgr :
 
 private:
     array<CLevel*, (UINT)LEVEL_TYPE::END>     m_ArrLevel;
-    LEVEL_TYPE                                m_CurLevelType;
+    CLevel*                                   m_CurLevel;
 
 public:
     void Tick();
@@ -18,8 +18,8 @@ public:
     void Render();
 
 public:
-    CLevel* GetCurLevel() { return m_ArrLevel[(UINT)m_CurLevelType]; }
-    void ChangeLevel(LEVEL_TYPE _Type);
+    CLevel* GetCurLevel() { return m_CurLevel; }
+    void ChangeLevel(CLevel* _Level);
 
 public:
     virtual void Init() override;

@@ -9,6 +9,7 @@
 #include "CCamera.h"
 #include "CCollisionMgr.h"
 #include "CDebugMgr.h"
+#include "CTaskMgr.h"
 
 CEngine::CEngine()
 	: m_MainHwnd(nullptr)
@@ -89,15 +90,17 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 	CCollisionMgr::Get()->Init();
 	CCamera::Get()->Init();
 	CDebugMgr::Get()->Init();
+	CTaskMgr::Get()->Init();
 }
 
 void CEngine::Progress()
 {
 	// tick
-	CKeyMgr::Get()->Tick();
 	CTimeMgr::Get()->Tick();
-	CCamera::Get()->Tick();
+	CKeyMgr::Get()->Tick();
 	CLevelMgr::Get()->Tick();
+	CCollisionMgr::Get()->Tick();
+	CCamera::Get()->Tick();
 	CDebugMgr::Get()->Tick();
 
 	// render
@@ -105,9 +108,8 @@ void CEngine::Progress()
 
 	// final tick
 	CTimeMgr::Get()->FinalTick();
+	CTaskMgr::Get()->Tick();
 	CLevelMgr::Get()->FinalTick();
-	CCollisionMgr::Get()->Tick();
-	
 }
 
 void CEngine::Render()

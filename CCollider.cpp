@@ -18,15 +18,18 @@ CCollider::~CCollider()
 void CCollider::BeginOverlap(CCollider* _Other)
 {
 	++m_OverlapCount;
+	GetOwner()->OnCollisionEnter(this, _Other->GetOwner(), _Other);
 }
 
 void CCollider::Overlap(CCollider* _Other)
 {
+	GetOwner()->OnCollision(this, _Other->GetOwner(), _Other);
 }
 
 void CCollider::EndOverlap(CCollider* _Other)
 {
 	--m_OverlapCount;
+	GetOwner()->OnCollisionExit(this, _Other->GetOwner(), _Other);
 }
 
 

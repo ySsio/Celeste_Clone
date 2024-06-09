@@ -15,8 +15,3 @@ void CLevel_Start::Enter()
 {
 	
 }
-
-void CLevel_Start::Exit()
-{
-
-}

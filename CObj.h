@@ -5,6 +5,8 @@
 #include "CSpriteRenderer.h"
 #include "CAnimator.h"
 #include "CCollider.h"
+#include "CTileMap.h"
+#include "CRigidBody.h"
 
 class CComponent;
 
@@ -16,6 +18,8 @@ private:
     Vec2        m_Pos;
     Vec2        m_Scale;
 
+    Vec2        m_PrevPos;
+
     vector<CComponent*> m_vecComponent;
 
     bool        m_Dead;
@@ -23,11 +27,16 @@ private:
 public:
     void SetLayerType(LAYER_TYPE _Type) { m_Type = _Type; }
     void SetPos(float _x, float _y) { m_Pos.x = _x; m_Pos.y = _y; }
-    void SetPos(Vec2 _vPos) { m_Pos = _vPos; }
+    void SetPos(Vec2 _vPos) {
+        m_PrevPos = m_Pos;
+        m_Pos = _vPos; 
+    }
     void SetScale(float _x, float _y) { m_Scale.x = _x; m_Scale.y = _y; }
+    void SetDead() { m_Dead = true; }
 
-    
+    LAYER_TYPE GetType() { return m_Type; }
     Vec2 GetPos() { return m_Pos; }
+    Vec2 GetPrevPos() { return m_PrevPos; }
     Vec2 GetScale() { return m_Scale; }
     Vec2 GetRenderPos();
     bool IsDead() { return m_Dead; }
