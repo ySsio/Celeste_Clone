@@ -99,6 +99,7 @@ void CEngine::Progress()
 	CTimeMgr::Get()->Tick();
 	CKeyMgr::Get()->Tick();
 	CLevelMgr::Get()->Tick();
+	CLevelMgr::Get()->FinalTick();
 	CCollisionMgr::Get()->Tick();
 	CCamera::Get()->Tick();
 	CDebugMgr::Get()->Tick();
@@ -109,7 +110,6 @@ void CEngine::Progress()
 	// final tick
 	CTimeMgr::Get()->FinalTick();
 	CTaskMgr::Get()->Tick();
-	CLevelMgr::Get()->FinalTick();
 }
 
 void CEngine::Render()

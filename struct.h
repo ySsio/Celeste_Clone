@@ -71,14 +71,14 @@ struct Vec2
 		return sqrt(x * x + y * y);
 	}
 
-	Vec2 Normalize()
-	{
-		return *this / Length();
-	}
-
-	Vec2& Normalized()
+	Vec2& Normalize()
 	{
 		return *this /= Length();
+	}
+
+	Vec2 Normalized()
+	{
+		return *this / Length();
 	}
 };
 

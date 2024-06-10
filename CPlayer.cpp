@@ -13,6 +13,7 @@ CPlayer::CPlayer()
 	, m_BodyAnim(nullptr)
 	, m_Collider(nullptr)
 	, m_RigidBody(nullptr)
+	, m_Dir(1.f)
 {
 	m_HeadAnim = AddComponent<CAnimator>();
 	m_HeadAnim->AddAnimation(L"Player_Bang", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Bang"));
@@ -30,11 +31,12 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_IdleC_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleC_FlipX"));
 	m_BodyAnim->Play(L"Player_Idle");
 
+	m_RigidBody = AddComponent<CRigidBody>();
+
 	m_Collider = AddComponent<CCollider>();
 	m_Collider->SetOffset(Vec2(0.f, 48.f));
 	m_Collider->SetScale(Vec2(34.f, 68.f));
 
-	m_RigidBody = AddComponent<CRigidBody>();
 }
 
 CPlayer::~CPlayer()
@@ -45,25 +47,25 @@ void CPlayer::Tick()
 {
 	Vec2 vPos = GetPos();
 
-	//if (KEY_PRESSED(KEY::UP))
-	//{
-	//	m_RigidBody->AddForce(Vec2(0.f,-500.f));
-	//}
-	//if (KEY_PRESSED(KEY::DOWN))
-	//{
-	//	m_RigidBody->AddForce(Vec2(0.f,500.f));
-	//}
+	Vec2 vVelocity = m_RigidBody->GetVelocity();
+	
+	
+
 	if (KEY_PRESSED(KEY::LEFT))
 	{
-		m_RigidBody->AddForce(Vec2(-500.f,0.f));
+		m_RigidBody->MovePosition(GetPos() + Vec2(-350.f, 0.f) * fDT);
+		m_Dir = -1.f;
 	}
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
-		m_RigidBody->AddForce(Vec2(500.f,0.f));
+		m_RigidBody->MovePosition(GetPos() + Vec2(350.f, 0.f) * fDT);
+		m_Dir = 1.f;
 	}
 
 	if (KEY_TAP(KEY::LEFT))
 	{
+		//m_RigidBody->SetVelocity(Vec2(-100.f, vVelocity.y));
+
 		if (m_HeadAnim)		
 			m_HeadAnim->Play(L"Player_Bang_FlipX");
 		if (m_BodyAnim)		
@@ -71,6 +73,8 @@ void CPlayer::Tick()
 	}
 	if (KEY_TAP(KEY::RIGHT))
 	{
+		//m_RigidBody->SetVelocity(Vec2(100.f, vVelocity.y));
+
 		if (m_HeadAnim)		
 			m_HeadAnim->Play(L"Player_Bang");
 		if (m_BodyAnim)		
@@ -83,10 +87,38 @@ void CPlayer::Tick()
 		m_RigidBody->Jump();
 		m_RigidBody->SetGravity(true);
 	}
+	else if (KEY_RELEASED(KEY::C))
+	{
+		m_RigidBody->EndJump();
+	}
+	
+
+
 	if (KEY_TAP(KEY::X))
 	{
-		// Dash
+		Vec2 vDir = Vec2(m_Dir, 0.f);
 
+		if (KEY_PRESSED(KEY::UP))
+		{
+			vDir.y = -1.f;
+
+			if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
+				vDir.x = 0.f;
+		}
+		else if (KEY_PRESSED(KEY::DOWN))
+		{
+			vDir.y = 1.f;
+
+			if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
+				vDir.x = 0.f;
+		}
+		else
+		{
+			vDir.y = 0.f;
+		}
+
+		// Dash
+		m_RigidBody->Dash(vDir);
 	}
 
 
@@ -108,19 +140,14 @@ void CPlayer::Render()
 
 void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
-	Vec2 vCurColPos = GetPos() + _Col->GetOffset();
-	Vec2 vPrevColPos = GetPrevPos() + _Col->GetOffset();
+	Vec2 vPos = GetPos();
+	Vec2 vColPos = _Col->GetFinalPos();
 	Vec2 vColScale = _Col->GetScale();
 
-	float minCurX = vCurColPos.x - vColScale.x / 2.f;
-	float maxCurX = vCurColPos.x + vColScale.x / 2.f;
-	float minCurY = vCurColPos.y - vColScale.y / 2.f;
-	float maxCurY = vCurColPos.y + vColScale.y / 2.f;
-
-	float minPrevX = vPrevColPos.x - vColScale.x / 2.f;
-	float maxPrevX = vPrevColPos.x + vColScale.x / 2.f;
-	float minPrevY = vPrevColPos.y - vColScale.y / 2.f;
-	float maxPrevY = vPrevColPos.y + vColScale.y / 2.f;
+	float minX = vColPos.x - vColScale.x / 2.f;
+	float maxX = vColPos.x + vColScale.x / 2.f;
+	float minY = vColPos.y - vColScale.y / 2.f;
+	float maxY = vColPos.y + vColScale.y / 2.f;
 
 	Vec2 vOtherPos = _OtherCol->GetFinalPos();
 	Vec2 vOtherColScale = _OtherCol->GetScale();
@@ -130,37 +157,41 @@ void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 	float minOtherY = vOtherPos.y - vOtherColScale.y / 2.f;
 	float maxOtherY = vOtherPos.y + vOtherColScale.y / 2.f;
 
-	Vec2 vPos = GetPos();
-	Vec2 vVelocity = m_RigidBody->GetVelocity();
 
-	// 오른쪽에서 박음
-	if (minPrevX > maxOtherX)
-	{
-		SetPos(Vec2(vPos.x + (maxOtherX - minCurX), vPos.y));
-		m_RigidBody->SetVelocity(Vec2(0.f, vVelocity.y));
+	float dx = vColPos.x - vOtherPos.x;
+	float dy = vColPos.y - vOtherPos.y;
+
+	// 각 축에서의 침투 깊이
+	float overlapX = (vColScale.x/2.f + vOtherColScale.x/2.f) - std::abs(dx);
+	float overlapY = (vColScale.y/2.f + vOtherColScale.y/2.f) - std::abs(dy);
+
+	// 침투 깊이가 더 작은 축을 따라 해소
+	if (overlapX < overlapY) {
+		vPos.x += (dx < 0) ? -overlapX : overlapX;
+		m_RigidBody->SetVelocity(Vec2(0.f, m_RigidBody->GetVelocity().y));
 	}
-	// 위쪽에서 박음
-	else if (maxPrevY < minOtherY)
-	{
-		SetPos(Vec2(vPos.x, vPos.y + (minOtherY - maxCurY)));
-		m_RigidBody->SetVelocity(Vec2(vVelocity.x, 0.f));
-	}
-	// 왼쪽에서 박음
-	else if (maxPrevX < minOtherX)
-	{
-		SetPos(Vec2(vPos.x + (minOtherX - maxCurX), vPos.y));
-		m_RigidBody->SetVelocity(Vec2(0.f, vVelocity.y));
-	}
-	// 아래쪽에서 박음
-	else if (minPrevY > maxOtherY)
-	{
-		SetPos(Vec2(vPos.x, vPos.y + (maxOtherY - minCurY)));
-		m_RigidBody->SetVelocity(Vec2(vVelocity.x, 0.f));
+	else {
+		if (dy < 0)
+		{
+			vPos.y -= overlapY;
+			m_RigidBody->SetGravity(false);
+			m_RigidBody->SetGround(true);
+			m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
+		}
+		else
+		{
+			vPos.y += overlapY;
+		}
 	}
 
-	m_RigidBody->SetGravity(false);
-	SetPos(Vec2(vPos.x, vPos.y + (minOtherY - maxCurY)));
-	m_RigidBody->SetVelocity(Vec2(vVelocity.x, 0.f));
+	SetPos(vPos);
+
+
+	//m_RigidBody->SetGravity(false);
+	//m_RigidBody->SetGround(true);
+	//SetPos(Vec2(vPos.x, vPos.y + (minOtherY - maxCurY)));
+	//m_RigidBody->SetVelocity(Vec2(m_Velocity.x, 0.f));
+	//m_RigidBody->SetJumpEnd(false);
 
 	if (LAYER_TYPE::PLATFORM == _Other->GetType())
 	{
@@ -183,5 +214,8 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 void CPlayer::OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
 	if (m_Collider->GetOverlapCount() == 0)
+	{
 		m_RigidBody->SetGravity(true);
+		m_RigidBody->SetGround(false);
+	}
 }

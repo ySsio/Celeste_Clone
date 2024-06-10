@@ -63,7 +63,7 @@ void CTileMap::AddCollider()
 	{
 		for (UINT Col = 0; Col < m_ColCnt; ++Col)
 		{
-			if (!m_vecTile[Row * m_ColCnt + Col]->HasCollider())
+			if (!m_vecTile[Row * m_ColCnt + Col] || !m_vecTile[Row * m_ColCnt + Col]->HasCollider())
 			{
 				m_vecCol.push_back(nullptr);
 				continue;

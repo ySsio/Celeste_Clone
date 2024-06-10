@@ -14,6 +14,8 @@ private:
     CCollider*          m_Collider;
     CRigidBody*         m_RigidBody;
 
+    float                m_Dir;
+
 public:
     virtual void Tick() override;
     virtual void Render() override;

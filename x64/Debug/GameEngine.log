@@ -1,14 +1,2 @@
-﻿  CAnimator.cpp
-  CCollider.cpp
-  CCollisionMgr.cpp
-  CLevel.cpp
-  CLevel_Level_01.cpp
-  CObj.cpp
-  CPlatform.cpp
-  CPlayer.cpp
-  CRigidBody.cpp
-  CSpriteRenderer.cpp
-  CTaskMgr.cpp
-  CTileMap.cpp
-  코드를 생성하고 있습니다...
+﻿  CPlayer.cpp
   GameEngine.vcxproj -> D:\cpp_Exercise\GameEngine\Output\bin\GameEngine_D.exe
