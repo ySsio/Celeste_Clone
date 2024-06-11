@@ -15,19 +15,17 @@ private:
 
     static Vec2     m_GravityAccel;
     float   m_GravityCoef;
+    float   m_GravityOriginalCoef;
+    float   m_GravityJumpCoef;
     bool    m_Gravity;
     bool    m_Ground;
+    bool    m_Jump;
 
     float   m_JumpSpeed;
-    float   m_MaxJumpSpeed;
-
-    float   m_MaxJumpDuration;
-    float   m_JumpAccTime;
 
     bool    m_JumpEnd;
 
     static float    m_FrictionCoef;
-
 
     float   m_DashSpeed;
     float   m_DashTime;
@@ -43,7 +41,6 @@ public:
     void SetJumpSpeed(float _Speed) { m_JumpSpeed = _Speed; }
     void SetGravity(bool _b) { m_Gravity = _b; }
     void SetGround(bool _b) { m_Ground = _b; }
-    void SetJumpAccTime(float _Time) { m_JumpAccTime = 0.f; }
 
     void AddForce(Vec2 _Force) { m_Force += _Force; }
     void AddAccel(Vec2 _Accel) { m_Accel += _Accel; }

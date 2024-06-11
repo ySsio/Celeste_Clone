@@ -53,12 +53,12 @@ void CPlayer::Tick()
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
-		m_RigidBody->MovePosition(GetPos() + Vec2(-350.f, 0.f) * fDT);
+		m_RigidBody->MovePosition(GetPos() + Vec2(-400.f, 0.f) * fDT);
 		m_Dir = -1.f;
 	}
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
-		m_RigidBody->MovePosition(GetPos() + Vec2(350.f, 0.f) * fDT);
+		m_RigidBody->MovePosition(GetPos() + Vec2(400.f, 0.f) * fDT);
 		m_Dir = 1.f;
 	}
 

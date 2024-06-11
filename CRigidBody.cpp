@@ -3,19 +3,19 @@
 #include "CObj.h"
 #include "CTimeMgr.h"
 
-Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 800.f);
+Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 1200.f);
 float CRigidBody::m_FrictionCoef = 300.f;
 
 CRigidBody::CRigidBody()
 	: m_Mass(1.f)
 	, m_Gravity(true)
 	, m_Ground(false)
+	, m_Jump(false)
 	, m_MaxSpeed(400.f)
 	, m_GravityCoef(1.f)
+	, m_GravityOriginalCoef(1.f)
+	, m_GravityJumpCoef(0.3f)
 	, m_JumpSpeed(300.f)
-	, m_MaxJumpSpeed(300.f)
-	, m_MaxJumpDuration(1.3f)
-	, m_JumpAccTime(0.f)
 	, m_JumpEnd(false)
 	, m_DashSpeed(540.f)
 	, m_DashTime(0.5f)
@@ -34,18 +34,14 @@ void CRigidBody::Jump()
 		return;
 
 	SetVelocity(Vec2(m_Velocity.x, -m_JumpSpeed));
+	m_GravityCoef = m_GravityJumpCoef;
+	m_Jump = true;
 }
 
 void CRigidBody::EndJump()
 {
-	if (m_JumpEnd)
-	{
-
-	}
-
-	m_JumpAccTime += fDT;
-	m_GravityCoef /= 2.f;
-
+	m_GravityCoef = m_GravityOriginalCoef;
+	m_Jump = false;
 }
 
 void CRigidBody::Dash(Vec2 _Dir)
@@ -73,7 +69,7 @@ void CRigidBody::FinalTick()
 	CObj* pOwner = GetOwner();
 
 	m_Accel = m_Force / m_Mass;
-	if (m_Gravity) m_Accel += m_GravityAccel;
+	if (m_Gravity) m_Accel += m_GravityAccel * m_GravityCoef;
 	
 	//if (m_Force.IsZero())
 	//{
@@ -108,6 +104,11 @@ void CRigidBody::FinalTick()
 			m_Dash = false;
 			m_Gravity = true;
 		}
+	}
+
+	if (m_Jump && fabs(m_Velocity.y) <= 1.f)
+	{
+		EndJump();
 	}
 
 	Vec2 vPos = pOwner->GetPos();
