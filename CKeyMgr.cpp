@@ -10,6 +10,7 @@ array<int, (UINT)KEY::END> KEY_MAP
 
     'C',
     'X',
+    'Z',
 
     VK_UP,
     VK_LEFT,

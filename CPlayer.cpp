@@ -140,8 +140,23 @@ void CPlayer::Render()
 
 void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
+	if (LAYER_TYPE::PLATFORM == _Other->GetType())
+	{
+		CTileMap* pTileMap = _Other->GetComponent<CTileMap>();
+		if (pTileMap->IsTileDanger(_OtherCol))
+		{
+			tTask task{};
+			task.TaskType = TASK_TYPE::CHANGE_LEVEL;
+			task.wParam = (DWORD_PTR)CLevelMgr::Get()->GetCurLevel();
+			CTaskMgr::Get()->AddTask(task);
+		}
+	}
+}
+
+void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
+{
 	Vec2 vPos = GetPos();
-	Vec2 vColPos = _Col->GetFinalPos();
+	Vec2 vColPos = vPos + _Col->GetOffset();
 	Vec2 vColScale = _Col->GetScale();
 
 	float minX = vColPos.x - vColScale.x / 2.f;
@@ -157,18 +172,27 @@ void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 	float minOtherY = vOtherPos.y - vOtherColScale.y / 2.f;
 	float maxOtherY = vOtherPos.y + vOtherColScale.y / 2.f;
 
-
 	float dx = vColPos.x - vOtherPos.x;
 	float dy = vColPos.y - vOtherPos.y;
 
 	// 각 축에서의 침투 깊이
-	float overlapX = (vColScale.x/2.f + vOtherColScale.x/2.f) - std::abs(dx);
-	float overlapY = (vColScale.y/2.f + vOtherColScale.y/2.f) - std::abs(dy);
+	float overlapX = (vColScale.x / 2.f + vOtherColScale.x / 2.f) - std::abs(dx);
+	float overlapY = (vColScale.y / 2.f + vOtherColScale.y / 2.f) - std::abs(dy);
 
 	// 침투 깊이가 더 작은 축을 따라 해소
 	if (overlapX < overlapY) {
-		vPos.x += (dx < 0) ? -overlapX : overlapX;
+		
 		m_RigidBody->SetVelocity(Vec2(0.f, m_RigidBody->GetVelocity().y));
+		if (KEY_PRESSED(KEY::Z))
+		{
+			vPos.x += (dx < 0) ? -overlapX + 0.1f : overlapX - 0.1f;
+			m_RigidBody->SetGravity(false);
+			m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
+		}
+		else
+		{
+			vPos.x += (dx < 0) ? -overlapX - 0.1f : overlapX + 0.1f;
+		}
 	}
 	else {
 		if (dy < 0)
@@ -185,30 +209,6 @@ void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 	}
 
 	SetPos(vPos);
-
-
-	//m_RigidBody->SetGravity(false);
-	//m_RigidBody->SetGround(true);
-	//SetPos(Vec2(vPos.x, vPos.y + (minOtherY - maxCurY)));
-	//m_RigidBody->SetVelocity(Vec2(m_Velocity.x, 0.f));
-	//m_RigidBody->SetJumpEnd(false);
-
-	if (LAYER_TYPE::PLATFORM == _Other->GetType())
-	{
-		CTileMap* pTileMap = _Other->GetComponent<CTileMap>();
-		if (pTileMap->IsTileDanger(_OtherCol))
-		{
-			tTask task{};
-			task.TaskType = TASK_TYPE::CHANGE_LEVEL;
-			task.wParam = (DWORD_PTR)CLevelMgr::Get()->GetCurLevel();
-			CTaskMgr::Get()->AddTask(task);
-		}
-	}
-}
-
-void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
-{
-	
 }
 
 void CPlayer::OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)

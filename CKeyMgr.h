@@ -10,6 +10,7 @@ enum class KEY
 
     C,
     X,
+    Z,
 
     UP,
     LEFT,
