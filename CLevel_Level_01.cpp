@@ -50,6 +50,14 @@ void CLevel_Level_01::Enter()
 	pTileMap->SetTile(13, 19, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
 	pTileMap->SetTile(14, 19, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
 
+
+	for (int i = 5; i < 10; ++i)
+	{
+		pTileMap->SetTile(5, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0"));
+		pTileMap->SetTile(6, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0"));
+		pTileMap->SetTile(7, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0"));
+	}
+
 	for (int i = 0; i < 15; ++i)
 	{
 		pTileMap->SetTile(i, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0"));

@@ -15,7 +15,7 @@ private:
     UINT        m_ColCnt;
 
     vector<CTile*>      m_vecTile;
-    vector<CCollider*>  m_vecCol;
+    unordered_map<CCollider*, Vec2> m_mapCol;
 
 public:
     UINT GetRowCnt() { return m_RowCnt; }
@@ -31,8 +31,6 @@ public:
     void SetTile(UINT _Row, UINT _Col, CTile* _Tile);
 
     Vec2 FindCollider(CCollider* _Col);
-    bool IsTileDanger(UINT _Row, UINT _Col);
-    bool IsTileDanger(Vec2 _RowCol);
     bool IsTileDanger(CCollider* _Col);
 
 public:

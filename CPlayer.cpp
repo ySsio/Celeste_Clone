@@ -181,7 +181,7 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 
 	// 침투 깊이가 더 작은 축을 따라 해소
 	if (overlapX < overlapY) {
-		
+		m_RigidBody->SetGround(true);
 		m_RigidBody->SetVelocity(Vec2(0.f, m_RigidBody->GetVelocity().y));
 		if (KEY_PRESSED(KEY::Z))
 		{

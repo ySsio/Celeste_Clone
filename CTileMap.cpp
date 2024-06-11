@@ -27,33 +27,17 @@ void CTileMap::SetTile(UINT _Row, UINT _Col, CTile* _Tile)
 
 Vec2 CTileMap::FindCollider(CCollider* _Col)
 {
-	for (int i = 0; i < m_vecCol.size(); ++i)
-	{
-		if (_Col == m_vecCol[i])
-		{
-			return Vec2((float)(i / m_ColCnt), (float)(i % m_ColCnt));
-		}
-	}
+	auto iter = m_mapCol.find(_Col);
 
-	assert(nullptr);
+	assert(iter != m_mapCol.end());
 
-	return Vec2(-1.f, -1.f);
-}
-
-bool CTileMap::IsTileDanger(UINT _Row, UINT _Col)
-{
-	return m_vecTile[_Row * m_ColCnt + _Col]->IsDanger();
-}
-
-bool CTileMap::IsTileDanger(Vec2 _RowCol)
-{
-	return m_vecTile[(UINT)(_RowCol.x * m_ColCnt + _RowCol.y)]->IsDanger();
+	return iter->second;
 }
 
 bool CTileMap::IsTileDanger(CCollider* _Col)
 {
 	Vec2 RowCol = FindCollider(_Col);
-	return m_vecTile[(UINT)(RowCol.x * m_ColCnt + RowCol.y)]->IsDanger();
+ 	return m_vecTile[(UINT)(RowCol.x * m_ColCnt + RowCol.y)]->IsDanger();
 }
 
 void CTileMap::AddCollider()
@@ -65,7 +49,6 @@ void CTileMap::AddCollider()
 		{
 			if (!m_vecTile[Row * m_ColCnt + Col] || !m_vecTile[Row * m_ColCnt + Col]->HasCollider())
 			{
-				m_vecCol.push_back(nullptr);
 				continue;
 			}
 
@@ -79,7 +62,7 @@ void CTileMap::AddCollider()
 			pCol->SetOffset(Vec2((float)(Col * m_UnitWidth), (float)(Row * m_UnitHeight)) + Vec2(Info.Offset.x * m_UnitWidth, Info.Offset.y * m_UnitHeight));
 			pCol->SetScale(Vec2(Info.Scale.x * m_UnitWidth, Info.Scale.y * m_UnitHeight));
 
-			m_vecCol.push_back(pCol);
+			m_mapCol.emplace(pCol, Vec2(Row,Col));
 		}
 	}
 }
