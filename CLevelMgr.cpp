@@ -16,7 +16,7 @@ CLevelMgr::CLevelMgr()
 	m_ArrLevel[(UINT)LEVEL_TYPE::LEVEL_01] = new CLevel_Level_01;
 
 
-	m_CurLevel = m_ArrLevel[(UINT)LEVEL_TYPE::LEVEL_01];
+	m_CurLevel = m_ArrLevel[(UINT)LEVEL_TYPE::EDITOR];
 }
 
 CLevelMgr::~CLevelMgr()

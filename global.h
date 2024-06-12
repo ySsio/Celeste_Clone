@@ -45,6 +45,9 @@ using std::unordered_map;
 #pragma comment(lib, "GdiPlus.lib")	
 using namespace Gdiplus;
 
+// OPENFILENAME
+#include "commdlg.h"
+
 // ##################################################
 
 

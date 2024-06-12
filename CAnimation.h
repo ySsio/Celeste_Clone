@@ -26,6 +26,7 @@ public:
     void AddFrm(tAnimFrm _Frame) { m_vecFrm.push_back(_Frame); m_Duration += _Frame.Duration; }
 
 public:
+    void Save(const wstring& _strFilePath);
     virtual void Load(const wstring& _strRelativeFilePath) override;
 
 public:

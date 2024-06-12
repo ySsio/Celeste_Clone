@@ -19,7 +19,6 @@ void CStateMachine::AddState(const wstring& _StrName, CState* _State)
     CPlayer* pPlayer = dynamic_cast<CPlayer*>(GetOwner());
     _State->SetStateMachine(this);
     _State->SetOwner(pPlayer);
-    _State->SetRigidBody(pPlayer->GetRigidBody());
     _State->SetAnimator(pPlayer->GetAnimator());
     m_mapState.emplace(_StrName, _State);
 }

@@ -13,7 +13,9 @@ CState_Jump::~CState_Jump()
 
 void CState_Jump::Enter()
 {
-	CRigidBody* pRigid = GetRigidBody();
+	CPlayer* pPlayer = GetOwner();
+	Vec2 vDir = pPlayer->GetDir();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	pRigid->Jump();
 	pRigid->SetGravity(true);
@@ -21,10 +23,13 @@ void CState_Jump::Enter()
 
 void CState_Jump::FinalTick()
 {
-	CRigidBody* pRigid = GetRigidBody();
+	CPlayer* pPlayer = GetOwner();
+	Vec2 vDir = pPlayer->GetDir();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	if (KEY_RELEASED(KEY::C))
 	{
 		pRigid->EndJump();
+		GetStateMachine()->ChangeState(L"Fall");
 	}
 }

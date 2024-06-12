@@ -37,6 +37,10 @@ public:
 public:
     CTexture* CreateFlippedTexture(const wstring& _strName, CTexture * _pTex);
 
+
+public:
+    void CreateAnimation(const wstring& _strName);
+
 private:
 	void AddTexture(const wstring& _strName, CTexture* _pAsset) { m_mapTex.emplace(_strName, _pAsset); _pAsset->SetName(_strName); }
 	void AddAnimation(const wstring& _strName, CAnimation* _pAsset) { m_mapAnim.emplace(_strName, _pAsset); _pAsset->SetName(_strName); }

@@ -55,6 +55,23 @@ void CEngine::CreateGDIObject()
 	m_ArrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
 }
 
+void CEngine::ChangeWindowResolution()
+{
+	ChangeWindowResolution((UINT)m_Resolution.x, (UINT)m_Resolution.y);
+}
+
+void CEngine::ChangeWindowResolution(UINT _Width, UINT _Height)
+{
+	m_Resolution.x = (float)_Width;
+	m_Resolution.y = (float)_Height;
+
+	RECT rt{ 0, 0, (LONG)_Width, (LONG)_Height };
+	HMENU hMenu = GetMenu(m_MainHwnd);
+
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, (bool)hMenu);
+	SetWindowPos(m_MainHwnd, nullptr, 0, 0, rt.right - rt.left, rt.bottom - rt.top, 0);
+}
+
 void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 {
 	// 메인 윈도우 핸들과 dc를 들고 있음

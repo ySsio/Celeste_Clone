@@ -128,6 +128,12 @@
     <Filter Include="Game\08. Module\State\Run">
       <UniqueIdentifier>{fcbc31b5-7c2f-42c0-86a1-0318b94faf60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Level\Level_Editor\Level_AnimEditor">
+      <UniqueIdentifier>{648a042f-b34f-459c-bf5c-a703b901bb29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\Level_Editor\Level_MapEditor">
+      <UniqueIdentifier>{b849ad9a-4216-4ea3-8763-0b13db0003e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -265,6 +271,12 @@
     <ClInclude Include="CState_Run.h">
       <Filter>Game\08. Module\State\Run</Filter>
     </ClInclude>
+    <ClInclude Include="CLevel_AnimEditor.h">
+      <Filter>Game\04. Level\Level_Editor\Level_AnimEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel_MapEditor.h">
+      <Filter>Game\04. Level\Level_Editor\Level_MapEditor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -401,6 +413,12 @@
     </ClCompile>
     <ClCompile Include="CState_Run.cpp">
       <Filter>Game\08. Module\State\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel_AnimEditor.cpp">
+      <Filter>Game\04. Level\Level_Editor\Level_AnimEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel_MapEditor.cpp">
+      <Filter>Game\04. Level\Level_Editor\Level_MapEditor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

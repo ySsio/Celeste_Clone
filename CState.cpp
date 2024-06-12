@@ -6,7 +6,7 @@ CState::CState()
 	: m_StateMachine(nullptr)
 	, m_Owner(nullptr)
 	, m_Anim(nullptr)
-	, m_Rigid(nullptr)
+	//, m_Rigid(nullptr)
 {
 }
 

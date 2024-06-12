@@ -11,6 +11,11 @@ CAnimation::~CAnimation()
 {
 }
 
+void CAnimation::Save(const wstring& _strFilePath)
+{
+
+}
+
 void CAnimation::Load(const wstring& _strRelativeFilePath)
 {
 	wstring strFilePath = CPathMgr::Get()->GetContentPath();

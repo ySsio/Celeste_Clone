@@ -28,6 +28,9 @@ public:
 	Vec2 GetResolution() { return m_Resolution; }
 	void CreateGDIObject();
 
+	void ChangeWindowResolution();
+	void ChangeWindowResolution(UINT _Width, UINT _Height);
+
 public:
 	void Init(HWND _hwnd, int _Width, int _Height);
 	void Progress();

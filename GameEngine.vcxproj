@@ -152,6 +152,7 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
+    <ClInclude Include="CLevel_AnimEditor.h" />
     <ClInclude Include="CLevel_Editor.h" />
     <ClInclude Include="CLevel_Level_01.h" />
     <ClInclude Include="CLevel_Start.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="function.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="CLevel_MapEditor.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
@@ -201,8 +203,10 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
+    <ClCompile Include="CLevel_AnimEditor.cpp" />
     <ClCompile Include="CLevel_Editor.cpp" />
     <ClCompile Include="CLevel_Level_01.cpp" />
+    <ClCompile Include="CLevel_MapEditor.cpp" />
     <ClCompile Include="CLevel_Start.cpp" />
     <ClCompile Include="CManager.cpp" />
     <ClCompile Include="CObj.cpp" />
