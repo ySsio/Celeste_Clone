@@ -21,7 +21,7 @@ void CAssetMgr::Init()
 	// Animation »ý¼º
 	tAnimFrm Frm{};
 	Frm.Offset = Vec2(0.f, 0.f);
-	Frm.Duration = 0.05f;
+	Frm.Duration = 0.1f;
 	tAnimFrm FrmFlipX(Frm);
 
 	CAnimation* pAnim = new CAnimation;

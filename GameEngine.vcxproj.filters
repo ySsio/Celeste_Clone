@@ -104,6 +104,30 @@
     <Filter Include="Game\07. Component\RigidBody">
       <UniqueIdentifier>{e5f247cd-ee3e-4f94-81d2-fa0a77917893}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\07. Component\FiniteStateMachine">
+      <UniqueIdentifier>{8156e2f3-ed0f-40cd-8cee-d510ce07a586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State">
+      <UniqueIdentifier>{f207cbcc-a0a4-43be-8bdd-70bd31d06448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Idle">
+      <UniqueIdentifier>{2361785b-6ef1-418b-9dd0-c5f4fc7f8e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Hang">
+      <UniqueIdentifier>{862ef378-06b0-47df-a16c-3fb2b7636061}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Fall">
+      <UniqueIdentifier>{af5ed90e-fb51-422d-b5e9-a8af16c04f5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Dash">
+      <UniqueIdentifier>{aff88c7e-b28a-44fc-8949-eb81d9830011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Jump">
+      <UniqueIdentifier>{f45fc294-b5ca-476d-aaa8-7c5afa0715c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Run">
+      <UniqueIdentifier>{fcbc31b5-7c2f-42c0-86a1-0318b94faf60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -217,6 +241,30 @@
     <ClInclude Include="CRigidBody.h">
       <Filter>Game\07. Component\RigidBody</Filter>
     </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Game\08. Module\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateMachine.h">
+      <Filter>Game\07. Component\FiniteStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="CState_Idle.h">
+      <Filter>Game\08. Module\State\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="CState_Fall.h">
+      <Filter>Game\08. Module\State\Fall</Filter>
+    </ClInclude>
+    <ClInclude Include="CState_Hang.h">
+      <Filter>Game\08. Module\State\Hang</Filter>
+    </ClInclude>
+    <ClInclude Include="CState_Dash.h">
+      <Filter>Game\08. Module\State\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="CState_Jump.h">
+      <Filter>Game\08. Module\State\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="CState_Run.h">
+      <Filter>Game\08. Module\State\Run</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -329,6 +377,30 @@
     </ClCompile>
     <ClCompile Include="CRigidBody.cpp">
       <Filter>Game\07. Component\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Game\08. Module\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CStateMachine.cpp">
+      <Filter>Game\07. Component\FiniteStateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Idle.cpp">
+      <Filter>Game\08. Module\State\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Fall.cpp">
+      <Filter>Game\08. Module\State\Fall</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Hang.cpp">
+      <Filter>Game\08. Module\State\Hang</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Dash.cpp">
+      <Filter>Game\08. Module\State\Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Jump.cpp">
+      <Filter>Game\08. Module\State\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Run.cpp">
+      <Filter>Game\08. Module\State\Run</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@
 #include "CCollider.h"
 #include "CTileMap.h"
 #include "CRigidBody.h"
+#include "CStateMachine.h"
 
 class CComponent;
 

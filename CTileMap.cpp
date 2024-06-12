@@ -62,7 +62,7 @@ void CTileMap::AddCollider()
 			pCol->SetOffset(Vec2((float)(Col * m_UnitWidth), (float)(Row * m_UnitHeight)) + Vec2(Info.Offset.x * m_UnitWidth, Info.Offset.y * m_UnitHeight));
 			pCol->SetScale(Vec2(Info.Scale.x * m_UnitWidth, Info.Scale.y * m_UnitHeight));
 
-			m_mapCol.emplace(pCol, Vec2(Row,Col));
+			m_mapCol.emplace(pCol, Vec2((float)Row, (float)Col));
 		}
 	}
 }

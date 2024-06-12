@@ -33,6 +33,12 @@ void CTimeMgr::Tick()
 	m_DT = (double)(m_CurCount.QuadPart - PrevCount.QuadPart) / m_Frequency.QuadPart;
 	m_fDT = (float)m_DT;
 
+	if (m_DT >= 1.f / 60)
+	{
+		m_DT = 1. / 60;
+		m_fDT = (float)m_DT;
+	}
+
 	// 함수 호출 횟수를 통해 FPS를 직접 count
 	static int iCount = 0;
 	m_fAccTime += m_fDT;

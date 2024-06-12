@@ -11,6 +11,7 @@ CAnimator::CAnimator()
 	, m_AccTime(0.f)
 	, m_CurIdx(0)
 	, m_FrmCnt(0)
+	, m_Repeat(true)
 {
 }
 
@@ -18,24 +19,39 @@ CAnimator::~CAnimator()
 {
 }
 
-void CAnimator::Play(const wstring& _AnimName)
+float CAnimator::Play(const wstring& _AnimName, bool _Repeat)
 {
 	m_CurAnim = m_MapAnim.find(_AnimName)->second;
 	m_CurIdx = 0;
 	m_FrmCnt = m_CurAnim->GetFrmCount();
+	m_Repeat = _Repeat;
+
+	return m_CurAnim->GetDuration();
 }
 
 void CAnimator::FinalTick()
 {
+	if (!m_CurAnim)
+		return;
+
 	m_AccTime += fDT;
 
 	float curDuration = m_CurAnim->GetFrm(m_CurIdx).Duration;
 	if (m_AccTime >= curDuration)
 	{
 		m_AccTime -= curDuration;
+		++m_CurIdx;
 
-		if (++m_CurIdx == m_FrmCnt) 
-			m_CurIdx = 0;
+		if (m_CurIdx == m_FrmCnt)
+		{
+			if (m_Repeat)
+				m_CurIdx = 0;
+			else
+			{
+				m_CurAnim = nullptr;
+				m_AccTime = 0.f;
+			}
+		}
 	}
 
 }

@@ -15,9 +15,11 @@ private:
     UINT    m_CurIdx;
     UINT    m_FrmCnt;
 
+    bool    m_Repeat;
+
 public:
     void AddAnimation(const wstring& _AnimName, CAnimation* _Anim) { m_MapAnim.emplace(_AnimName, _Anim); }
-    void Play(const wstring& _AnimName);
+    float Play(const wstring& _AnimName, bool _Repeat = true);
 
 public:
     virtual void FinalTick() override;

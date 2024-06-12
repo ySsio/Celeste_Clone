@@ -11,10 +11,17 @@ private:
     CSpriteRenderer*    m_HeadSprite;
     CAnimator*          m_HeadAnim;
     CAnimator*          m_BodyAnim;
+    CStateMachine*      m_StateMachine;
     CCollider*          m_Collider;
     CRigidBody*         m_RigidBody;
 
-    float                m_Dir;
+    Vec2                m_Dir;
+
+public:
+    CAnimator* GetAnimator() { return m_BodyAnim; }
+	CCollider* GetCollider() { return m_Collider; }
+    CRigidBody* GetRigidBody() { return m_RigidBody; }
+    Vec2 GetDir() { return m_Dir; }
 
 public:
     virtual void Tick() override;

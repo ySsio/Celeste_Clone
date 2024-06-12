@@ -6,20 +6,22 @@
 #include "CAssetMgr.h"
 #include "CAnimation.h"
 
+#include "CState_Idle.h"
+#include "CState_Run.h"
+#include "CState_Dash.h"
+#include "CState_Hang.h"
+#include "CState_Fall.h"
+#include "CState_Jump.h"
 
 CPlayer::CPlayer()
 	: m_HeadSprite(nullptr)
 	, m_HeadAnim(nullptr)
 	, m_BodyAnim(nullptr)
+	, m_StateMachine(nullptr)
 	, m_Collider(nullptr)
 	, m_RigidBody(nullptr)
-	, m_Dir(1.f)
+	, m_Dir(Vec2(1.f,0.f))
 {
-	m_HeadAnim = AddComponent<CAnimator>();
-	m_HeadAnim->AddAnimation(L"Player_Bang", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Bang"));
-	m_HeadAnim->AddAnimation(L"Player_Bang_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Bang_FlipX"));
-	m_HeadAnim->Play(L"Player_Bang");
-
 	m_BodyAnim = AddComponent<CAnimator>();
 	m_BodyAnim->AddAnimation(L"Player_Idle", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Idle"));
 	m_BodyAnim->AddAnimation(L"Player_IdleA", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleA"));
@@ -31,7 +33,22 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_IdleC_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleC_FlipX"));
 	m_BodyAnim->Play(L"Player_Idle");
 
+	m_HeadAnim = AddComponent<CAnimator>();
+	m_HeadAnim->AddAnimation(L"Player_Bang", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Bang"));
+	m_HeadAnim->AddAnimation(L"Player_Bang_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Bang_FlipX"));
+	m_HeadAnim->Play(L"Player_Bang");
+
 	m_RigidBody = AddComponent<CRigidBody>();
+
+	m_StateMachine = AddComponent<CStateMachine>();
+	m_StateMachine->AddState(L"Idle", new CState_Idle);
+	m_StateMachine->AddState(L"Run", new CState_Run);
+	m_StateMachine->AddState(L"Dash", new CState_Dash);
+	m_StateMachine->AddState(L"Hang", new CState_Hang);
+	m_StateMachine->AddState(L"Fall", new CState_Fall);
+	m_StateMachine->AddState(L"Jump", new CState_Jump);
+	m_StateMachine->ChangeState(L"Idle");
+
 
 	m_Collider = AddComponent<CCollider>();
 	m_Collider->SetOffset(Vec2(0.f, 48.f));
@@ -51,52 +68,24 @@ void CPlayer::Tick()
 	
 	
 
-	if (KEY_PRESSED(KEY::LEFT))
-	{
-		m_RigidBody->MovePosition(GetPos() + Vec2(-400.f, 0.f) * fDT);
-		m_Dir = -1.f;
-	}
-	if (KEY_PRESSED(KEY::RIGHT))
-	{
-		m_RigidBody->MovePosition(GetPos() + Vec2(400.f, 0.f) * fDT);
-		m_Dir = 1.f;
-	}
+	
 
 	if (KEY_TAP(KEY::LEFT))
 	{
-		//m_RigidBody->SetVelocity(Vec2(-100.f, vVelocity.y));
-
-		if (m_HeadAnim)		
-			m_HeadAnim->Play(L"Player_Bang_FlipX");
-		if (m_BodyAnim)		
-			m_BodyAnim->Play(L"Player_Idle_FlipX");
+		m_Dir.x = -1.f;
 	}
 	if (KEY_TAP(KEY::RIGHT))
 	{
-		//m_RigidBody->SetVelocity(Vec2(100.f, vVelocity.y));
-
-		if (m_HeadAnim)		
-			m_HeadAnim->Play(L"Player_Bang");
-		if (m_BodyAnim)		
-			m_BodyAnim->Play(L"Player_Idle");
+		m_Dir.x = 1.f;
 	}
 
-	if (KEY_TAP(KEY::C))
-	{
-		// Jump
-		m_RigidBody->Jump();
-		m_RigidBody->SetGravity(true);
-	}
-	else if (KEY_RELEASED(KEY::C))
-	{
-		m_RigidBody->EndJump();
-	}
+	
 	
 
 
 	if (KEY_TAP(KEY::X))
 	{
-		Vec2 vDir = Vec2(m_Dir, 0.f);
+		Vec2 vDir = m_Dir;
 
 		if (KEY_PRESSED(KEY::UP))
 		{

@@ -3,6 +3,7 @@
 #include "CPathMgr.h"
 
 CAnimation::CAnimation()
+	: m_Duration(0.f)
 {
 }
 
