@@ -5,6 +5,18 @@
 #include "CPathMgr.h"
 #include "CAssetMgr.h"
 
+CLevel_MapEditor::CLevel_MapEditor()
+{
+}
+
+CLevel_MapEditor::~CLevel_MapEditor()
+{
+}
+
+void CLevel_MapEditor::Enter()
+{
+}
+
 void CLevel_MapEditor::SaveMap()
 {
 }
@@ -13,10 +25,4 @@ void CLevel_MapEditor::LoadMap()
 {
 }
 
-CLevel_MapEditor::CLevel_MapEditor()
-{
-}
 
-CLevel_MapEditor::~CLevel_MapEditor()
-{
-}

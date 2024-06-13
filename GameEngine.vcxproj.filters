@@ -134,6 +134,18 @@
     <Filter Include="Game\04. Level\Level_Editor\Level_MapEditor">
       <UniqueIdentifier>{b849ad9a-4216-4ea3-8763-0b13db0003e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03.Object\03. UI">
+      <UniqueIdentifier>{f8b3f6c2-ab36-4ba5-9cfd-26be9ac36532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\Panel">
+      <UniqueIdentifier>{a4e0a80b-7f4b-451c-b52c-32c227fc6c87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\Button">
+      <UniqueIdentifier>{df204610-e4bc-4fe2-a5e1-ad734b2b96c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Manager\UIMgr">
+      <UniqueIdentifier>{e0cf338d-023d-4581-a80a-f16711f9d016}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -277,6 +289,18 @@
     <ClInclude Include="CLevel_MapEditor.h">
       <Filter>Game\04. Level\Level_Editor\Level_MapEditor</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Game\03.Object\03. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonUI.h">
+      <Filter>Game\03.Object\03. UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Game\03.Object\03. UI\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Game\05. Manager\UIMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -419,6 +443,18 @@
     </ClCompile>
     <ClCompile Include="CLevel_MapEditor.cpp">
       <Filter>Game\04. Level\Level_Editor\Level_MapEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Game\03.Object\03. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CButtonUI.cpp">
+      <Filter>Game\03.Object\03. UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Game\03.Object\03. UI\Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Game\05. Manager\UIMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

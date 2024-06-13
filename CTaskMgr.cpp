@@ -40,12 +40,12 @@ void CTaskMgr::ExecuteTask(const tTask& _task)
 		}
 			break;
 		case TASK_TYPE::CHANGE_LEVEL:
-		// wParam : Level Address (CLevel*)
+		// wParam : Level Type (LEVEL_TYPE)
 		{
 			if (m_LevelChanged)
 				return;
 
-			CLevelMgr::Get()->ChangeLevel((CLevel*)task.wParam);
+			CLevelMgr::Get()->ChangeLevel((LEVEL_TYPE)task.wParam);
 
 			m_LevelChanged = true;
 		}

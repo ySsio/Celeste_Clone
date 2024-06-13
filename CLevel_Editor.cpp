@@ -8,6 +8,11 @@
 
 #include "CAnimation.h"
 #include "CAssetMgr.h"
+#include "CLevelMgr.h"
+
+#include "CUI.h"
+#include "CPanelUI.h"
+#include "CButtonUI.h"
 
 CLevel_Editor::CLevel_Editor()
 	: m_Menu(nullptr)
@@ -24,4 +29,26 @@ void CLevel_Editor::Enter()
 {
 	SetMenu(CEngine::Get()->GetMainHwnd(), m_Menu);
 	CEngine::Get()->ChangeWindowResolution();
+
+	CPanelUI* pPanel = new CPanelUI;
+	pPanel->SetPos(Vec2(100.f, 100.f));
+	pPanel->SetScale(Vec2(800.f, 600.f));
+
+	AddObject(pPanel, LAYER_TYPE::UI);
+
+	CButtonUI* pButton = new CButtonUI;
+	pButton->SetPos(Vec2(100.f, 100.f));
+	pButton->SetScale(Vec2(200.f, 100.f));
+	pButton->SetName(L"애니메이션 편집");
+	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_ANIM); });
+
+	pPanel->AddChild(pButton);
+
+	pButton = new CButtonUI;
+	pButton->SetPos(Vec2(500.f, 100.f));
+	pButton->SetScale(Vec2(200.f, 100.f));
+	pButton->SetName(L"맵 편집");
+	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_MAP); });
+
+	pPanel->AddChild(pButton);
 }

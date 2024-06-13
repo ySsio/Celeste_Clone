@@ -141,6 +141,11 @@ void CAssetMgr::Init()
 
 }
 
+void CAssetMgr::CreateAnimation(const wstring& _strName)
+{
+
+}
+
 CTexture* CAssetMgr::CreateFlippedTexture(const wstring& _strName, CTexture* _pTex)
 {
 	CTexture* pTex = FindAsset<CTexture>(_strName);

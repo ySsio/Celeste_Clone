@@ -10,6 +10,7 @@
 #include "CCollisionMgr.h"
 #include "CDebugMgr.h"
 #include "CTaskMgr.h"
+#include "CUIMgr.h"
 
 CEngine::CEngine()
 	: m_MainHwnd(nullptr)
@@ -52,6 +53,7 @@ void CEngine::CreateGDIObject()
 	m_ArrBrush[(UINT)BRUSH_TYPE::RED] = CreateSolidBrush(RGB(255, 0, 0));
 	m_ArrBrush[(UINT)BRUSH_TYPE::GREEN] = CreateSolidBrush(RGB(0, 255, 0));
 	m_ArrBrush[(UINT)BRUSH_TYPE::BLUE] = CreateSolidBrush(RGB(0, 0, 255));
+	m_ArrBrush[(UINT)BRUSH_TYPE::GRAY] = CreateSolidBrush(RGB(180, 180, 180));
 	m_ArrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
 }
 
@@ -108,6 +110,7 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 	CCamera::Get()->Init();
 	CDebugMgr::Get()->Init();
 	CTaskMgr::Get()->Init();
+	CUIMgr::Get()->Init();
 }
 
 void CEngine::Progress()
@@ -120,6 +123,7 @@ void CEngine::Progress()
 	CCollisionMgr::Get()->Tick();
 	CCamera::Get()->Tick();
 	CDebugMgr::Get()->Tick();
+	CUIMgr::Get()->Tick();
 
 	// render
 	Render();

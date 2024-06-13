@@ -21,6 +21,9 @@ enum class KEY
     ESC,
     ENTER,
 
+    LBtn,
+    RBtn,
+
     END,
 };
 
@@ -48,8 +51,10 @@ class CKeyMgr :
 
 private:
     array<tKeyInfo, (UINT)KEY::END>    m_ArrKeyInfo;
+    Vec2    m_MousePos;     // 마우스를 스크린 렌더 좌표로 저장.
 
 public:
+    Vec2 GetMousePos() { return  m_MousePos; }
     KEY_STATE GetKeyState(KEY _Type) { return m_ArrKeyInfo[(UINT)_Type].state; }
 
 public:

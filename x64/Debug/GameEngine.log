@@ -1,12 +1,2 @@
-﻿  CAnimation.cpp
-  CLevel_AnimEditor.cpp
-D:\cpp_Exercise\GameEngine\GameEngine\CLevel_AnimEditor.cpp(47,3): error C2059: 구문 오류: '->'
-  (소스 파일 '/CLevel_AnimEditor.cpp'을(를) 컴파일하는 중)
-  
-  CLevel_Editor.cpp
-  CManager.cpp
-  CObj.cpp
-  CPathMgr.cpp
-  CTileMap.cpp
-  main.cpp
-  코드를 생성하고 있습니다...
+﻿  CPanelUI.cpp
+  GameEngine.vcxproj -> D:\cpp_Exercise\GameEngine\Output\bin\GameEngine_D.exe

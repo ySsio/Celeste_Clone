@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CKeyMgr.h"
 
+#include "CEngine.h"
+
 array<int, (UINT)KEY::END> KEY_MAP
 {
     'W',
@@ -19,7 +21,10 @@ array<int, (UINT)KEY::END> KEY_MAP
 
     VK_SPACE,
     VK_ESCAPE,
-    VK_RETURN
+    VK_RETURN,
+
+    VK_LBUTTON,
+    VK_RBUTTON
 };
 
 CKeyMgr::CKeyMgr()
@@ -72,4 +77,10 @@ void CKeyMgr::Tick()
             m_ArrKeyInfo[i].bPrevPressed = false;
         }
     }
+
+    POINT pt{};
+    GetCursorPos(&pt);
+    ScreenToClient(CEngine::Get()->GetMainHwnd(), &pt);
+
+    m_MousePos = pt;
 }

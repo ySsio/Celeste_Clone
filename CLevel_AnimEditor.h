@@ -1,6 +1,7 @@
 #pragma once
 #include "CLevel_Editor.h"
 
+class CAnimation;
 
 class CLevel_AnimEditor :
     public CLevel_Editor
@@ -8,7 +9,12 @@ class CLevel_AnimEditor :
 private:
     CAnimation* m_Animation;
 
-private:
+
+public:
+    virtual void Enter() override;
+
+
+public:
     void CreateAnimation();
     void SaveAnimation();
     void LoadAnimation();

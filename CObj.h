@@ -30,6 +30,7 @@ public:
         m_Pos = _vPos; 
     }
     void SetScale(float _x, float _y) { m_Scale.x = _x; m_Scale.y = _y; }
+    void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
     void SetDead() { m_Dead = true; }
 
     LAYER_TYPE GetType() { return m_Type; }

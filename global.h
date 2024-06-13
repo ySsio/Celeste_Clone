@@ -18,6 +18,9 @@ using std::vector;
 #include <list>
 using std::list;
 
+#include <queue>
+using std::queue;
+
 #include <map>
 using std::map;
 using std::make_pair;
@@ -31,6 +34,9 @@ using std::wstring;
 
 #include <unordered_map>
 using std::unordered_map;
+
+#include <functional>
+using std::function;
 
 
 // ################   라이브러리   ###################

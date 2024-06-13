@@ -19,7 +19,7 @@ public:
 
 public:
     CLevel* GetCurLevel() { return m_CurLevel; }
-    void ChangeLevel(CLevel* _Level);
+    void ChangeLevel(LEVEL_TYPE _Type);
 
 public:
     virtual void Init() override;

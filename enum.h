@@ -19,6 +19,7 @@ enum class BRUSH_TYPE
 	GREEN,
 	BLUE,
 	HOLLOW,
+	GRAY,
 
 	END,
 };
@@ -27,6 +28,8 @@ enum class LEVEL_TYPE
 {
 	START,
 	EDITOR,
+	EDITOR_ANIM,
+	EDITOR_MAP,
 	LEVEL_01,
 	LEVEL_02,
 
@@ -38,6 +41,7 @@ enum class LAYER_TYPE
 	BACKGROUND,
 	PLATFORM,
 	PLAYER,
+	UI,
 
 	END = 32,
 };

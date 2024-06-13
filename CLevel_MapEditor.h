@@ -10,6 +10,9 @@ private:
 
 
 public:
+    virtual void Enter() override;
+
+public:
     void SaveMap();
     void LoadMap();
 
