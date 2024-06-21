@@ -8,6 +8,8 @@ CTextBoxUI::CTextBoxUI()
 	: m_Active(false)
 	, m_CursorPos(0)
 	, m_CursorVisible(false)
+	, m_Integer(false)
+	, m_Float(false)
 {
 	
 }
@@ -20,6 +22,18 @@ CTextBoxUI::~CTextBoxUI()
 
 void CTextBoxUI::AddChar(WPARAM wParam)
 {
+	if (m_Integer)
+	{
+		if (!(('0' <= wParam && wParam <= '9') || wParam == '-'))
+			return;
+	}
+
+	if (m_Float)
+	{
+		if (!(('0' <= wParam && wParam <= '9') || wParam == '.' || wParam == '-'))
+			return;
+	}
+
 	m_Text.insert(m_CursorPos, 1, (wchar_t)wParam);
 	++m_CursorPos;
 }
@@ -31,6 +45,7 @@ void CTextBoxUI::Tick_DerivedUI()
 		m_CursorVisible = false;
 		return;
 	}
+
 
 	if (KEY_TAP(KEY::LEFT))
 	{
@@ -97,7 +112,7 @@ void CTextBoxUI::Render_DerivedUI()
 		int cursorX = (int)vTextPos.x + textSize.cx;
 		int cursorY = (int)vTextPos.y;
 		MoveToEx(BackDC, cursorX, cursorY, NULL);
-		LineTo(BackDC, cursorX, cursorY + 16);
+		LineTo(BackDC, cursorX, cursorY + 32);
 	}
 
 }

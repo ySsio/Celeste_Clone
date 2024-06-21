@@ -31,8 +31,8 @@ void CButtonUI::Render_DerivedUI()
 		, (int)(vFinalPos.y + vScale.y));
 
 	TextOut(BackDC
-		, (int)(vFinalPos.x + vScale.x / 4.f)
-		, (int)(vFinalPos.y + vScale.y / 2.f)
+		, (int)(vFinalPos.x)
+		, (int)(vFinalPos.y)
 		, GetName().c_str()
 		, GetName().length());
 }

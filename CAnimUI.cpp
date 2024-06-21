@@ -39,16 +39,24 @@ void CAnimUI::Tick_DerivedUI()
 	if (!m_Play)
 		return;
 
-	static float AccTime = 0.f;
-	AccTime += fDT;
+	static float BangAccTime = 0.f;
+	static float BodyAccTime = 0.f;
+	BangAccTime += fDT;
+	BodyAccTime += fDT;
 
-	float duration = m_Bang->GetFrm(m_BangFrm).Duration;
+	float BangDuration = m_Bang->GetFrm(m_BangFrm).Duration;
+	float BodyDuration = m_Body->GetFrm(m_BodyFrm).Duration;
 
-	if (AccTime >= duration)
+	if (BangAccTime >= BangDuration)
 	{
 		++m_BangFrm;
+		BangAccTime -= BangDuration;
+	}
+
+	if (BodyAccTime >= BodyDuration)
+	{
 		++m_BodyFrm;
-		AccTime -= duration;
+		BodyAccTime -= BodyDuration;
 	}
 
 	if (m_BangFrm == m_BangMaxFrm)

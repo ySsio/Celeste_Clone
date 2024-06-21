@@ -55,6 +55,7 @@ void CEngine::CreateGDIObject()
 	m_ArrBrush[(UINT)BRUSH_TYPE::BLUE] = CreateSolidBrush(RGB(0, 0, 255));
 	m_ArrBrush[(UINT)BRUSH_TYPE::GRAY] = CreateSolidBrush(RGB(180, 180, 180));
 	m_ArrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+
 }
 
 void CEngine::ChangeWindowResolution()

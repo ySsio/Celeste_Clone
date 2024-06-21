@@ -39,6 +39,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CState_Jump.cpp;D:\cpp_Exercise\GameEngine
 D:\cpp_Exercise\GameEngine\GameEngine\CState_Run.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState_Run.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CTaskMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CTaskMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CTextBoxUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CTextBoxUI.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CTextUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CTextUI.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CTexture.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CTexture.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CTile.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CTile.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CTileMap.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CTileMap.obj

@@ -178,6 +178,7 @@
     <ClInclude Include="CState_Run.h" />
     <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTextBoxUI.h" />
+    <ClInclude Include="CTextUI.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTile.h" />
     <ClInclude Include="CTileMap.h" />
@@ -236,6 +237,7 @@
     <ClCompile Include="CState_Run.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTextBoxUI.cpp" />
+    <ClCompile Include="CTextUI.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTileMap.cpp" />

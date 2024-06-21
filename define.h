@@ -44,3 +44,4 @@
 
 #define SELECT_PEN(DC, PEN)		CSelectObject SelectPen(DC,PEN)
 #define SELECT_BRUSH(DC, BRUSH) CSelectObject SelectBrush(DC,BRUSH)
+#define SELECT_FONT(DC, FONT, SIZE) CSelectObject SelectFont(DC,FONT,SIZE);
