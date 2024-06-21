@@ -10,6 +10,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CCollisionMgr.cpp;D:\cpp_Exercise\GameEngi
 D:\cpp_Exercise\GameEngine\GameEngine\CComponent.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CComponent.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CDebugMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CDebugMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CEngine.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CEngine.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CAnimUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CAnimUI.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CKeyMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CKeyMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevelMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevelMgr.obj

@@ -146,6 +146,9 @@
     <Filter Include="Game\05. Manager\UIMgr">
       <UniqueIdentifier>{e0cf338d-023d-4581-a80a-f16711f9d016}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03.Object\03. UI\Anim">
+      <UniqueIdentifier>{54165038-8d02-4428-84a8-ba6125a995c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -301,6 +304,9 @@
     <ClInclude Include="CUIMgr.h">
       <Filter>Game\05. Manager\UIMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimUI.h">
+      <Filter>Game\03.Object\03. UI\Anim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -455,6 +461,9 @@
     </ClCompile>
     <ClCompile Include="CUIMgr.cpp">
       <Filter>Game\05. Manager\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimUI.cpp">
+      <Filter>Game\03.Object\03. UI\Anim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -150,6 +150,7 @@
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CDebugMgr.h" />
     <ClInclude Include="CEngine.h" />
+    <ClInclude Include="CAnimUI.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CDebugMgr.cpp" />
     <ClCompile Include="CEngine.cpp" />
+    <ClCompile Include="CAnimUI.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />

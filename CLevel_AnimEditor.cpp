@@ -8,6 +8,7 @@
 
 #include "CPanelUI.h"
 #include "CButtonUI.h"
+#include "CAnimUI.h"
 
 CLevel_AnimEditor::CLevel_AnimEditor()
 	: m_Animation(nullptr)
@@ -22,14 +23,16 @@ CLevel_AnimEditor::~CLevel_AnimEditor()
 
 void CLevel_AnimEditor::Enter()
 {
+	Vec2 vRes = CEngine::Get()->GetResolution();
+
 	CPanelUI* pPanel = new CPanelUI;
-	pPanel->SetPos(Vec2(100.f, 100.f));
-	pPanel->SetScale(Vec2(800.f, 600.f));
+	pPanel->SetPos(Vec2(-1.f, -1.f));
+	pPanel->SetScale(Vec2(vRes.x+1, vRes.y+1));
 
 	AddObject(pPanel, LAYER_TYPE::UI);
 
 	CButtonUI* pButton = new CButtonUI;
-	pButton->SetPos(Vec2(100.f, 100.f));
+	pButton->SetPos(Vec2(800.f, 100.f));
 	pButton->SetScale(Vec2(200.f, 100.f));
 	pButton->SetName(L"애니메이션 편집");
 	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_ANIM); });
@@ -37,7 +40,7 @@ void CLevel_AnimEditor::Enter()
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
-	pButton->SetPos(Vec2(100.f, 500.f));
+	pButton->SetPos(Vec2(800.f, 500.f));
 	pButton->SetScale(Vec2(20.f, 10.f));
 	pButton->SetName(L"이전");
 	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_ANIM); });
@@ -45,12 +48,21 @@ void CLevel_AnimEditor::Enter()
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
-	pButton->SetPos(Vec2(200.f, 500.f));
+	pButton->SetPos(Vec2(900.f, 500.f));
 	pButton->SetScale(Vec2(20.f, 10.f));
 	pButton->SetName(L"다음");
 	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_ANIM); });
 
 	pPanel->AddChild(pButton);
+
+
+	CAnimUI* pAnimUI = new CAnimUI;
+	pAnimUI->SetPos(Vec2(50.f, 50.f));
+	pAnimUI->SetScale(Vec2(500.f, 500.f));
+	pAnimUI->SetBang(CAssetMgr::Get()->LoadAsset<CAnimation>(L"Player_Bang",L""));
+	pAnimUI->SetBody(CAssetMgr::Get()->LoadAsset<CAnimation>(L"Player_Idle", L""));
+
+	pPanel->AddChild(pAnimUI);
 }
 
 void CLevel_AnimEditor::CreateAnimation()
