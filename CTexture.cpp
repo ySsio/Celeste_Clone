@@ -7,6 +7,7 @@ CTexture::CTexture()
 	: m_DC(nullptr)
 	, m_BitMap(nullptr)
 	, m_BitMapInfo{}
+	, m_Flipped(false)
 {
 }
 
@@ -43,6 +44,30 @@ CTexture* CTexture::Stretch(Vec2 _Resolution)
 	return this;
 }
 
+void CTexture::Flip()
+{
+	HDC hStretchDC = CreateCompatibleDC(MainDC);
+	HBITMAP hStretchBitmap = CreateCompatibleBitmap(MainDC, m_BitMapInfo.bmWidth, m_BitMapInfo.bmHeight);
+	DeleteObject(SelectObject(hStretchDC, hStretchBitmap));
+
+	m_Flipped = !m_Flipped;
+
+	StretchBlt(hStretchDC
+		, 0, 0
+		, m_BitMapInfo.bmWidth, m_BitMapInfo.bmHeight
+		, m_DC
+		, m_BitMapInfo.bmWidth - 1, 0
+		, -m_BitMapInfo.bmWidth, m_BitMapInfo.bmHeight
+		, SRCCOPY);
+
+	DeleteDC(m_DC);
+	DeleteObject(m_BitMap);
+
+	m_DC = hStretchDC;
+	m_BitMap = hStretchBitmap;
+	GetObject(m_BitMap, sizeof(BITMAP), &m_BitMapInfo);
+}
+
 void CTexture::CreateTexture(UINT _Width, UINT _Height)
 {
 	m_DC = CreateCompatibleDC(MainDC);
@@ -52,11 +77,14 @@ void CTexture::CreateTexture(UINT _Width, UINT _Height)
 	GetObject(m_BitMap, sizeof(BITMAP), &m_BitMapInfo);
 }
 
+void CTexture::Save(const wstring& _strRelativeFilePath)
+{
+}
+
 void CTexture::Load(const wstring& _strRelativeFilePath)
 {
 	wstring strFilePath = CPathMgr::Get()->GetContentPath();
 	strFilePath += _strRelativeFilePath;
-	SetPath(strFilePath);
 
 	wchar_t szExt[50] {};
 	_wsplitpath_s(strFilePath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, szExt, 50);

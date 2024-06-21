@@ -13,15 +13,28 @@ CPathMgr::~CPathMgr()
 
 void CPathMgr::ChangeDirUp(wstring& _Path)
 {
-	 size_t idx = _Path.rfind(L'\\');
+	size_t idx = _Path.rfind(L'\\');
 
-	 _Path = _Path.substr(0, idx);
+	_Path = _Path.substr(0, idx);
+}
+
+wstring CPathMgr::GetRelativePath(const wstring& _strFilePath)
+{
+	int idx = (int)m_ContentPath.length();
+
+	wstring strRelativePath = L"";
+	for (int i = idx; i < _strFilePath.length(); ++i)
+	{
+		strRelativePath += _strFilePath[i];
+	}
+
+	return strRelativePath;
 }
 
 wstring CPathMgr::GetFileName(const wstring& _strFilePath)
 {
 	wstring strFileName = L"";
-	for (size_t i = _strFilePath.length() - 1; i >= 0; --i)
+	for (int i = (int)_strFilePath.length() - 1; i >= 0; --i)
 	{
 		if (_strFilePath[i] == '\\')
 			break;
@@ -36,7 +49,7 @@ wstring CPathMgr::GetNaiveFileName(const wstring& _strFilePath)
 {
 	wstring strFileName = L"";
 	bool extensionPass = false;
-	for (size_t i = _strFilePath.length() - 1; i >= 0; --i)
+	for (int i = (int)_strFilePath.length() - 1; i >= 0; --i)
 	{
 		if (_strFilePath[i] == '.')
 		{
@@ -50,7 +63,7 @@ wstring CPathMgr::GetNaiveFileName(const wstring& _strFilePath)
 		if (_strFilePath[i] == '\\')
 			break;
 
-		strFileName = strFileName + _strFilePath[i];
+		strFileName = _strFilePath[i] + strFileName;
 	}
 
 	return strFileName;
@@ -59,12 +72,12 @@ wstring CPathMgr::GetNaiveFileName(const wstring& _strFilePath)
 wstring CPathMgr::GetPathExtension(const wstring& _strFilePath)
 {
 	wstring strExt = L"";
-	for (size_t i = _strFilePath.length()-1; i >= 0; --i)
+	for (int i = (int)_strFilePath.length() - 1; i >= 0; --i)
 	{
+		strExt = _strFilePath[i] + strExt;
+
 		if (_strFilePath[i] == '.')
 			break;
-
-		strExt = strExt + _strFilePath[i];
 	}
 
 	return strExt;

@@ -20,9 +20,13 @@ public:
 
 
 public:
-    void CreateAnimation();
-    void SaveAnimation();
-    void LoadAnimation();
+    void CreateBangAnimation();
+    void SaveBangAnimation(const wstring& _strRelativePath);
+    void LoadBangAnimation();
+
+    void CreateBodyAnimation();
+    void SaveBodyAnimation(const wstring& _strRelativePath);
+    void LoadBodyAnimation();
 
 
 public:

@@ -6,6 +6,7 @@ class CSound :
 private:
 
 public:
+    virtual void Save(const wstring& _strRelativeFilePath) override;
     virtual void Load(const wstring& _strRelativeFilePath) override;
 
 
@@ -13,4 +14,3 @@ public:
     CSound();
     ~CSound();
 };
-

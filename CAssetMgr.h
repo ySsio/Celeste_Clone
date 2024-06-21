@@ -31,10 +31,13 @@ public:
     template <typename T>
     T* LoadAsset(const wstring& _strName, const wstring& _strFilePath);
 
+    void SaveAsset(CAsset* _Asset, const wstring& _strRelativePath);
+
 public:
     virtual void Init() override;
 
 public:
+    void FlipTexture(CTexture* _pTex);
     CTexture* CreateFlippedTexture(const wstring& _strName, CTexture * _pTex);
 
 
@@ -113,6 +116,7 @@ T* CAssetMgr::LoadAsset(const wstring& _strName, const wstring& _strFilePath)
     pAsset = new T;
 
     pAsset->SetName(_strName);
+    pAsset->SetPath(_strFilePath);
     pAsset->Load(_strFilePath);
 
     AddAsset(_strName, pAsset);

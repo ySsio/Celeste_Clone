@@ -24,6 +24,7 @@ void CAnimUI::SetBang(CAnimation* _Tex)
 {
 	assert(_Tex);
 	m_Bang = _Tex;
+	m_BangFrm = 0;
 	m_BangMaxFrm = m_Bang->GetFrmCount();
 }
 
@@ -31,6 +32,7 @@ void CAnimUI::SetBody(CAnimation* _Tex)
 {
 	assert(_Tex);
 	m_Body = _Tex;
+	m_BodyFrm = 0;
 	m_BodyMaxFrm = m_Body->GetFrmCount();
 }
 
@@ -44,26 +46,35 @@ void CAnimUI::Tick_DerivedUI()
 	BangAccTime += fDT;
 	BodyAccTime += fDT;
 
-	float BangDuration = m_Bang->GetFrm(m_BangFrm).Duration;
-	float BodyDuration = m_Body->GetFrm(m_BodyFrm).Duration;
-
-	if (BangAccTime >= BangDuration)
+	if (m_Bang)
 	{
-		++m_BangFrm;
-		BangAccTime -= BangDuration;
+		float BangDuration = m_Bang->GetFrm(m_BangFrm).Duration;
+
+		if (BangAccTime >= BangDuration)
+		{
+			++m_BangFrm;
+			BangAccTime -= BangDuration;
+		}
+
+		if (m_BangFrm == m_BangMaxFrm)
+			m_BangFrm = 0;
 	}
 
-	if (BodyAccTime >= BodyDuration)
+	if (m_Body)
 	{
-		++m_BodyFrm;
-		BodyAccTime -= BodyDuration;
+		float BodyDuration = m_Body->GetFrm(m_BodyFrm).Duration;
+
+		if (BodyAccTime >= BodyDuration)
+		{
+			++m_BodyFrm;
+			BodyAccTime -= BodyDuration;
+		}
+
+		if (m_BodyFrm == m_BodyMaxFrm)
+			m_BodyFrm = 0;
 	}
-
-	if (m_BangFrm == m_BangMaxFrm)
-		m_BangFrm = 0;
-
-	if (m_BodyFrm == m_BodyMaxFrm)
-		m_BodyFrm = 0;
+	
+	
 }
 
 void CAnimUI::Render_DerivedUI()
