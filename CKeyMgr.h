@@ -19,6 +19,8 @@ enum class KEY
 
     SPACE,
     ESC,
+    BACK,
+    DEL,
     ENTER,
 
     LBtn,

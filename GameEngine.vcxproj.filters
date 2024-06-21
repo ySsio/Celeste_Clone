@@ -149,6 +149,9 @@
     <Filter Include="Game\03.Object\03. UI\Anim">
       <UniqueIdentifier>{54165038-8d02-4428-84a8-ba6125a995c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03.Object\03. UI\TextBox">
+      <UniqueIdentifier>{f95d87cc-e1d1-46b0-a5cb-4f2a1a69d916}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -307,6 +310,9 @@
     <ClInclude Include="CAnimUI.h">
       <Filter>Game\03.Object\03. UI\Anim</Filter>
     </ClInclude>
+    <ClInclude Include="CTextBoxUI.h">
+      <Filter>Game\03.Object\03. UI\TextBox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -464,6 +470,9 @@
     </ClCompile>
     <ClCompile Include="CAnimUI.cpp">
       <Filter>Game\03.Object\03. UI\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextBoxUI.cpp">
+      <Filter>Game\03.Object\03. UI\TextBox</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

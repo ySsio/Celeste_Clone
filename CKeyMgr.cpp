@@ -21,6 +21,8 @@ array<int, (UINT)KEY::END> KEY_MAP
 
     VK_SPACE,
     VK_ESCAPE,
+    VK_BACK,
+    VK_DELETE,
     VK_RETURN,
 
     VK_LBUTTON,

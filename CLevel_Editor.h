@@ -10,8 +10,6 @@ public:
     virtual void Enter() override;
 
 public:
-
-public:
     CLevel_Editor();
     ~CLevel_Editor();
 };

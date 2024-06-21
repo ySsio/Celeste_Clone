@@ -9,10 +9,8 @@ class CLevel_AnimEditor :
 private:
     CAnimation* m_Animation;
 
-
 public:
     virtual void Enter() override;
-
 
 public:
     void CreateAnimation();

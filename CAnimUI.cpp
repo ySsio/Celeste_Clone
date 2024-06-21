@@ -3,6 +3,7 @@
 #include "CEngine.h"
 #include "CTexture.h"
 #include "CAnimation.h"
+#include "CTimeMgr.h"
 
 CAnimUI::CAnimUI()
 	: m_Bang(nullptr)
@@ -11,6 +12,7 @@ CAnimUI::CAnimUI()
 	, m_BodyFrm(0)
 	, m_BangMaxFrm(0)
 	, m_BodyMaxFrm(0)
+	, m_Play(false)
 {
 }
 
@@ -34,6 +36,26 @@ void CAnimUI::SetBody(CAnimation* _Tex)
 
 void CAnimUI::Tick_DerivedUI()
 {
+	if (!m_Play)
+		return;
+
+	static float AccTime = 0.f;
+	AccTime += fDT;
+
+	float duration = m_Bang->GetFrm(m_BangFrm).Duration;
+
+	if (AccTime >= duration)
+	{
+		++m_BangFrm;
+		++m_BodyFrm;
+		AccTime -= duration;
+	}
+
+	if (m_BangFrm == m_BangMaxFrm)
+		m_BangFrm = 0;
+
+	if (m_BodyFrm == m_BodyMaxFrm)
+		m_BodyFrm = 0;
 }
 
 void CAnimUI::Render_DerivedUI()
@@ -95,6 +117,5 @@ void CAnimUI::Render_DerivedUI()
 			, Width, Height
 			, blend);
 	}
-
 	
 }

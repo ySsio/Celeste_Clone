@@ -5,10 +5,12 @@
 #include "CPathMgr.h"
 #include "CAssetMgr.h"
 #include "CAnimation.h"
+#include "CTimeMgr.h"
 
 #include "CPanelUI.h"
 #include "CButtonUI.h"
 #include "CAnimUI.h"
+#include "CTextBoxUI.h"
 
 CLevel_AnimEditor::CLevel_AnimEditor()
 	: m_Animation(nullptr)
@@ -31,6 +33,14 @@ void CLevel_AnimEditor::Enter()
 
 	AddObject(pPanel, LAYER_TYPE::UI);
 
+	CAnimUI* pAnimUI = new CAnimUI;
+	pAnimUI->SetPos(Vec2(50.f, 50.f));
+	pAnimUI->SetScale(Vec2(500.f, 500.f));
+	pAnimUI->SetBang(CAssetMgr::Get()->LoadAsset<CAnimation>(L"Player_Bang", L""));
+	pAnimUI->SetBody(CAssetMgr::Get()->LoadAsset<CAnimation>(L"Player_Idle", L""));
+
+	pPanel->AddChild(pAnimUI);
+
 	CButtonUI* pButton = new CButtonUI;
 	pButton->SetPos(Vec2(800.f, 100.f));
 	pButton->SetScale(Vec2(200.f, 100.f));
@@ -40,30 +50,78 @@ void CLevel_AnimEditor::Enter()
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
-	pButton->SetPos(Vec2(800.f, 500.f));
+	pButton->SetPos(Vec2(150.f, 600.f));
 	pButton->SetScale(Vec2(20.f, 10.f));
 	pButton->SetName(L"이전");
-	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_ANIM); });
+	pButton->SetFunction([=]() {pAnimUI->DecrBangFrm(); });
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
-	pButton->SetPos(Vec2(900.f, 500.f));
+	pButton->SetPos(Vec2(450.f, 600.f));
 	pButton->SetScale(Vec2(20.f, 10.f));
 	pButton->SetName(L"다음");
-	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_ANIM); });
+	pButton->SetFunction([=]() {pAnimUI->IncrBangFrm(); });
+
+	pPanel->AddChild(pButton);
+
+	pButton = new CButtonUI;
+	pButton->SetPos(Vec2(150.f, 650.f));
+	pButton->SetScale(Vec2(20.f, 10.f));
+	pButton->SetName(L"이전");
+	pButton->SetFunction([=]() {pAnimUI->DecrBodyFrm(); });
+
+	pPanel->AddChild(pButton);
+
+	pButton = new CButtonUI;
+	pButton->SetPos(Vec2(450.f, 650.f));
+	pButton->SetScale(Vec2(20.f, 10.f));
+	pButton->SetName(L"다음");
+	pButton->SetFunction([=]() {pAnimUI->IncrBodyFrm(); });
+
+	pPanel->AddChild(pButton);
+
+	pButton = new CButtonUI;
+	pButton->SetPos(Vec2(150.f, 700.f));
+	pButton->SetScale(Vec2(20.f, 10.f));
+	pButton->SetName(L"전체 이전");
+	pButton->SetFunction([=]() {pAnimUI->DecrBangFrm(); pAnimUI->DecrBodyFrm(); });
+
+	pPanel->AddChild(pButton);
+
+	pButton = new CButtonUI;
+	pButton->SetPos(Vec2(450.f, 700.f));
+	pButton->SetScale(Vec2(20.f, 10.f));
+	pButton->SetName(L"전체 다음");
+	pButton->SetFunction([=]() {pAnimUI->IncrBangFrm(); pAnimUI->IncrBodyFrm(); });
+
+	pPanel->AddChild(pButton);
+
+	pButton = new CButtonUI;
+	pButton->SetPos(Vec2(550.f, 650.f));
+	pButton->SetScale(Vec2(20.f, 10.f));
+	pButton->SetName(L"재생");
+	pButton->SetFunction([=]() {pAnimUI->Play(); });
+
+	pPanel->AddChild(pButton);
+
+	pButton = new CButtonUI;
+	pButton->SetPos(Vec2(600.f, 650.f));
+	pButton->SetScale(Vec2(20.f, 10.f));
+	pButton->SetName(L"정지");
+	pButton->SetFunction([=]() {pAnimUI->Stop(); });
 
 	pPanel->AddChild(pButton);
 
 
-	CAnimUI* pAnimUI = new CAnimUI;
-	pAnimUI->SetPos(Vec2(50.f, 50.f));
-	pAnimUI->SetScale(Vec2(500.f, 500.f));
-	pAnimUI->SetBang(CAssetMgr::Get()->LoadAsset<CAnimation>(L"Player_Bang",L""));
-	pAnimUI->SetBody(CAssetMgr::Get()->LoadAsset<CAnimation>(L"Player_Idle", L""));
+	CTextBoxUI* pTextBoxUI = new CTextBoxUI();
+	pTextBoxUI->SetPos(Vec2(700.f, 200.f));
+	pTextBoxUI->SetScale(Vec2(150.f, 24.f));
 
-	pPanel->AddChild(pAnimUI);
+	pPanel->AddChild(pTextBoxUI);
 }
+
+
 
 void CLevel_AnimEditor::CreateAnimation()
 {

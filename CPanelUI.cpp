@@ -5,7 +5,7 @@
 #include "CKeyMgr.h"
 
 CPanelUI::CPanelUI()
-	: m_Movable(false)
+	: m_Movable(true)
 {
 }
 

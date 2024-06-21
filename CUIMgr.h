@@ -2,6 +2,7 @@
 #include "CManager.h"
 
 class CUI;
+class CTextBoxUI;
 
 class CUIMgr :
     public CManager
@@ -9,6 +10,10 @@ class CUIMgr :
     SINGLE(CUIMgr)
 
 private:
+    CTextBoxUI*  m_ActivatedTextBox;
+
+public:
+    CTextBoxUI* GetActivatedTextBox() { return m_ActivatedTextBox; }
 
 public:
     virtual void Init() override;

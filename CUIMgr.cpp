@@ -6,7 +6,10 @@
 #include "CLevelMgr.h"
 #include "CLevel.h"
 
+#include "CTextBoxUI.h"
+
 CUIMgr::CUIMgr()
+	: m_ActivatedTextBox(nullptr)
 {
 
 }
@@ -41,6 +44,7 @@ void CUIMgr::Tick()
 
 		// pPriorityUI : 트리에서 마우스 오버된 애들 중 깊이가 가장 깊은 UI
 		CUI* pPriorityUI = GetPriorityUI(pUI);
+		
 
 		// 이번 프레임에 클릭된 경우
 		if (KEY_TAP(KEY::LBtn))
@@ -57,6 +61,13 @@ void CUIMgr::Tick()
 			{
 				// Click된 상황
 				pPriorityUI->LBtnClicked();
+
+				// TextBox
+				CTextBoxUI* pTextBox = dynamic_cast<CTextBoxUI*>(pPriorityUI);
+				m_ActivatedTextBox = pTextBox;
+
+				if (m_ActivatedTextBox)
+					m_ActivatedTextBox->SetActive(true);
 			}
 		}
 
@@ -88,6 +99,10 @@ void CUIMgr::Tick()
 				Q.pop();
 
 				curUI->SetLbtnDown(false);
+
+				CTextBoxUI* pTextBox = dynamic_cast<CTextBoxUI*>(curUI);
+				if (pTextBox && pTextBox != m_ActivatedTextBox)
+					pTextBox->SetActive(false);
 
 				const vector<CUI*> vecChild = curUI->GetChild();
 				for (auto childUI : vecChild)
