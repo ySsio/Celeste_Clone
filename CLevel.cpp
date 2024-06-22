@@ -45,6 +45,8 @@ void CLevel::Tick()
 			obj->Tick();
 		}
 	}
+
+	Tick_Derived();
 }
 
 void CLevel::FinalTick()

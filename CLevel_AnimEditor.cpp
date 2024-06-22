@@ -17,6 +17,20 @@
 
 CLevel_AnimEditor::CLevel_AnimEditor()
 	: m_AnimUI(nullptr)
+	, m_BangFrm(0)
+	, m_BodyFrm(0)
+	, m_BangFrmCnt(0)
+	, m_BodyFrmCnt(0)
+	, m_BangFrmTxt(nullptr)
+	, m_BodyFrmTxt(nullptr)
+	, m_BangFrmCntTxt(nullptr)
+	, m_BodyFrmCntTxt(nullptr)
+	, m_BangOffsetX(nullptr)
+	, m_BangOffsetY(nullptr)
+	, m_BangDuration(nullptr)
+	, m_BodyOffsetX(nullptr)
+	, m_BodyOffsetY(nullptr)
+	, m_BodyDuration(nullptr)
 {
 }
 
@@ -45,14 +59,14 @@ void CLevel_AnimEditor::Enter()
 	CButtonUI* pButton = new CButtonUI;
 	pButton->SetPos(Vec2(200.f, 600.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {m_AnimUI->DecrBangFrm(); });
+	pButton->SetFunction([=]() {m_AnimUI->DecrBangFrm();});
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(400.f, 600.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {m_AnimUI->IncrBangFrm(); });
+	pButton->SetFunction([=]() {m_AnimUI->IncrBangFrm();});
 
 	pPanel->AddChild(pButton);
 
@@ -122,23 +136,17 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	pTextUI = new CTextUI();
-	pTextUI->SetPos(Vec2(300.f, 600.f));
-	pTextUI->SetText(L"Frame 0");
+	m_BangFrmTxt = new CTextUI();
+	m_BangFrmTxt->SetPos(Vec2(300.f, 600.f));
+	m_BangFrmTxt->SetText(L"Frame 0");
 
-	pPanel->AddChild(pTextUI);
+	pPanel->AddChild(m_BangFrmTxt);
 
-	pTextUI = new CTextUI();
-	pTextUI->SetPos(Vec2(300.f, 650.f));
-	pTextUI->SetText(L"Frame 0");
+	m_BodyFrmTxt = new CTextUI();
+	m_BodyFrmTxt->SetPos(Vec2(300.f, 650.f));
+	m_BodyFrmTxt->SetText(L"Frame 0");
 
-	pPanel->AddChild(pTextUI);
-
-	pTextUI = new CTextUI();
-	pTextUI->SetPos(Vec2(300.f, 700.f));
-	pTextUI->SetText(L"Frame 0");
-
-	pPanel->AddChild(pTextUI);
+	pPanel->AddChild(m_BodyFrmTxt);
 
 
 	// 머리 애니메이션, 프레임 정보
@@ -170,11 +178,11 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	pTextUI = new CTextUI();
-	pTextUI->SetPos(Vec2(tempX, 200.f));
-	pTextUI->SetText(L"프레임 수 : 9");
+	m_BangFrmCntTxt = new CTextUI();
+	m_BangFrmCntTxt->SetPos(Vec2(tempX, 200.f));
+	m_BangFrmCntTxt->SetText(L"프레임 수 : 9");
 
-	pPanel->AddChild(pTextUI);
+	pPanel->AddChild(m_BangFrmCntTxt);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 170.f, 200.f));
@@ -222,24 +230,24 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBangOffsetX = new CTextBoxUI();
-	pBangOffsetX->SetPos(Vec2(tempX + 130.f, 420.f));
-	pBangOffsetX->SetScale(Vec2(40.f, 40.f));
-	pBangOffsetX->SetInteger(true);
+	m_BangOffsetX = new CTextBoxUI();
+	m_BangOffsetX->SetPos(Vec2(tempX + 130.f, 420.f));
+	m_BangOffsetX->SetScale(Vec2(40.f, 40.f));
+	m_BangOffsetX->SetInteger(true);
 
-	pPanel->AddChild(pBangOffsetX);
+	pPanel->AddChild(m_BangOffsetX);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 398.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {int val = pBangOffsetX->GetIntValue(); pBangOffsetX->SetNumValue(val + 1); });
+	pButton->SetFunction([=]() {int val = m_BangOffsetX->GetIntValue(); m_BangOffsetX->SetNumValue(val + 1); });
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 462.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {int val = pBangOffsetX->GetIntValue(); pBangOffsetX->SetNumValue(val - 1);  });
+	pButton->SetFunction([=]() {int val = m_BangOffsetX->GetIntValue(); m_BangOffsetX->SetNumValue(val - 1);  });
 
 	pPanel->AddChild(pButton);
 
@@ -250,24 +258,24 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBangOffsetY = new CTextBoxUI();
-	pBangOffsetY->SetPos(Vec2(tempX + 210.f, 420.f));
-	pBangOffsetY->SetScale(Vec2(40.f, 40.f));
-	pBangOffsetY->SetInteger(true);
+	m_BangOffsetY = new CTextBoxUI();
+	m_BangOffsetY->SetPos(Vec2(tempX + 210.f, 420.f));
+	m_BangOffsetY->SetScale(Vec2(40.f, 40.f));
+	m_BangOffsetY->SetInteger(true);
 
-	pPanel->AddChild(pBangOffsetY);
+	pPanel->AddChild(m_BangOffsetY);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 398.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {int val = pBangOffsetY->GetIntValue(); pBangOffsetY->SetNumValue(val + 1); });
+	pButton->SetFunction([=]() {int val = m_BangOffsetY->GetIntValue(); m_BangOffsetY->SetNumValue(val + 1); });
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 462.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {int val = pBangOffsetY->GetIntValue(); pBangOffsetY->SetNumValue(val - 1); });
+	pButton->SetFunction([=]() {int val = m_BangOffsetY->GetIntValue(); m_BangOffsetY->SetNumValue(val - 1); });
 
 	pPanel->AddChild(pButton);
 
@@ -278,18 +286,21 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBangDuration = new CTextBoxUI();
-	pBangDuration->SetPos(Vec2(tempX + 130.f, 500.f));
-	pBangDuration->SetScale(Vec2(120.f, 40.f));
-	pBangDuration->SetFloat(true);
+	m_BangDuration = new CTextBoxUI();
+	m_BangDuration->SetPos(Vec2(tempX + 130.f, 500.f));
+	m_BangDuration->SetScale(Vec2(120.f, 40.f));
+	m_BangDuration->SetFloat(true);
 
-	pPanel->AddChild(pBangDuration);
+	pPanel->AddChild(m_BangDuration);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 60.f, 640.f));
 	pButton->SetScale(Vec2(50.f, 30.f));
 	pButton->SetName(L"저장");
-	pButton->SetFunction([=]() {SaveBangAnimation(L"\\animation\\" + pBangAnimName->GetValue() + L".anim"); });
+	pButton->SetFunction([=]() {
+		SaveBangAnimation(L"\\animation\\" + pBangAnimName->GetValue() + L".anim"); 
+		m_OriBangFrm = m_AnimUI->GetBang()->GetAllFrm();
+	});
 
 	pPanel->AddChild(pButton);
 
@@ -317,7 +328,21 @@ void CLevel_AnimEditor::Enter()
 				wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
 
 				if (wcscmp(strExtension.c_str(), L".anim") == 0)
+				{
+					// 편집중이던 애니메이션을 원래 상태로 되돌림
+					if (m_AnimUI->GetBang())
+						m_AnimUI->GetBang()->SetAllFrm(m_OriBangFrm);
+
+					// 선택한 애니메이션을 불러옴
 					SetBangAnim(CAssetMgr::Get()->LoadAsset<CAnimation>(CPathMgr::Get()->GetNaiveFileName(szFilePath), CPathMgr::Get()->GetRelativePath(szFilePath)));
+
+					// 불러온 애니메이션 초기값 세팅
+					LoadBangVariables();
+
+					// 애니메이션의 원래 상태를 저장해둔다
+					m_OriBangFrm = m_AnimUI->GetBang()->GetAllFrm();
+				}
+			
 			}
 		
 		});
@@ -353,11 +378,11 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	pTextUI = new CTextUI();
-	pTextUI->SetPos(Vec2(tempX, 200.f));
-	pTextUI->SetText(L"프레임 수 : 9");
+	m_BodyFrmCntTxt = new CTextUI();
+	m_BodyFrmCntTxt->SetPos(Vec2(tempX, 200.f));
+	m_BodyFrmCntTxt->SetText(L"프레임 수 : 9");
 
-	pPanel->AddChild(pTextUI);
+	pPanel->AddChild(m_BodyFrmCntTxt);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 170.f, 200.f));
@@ -405,12 +430,12 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBodyOffsetX = new CTextBoxUI();
-	pBodyOffsetX->SetPos(Vec2(tempX + 130.f, 420.f));
-	pBodyOffsetX->SetScale(Vec2(40.f, 40.f));
-	pBodyOffsetX->SetInteger(true);
+	m_BodyOffsetX = new CTextBoxUI();
+	m_BodyOffsetX->SetPos(Vec2(tempX + 130.f, 420.f));
+	m_BodyOffsetX->SetScale(Vec2(40.f, 40.f));
+	m_BodyOffsetX->SetInteger(true);
 
-	pPanel->AddChild(pBodyOffsetX);
+	pPanel->AddChild(m_BodyOffsetX);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 398.f));
@@ -433,12 +458,12 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBodyOffsetY = new CTextBoxUI();
-	pBodyOffsetY->SetPos(Vec2(tempX + 210.f, 420.f));
-	pBodyOffsetY->SetScale(Vec2(40.f, 40.f));
-	pBodyOffsetY->SetInteger(true);
+	m_BodyOffsetY = new CTextBoxUI();
+	m_BodyOffsetY->SetPos(Vec2(tempX + 210.f, 420.f));
+	m_BodyOffsetY->SetScale(Vec2(40.f, 40.f));
+	m_BodyOffsetY->SetInteger(true);
 
-	pPanel->AddChild(pBodyOffsetY);
+	pPanel->AddChild(m_BodyOffsetY);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 398.f));
@@ -461,18 +486,22 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBodyDuration = new CTextBoxUI();
-	pBodyDuration->SetPos(Vec2(tempX + 130.f, 500.f));
-	pBodyDuration->SetScale(Vec2(120.f, 40.f));
-	pBodyDuration->SetFloat(true);
+	m_BodyDuration = new CTextBoxUI();
+	m_BodyDuration->SetPos(Vec2(tempX + 130.f, 500.f));
+	m_BodyDuration->SetScale(Vec2(120.f, 40.f));
+	m_BodyDuration->SetFloat(true);
 
-	pPanel->AddChild(pBodyDuration);
+	pPanel->AddChild(m_BodyDuration);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 60.f, 640.f));
 	pButton->SetScale(Vec2(50.f, 30.f));
 	pButton->SetName(L"저장");
-	pButton->SetFunction([=]() {SaveBodyAnimation(L"\\animation\\" + pBodyAnimName->GetValue() + L".anim"); });
+	pButton->SetFunction([=]() {
+		SaveBodyAnimation(L"\\animation\\" + pBodyAnimName->GetValue() + L".anim");
+		
+		m_OriBodyFrm = m_AnimUI->GetBody()->GetAllFrm();
+	});
 
 	pPanel->AddChild(pButton);
 
@@ -481,6 +510,8 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetScale(Vec2(80.f, 30.f));
 	pButton->SetName(L"불러오기");
 	pButton->SetFunction([=]() {
+
+		// 파일 탐색기에서 불러올 파일 선택
 		OPENFILENAME OFN{};
 		wchar_t szFilePath[255] = L"";
 		wchar_t filter[] = L"애니메이션\0*.anim\0모든 파일\0*.*\0";
@@ -499,13 +530,102 @@ void CLevel_AnimEditor::Enter()
 			wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
 
 			if (wcscmp(strExtension.c_str(), L".anim") == 0)
+			{
+				// 편집중이던 애니메이션을 원래 상태로 되돌림
+				if (m_AnimUI->GetBody())
+					m_AnimUI->GetBody()->SetAllFrm(m_OriBodyFrm);
+
+				// 선택한 애니메이션을 불러옴
 				SetBodyAnim(CAssetMgr::Get()->LoadAsset<CAnimation>(CPathMgr::Get()->GetNaiveFileName(szFilePath), CPathMgr::Get()->GetRelativePath(szFilePath)));
+
+				// 불러온 애니메이션 초기값 세팅
+				LoadBodyVariables();
+
+				// 애니메이션의 원래 상태를 저장해둔다
+				m_OriBodyFrm = m_AnimUI->GetBody()->GetAllFrm();
+			}
+		}
+
+		
+	});
+
+	pPanel->AddChild(pButton);
+}
+
+void CLevel_AnimEditor::Tick_Derived()
+{
+	// 값의 변화를 감지해서 화면에 표시되는 정보를 실시간 업데이트
+
+	if (m_AnimUI->GetBang())
+	{
+		if (m_BangFrmCnt != m_AnimUI->GetBangFrmCnt())
+		{
+			m_BangFrmCnt = m_AnimUI->GetBangFrmCnt();
+			m_BangFrmCntTxt->SetText(L"프레임 수 : " + std::to_wstring(m_BangFrmCnt));
+		}
+
+		if (m_BangFrm != m_AnimUI->GetBangFrm())
+		{
+			m_BangFrm = m_AnimUI->GetBangFrm();
+			LoadBangVariables();
+		}
+		else
+		{
+			tAnimFrm& BangAnimFrm = m_AnimUI->GetBang()->GetFrm(m_BangFrm);
+			BangAnimFrm.Offset.x = (float)m_BangOffsetX->GetIntValue();
+			BangAnimFrm.Offset.y = (float)m_BangOffsetY->GetIntValue();
+			BangAnimFrm.Duration = m_BangDuration->GetFloatValue();
+		}
+
+	}
+
+	if (m_AnimUI->GetBody())
+	{
+		if (m_BodyFrmCnt != m_AnimUI->GetBodyFrmCnt())
+		{
+			m_BodyFrmCnt = m_AnimUI->GetBodyFrmCnt();
+			m_BodyFrmCntTxt->SetText(L"프레임 수 : " + std::to_wstring(m_BodyFrmCnt));
+		}
+
+		if (m_BodyFrm != m_AnimUI->GetBodyFrm())
+		{
+			m_BodyFrm = m_AnimUI->GetBodyFrm();
+			LoadBodyVariables();
+		}
+		else
+		{
+			tAnimFrm& BodyAnimFrm = m_AnimUI->GetBody()->GetFrm(m_BodyFrm);
+			BodyAnimFrm.Offset.x = (float)m_BodyOffsetX->GetIntValue();
+			BodyAnimFrm.Offset.y = (float)m_BodyOffsetY->GetIntValue();
+			BodyAnimFrm.Duration = m_BodyDuration->GetFloatValue();
 		}
 
 
-		});
+	}
+}
 
-	pPanel->AddChild(pButton);
+void CLevel_AnimEditor::LoadBangVariables()
+{
+	// 불러온 애니메이션 초기값 세팅
+	m_BangFrm = m_AnimUI->GetBangFrm();
+	m_BangFrmTxt->SetText(L"Frame : " + std::to_wstring(m_BangFrm));
+
+	tAnimFrm& BangAnimFrm = m_AnimUI->GetBang()->GetFrm(m_BangFrm);
+	m_BangOffsetX->SetNumValue((int)BangAnimFrm.Offset.x);
+	m_BangOffsetY->SetNumValue((int)BangAnimFrm.Offset.y);
+	m_BangDuration->SetNumValue(BangAnimFrm.Duration);
+}
+
+void CLevel_AnimEditor::LoadBodyVariables()
+{
+	// 불러온 애니메이션 초기값 세팅
+	m_BodyFrm = m_AnimUI->GetBodyFrm();
+	m_BodyFrmTxt->SetText(L"Frame : " + std::to_wstring(m_BodyFrm));
+
+	tAnimFrm& BodyAnimFrm = m_AnimUI->GetBody()->GetFrm(m_BodyFrm);
+	m_BodyOffsetX->SetNumValue((int)BodyAnimFrm.Offset.x);
+	m_BodyOffsetY->SetNumValue((int)BodyAnimFrm.Offset.y);
+	m_BodyDuration->SetNumValue(BodyAnimFrm.Duration);
 }
 
 void CLevel_AnimEditor::SetBangAnim(CAnimation* _Anim)

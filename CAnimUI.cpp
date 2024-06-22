@@ -10,8 +10,8 @@ CAnimUI::CAnimUI()
 	, m_Body(nullptr)
 	, m_BangFrm(0)
 	, m_BodyFrm(0)
-	, m_BangMaxFrm(0)
-	, m_BodyMaxFrm(0)
+	, m_BangFrmCnt(1)
+	, m_BodyFrmCnt(1)
 	, m_Play(false)
 {
 }
@@ -25,7 +25,7 @@ void CAnimUI::SetBang(CAnimation* _Tex)
 	assert(_Tex);
 	m_Bang = _Tex;
 	m_BangFrm = 0;
-	m_BangMaxFrm = m_Bang->GetFrmCount();
+	m_BangFrmCnt = m_Bang->GetFrmCount();
 }
 
 void CAnimUI::SetBody(CAnimation* _Tex)
@@ -33,7 +33,7 @@ void CAnimUI::SetBody(CAnimation* _Tex)
 	assert(_Tex);
 	m_Body = _Tex;
 	m_BodyFrm = 0;
-	m_BodyMaxFrm = m_Body->GetFrmCount();
+	m_BodyFrmCnt = m_Body->GetFrmCount();
 }
 
 void CAnimUI::Tick_DerivedUI()
@@ -52,12 +52,9 @@ void CAnimUI::Tick_DerivedUI()
 
 		if (BangAccTime >= BangDuration)
 		{
-			++m_BangFrm;
+			IncrBangFrm();
 			BangAccTime -= BangDuration;
 		}
-
-		if (m_BangFrm == m_BangMaxFrm)
-			m_BangFrm = 0;
 	}
 
 	if (m_Body)
@@ -66,12 +63,9 @@ void CAnimUI::Tick_DerivedUI()
 
 		if (BodyAccTime >= BodyDuration)
 		{
-			++m_BodyFrm;
+			IncrBodyFrm();
 			BodyAccTime -= BodyDuration;
 		}
-
-		if (m_BodyFrm == m_BodyMaxFrm)
-			m_BodyFrm = 0;
 	}
 	
 	

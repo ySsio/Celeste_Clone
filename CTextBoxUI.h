@@ -22,8 +22,20 @@ public:
     void SetFloat(bool _b) { m_Float = _b; SetNumValue(0.f); }
 
     const wstring& GetValue() { return m_Text; }
-    int GetIntValue() { assert(m_Integer); return std::stoi(m_Text); }
-    float GetFloatValue() { assert(m_Float); return std::stof(m_Text); }
+
+    int GetIntValue() { 
+        assert(m_Integer); 
+        if (m_Text == L"") 
+            return 0; 
+        return std::stoi(m_Text); 
+    }
+
+    float GetFloatValue() { 
+        assert(m_Float); 
+        if (m_Text == L"") 
+            return 0.f; 
+        return std::stof(m_Text); 
+    }
 
 public:
     virtual void Tick_DerivedUI() override;

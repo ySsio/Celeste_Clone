@@ -23,6 +23,9 @@ public:
     void Render();
 
 public:
+    virtual void Tick_Derived() {}
+
+public:
     Vec2 GetSpawnPoint() { return m_CheckPoint; }
     void SetSpawnPoint(Vec2 _Spawn) { m_CheckPoint = _Spawn; }
     const vector<CObj*>& GetLayer(LAYER_TYPE _Type) { return m_ArrLayerObj[(UINT)_Type]; }

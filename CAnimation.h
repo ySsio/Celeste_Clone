@@ -19,8 +19,11 @@ private:
     bool                m_Flipped;
 
 public:
+    const vector<tAnimFrm>& GetAllFrm() { return m_vecFrm; }
+    void SetAllFrm(const vector<tAnimFrm>& _AllFrm) { m_vecFrm = _AllFrm; }
+
     UINT GetFrmCount() { return (UINT)m_vecFrm.size(); }
-    const tAnimFrm& GetFrm(UINT _Idx) { return m_vecFrm[_Idx]; }
+    tAnimFrm& GetFrm(UINT _Idx) { return m_vecFrm[_Idx]; }
     
     float GetDuration() { return m_Duration; }
 
