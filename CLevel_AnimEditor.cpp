@@ -201,30 +201,64 @@ void CLevel_AnimEditor::Enter()
 		OFN.hwndOwner = CEngine::Get()->GetMainHwnd();	// 모달 채택할 윈도우를 지정해줌
 		OFN.lpstrFilter = filter;
 		OFN.lpstrFile = szFilePath;
-		OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+		OFN.Flags = OFN_ALLOWMULTISELECT | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 		OFN.nMaxFile = 255;	// 파일 문자열 최대 길이
 		wstring strAnimPath = CPathMgr::Get()->GetContentPath() + L"\\texture";
 		OFN.lpstrInitialDir = strAnimPath.c_str(); // 창을 켰을 때 디폴트 경로
 
 		if (GetOpenFileName(&OFN)) {
-			wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
 
-			if (wcscmp(strExtension.c_str(), L".png") == 0)
+			// 선택한 파일 이름을 저장하는 벡터
+			vector<wstring> vecFileNames;
+
+			// 문자열 포인터
+			wchar_t* p = OFN.lpstrFile;
+
+			// 파일이 존재하는 디렉토리를 받음 (파일 이름과 확장자를 제외한 파일의 위치, \\로 끝남)
+			// 한 개의 파일을 선택한 경우, 원래대로 파일경로가 나오는데
+			// 여러 개의 파일을 선택한 경우, 파일 디렉토리와 파일 이름이 공백으로 구분되어 나옴.
+			// 예) 한 개 = D://file1.png, 여러 개 = D:// file1.png file2.png file3.png
+			// wchar_t*를 wstring으로 변환하면 공백직전까지로 인식함.
+			wstring FileDirectory = CPathMgr::Get()->GetFileDirectory(p);
+
+			// 첫번째 파일 이름을 가리키는 곳으로 포인터를 이동
+			p += FileDirectory.length();
+			if (*p == ' ')
+				++p;
+			
+			while (*p != '\0')
 			{
-				// 선택한 이미지를 텍스쳐로 불러옴
-				CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(CPathMgr::Get()->GetRelativePath(szFilePath));
-				pTex->Stretch(Vec2(BANG_SCALE, BANG_SCALE));
+				wstring FileNames = p;
+				wstring FileName = FileNames.substr(0,FileNames.find(L".png")+4);
 
-				// 새 프레임을 가장 마지막에 추가함
-				tAnimFrm frm{};
-				frm.Duration = DEFAULT_FRM_DURATION;
-				frm.Offset = Vec2(0.f, 0.f);
-				frm.Texture = pTex;
+				vecFileNames.push_back(FileName);
+				p += FileName.length() + 1;
+			}
 
-				m_AnimUI->AddBangFrm(frm);
+			for (const wstring& fileName : vecFileNames)
+			{
+				wstring fileDir = FileDirectory + fileName;
 
-				// 불러온 애니메이션 초기값 세팅
-				LoadBangVariables();
+				wstring strExtension = CPathMgr::Get()->GetPathExtension(fileDir);
+
+				if (wcscmp(strExtension.c_str(), L".png") == 0)
+				{
+					// 선택한 이미지를 텍스쳐로 불러옴
+					CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(CPathMgr::Get()->GetRelativePath(fileDir));
+					pTex->Stretch(Vec2(BANG_SCALE, BANG_SCALE));
+
+					// 새 프레임을 가장 마지막에 추가함
+					tAnimFrm frm{};
+					frm.Duration = DEFAULT_FRM_DURATION;
+					frm.Offset = Vec2(0.f, 0.f);
+					frm.Texture = pTex;
+
+					m_AnimUI->AddBangFrm(frm);
+
+					// 불러온 애니메이션 초기값 세팅
+					LoadBangVariables();
+				}
+					
 			}
 		}
 		});
@@ -376,6 +410,9 @@ void CLevel_AnimEditor::Enter()
 		m_AnimUI->GetBang()->SetName(m_BangName->GetValue());
 		SaveBangAnimation(L"\\animation\\" + m_BangName->GetValue() + L".anim");
 		m_OriBangFrm = m_AnimUI->GetBang()->GetAllFrm();
+
+		// 애니메이션이 저장되었음을 알림
+		MessageBox(CEngine::Get()->GetMainHwnd(), L"애니메이션이 저장되었습니다.", L"애니메이션 저장 완료", MB_OK);
 	});
 	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\save.png"));
 
@@ -470,37 +507,67 @@ void CLevel_AnimEditor::Enter()
 		}
 
 		OPENFILENAME OFN{};
-		wchar_t szFilePath[255] = L"";
+		wchar_t szFilePath[4096] = L"";
 		wchar_t filter[] = L"이미지\0*.png\0모든 파일\0*.*\0";
 
 		OFN.lStructSize = sizeof(OPENFILENAME);
 		OFN.hwndOwner = CEngine::Get()->GetMainHwnd();	// 모달 채택할 윈도우를 지정해줌
 		OFN.lpstrFilter = filter;
 		OFN.lpstrFile = szFilePath;
-		OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-		OFN.nMaxFile = 255;	// 파일 문자열 최대 길이
+		OFN.Flags = OFN_ALLOWMULTISELECT | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+		OFN.nMaxFile = 4096;	// 파일 문자열 최대 길이
 		wstring strAnimPath = CPathMgr::Get()->GetContentPath() + L"\\texture";
 		OFN.lpstrInitialDir = strAnimPath.c_str(); // 창을 켰을 때 디폴트 경로
 
 		if (GetOpenFileName(&OFN)) {
-			wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
 
-			if (wcscmp(strExtension.c_str(), L".png") == 0)
+			// 선택한 파일 이름을 저장하는 벡터
+			vector<wstring> vecFileNames;
+
+			// 문자열 포인터
+			wchar_t* p = OFN.lpstrFile;
+
+			// 파일이 존재하는 디렉토리를 받음 (파일 이름과 확장자를 제외한 파일의 위치, \\로 끝남)
+			wstring FileDirectory = CPathMgr::Get()->GetFileDirectory(p);
+
+			// 첫번째 파일 이름을 가리키는 곳으로 포인터를 이동
+			p += FileDirectory.length();
+			if (*p == ' ')
+				++p;
+
+
+			while (*p != '\0')
 			{
-				// 선택한 이미지를 텍스쳐로 불러옴
-				CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(CPathMgr::Get()->GetRelativePath(szFilePath));
-				pTex->Stretch(Vec2(BODY_SCALE, BODY_SCALE));
+				wstring FileNames = p;
+				wstring FileName = FileNames.substr(0, FileNames.find(L".png") + 4);
 
-				// 새 프레임을 가장 마지막에 추가함
-				tAnimFrm frm{};
-				frm.Duration = DEFAULT_FRM_DURATION;
-				frm.Offset = Vec2(0.f, 0.f);
-				frm.Texture = pTex;
+				vecFileNames.push_back(FileName);
+				p += FileName.length() + 1;
+			}
 
-				m_AnimUI->AddBodyFrm(frm);
+			for (const wstring& fileName : vecFileNames)
+			{
+				wstring fileDir = FileDirectory + fileName;
 
-				// 불러온 애니메이션 초기값 세팅
-				LoadBodyVariables();
+				wstring strExtension = CPathMgr::Get()->GetPathExtension(fileDir);
+
+				if (wcscmp(strExtension.c_str(), L".png") == 0)
+				{
+					// 선택한 이미지를 텍스쳐로 불러옴
+					CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(CPathMgr::Get()->GetRelativePath(fileDir));
+					pTex->Stretch(Vec2(BODY_SCALE, BODY_SCALE));
+
+					// 새 프레임을 가장 마지막에 추가함
+					tAnimFrm frm{};
+					frm.Duration = DEFAULT_FRM_DURATION;
+					frm.Offset = Vec2(0.f, 0.f);
+					frm.Texture = pTex;
+
+					m_AnimUI->AddBodyFrm(frm);
+
+					// 불러온 애니메이션 초기값 세팅
+					LoadBodyVariables();
+				}
 			}
 		}
 		});
@@ -654,6 +721,9 @@ void CLevel_AnimEditor::Enter()
 		m_AnimUI->GetBody()->SetName(m_BodyName->GetValue());
 		SaveBodyAnimation(L"\\animation\\" + m_BodyName->GetValue() + L".anim");
 		m_OriBodyFrm = m_AnimUI->GetBody()->GetAllFrm();
+
+		// 애니메이션이 저장되었음을 알림
+		MessageBox(CEngine::Get()->GetMainHwnd(), L"애니메이션이 저장되었습니다.", L"애니메이션 저장 완료", MB_OK);
 	});
 
 	pPanel->AddChild(pButton);

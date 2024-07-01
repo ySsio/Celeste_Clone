@@ -49,5 +49,5 @@
 
 #define DEFAULT_FRM_DURATION 0.1f
 
-#define BANG_SCALE 40.f
+#define BANG_SCALE 50.f
 #define BODY_SCALE 160.f

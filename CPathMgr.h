@@ -18,6 +18,7 @@ public:
     wstring GetFileName(const wstring& _strFilePath);
     wstring GetNaiveFileName(const wstring& _strFilePath);
     wstring GetPathExtension(const wstring& _strFilePath);
+    wstring GetFileDirectory(const wstring& _strFilePath);
 
 public:
     virtual void Init() override;

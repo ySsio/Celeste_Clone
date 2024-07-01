@@ -83,6 +83,22 @@ wstring CPathMgr::GetPathExtension(const wstring& _strFilePath)
 	return strExt;
 }
 
+wstring CPathMgr::GetFileDirectory(const wstring& _strFilePath)
+{
+	wstring strFileDirectory = L"";
+
+	for (int i = (int)_strFilePath.length() - 1; i >= 0; --i)
+	{
+		if (_strFilePath[i] == '\\')
+		{
+			strFileDirectory = _strFilePath.substr(0, i+1);
+			break;
+		}
+	}
+
+	return strFileDirectory;
+}
+
 void CPathMgr::Init()
 {
 	wchar_t buff[256];

@@ -120,7 +120,7 @@ void CAnimUI::Render_DerivedUI()
 
 	Vec2 vCenter = vPos + vScale / 2.f;
 
-	SELECT_BRUSH(BackDC, BRUSH_TYPE::BLACK);
+	SELECT_BRUSH(BackDC, BRUSH_TYPE::COZY_GREEN);
 
 	Rectangle(BackDC
 		, (int)(vPos.x)
