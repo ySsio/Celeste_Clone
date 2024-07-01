@@ -2,17 +2,24 @@
 #include "CUI.h"
 #include "CEngine.h"
 #include "CKeyMgr.h"
+#include "CTexture.h"
 
 CUI::CUI()
 	: m_ParentUI(nullptr)
 	, m_MouseOn(false)
 	, m_LbtnDown(false)
+	, m_Tex(nullptr)
 {
 }
 
 CUI::~CUI()
 {
 	Release_Vector(m_ChildUI);
+}
+
+void CUI::SetTexture(CTexture* _Tex)
+{
+	m_Tex = _Tex; SetScale(Vec2(_Tex->GetWidth(), _Tex->GetHeight()));
 }
 
 void CUI::Tick()

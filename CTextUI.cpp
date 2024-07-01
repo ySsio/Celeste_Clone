@@ -57,11 +57,11 @@ void CTextUI::Render_DerivedUI()
     SELECT_BRUSH(BackDC, BRUSH_TYPE::HOLLOW);
 
 
-    Rectangle(BackDC
-        , (int)(vFinalPos.x)
-        , (int)(vFinalPos.y)
-        , (int)(vFinalPos.x + vScale.x)
-        , (int)(vFinalPos.y + vScale.y));
+    //Rectangle(BackDC
+    //    , (int)(vFinalPos.x)
+    //    , (int)(vFinalPos.y)
+    //    , (int)(vFinalPos.x + vScale.x)
+    //    , (int)(vFinalPos.y + vScale.y));
 
 	TextOut(BackDC
 		, (int)vFinalPos.x

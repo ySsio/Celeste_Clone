@@ -112,7 +112,7 @@ void CTextBoxUI::Render_DerivedUI()
 		int cursorX = (int)vTextPos.x + textSize.cx;
 		int cursorY = (int)vTextPos.y;
 		MoveToEx(BackDC, cursorX, cursorY, NULL);
-		LineTo(BackDC, cursorX, cursorY + 32);
+		LineTo(BackDC, cursorX, cursorY + vScale.y - 6.f);
 	}
 
 }

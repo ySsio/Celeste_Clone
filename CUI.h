@@ -1,6 +1,8 @@
 #pragma once
 #include "CObj.h"
 
+class CTexture;
+
 class CUI :
     public CObj
 {
@@ -8,6 +10,8 @@ private:
     Vec2            m_FinalPos;
     CUI*            m_ParentUI;
     vector<CUI*>    m_ChildUI;
+
+    CTexture*       m_Tex;
 
     bool            m_MouseOn;
     bool            m_LbtnDown;
@@ -17,6 +21,10 @@ public:
     void SetParent(CUI* _Parent) { m_ParentUI = _Parent; }
     void AddChild(CUI* _Child) { _Child->SetParent(this); m_ChildUI.push_back(_Child); }
     void SetLbtnDown(bool _b) { m_LbtnDown = _b; }
+
+    void SetTexture(CTexture* _Tex);
+
+    CTexture* GetTexture() { return m_Tex; }
 
 
     Vec2 GetFinalPos() { return m_FinalPos; }

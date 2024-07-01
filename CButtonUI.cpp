@@ -2,6 +2,7 @@
 #include "CButtonUI.h"
 
 #include "CEngine.h"
+#include "CTexture.h"
 
 CButtonUI::CButtonUI()
 {
@@ -21,14 +22,36 @@ void CButtonUI::Render_DerivedUI()
 	Vec2 vFinalPos = GetFinalPos();
 	Vec2 vScale = GetScale();
 
-	SELECT_PEN(BackDC, PEN_TYPE::BLUE);
-	SELECT_BRUSH(BackDC, BRUSH_TYPE::WHITE);
+	CTexture* pTex = GetTexture();
 
-	Rectangle(BackDC
-		, (int)vFinalPos.x
-		, (int)vFinalPos.y
-		, (int)(vFinalPos.x + vScale.x)
-		, (int)(vFinalPos.y + vScale.y));
+	if (pTex)
+	{
+		BLENDFUNCTION blend{};
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
+		blend.SourceConstantAlpha = 255;
+		blend.AlphaFormat = AC_SRC_ALPHA;
+
+		AlphaBlend(BackDC
+			, (int)(vFinalPos.x)
+			, (int)(vFinalPos.y)
+			, vScale.x, vScale.y
+			, pTex->GetDC()
+			, 0, 0
+			, vScale.x, vScale.y
+			, blend);
+	}
+	else
+	{
+		SELECT_PEN(BackDC, PEN_TYPE::BLUE);
+		SELECT_BRUSH(BackDC, BRUSH_TYPE::WHITE);
+
+		Rectangle(BackDC
+			, (int)vFinalPos.x
+			, (int)vFinalPos.y
+			, (int)(vFinalPos.x + vScale.x)
+			, (int)(vFinalPos.y + vScale.y));
+	}
 
 	TextOut(BackDC
 		, (int)(vFinalPos.x)
