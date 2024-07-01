@@ -44,4 +44,10 @@
 
 #define SELECT_PEN(DC, PEN)		CSelectObject SelectPen(DC,PEN)
 #define SELECT_BRUSH(DC, BRUSH) CSelectObject SelectBrush(DC,BRUSH)
-#define SELECT_FONT(DC, FONT, SIZE) CSelectObject SelectFont(DC,FONT,SIZE);
+#define SELECT_FONT(DC, FONT, FONTSIZE) CSelectObject::SelectFont(FONT, FONTSIZE);
+
+
+#define DEFAULT_FRM_DURATION 0.1f
+
+#define BANG_SCALE 40.f
+#define BODY_SCALE 160.f

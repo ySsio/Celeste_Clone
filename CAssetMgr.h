@@ -1,6 +1,8 @@
 #pragma once
 #include "CManager.h"
 
+#include "CPathMgr.h"
+
 //class CTexture;
 //class CAnimation;
 //class CSound;
@@ -30,6 +32,9 @@ public:
 
     template <typename T>
     T* LoadAsset(const wstring& _strName, const wstring& _strFilePath);
+    
+    template <typename T>
+    T* LoadAsset(const wstring& _strFilePath);
 
     void SaveAsset(CAsset* _Asset, const wstring& _strRelativePath);
 
@@ -39,6 +44,7 @@ public:
 public:
     void FlipTexture(CTexture* _pTex);
     CTexture* CreateFlippedTexture(const wstring& _strName, CTexture * _pTex);
+    CTexture* CreateFlippedTexture(CTexture* _pTex);
 
 
 public:
@@ -122,4 +128,12 @@ T* CAssetMgr::LoadAsset(const wstring& _strName, const wstring& _strFilePath)
     AddAsset(_strName, pAsset);
 
     return pAsset;
+}
+
+template <typename T>
+T* CAssetMgr::LoadAsset(const wstring& _strFilePath)
+{
+    wstring strName = CPathMgr::Get()->GetNaiveFileName(_strFilePath);
+
+    return LoadAsset<T>(strName, _strFilePath);
 }

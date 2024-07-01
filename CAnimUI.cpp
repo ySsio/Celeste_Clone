@@ -36,6 +36,48 @@ void CAnimUI::SetBody(CAnimation* _Tex)
 	m_BodyFrmCnt = m_Body->GetFrmCount();
 }
 
+void CAnimUI::AddBangFrm(const tAnimFrm& _Frm)
+{
+	m_Bang->AddFrm(_Frm);
+	++m_BangFrmCnt;
+	m_BangFrm = m_BangFrmCnt - 1;
+}
+
+void CAnimUI::AddBodyFrm(const tAnimFrm& _Frm)
+{
+	m_Body->AddFrm(_Frm);
+	++m_BodyFrmCnt;
+	m_BodyFrm = m_BodyFrmCnt - 1;
+}
+
+void CAnimUI::EraseBangFrm(UINT _Frm)
+{
+	if (_Frm >= m_BangFrmCnt || m_BangFrmCnt == 0)
+		return;
+
+	vector<tAnimFrm>& vecFrm = const_cast<vector<tAnimFrm>&>(m_Bang->GetAllFrm());
+	vecFrm.erase(std::next(vecFrm.begin(), _Frm));
+
+	if (m_BangFrm == m_BangFrmCnt - 1)
+		--m_BangFrm;
+
+	--m_BangFrmCnt;
+}
+
+void CAnimUI::EraseBodyFrm(UINT _Frm)
+{
+	if (_Frm >= m_BodyFrmCnt || m_BodyFrmCnt == 0)
+		return;
+
+	vector<tAnimFrm>& vecFrm = const_cast<vector<tAnimFrm>&>(m_Body->GetAllFrm());
+	vecFrm.erase(std::next(vecFrm.begin(), _Frm));
+
+	if (m_BodyFrm == m_BodyFrmCnt - 1)
+		--m_BodyFrm;
+
+	--m_BodyFrmCnt;
+}
+
 void CAnimUI::Tick_DerivedUI()
 {
 	if (!m_Play)
@@ -87,7 +129,7 @@ void CAnimUI::Render_DerivedUI()
 		, (int)(vPos.y + vScale.y));
 
 	
-	if (m_Bang)
+	if (m_Bang && m_BangFrmCnt > 0)
 	{
 		BLENDFUNCTION blend{};
 		blend.BlendOp = AC_SRC_OVER;
@@ -109,7 +151,7 @@ void CAnimUI::Render_DerivedUI()
 			, blend);
 	}
 
-	if (m_Body)
+	if (m_Body && m_BodyFrmCnt > 0)
 	{
 		BLENDFUNCTION blend{};
 		blend.BlendOp = AC_SRC_OVER;

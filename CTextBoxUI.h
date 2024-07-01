@@ -16,6 +16,7 @@ private:
 public:
     void AddChar(WPARAM wParam);
     void SetActive(bool _b) { m_Active = _b; }
+    void SetText(const wstring& _Text) { m_Text = _Text; }
     void SetNumValue(int _Num) { m_Text = std::to_wstring(_Num); }
     void SetNumValue(float _Num) { m_Text = std::to_wstring(_Num); }
     void SetInteger(bool _b) { m_Integer = _b; SetNumValue(0); }

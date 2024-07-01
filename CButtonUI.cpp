@@ -34,7 +34,7 @@ void CButtonUI::Render_DerivedUI()
 		, (int)(vFinalPos.x)
 		, (int)(vFinalPos.y)
 		, GetName().c_str()
-		, GetName().length());
+		, (int)GetName().length());
 }
 
 void CButtonUI::LBtnDown()

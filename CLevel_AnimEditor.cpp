@@ -25,9 +25,11 @@ CLevel_AnimEditor::CLevel_AnimEditor()
 	, m_BodyFrmTxt(nullptr)
 	, m_BangFrmCntTxt(nullptr)
 	, m_BodyFrmCntTxt(nullptr)
+	, m_BangName(nullptr)
 	, m_BangOffsetX(nullptr)
 	, m_BangOffsetY(nullptr)
 	, m_BangDuration(nullptr)
+	, m_BodyName(nullptr)
 	, m_BodyOffsetX(nullptr)
 	, m_BodyOffsetY(nullptr)
 	, m_BodyDuration(nullptr)
@@ -119,7 +121,6 @@ void CLevel_AnimEditor::Enter()
 
 	CTextUI* pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(70.f, 600.f));
-	pTextUI->SetFont(L"Arial", 24);
 	pTextUI->SetText(L"Bang");
 
 	pPanel->AddChild(pTextUI);
@@ -148,39 +149,36 @@ void CLevel_AnimEditor::Enter()
 
 	pPanel->AddChild(m_BodyFrmTxt);
 
-
 	// 머리 애니메이션, 프레임 정보
 	float tempX = 600.f;
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX - 20.f, 60.f));
-	pTextUI->SetFont(L"Arial", 32);
 	pTextUI->SetText(L"애니메이션 정보");
 
 	pPanel->AddChild(pTextUI);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX, 100.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"애니메이션 이름");
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBangAnimName = new CTextBoxUI();
-	pBangAnimName->SetPos(Vec2(tempX + 10.f, 140.f));
-	pBangAnimName->SetScale(Vec2(150.f, 40.f));
+	m_BangName = new CTextBoxUI();
+	m_BangName->SetPos(Vec2(tempX + 10.f, 140.f));
+	m_BangName->SetScale(Vec2(230.f, 20.f));
 
-	pPanel->AddChild(pBangAnimName);
+	pPanel->AddChild(m_BangName);
 
 	pTextUI = new CTextUI();
-	pTextUI->SetPos(Vec2(tempX + 170.f, 140.f));
+	pTextUI->SetPos(Vec2(tempX + 250.f, 140.f));
 	pTextUI->SetText(L".anim");
 
 	pPanel->AddChild(pTextUI);
 
 	m_BangFrmCntTxt = new CTextUI();
 	m_BangFrmCntTxt->SetPos(Vec2(tempX, 200.f));
-	m_BangFrmCntTxt->SetText(L"프레임 수 : 9");
+	m_BangFrmCntTxt->SetText(L"프레임 수 : 0");
 
 	pPanel->AddChild(m_BangFrmCntTxt);
 
@@ -188,7 +186,50 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetPos(Vec2(tempX + 170.f, 200.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
 	pButton->SetName(L"+");
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {
+
+		// 현재 편집중인 애니메이션이 없으면 오류
+		if (!m_AnimUI->GetBang())
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"편집중인 애니메이션이 없습니다.\n새 애니메이션을 생성하거나 기존 애니메이션을 불러오세요.", L"애니메이션 편집 오류", MB_OK);
+			return;
+		}
+
+		OPENFILENAME OFN{};
+		wchar_t szFilePath[255] = L"";
+		wchar_t filter[] = L"이미지\0*.png\0모든 파일\0*.*\0";
+
+		OFN.lStructSize = sizeof(OPENFILENAME);
+		OFN.hwndOwner = CEngine::Get()->GetMainHwnd();	// 모달 채택할 윈도우를 지정해줌
+		OFN.lpstrFilter = filter;
+		OFN.lpstrFile = szFilePath;
+		OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+		OFN.nMaxFile = 255;	// 파일 문자열 최대 길이
+		wstring strAnimPath = CPathMgr::Get()->GetContentPath() + L"\\texture";
+		OFN.lpstrInitialDir = strAnimPath.c_str(); // 창을 켰을 때 디폴트 경로
+
+		if (GetOpenFileName(&OFN)) {
+			wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
+
+			if (wcscmp(strExtension.c_str(), L".png") == 0)
+			{
+				// 선택한 이미지를 텍스쳐로 불러옴
+				CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(CPathMgr::Get()->GetRelativePath(szFilePath));
+				pTex->Stretch(Vec2(BANG_SCALE, BANG_SCALE));
+
+				// 새 프레임을 가장 마지막에 추가함
+				tAnimFrm frm{};
+				frm.Duration = DEFAULT_FRM_DURATION;
+				frm.Offset = Vec2(0.f, 0.f);
+				frm.Texture = pTex;
+
+				m_AnimUI->AddBangFrm(frm);
+
+				// 불러온 애니메이션 초기값 세팅
+				LoadBangVariables();
+			}
+		}
+		});
 
 	pPanel->AddChild(pButton);
 
@@ -196,36 +237,76 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetPos(Vec2(tempX + 200.f, 200.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
 	pButton->SetName(L"-");
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {
+
+		// 현재 편집중인 애니메이션이 없으면 오류
+		if (!m_AnimUI->GetBang())
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"편집중인 애니메이션이 없습니다.\n새 애니메이션을 생성하거나 기존 애니메이션을 불러오세요.", L"애니메이션 편집 오류", MB_OK);
+			return;
+		}
+
+		// 현재 보고 있는 프레임을 제거한다
+		m_AnimUI->EraseBangFrm(m_BangFrm);
+
+		});
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 170.f, 240.f));
 	pButton->SetScale(Vec2(50.f, 30.f));
-	pButton->SetName(L"선택");
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetName(L"생성");
+	pButton->SetFunction([=]() {
+
+		// 이름이 없으면 오류
+		if (wcscmp(m_BangName->GetValue().c_str(), L"") == 0)
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"애니메이션 이름을 작성해주세요.", L"애니메이션 생성 오류", MB_OK);
+			return;
+		}
+
+		// 이미 동일한 이름이 있으면 오류
+		if (CAssetMgr::Get()->FindAsset<CAnimation>(m_BangName->GetValue()))
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"이미 동일한 이름의 애니메이션이 존재합니다.\n 애니메이션 이름을 수정해주세요.", L"애니메이션 생성 오류", MB_OK);
+			return;
+		}
+
+		// 새 애니메이션을 생성
+		CAnimation* pAnim = new CAnimation;
+
+		// 애셋매니저에 등록
+		CAssetMgr::Get()->AddAsset<CAnimation>(m_BangName->GetValue(), pAnim);
+
+		// AnimUI Bang에 등록
+		m_AnimUI->SetBang(pAnim);
+
+		// 애니메이션 정보를 로드
+		LoadBangVariables();
+
+		// 애니메이션이 생성되었음을 알림
+		MessageBox(CEngine::Get()->GetMainHwnd(), L"애니메이션이 생성되었습니다.", L"애니메이션 생성", MB_OK);
+
+		});
 
 	pPanel->AddChild(pButton);
 
 	// Bang 프레임 정보
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX - 20.f, 360.f));
-	pTextUI->SetFont(L"Arial", 32);
 	pTextUI->SetText(L"프레임 정보");
 
 	pPanel->AddChild(pTextUI);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX, 420.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"Offset");
 
 	pPanel->AddChild(pTextUI);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX + 100.f, 420.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"x :");
 
 	pPanel->AddChild(pTextUI);
@@ -253,7 +334,6 @@ void CLevel_AnimEditor::Enter()
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX + 180.f, 420.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"y :");
 
 	pPanel->AddChild(pTextUI);
@@ -281,14 +361,13 @@ void CLevel_AnimEditor::Enter()
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX, 500.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"Duration : ");
 
 	pPanel->AddChild(pTextUI);
 
 	m_BangDuration = new CTextBoxUI();
 	m_BangDuration->SetPos(Vec2(tempX + 130.f, 500.f));
-	m_BangDuration->SetScale(Vec2(120.f, 40.f));
+	m_BangDuration->SetScale(Vec2(120.f, 20.f));
 	m_BangDuration->SetFloat(true);
 
 	pPanel->AddChild(m_BangDuration);
@@ -298,7 +377,8 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetScale(Vec2(50.f, 30.f));
 	pButton->SetName(L"저장");
 	pButton->SetFunction([=]() {
-		SaveBangAnimation(L"\\animation\\" + pBangAnimName->GetValue() + L".anim"); 
+		m_AnimUI->GetBang()->SetName(m_BangName->GetValue());
+		SaveBangAnimation(L"\\animation\\" + m_BangName->GetValue() + L".anim");
 		m_OriBangFrm = m_AnimUI->GetBang()->GetAllFrm();
 	});
 
@@ -324,7 +404,6 @@ void CLevel_AnimEditor::Enter()
 			OFN.lpstrInitialDir = strAnimPath.c_str(); // 창을 켰을 때 디폴트 경로
 
 			if (GetOpenFileName(&OFN)) {
-
 				wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
 
 				if (wcscmp(strExtension.c_str(), L".anim") == 0)
@@ -342,45 +421,41 @@ void CLevel_AnimEditor::Enter()
 					// 애니메이션의 원래 상태를 저장해둔다
 					m_OriBangFrm = m_AnimUI->GetBang()->GetAllFrm();
 				}
-			
 			}
-		
 		});
 
 	pPanel->AddChild(pButton);
 
 	// 몸 애니메이션, 프레임 정보
-	tempX = 1000.f;
+	tempX = 930.f;
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX - 20.f, 60.f));
-	pTextUI->SetFont(L"Arial", 32);
 	pTextUI->SetText(L"애니메이션 정보");
 
 	pPanel->AddChild(pTextUI);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX, 100.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"애니메이션 이름");
 
 	pPanel->AddChild(pTextUI);
 
-	CTextBoxUI* pBodyAnimName = new CTextBoxUI();
-	pBodyAnimName->SetPos(Vec2(tempX + 10.f, 140.f));
-	pBodyAnimName->SetScale(Vec2(150.f, 40.f));
+	m_BodyName = new CTextBoxUI();
+	m_BodyName->SetPos(Vec2(tempX + 10.f, 140.f));
+	m_BodyName->SetScale(Vec2(230.f, 20.f));
 
-	pPanel->AddChild(pBodyAnimName);
+	pPanel->AddChild(m_BodyName);
 
 	pTextUI = new CTextUI();
-	pTextUI->SetPos(Vec2(tempX + 170.f, 140.f));
+	pTextUI->SetPos(Vec2(tempX + 250.f, 140.f));
 	pTextUI->SetText(L".anim");
 
 	pPanel->AddChild(pTextUI);
 
 	m_BodyFrmCntTxt = new CTextUI();
 	m_BodyFrmCntTxt->SetPos(Vec2(tempX, 200.f));
-	m_BodyFrmCntTxt->SetText(L"프레임 수 : 9");
+	m_BodyFrmCntTxt->SetText(L"프레임 수 : 0");
 
 	pPanel->AddChild(m_BodyFrmCntTxt);
 
@@ -388,7 +463,50 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetPos(Vec2(tempX + 170.f, 200.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
 	pButton->SetName(L"+");
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {
+
+		// 현재 편집중인 애니메이션이 없으면 오류
+		if (!m_AnimUI->GetBody())
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"편집중인 애니메이션이 없습니다. 새 애니메이션을 생성하거나 기존 애니메이션을 불러오세요.", L"애니메이션 편집 오류", MB_OK);
+			return;
+		}
+
+		OPENFILENAME OFN{};
+		wchar_t szFilePath[255] = L"";
+		wchar_t filter[] = L"이미지\0*.png\0모든 파일\0*.*\0";
+
+		OFN.lStructSize = sizeof(OPENFILENAME);
+		OFN.hwndOwner = CEngine::Get()->GetMainHwnd();	// 모달 채택할 윈도우를 지정해줌
+		OFN.lpstrFilter = filter;
+		OFN.lpstrFile = szFilePath;
+		OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+		OFN.nMaxFile = 255;	// 파일 문자열 최대 길이
+		wstring strAnimPath = CPathMgr::Get()->GetContentPath() + L"\\texture";
+		OFN.lpstrInitialDir = strAnimPath.c_str(); // 창을 켰을 때 디폴트 경로
+
+		if (GetOpenFileName(&OFN)) {
+			wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
+
+			if (wcscmp(strExtension.c_str(), L".png") == 0)
+			{
+				// 선택한 이미지를 텍스쳐로 불러옴
+				CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(CPathMgr::Get()->GetRelativePath(szFilePath));
+				pTex->Stretch(Vec2(BODY_SCALE, BODY_SCALE));
+
+				// 새 프레임을 가장 마지막에 추가함
+				tAnimFrm frm{};
+				frm.Duration = DEFAULT_FRM_DURATION;
+				frm.Offset = Vec2(0.f, 0.f);
+				frm.Texture = pTex;
+
+				m_AnimUI->AddBodyFrm(frm);
+
+				// 불러온 애니메이션 초기값 세팅
+				LoadBodyVariables();
+			}
+		}
+		});
 
 	pPanel->AddChild(pButton);
 
@@ -396,36 +514,76 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetPos(Vec2(tempX + 200.f, 200.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
 	pButton->SetName(L"-");
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {
+
+		// 현재 편집중인 애니메이션이 없으면 오류
+		if (!m_AnimUI->GetBody())
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"편집중인 애니메이션이 없습니다.\n새 애니메이션을 생성하거나 기존 애니메이션을 불러오세요.", L"애니메이션 편집 오류", MB_OK);
+			return;
+		}
+		
+		// 현재 보고 있는 프레임을 제거한다
+		m_AnimUI->EraseBodyFrm(m_BodyFrm);
+
+		});
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 170.f, 240.f));
 	pButton->SetScale(Vec2(50.f, 30.f));
-	pButton->SetName(L"선택");
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetName(L"생성");
+	pButton->SetFunction([=]() {
+
+		// 이름이 없으면 오류
+		if (wcscmp(m_BodyName->GetValue().c_str(), L"") == 0)
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"애니메이션 이름을 작성해주세요.", L"애니메이션 생성 오류", MB_OK);
+			return;
+		}
+
+		// 이미 동일한 이름이 있으면 오류
+		if (CAssetMgr::Get()->FindAsset<CAnimation>(m_BodyName->GetValue()))
+		{
+			MessageBox(CEngine::Get()->GetMainHwnd(), L"이미 동일한 이름의 애니메이션이 존재합니다.\n 애니메이션 이름을 수정해주세요.", L"애니메이션 생성 오류", MB_OK);
+			return;
+		}
+
+		// 새 애니메이션을 생성
+		CAnimation* pAnim = new CAnimation;
+
+		// 애셋매니저에 등록
+		CAssetMgr::Get()->AddAsset<CAnimation>(m_BodyName->GetValue(), pAnim);
+
+		// AnimUI Bang에 등록
+		m_AnimUI->SetBody(pAnim);
+
+		// 애니메이션 정보를 로드
+		LoadBodyVariables();
+
+		// 애니메이션이 생성되었음을 알림
+		MessageBox(CEngine::Get()->GetMainHwnd(), L"애니메이션이 생성되었습니다.", L"애니메이션 생성", MB_OK);
+
+		});
 
 	pPanel->AddChild(pButton);
 
 	// Body 프레임 정보
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX - 20.f, 360.f));
-	pTextUI->SetFont(L"Arial", 32);
 	pTextUI->SetText(L"프레임 정보");
 
 	pPanel->AddChild(pTextUI);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX, 420.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"Offset");
 
 	pPanel->AddChild(pTextUI);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX + 100.f, 420.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"x :");
 
 	pPanel->AddChild(pTextUI);
@@ -440,20 +598,19 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 398.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {int val = m_BodyOffsetX->GetIntValue(); m_BodyOffsetX->SetNumValue(val + 1); });
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 462.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {int val = m_BodyOffsetX->GetIntValue(); m_BodyOffsetX->SetNumValue(val - 1); });
 
 	pPanel->AddChild(pButton);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX + 180.f, 420.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"y :");
 
 	pPanel->AddChild(pTextUI);
@@ -468,27 +625,26 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 398.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {int val = m_BodyOffsetY->GetIntValue(); m_BodyOffsetY->SetNumValue(val + 1); });
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 462.f));
 	pButton->SetScale(Vec2(20.f, 20.f));
-	pButton->SetFunction([=]() {m_AnimUI->Play(); });
+	pButton->SetFunction([=]() {int val = m_BodyOffsetY->GetIntValue(); m_BodyOffsetY->SetNumValue(val - 1); });
 
 	pPanel->AddChild(pButton);
 
 	pTextUI = new CTextUI();
 	pTextUI->SetPos(Vec2(tempX, 500.f));
-	pTextUI->SetFont(L"Arial", 28);
 	pTextUI->SetText(L"Duration : ");
 
 	pPanel->AddChild(pTextUI);
 
 	m_BodyDuration = new CTextBoxUI();
 	m_BodyDuration->SetPos(Vec2(tempX + 130.f, 500.f));
-	m_BodyDuration->SetScale(Vec2(120.f, 40.f));
+	m_BodyDuration->SetScale(Vec2(120.f, 20.f));
 	m_BodyDuration->SetFloat(true);
 
 	pPanel->AddChild(m_BodyDuration);
@@ -498,8 +654,8 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetScale(Vec2(50.f, 30.f));
 	pButton->SetName(L"저장");
 	pButton->SetFunction([=]() {
-		SaveBodyAnimation(L"\\animation\\" + pBodyAnimName->GetValue() + L".anim");
-		
+		m_AnimUI->GetBody()->SetName(m_BodyName->GetValue());
+		SaveBodyAnimation(L"\\animation\\" + m_BodyName->GetValue() + L".anim");
 		m_OriBodyFrm = m_AnimUI->GetBody()->GetAllFrm();
 	});
 
@@ -569,7 +725,7 @@ void CLevel_AnimEditor::Tick_Derived()
 			m_BangFrm = m_AnimUI->GetBangFrm();
 			LoadBangVariables();
 		}
-		else
+		else if (m_BangFrm < m_BangFrmCnt && m_BangFrmCnt > 0)
 		{
 			tAnimFrm& BangAnimFrm = m_AnimUI->GetBang()->GetFrm(m_BangFrm);
 			BangAnimFrm.Offset.x = (float)m_BangOffsetX->GetIntValue();
@@ -592,7 +748,7 @@ void CLevel_AnimEditor::Tick_Derived()
 			m_BodyFrm = m_AnimUI->GetBodyFrm();
 			LoadBodyVariables();
 		}
-		else
+		else if (m_BodyFrm < m_BodyFrmCnt && m_BodyFrmCnt > 0)
 		{
 			tAnimFrm& BodyAnimFrm = m_AnimUI->GetBody()->GetFrm(m_BodyFrm);
 			BodyAnimFrm.Offset.x = (float)m_BodyOffsetX->GetIntValue();
@@ -608,24 +764,38 @@ void CLevel_AnimEditor::LoadBangVariables()
 {
 	// 불러온 애니메이션 초기값 세팅
 	m_BangFrm = m_AnimUI->GetBangFrm();
-	m_BangFrmTxt->SetText(L"Frame : " + std::to_wstring(m_BangFrm));
+	m_BangFrmTxt->SetText(L"Frame " + std::to_wstring(m_BangFrm));
+	m_BangFrmCnt = m_AnimUI->GetBangFrmCnt();
+	m_BangFrmCntTxt->SetText(L"프레임 수 : " + std::to_wstring(m_BangFrmCnt));
 
-	tAnimFrm& BangAnimFrm = m_AnimUI->GetBang()->GetFrm(m_BangFrm);
-	m_BangOffsetX->SetNumValue((int)BangAnimFrm.Offset.x);
-	m_BangOffsetY->SetNumValue((int)BangAnimFrm.Offset.y);
-	m_BangDuration->SetNumValue(BangAnimFrm.Duration);
+	m_BangName->SetText(m_AnimUI->GetBang()->GetName());
+
+	if (m_BangFrmCnt > 0)
+	{
+		tAnimFrm& BangAnimFrm = m_AnimUI->GetBang()->GetFrm(m_BangFrm);
+		m_BangOffsetX->SetNumValue((int)BangAnimFrm.Offset.x);
+		m_BangOffsetY->SetNumValue((int)BangAnimFrm.Offset.y);
+		m_BangDuration->SetNumValue(BangAnimFrm.Duration);
+	}
 }
 
 void CLevel_AnimEditor::LoadBodyVariables()
 {
 	// 불러온 애니메이션 초기값 세팅
 	m_BodyFrm = m_AnimUI->GetBodyFrm();
-	m_BodyFrmTxt->SetText(L"Frame : " + std::to_wstring(m_BodyFrm));
+	m_BodyFrmTxt->SetText(L"Frame " + std::to_wstring(m_BodyFrm));
+	m_BodyFrmCnt = m_AnimUI->GetBodyFrmCnt();
+	m_BodyFrmCntTxt->SetText(L"프레임 수 : " + std::to_wstring(m_BodyFrmCnt));
 
-	tAnimFrm& BodyAnimFrm = m_AnimUI->GetBody()->GetFrm(m_BodyFrm);
-	m_BodyOffsetX->SetNumValue((int)BodyAnimFrm.Offset.x);
-	m_BodyOffsetY->SetNumValue((int)BodyAnimFrm.Offset.y);
-	m_BodyDuration->SetNumValue(BodyAnimFrm.Duration);
+	m_BodyName->SetText(m_AnimUI->GetBody()->GetName());
+
+	if (m_BodyFrmCnt > 0)
+	{
+		tAnimFrm& BodyAnimFrm = m_AnimUI->GetBody()->GetFrm(m_BodyFrm);
+		m_BodyOffsetX->SetNumValue((int)BodyAnimFrm.Offset.x);
+		m_BodyOffsetY->SetNumValue((int)BodyAnimFrm.Offset.y);
+		m_BodyDuration->SetNumValue(BodyAnimFrm.Duration);
+	}
 }
 
 void CLevel_AnimEditor::SetBangAnim(CAnimation* _Anim)

@@ -26,10 +26,12 @@ private:
     CTextUI* m_BangFrmCntTxt;
     CTextUI* m_BodyFrmCntTxt;
 
+    CTextBoxUI* m_BangName;
     CTextBoxUI* m_BangOffsetX;
     CTextBoxUI* m_BangOffsetY;
     CTextBoxUI* m_BangDuration;
 
+    CTextBoxUI* m_BodyName;
     CTextBoxUI* m_BodyOffsetX;
     CTextBoxUI* m_BodyOffsetY;
     CTextBoxUI* m_BodyDuration;

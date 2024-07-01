@@ -208,6 +208,14 @@ CTexture* CAssetMgr::CreateFlippedTexture(const wstring& _strName, CTexture* _pT
 	return pTex;
 }
 
+CTexture* CAssetMgr::CreateFlippedTexture(CTexture* _pTex)
+{
+	wstring strName = _pTex->GetName();
+	strName += L"_FlipX";
+
+	return CreateFlippedTexture(strName, _pTex);
+}
+
 void CAssetMgr::SaveAsset(CAsset* _Asset, const wstring& _strRelativePath)
 {
 	_Asset->Save(_strRelativePath);

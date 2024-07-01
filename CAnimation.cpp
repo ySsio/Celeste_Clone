@@ -111,12 +111,11 @@ void CAnimation::Load(const wstring& _strRelativeFilePath)
 				//{
 				//	m_vecFrm[idx].Texture = CAssetMgr::Get()->CreateFlippedTexture(L"", m_vecFrm[idx].Texture);
 				//}
-				m_vecFrm[idx].Texture = CAssetMgr::Get()->LoadAsset<CTexture>(szWParam, szLParam);
+				m_vecFrm[idx].Texture = CAssetMgr::Get()->LoadAsset<CTexture>(szLParam);
 				m_vecFrm[idx].Texture->Stretch(Vec2((float)x, (float)y));
-				m_vecFrm[idx].Texture->SetFlipped((bool)Flipped);
 				if ((bool)Flipped)
 				{
-					CAssetMgr::Get()->FlipTexture(m_vecFrm[idx].Texture);
+					m_vecFrm[idx].Texture = CAssetMgr::Get()->CreateFlippedTexture(m_vecFrm[idx].Texture);
 				}
 
 				fwscanf_s(pFile, L"%s : %d, %d", szTitle, 256, &x, &y); // L"Offset"

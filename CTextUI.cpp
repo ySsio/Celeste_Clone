@@ -18,7 +18,7 @@ void CTextUI::SetText(const wstring& _Text)
     m_Text = _Text;
     SIZE textSize{};
     GetTextExtentPoint32(BackDC, m_Text.c_str(), (int)m_Text.length(), &textSize);
-    SetScale(textSize.cx, textSize.cy);
+    SetScale((float)textSize.cx, (float)textSize.cy);
 }
 
 void CTextUI::SetFont(const wstring& _Font, UINT _Size)

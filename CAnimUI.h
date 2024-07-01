@@ -3,6 +3,7 @@
 
 class CAnimation;
 class CAnimator;
+struct tAnimFrm;
 
 class CAnimUI :
     public CUI
@@ -27,10 +28,22 @@ public:
     void SetBody(CAnimation* _Tex);
 
     UINT GetBangFrm() { return m_BangFrm; }
+    void SetBangFrm(UINT _Frm) { m_BangFrm = _Frm; }
+
     UINT GetBodyFrm() { return m_BodyFrm; }
+    void SetBodyFrm(UINT _Frm) { m_BodyFrm = _Frm; }
 
     UINT GetBangFrmCnt() { return m_BangFrmCnt; }
+    void SetBangFrmCnt(UINT _FrmCnt) { m_BangFrmCnt = _FrmCnt; }
+
     UINT GetBodyFrmCnt() { return m_BodyFrmCnt; }
+    void SetBodyFrmCnt(UINT _FrmCnt) { m_BodyFrmCnt = _FrmCnt; }
+
+    void AddBangFrm(const tAnimFrm& _Frm);
+    void AddBodyFrm(const tAnimFrm& _Frm);
+
+    void EraseBangFrm(UINT _Frm);
+    void EraseBodyFrm(UINT _Frm);
 
     void Play() { m_Play = true; }
     void Stop() { m_Play = false; }
