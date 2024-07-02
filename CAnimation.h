@@ -15,7 +15,6 @@ class CAnimation :
 {
 private:
     vector<tAnimFrm>    m_vecFrm;
-    float               m_Duration;
     bool                m_Flipped;
 
 public:
@@ -25,9 +24,7 @@ public:
     UINT GetFrmCount() { return (UINT)m_vecFrm.size(); }
     tAnimFrm& GetFrm(UINT _Idx) { return m_vecFrm[_Idx]; }
     
-    float GetDuration() { return m_Duration; }
-
-    void AddFrm(tAnimFrm _Frame) { m_vecFrm.push_back(_Frame); m_Duration += _Frame.Duration; }
+    void AddFrm(tAnimFrm _Frame) { m_vecFrm.push_back(_Frame); }
     void SetFlipped(bool _b) { m_Flipped = _b; }
 
 public:

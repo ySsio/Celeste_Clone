@@ -5,13 +5,16 @@
 
 
 CState_Idle::CState_Idle()
-	: m_curAnimDuration(0.f)
-	, m_AccTime(0.f)
 {
-	m_AnimList.push_back(L"Player_Idle");
-	m_AnimList.push_back(L"Player_IdleA");
-	m_AnimList.push_back(L"Player_IdleB");
-	m_AnimList.push_back(L"Player_IdleC");
+	m_BangAnimList.push_back(L"Player_Bang_Idle");
+	m_BangAnimList.push_back(L"Player_Bang_IdleA");
+	m_BangAnimList.push_back(L"Player_Bang_IdleB");
+	m_BangAnimList.push_back(L"Player_Bang_IdleC");
+
+	m_BodyAnimList.push_back(L"Player_Idle");
+	m_BodyAnimList.push_back(L"Player_IdleA");
+	m_BodyAnimList.push_back(L"Player_IdleB");
+	m_BodyAnimList.push_back(L"Player_IdleC");
 
 	for (int i = 0; i < 6; ++i)
 	{
@@ -25,29 +28,20 @@ CState_Idle::~CState_Idle()
 
 void CState_Idle::Enter()
 {
+	PlayNextAnim();
 }
 
 void CState_Idle::FinalTick()
 {
 	CPlayer* pPlayer = GetOwner();
-	CAnimator* pAnim = pPlayer->GetComponent<CAnimator>();
 
-	m_AccTime += fDT;
-
-	// Random Animation 재생
-	if (m_curAnimDuration <= m_AccTime)
+	if (GetBodyAnimator()->IsDone())
 	{
 		PlayNextAnim();
 	}
 
-
 	// #### State 변경 ####
-	
-	// 좌/우 키 입력 시 Run State로 변경
-	if (KEY_TAP(KEY::LEFT) || KEY_TAP(KEY::RIGHT))
-	{
-		GetStateMachine()->ChangeState(L"Run");
-	}
+
 	// C키 입력 시 Jump State로 변경
 	if (KEY_TAP(KEY::C))
 	{
@@ -62,12 +56,18 @@ void CState_Idle::PlayNextAnim()
 
 	int nextAnimIdx = m_AnimPlayList.front();
 
-	wstring nextAnimName = m_AnimList[nextAnimIdx];
+	wstring nextBangAnimName = m_BangAnimList[nextAnimIdx];
+	wstring nextBodyAnimName = m_BodyAnimList[nextAnimIdx];
 
 	if (GetOwner()->GetDir().x == -1.f)
-		nextAnimName += L"_FlipX";
+	{
+		nextBangAnimName += L"_FlipX";
+		nextBodyAnimName += L"_FlipX";
+	}
 
-	m_curAnimDuration = GetAnimator()->Play(nextAnimName);
-	m_AccTime = 0.f;
-	m_AnimPlayList.push_back(rand() % m_AnimList.size());
+	GetBangAnimator()->Play(nextBangAnimName);
+	GetBodyAnimator()->Play(nextBodyAnimName);
+
+	// 애니메이션 플레이리스트에 랜덤으로 하나를 추가한다.
+	m_AnimPlayList.push_back(rand() % m_BodyAnimList.size());
 }

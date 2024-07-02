@@ -9,13 +9,13 @@
 #include "CState_Idle.h"
 #include "CState_Run.h"
 #include "CState_Dash.h"
-#include "CState_Hang.h"
+#include "CState_Climb.h"
 #include "CState_Fall.h"
 #include "CState_Jump.h"
 
 CPlayer::CPlayer()
 	: m_HeadSprite(nullptr)
-	, m_HeadAnim(nullptr)
+	, m_BangAnim(nullptr)
 	, m_BodyAnim(nullptr)
 	, m_StateMachine(nullptr)
 	, m_Collider(nullptr)
@@ -23,31 +23,55 @@ CPlayer::CPlayer()
 	, m_Dir(Vec2(1.f,0.f))
 {
 	m_BodyAnim = AddComponent<CAnimator>();
-	m_BodyAnim->AddAnimation(L"Player_Idle", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Idle"));
-	m_BodyAnim->AddAnimation(L"Player_IdleA", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleA"));
-	m_BodyAnim->AddAnimation(L"Player_IdleB", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleB"));
-	m_BodyAnim->AddAnimation(L"Player_IdleC", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleC"));
-	m_BodyAnim->AddAnimation(L"Player_Idle_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Idle_FlipX"));
-	m_BodyAnim->AddAnimation(L"Player_IdleA_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleA_FlipX"));
-	m_BodyAnim->AddAnimation(L"Player_IdleB_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleB_FlipX"));
-	m_BodyAnim->AddAnimation(L"Player_IdleC_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_IdleC_FlipX"));
+	m_BodyAnim->AddAnimation(L"Player_Idle", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle.anim"));
+	m_BodyAnim->AddAnimation(L"Player_IdleA", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleA.anim"));
+	m_BodyAnim->AddAnimation(L"Player_IdleB", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleB.anim"));
+	m_BodyAnim->AddAnimation(L"Player_IdleC", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleC.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Walk", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Walk.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Run", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Run.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Jump", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Fall", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Idle_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_IdleA_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleA_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_IdleB_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleB_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_IdleC_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleC_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Walk_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Walk_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Run_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Run_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Jump_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Fall_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall_FlipX.anim"));
 	m_BodyAnim->Play(L"Player_Idle");
 
-	m_HeadAnim = AddComponent<CAnimator>();
-	m_HeadAnim->AddAnimation(L"Player_Bang", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Bang"));
-	m_HeadAnim->AddAnimation(L"Player_Bang_FlipX", CAssetMgr::Get()->FindAsset<CAnimation>(L"Player_Bang_FlipX"));
-	m_HeadAnim->Play(L"Player_Bang");
+	m_BangAnim = AddComponent<CAnimator>();
+	m_BangAnim->AddAnimation(L"Player_Bang_Idle", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Idle.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_IdleA", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleA.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_IdleB", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleB.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_IdleC", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleC.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Walk", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Walk.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Run", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Run.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Jump", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Jump.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Fall", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Fall.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Idle_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Idle_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_IdleA_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleA_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_IdleB_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleB_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_IdleC_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleC_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Walk_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Walk_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Run_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Run_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Jump_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Jump_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Fall_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Fall_FlipX.anim"));
+	m_BangAnim->Play(L"Player_Bang_Idle");
 
-	m_RigidBody = AddComponent<CRigidBody>();
 
 	m_StateMachine = AddComponent<CStateMachine>();
 	m_StateMachine->AddState(L"Idle", new CState_Idle);
 	m_StateMachine->AddState(L"Run", new CState_Run);
 	m_StateMachine->AddState(L"Dash", new CState_Dash);
-	m_StateMachine->AddState(L"Hang", new CState_Hang);
+	m_StateMachine->AddState(L"Hang", new CState_Climb);
 	m_StateMachine->AddState(L"Fall", new CState_Fall);
 	m_StateMachine->AddState(L"Jump", new CState_Jump);
 	m_StateMachine->ChangeState(L"Idle");
+
+
+	m_RigidBody = AddComponent<CRigidBody>();
 
 
 	m_Collider = AddComponent<CCollider>();
@@ -66,58 +90,34 @@ void CPlayer::Tick()
 
 	Vec2 vVelocity = m_RigidBody->GetVelocity();
 	
-	
 
-	
-
-	if (KEY_TAP(KEY::LEFT))
+	if (KEY_TAP(KEY::LEFT) || KEY_PRESSED(KEY::LEFT))
 	{
 		m_Dir.x = -1.f;
 	}
-	if (KEY_TAP(KEY::RIGHT))
+	else if (KEY_TAP(KEY::RIGHT) || KEY_PRESSED(KEY::RIGHT))
 	{
 		m_Dir.x = 1.f;
 	}
 
-	
-	
-
-
-	if (KEY_TAP(KEY::X))
+	if (KEY_TAP(KEY::UP) || KEY_PRESSED(KEY::UP))
 	{
-		Vec2 vDir = m_Dir;
-
-		if (KEY_PRESSED(KEY::UP))
-		{
-			vDir.y = -1.f;
-
-			if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
-				vDir.x = 0.f;
-		}
-		else if (KEY_PRESSED(KEY::DOWN))
-		{
-			vDir.y = 1.f;
-
-			if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
-				vDir.x = 0.f;
-		}
-		else
-		{
-			vDir.y = 0.f;
-		}
-
-		// Dash
-		m_RigidBody->Dash(vDir);
+		m_Dir.y = -1.f;
 	}
-
-
-	m_RigidBody->FinalTick();
+	else if (KEY_TAP(KEY::DOWN) || KEY_PRESSED(KEY::DOWN))
+	{
+		m_Dir.y = 1.f;
+	}
+	else
+	{
+		m_Dir.y = 0.f;
+	}
 }
 
 void CPlayer::Render()
 {
-	if (m_HeadAnim)
-		m_HeadAnim->Render();
+	if (m_BangAnim)
+		m_BangAnim->Render();
 
 	if (m_BodyAnim)
 		m_BodyAnim->Render();

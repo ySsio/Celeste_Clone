@@ -3,6 +3,7 @@
 
 CState_Run::CState_Run()
 {
+
 }
 
 CState_Run::~CState_Run()
@@ -11,14 +12,26 @@ CState_Run::~CState_Run()
 
 void CState_Run::Enter()
 {
+	Vec2 vDir = GetOwner()->GetDir();
+
+	if (vDir.x == 1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Run", true);
+		GetBodyAnimator()->Play(L"Player_Run", true);
+	}
+	else if (vDir.x == -1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Run_FlipX", true);
+		GetBodyAnimator()->Play(L"Player_Run_FlipX", true);
+	}
 }
 
 void CState_Run::FinalTick()
 {
 	CPlayer* pPlayer = GetOwner();
-	Vec2 vDir = pPlayer->GetDir();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
+	
 	if (KEY_PRESSED(KEY::LEFT))
 	{
 		pRigid->MovePosition(pPlayer->GetPos() + Vec2(-400.f, 0.f) * fDT);
@@ -34,9 +47,5 @@ void CState_Run::FinalTick()
 	if (KEY_TAP(KEY::C))
 	{
 		GetStateMachine()->ChangeState(L"Jump");
-	}
-	if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
-	{
-		GetStateMachine()->ChangeState(L"Idle");
 	}
 }

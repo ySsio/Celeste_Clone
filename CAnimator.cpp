@@ -19,14 +19,21 @@ CAnimator::~CAnimator()
 {
 }
 
-float CAnimator::Play(const wstring& _AnimName, bool _Repeat)
+void CAnimator::Play(const wstring& _AnimName, bool _Repeat)
 {
 	m_CurAnim = m_MapAnim.find(_AnimName)->second;
 	m_CurIdx = 0;
 	m_FrmCnt = m_CurAnim->GetFrmCount();
 	m_Repeat = _Repeat;
+	m_AccTime = 0.f;
+	m_Done = false;
+}
 
-	return m_CurAnim->GetDuration();
+void CAnimator::Pause()
+{
+	m_CurAnim = nullptr;
+	m_AccTime = 0.f;
+	m_Done = true;
 }
 
 void CAnimator::FinalTick()
@@ -48,7 +55,9 @@ void CAnimator::FinalTick()
 				m_CurIdx = 0;
 			else
 			{
+				m_Done = true;
 				m_CurAnim = nullptr;
+				m_CurIdx = 0;
 				m_AccTime = 0.f;
 			}
 		}
@@ -58,6 +67,9 @@ void CAnimator::FinalTick()
 
 void CAnimator::Render()
 {
+	if (m_Done)
+		return;
+
 	Vec2 vPos = GetOwner()->GetRenderPos();
 	const tAnimFrm& curFrm = m_CurAnim->GetFrm(m_CurIdx);
 	UINT Width = curFrm.Texture->GetWidth();

@@ -5,8 +5,7 @@
 #include "CAssetMgr.h"
 
 CAnimation::CAnimation()
-	: m_Duration(0.f)
-	, m_Flipped(false)
+	: m_Flipped(false)
 {
 }
 

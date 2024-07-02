@@ -3,22 +3,23 @@
 #include "CObj.h"
 #include "CTimeMgr.h"
 
-Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 1200.f);
-float CRigidBody::m_FrictionCoef = 300.f;
+Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 2400.f);
+float CRigidBody::m_FrictionCoef = 600.f;
 
 CRigidBody::CRigidBody()
 	: m_Mass(1.f)
 	, m_Gravity(true)
 	, m_Ground(false)
 	, m_Jump(false)
-	, m_MaxSpeed(400.f)
-	, m_GravityCoef(1.f)
-	, m_GravityOriginalCoef(1.f)
-	, m_GravityJumpCoef(0.3f)
-	, m_JumpSpeed(300.f)
-	, m_JumpEnd(false)
-	, m_DashSpeed(540.f)
-	, m_DashTime(0.5f)
+	, m_MaxSpeed(800.f)
+	, m_GravityCoef(2.f)
+	, m_GravityOriginalCoef(2.f)
+	, m_GravityJumpCoef(0.6f)
+	, m_JumpSpeed(600.f)
+	, m_DashCount(1)
+	, m_DashMaxCount(1)
+	, m_DashSpeed(1080.f)
+	, m_DashTime(0.25f)
 	, m_DashAccTime(0.f)
 	, m_Dash(false)
 {
@@ -40,18 +41,24 @@ void CRigidBody::Jump()
 
 void CRigidBody::EndJump()
 {
+	assert(m_Jump);
+
+	SetVelocity(Vec2(m_Velocity.x, 0.f));
 	m_GravityCoef = m_GravityOriginalCoef;
 	m_Jump = false;
 }
 
 void CRigidBody::Dash(Vec2 _Dir)
 {
+	if (!CanDash())
+		return;
+
 	m_Dash = true;
 	m_Gravity = false;
+	--m_DashCount;
 	if (!_Dir.IsZero())
 	{
 		SetVelocity(_Dir.Normalize() * m_DashSpeed);
-
 	}
 }
 
@@ -71,21 +78,11 @@ void CRigidBody::FinalTick()
 	m_Accel = m_Force / m_Mass;
 	if (m_Gravity) m_Accel += m_GravityAccel * m_GravityCoef;
 	
-	//if (m_Force.IsZero())
-	//{
-	//	if (m_Velocity.Length() <= m_FrictionCoef * fDT)
-	//		m_Velocity = Vec2(0.f, 0.f);
-	//	else
-	//		m_Velocity -= m_Velocity.Normalize() * m_FrictionCoef * fDT;
-	//}
 
 	m_Velocity += m_Accel * fDT;
 	
 	if (!m_Dash)
 	{
-		//if (m_Velocity.x > m_MaxSpeed) m_Velocity.x = m_MaxSpeed;
-		//else if (m_Velocity.x < -m_MaxSpeed) m_Velocity.x = -m_MaxSpeed;
-
 		if (m_Velocity.Length() > m_MaxSpeed)
 		{
 			m_Velocity.Normalize();

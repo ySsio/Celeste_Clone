@@ -17,9 +17,15 @@ private:
 
     bool    m_Repeat;
 
+    bool    m_Done;
+
 public:
     void AddAnimation(const wstring& _AnimName, CAnimation* _Anim) { m_MapAnim.emplace(_AnimName, _Anim); }
-    float Play(const wstring& _AnimName, bool _Repeat = true);
+    void Play(const wstring& _AnimName, bool _Repeat = false);
+
+    void Pause();
+    
+    bool IsDone() { return m_Done; }
 
 public:
     virtual void FinalTick() override;

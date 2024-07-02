@@ -5,10 +5,9 @@ class CState_Idle :
     public CState
 {
 private:
-    vector<wstring>     m_AnimList;
+    vector<wstring>     m_BangAnimList;
+    vector<wstring>     m_BodyAnimList;
     list<int>           m_AnimPlayList;
-    float               m_curAnimDuration;
-    float               m_AccTime;
 
 public:
     virtual void Enter() override;

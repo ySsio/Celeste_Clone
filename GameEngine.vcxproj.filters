@@ -113,9 +113,6 @@
     <Filter Include="Game\08. Module\State\Idle">
       <UniqueIdentifier>{2361785b-6ef1-418b-9dd0-c5f4fc7f8e73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\08. Module\State\Hang">
-      <UniqueIdentifier>{862ef378-06b0-47df-a16c-3fb2b7636061}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\08. Module\State\Fall">
       <UniqueIdentifier>{af5ed90e-fb51-422d-b5e9-a8af16c04f5c}</UniqueIdentifier>
     </Filter>
@@ -154,6 +151,9 @@
     </Filter>
     <Filter Include="Game\03.Object\03. UI\Text">
       <UniqueIdentifier>{b3656d61-137c-4add-847b-da5ec1860eff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Climb">
+      <UniqueIdentifier>{862ef378-06b0-47df-a16c-3fb2b7636061}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -280,8 +280,8 @@
     <ClInclude Include="CState_Fall.h">
       <Filter>Game\08. Module\State\Fall</Filter>
     </ClInclude>
-    <ClInclude Include="CState_Hang.h">
-      <Filter>Game\08. Module\State\Hang</Filter>
+    <ClInclude Include="CState_Climb.h">
+      <Filter>Game\08. Module\State\Climb</Filter>
     </ClInclude>
     <ClInclude Include="CState_Dash.h">
       <Filter>Game\08. Module\State\Dash</Filter>
@@ -444,8 +444,8 @@
     <ClCompile Include="CState_Fall.cpp">
       <Filter>Game\08. Module\State\Fall</Filter>
     </ClCompile>
-    <ClCompile Include="CState_Hang.cpp">
-      <Filter>Game\08. Module\State\Hang</Filter>
+    <ClCompile Include="CState_Climb.cpp">
+      <Filter>Game\08. Module\State\Climb</Filter>
     </ClCompile>
     <ClCompile Include="CState_Dash.cpp">
       <Filter>Game\08. Module\State\Dash</Filter>

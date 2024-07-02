@@ -9,7 +9,7 @@ class CPlayer :
 {
 private:
     CSpriteRenderer*    m_HeadSprite;
-    CAnimator*          m_HeadAnim;
+    CAnimator*          m_BangAnim;
     CAnimator*          m_BodyAnim;
     CStateMachine*      m_StateMachine;
     CCollider*          m_Collider;
@@ -18,7 +18,8 @@ private:
     Vec2                m_Dir;
 
 public:
-    CAnimator* GetAnimator() { return m_BodyAnim; }
+    CAnimator* GetBangAnimator() { return m_BangAnim; }
+    CAnimator* GetBodyAnimator() { return m_BodyAnim; }
 	CCollider* GetCollider() { return m_Collider; }
     CRigidBody* GetRigidBody() { return m_RigidBody; }
     Vec2 GetDir() { return m_Dir; }

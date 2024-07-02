@@ -19,6 +19,17 @@ void CState_Jump::Enter()
 
 	pRigid->Jump();
 	pRigid->SetGravity(true);
+
+	if (vDir.x == 1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Jump");
+		GetBodyAnimator()->Play(L"Player_Jump");
+	}
+	else if (vDir.x == -1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Jump_FlipX");
+		GetBodyAnimator()->Play(L"Player_Jump_FlipX");
+	}
 }
 
 void CState_Jump::FinalTick()
@@ -27,9 +38,30 @@ void CState_Jump::FinalTick()
 	Vec2 vDir = pPlayer->GetDir();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
+	if (KEY_PRESSED(KEY::LEFT))
+	{
+		pRigid->MovePosition(pPlayer->GetPos() + Vec2(-400.f, 0.f) * fDT);
+
+	}
+	if (KEY_PRESSED(KEY::RIGHT))
+	{
+		pRigid->MovePosition(pPlayer->GetPos() + Vec2(400.f, 0.f) * fDT);
+	}
+
+
+	// #### State 변경 ####
+
+	// C키를 떼면 점프를 종료하고 Fall state로 변경
 	if (KEY_RELEASED(KEY::C))
 	{
 		pRigid->EndJump();
 		GetStateMachine()->ChangeState(L"Fall");
 	}
+
+	// 최대 지점까지 점프를 해서 점프가 자동으로 종료되면 Fall state로 변경
+	if (!pRigid->IsJump())
+	{
+		GetStateMachine()->ChangeState(L"Fall");
+	}
+
 }

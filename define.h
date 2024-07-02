@@ -47,7 +47,7 @@
 #define SELECT_FONT(DC, FONT, FONTSIZE) CSelectObject::SelectFont(FONT, FONTSIZE);
 
 
-#define DEFAULT_FRM_DURATION 0.1f
+#define DEFAULT_FRM_DURATION 0.07f
 
 #define BANG_SCALE 50.f
 #define BODY_SCALE 160.f

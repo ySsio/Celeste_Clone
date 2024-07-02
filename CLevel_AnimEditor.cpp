@@ -49,6 +49,7 @@ void CLevel_AnimEditor::Enter()
 	CPanelUI* pPanel = new CPanelUI;
 	pPanel->SetPos(Vec2(-1.f, -1.f));
 	pPanel->SetScale(Vec2(vRes.x + 1, vRes.y + 1));
+	pPanel->SetMovable(false);
 
 	AddObject(pPanel, LAYER_TYPE::UI);
 
