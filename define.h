@@ -51,3 +51,13 @@
 
 #define BANG_SCALE 50.f
 #define BODY_SCALE 160.f
+
+
+#define DEBUG_LOG(_Level, _strLog)	wchar_t strLine[5];																		  \
+									wsprintf(strLine, L"%d", __LINE__);															  \
+									tLog log{};																				  \
+									log.Level = _Level;																		  \
+									string str(__FUNCTION__);																  \
+									log.strLog = wstring(str.begin(), str.end()) + L"  Line " + strLine + L" : " _strLog;		  \
+									log.Time = 0.f;																			  \
+									CLogMgr::Get()->AddLog(log)	

@@ -61,3 +61,11 @@ enum class TASK_TYPE
 	CHANGE_LEVEL,	// wParam : Level Address (CLevel*)
 
 };
+
+
+enum class LOG_LEVEL
+{
+	LOG,
+	WARNING,
+	BUG,
+};

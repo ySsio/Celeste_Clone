@@ -3,6 +3,8 @@
 #include "CObj.h"
 #include "CTimeMgr.h"
 
+#include "CLogMgr.h"
+
 Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 2400.f);
 float CRigidBody::m_FrictionCoef = 600.f;
 
@@ -46,6 +48,8 @@ void CRigidBody::EndJump()
 	SetVelocity(Vec2(m_Velocity.x, 0.f));
 	m_GravityCoef = m_GravityOriginalCoef;
 	m_Jump = false;
+
+	DEBUG_LOG(LOG_LEVEL::LOG, L"EndJump called");
 }
 
 void CRigidBody::Dash(Vec2 _Dir)

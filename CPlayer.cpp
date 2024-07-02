@@ -90,12 +90,14 @@ void CPlayer::Tick()
 
 	Vec2 vVelocity = m_RigidBody->GetVelocity();
 	
-
-	if (KEY_TAP(KEY::LEFT) || KEY_PRESSED(KEY::LEFT))
+	bool Left = KEY_TAP(KEY::LEFT) || KEY_PRESSED(KEY::LEFT);
+	bool Right = KEY_TAP(KEY::RIGHT) || KEY_PRESSED(KEY::RIGHT);
+	
+	if (Left && !Right)
 	{
 		m_Dir.x = -1.f;
 	}
-	else if (KEY_TAP(KEY::RIGHT) || KEY_PRESSED(KEY::RIGHT))
+	else if (!Left && Right)
 	{
 		m_Dir.x = 1.f;
 	}

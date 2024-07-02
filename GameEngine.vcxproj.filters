@@ -155,6 +155,9 @@
     <Filter Include="Game\08. Module\State\Climb">
       <UniqueIdentifier>{862ef378-06b0-47df-a16c-3fb2b7636061}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Manager\LogMgr">
+      <UniqueIdentifier>{a494f0ee-d08a-4477-8a2c-53c067d1ef6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -319,6 +322,9 @@
     <ClInclude Include="CTextUI.h">
       <Filter>Game\03.Object\03. UI\Text</Filter>
     </ClInclude>
+    <ClInclude Include="CLogMgr.h">
+      <Filter>Game\05. Manager\LogMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -482,6 +488,9 @@
     </ClCompile>
     <ClCompile Include="CTextUI.cpp">
       <Filter>Game\03.Object\03. UI\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogMgr.cpp">
+      <Filter>Game\05. Manager\LogMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@
 #include "CDebugMgr.h"
 #include "CTaskMgr.h"
 #include "CUIMgr.h"
+#include "CLogMgr.h"
 
 CEngine::CEngine()
 	: m_MainHwnd(nullptr)
@@ -147,6 +148,7 @@ void CEngine::Render()
 	
 
 	CDebugMgr::Get()->Render();
+	CLogMgr::Get()->Tick();
 
 	// MainBuffer¿¡ º¹»ç
 	BitBlt(m_MainDC

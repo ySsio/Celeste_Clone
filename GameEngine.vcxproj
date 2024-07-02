@@ -158,6 +158,7 @@
     <ClInclude Include="CLevel_Editor.h" />
     <ClInclude Include="CLevel_Level_01.h" />
     <ClInclude Include="CLevel_Start.h" />
+    <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CManager.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPanelUI.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="CLevel_Level_01.cpp" />
     <ClCompile Include="CLevel_MapEditor.cpp" />
     <ClCompile Include="CLevel_Start.cpp" />
+    <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CManager.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPanelUI.cpp" />

@@ -100,9 +100,9 @@ struct tDebugShapeInfo
 	float			AccTime;	// duration을 체크하기 위한 누적용 변수
 };
 
-//struct tLog
-//{
-//	wstring strLog;
-//	float Time;
-//	LOG_LEVEL Level;
-//};
+struct tLog
+{
+	wstring strLog;
+	float Time;
+	LOG_LEVEL Level;
+};

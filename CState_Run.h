@@ -5,6 +5,7 @@ class CState_Run :
     public CState
 {
 private:
+    float   m_Dir;
 
 public:
     virtual void Enter() override;

@@ -5,6 +5,8 @@
 #include "CPlayer.h"
 #include "CKeyMgr.h"
 
+//#include "CLogMgr.h"
+
 CStateMachine::CStateMachine()
     : m_CurState(nullptr)
 {
@@ -34,6 +36,8 @@ void CStateMachine::ChangeState(const wstring& _StrName)
     m_CurState = pState;
     assert(m_CurState);
     m_CurState->Enter();
+
+    //DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
 }
 
 CState* CStateMachine::FindState(const wstring& _StrName)
