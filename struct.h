@@ -22,6 +22,11 @@ struct Vec2
 		return x == 0.f && y == 0.f;
 	}
 
+	Vec2 operator - ()
+	{
+		return Vec2(-x, -y);
+	}
+
 	Vec2 operator + (Vec2 _Other)
 	{
 		return Vec2(x + _Other.x, y + _Other.y);

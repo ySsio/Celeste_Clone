@@ -2,6 +2,7 @@
 #include "CComponent.h"
 
 class CAnimation;
+struct tAnimFrm;
 
 class CAnimator :
     public CComponent
@@ -22,6 +23,8 @@ private:
 public:
     void AddAnimation(const wstring& _AnimName, CAnimation* _Anim) { m_MapAnim.emplace(_AnimName, _Anim); }
     void Play(const wstring& _AnimName, bool _Repeat = false);
+
+    const tAnimFrm& GetCurFrm();
 
     void Pause();
     

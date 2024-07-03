@@ -42,6 +42,8 @@ void CState_Idle::FinalTick()
 
 	// #### State 변경 ####
 
+	pPlayer->GetRigidBody()->SetVelocity(Vec2(0.f, 0.f));
+
 	// C키 입력 시 Jump State로 변경
 	if (KEY_TAP(KEY::C))
 	{

@@ -17,6 +17,7 @@
 #include "CLevel.h"
 #include "CAfterImage.h"
 
+
 CPlayer::CPlayer()
 	: m_Sprite(nullptr)
 	, m_BangAnim(nullptr)
@@ -27,6 +28,13 @@ CPlayer::CPlayer()
 	, m_Dir(Vec2(1.f,0.f))
 	, m_DirChanged(false)
 	, m_Color(BANG_COLOR::PINK)
+	, m_HairCount(5)
+	, m_HairTex(nullptr)
+	, m_HairSize{ 40.f, 35.f, 30.f, 25.f, 20.f }
+	, m_HairOffset{ 20.f, 15.f, 10.f, 5.f }
+	, m_HairCurPos(m_HairCount)
+	, m_HairTargetPos(m_HairCount)
+
 {
 	m_BodyAnim = AddComponent<CAnimator>();
 	m_BodyAnim->AddAnimation(L"Player_Idle", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle.anim"));
@@ -101,12 +109,70 @@ CPlayer::~CPlayer()
 	delete m_Buffer;
 }
 
-#include "CLogMgr.h"
-
 void CPlayer::Tick()
 {
-	Vec2 vPos = GetPos();
+	// Bang Color Update
+	BangColorUpdate();
 
+	// Direction Update
+	DirectionUpdate();
+
+	// Hair Poisition Update
+	HairPosUpdate();
+}
+
+#include "CEngine.h"
+void CPlayer::Render()
+{
+	// clear Buffer
+	if (m_Sprite)
+		m_Sprite->ClearTex();
+
+	// hair render
+	for (int i = 0; i < m_HairCount; ++i)
+	{
+		float size = m_HairSize[i];
+
+		m_HairTex = m_HairTex->Stretch(Vec2(size, size));
+
+		int Width = m_HairTex->GetWidth();
+		int Height = m_HairTex->GetHeight();
+
+		BLENDFUNCTION blend{};
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
+		blend.SourceConstantAlpha = 255;
+		blend.AlphaFormat = AC_SRC_ALPHA;
+
+		AlphaBlend(m_Buffer->GetDC()
+			, m_HairCurPos[i].x - Width / 2.f
+			, m_HairCurPos[i].y - Height / 2.f
+			, Width, Height
+			, m_HairTex->GetDC()
+			, 0, 0
+			, Width, Height
+			, blend);
+	}
+	
+
+	// bang render
+	if (m_BangAnim)
+		m_BangAnim->Render(m_Buffer->GetDC(), true);
+
+
+	// body render
+	if (m_BodyAnim)
+		m_BodyAnim->Render(m_Buffer->GetDC(), true);
+
+	
+	// Buffer to BackDC
+	if (m_Sprite)
+		m_Sprite->Render();
+
+}
+
+void CPlayer::BangColorUpdate()
+{
 	static float AccTime = 0.f;
 	static float ColorChangeDuration = 0.1f;
 
@@ -150,19 +216,15 @@ void CPlayer::Tick()
 			m_Color = BANG_COLOR::BLUE;
 		}
 	}
+}
 
-	if (KEY_TAP(KEY::SPACE))
-	{
-		DEBUG_LOG(LOG_LEVEL::LOG, L"Player Position : " + std::to_wstring(vPos.x) + L", " + std::to_wstring(vPos.y));
-	}
-
-	Vec2 vVelocity = m_RigidBody->GetVelocity();
-
+void CPlayer::DirectionUpdate()
+{
 	m_DirChanged = false;
-	
+
 	bool Left = KEY_TAP(KEY::LEFT) || KEY_PRESSED(KEY::LEFT);
 	bool Right = KEY_TAP(KEY::RIGHT) || KEY_PRESSED(KEY::RIGHT);
-	
+
 	if (Left && !Right)
 	{
 		if (m_Dir.x != -1.f)
@@ -194,19 +256,47 @@ void CPlayer::Tick()
 	}
 }
 
-void CPlayer::Render()
+void CPlayer::HairPosUpdate()
 {
-	if (m_Sprite)
-		m_Sprite->ClearTex();
+	// Player Buffer에 해당하는 Offset
+	Vec2 vOffset = Vec2(BODY_SCALE / 2.f, BODY_SCALE / 2.f);
+	Vec2 vPos = vOffset + m_BangAnim->GetCurFrm().Offset;
 
-	if (m_BangAnim)
-		m_BangAnim->Render(m_Buffer->GetDC(), true);
+	// 플레이어의 속도와 반대되는 방향으로 hair 들이 이동
+	Vec2 vDir = -m_RigidBody->GetVelocity();
 
-	if (m_BodyAnim)
-		m_BodyAnim->Render(m_Buffer->GetDC(), true);
+	// 속도가 0일 때는 중력 방향으로 설정
+	if (vDir.IsZero())
+		vDir = Vec2(0.f, 1.f);
+	else
+		vDir.Normalize();
 
-	if (m_Sprite)
-		m_Sprite->Render();
+	// 각 hair들의 target pos를 직전 hair의 curpos를 기준으로 vDir 방향으로 hairoffset만큼 떨어진 지점으로 설정
+	m_HairTargetPos[0] = vPos;
+	for (int i = 1; i < m_HairCount; ++i)
+	{
+		m_HairTargetPos[i] = m_HairCurPos[i - 1] + vDir * m_HairOffset[i - 1];
+	}
+
+	float Duration = 0.05f;
+
+	// 각 hair들의 curpos를 curpos부터 targetpos까지 0.05초만에 도착하는 속도로 이동
+	m_HairCurPos[0] = vPos;
+	for (int i = 1; i < m_HairCount; ++i)
+	{
+		m_HairCurPos[i] = m_HairTargetPos[i] * (fDT / Duration) + m_HairCurPos[i] * (1 - fDT / Duration);
+
+	}
+
+
+	if (m_Color == BANG_COLOR::PINK)
+		m_HairTex = CAssetMgr::Get()->FindAsset<CTexture>(L"hair_pink");
+	else if (m_Color == BANG_COLOR::RED)
+		m_HairTex = CAssetMgr::Get()->FindAsset<CTexture>(L"hair_red");
+	else if (m_Color == BANG_COLOR::BLUE)
+		m_HairTex = CAssetMgr::Get()->FindAsset<CTexture>(L"hair_blue");
+	else
+		m_HairTex = CAssetMgr::Get()->FindAsset<CTexture>(L"hair_white");
 }
 
 #include "CPlatform.h"

@@ -22,6 +22,13 @@ private:
     bool                m_DirChanged;
 
     BANG_COLOR          m_Color;
+    int                 m_HairCount;
+    CTexture*           m_HairTex;
+    vector<float>       m_HairSize;
+    vector<float>       m_HairOffset;
+    vector<Vec2>        m_HairCurPos;
+    vector<Vec2>        m_HairTargetPos;
+
 
 public:
     CAnimator* GetBangAnimator() { return m_BangAnim; }
@@ -37,6 +44,11 @@ public:
 public:
     virtual void Tick() override;
     virtual void Render() override;
+
+public:
+    void BangColorUpdate();
+    void DirectionUpdate();
+    void HairPosUpdate();
 
 public:
     virtual void OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol) override;

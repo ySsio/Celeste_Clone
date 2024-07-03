@@ -37,6 +37,10 @@ void CAssetMgr::Init()
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_blue01.png")->Scale(5.f));
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_blue02.png")->Scale(5.f));
 
+	LoadAsset<CTexture>(L"\\texture\\Player\\hair_pink.png");
+	LoadAsset<CTexture>(L"\\texture\\Player\\hair_blue.png");
+	LoadAsset<CTexture>(L"\\texture\\Player\\hair_red.png");
+	LoadAsset<CTexture>(L"\\texture\\Player\\hair_white.png");
 	
 	// Tile
 	CTile* pTile = new CTile;

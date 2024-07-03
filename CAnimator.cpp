@@ -33,6 +33,11 @@ void CAnimator::Play(const wstring& _AnimName, bool _Repeat)
 	m_Done = false;
 }
 
+const tAnimFrm& CAnimator::GetCurFrm()
+{
+	return m_CurAnim->GetFrm(m_CurIdx);
+}
+
 void CAnimator::Pause()
 {
 	m_CurAnim = nullptr;

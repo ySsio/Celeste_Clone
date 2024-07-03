@@ -22,6 +22,10 @@ enum class BRUSH_TYPE
 	GRAY,
 	COZY_GREEN,
 
+	BANG_BLUE,
+	BANG_RED,
+	BANG_PINK,
+
 	END,
 };
 
