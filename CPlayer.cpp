@@ -26,6 +26,7 @@ CPlayer::CPlayer()
 	, m_RigidBody(nullptr)
 	, m_Dir(Vec2(1.f,0.f))
 	, m_DirChanged(false)
+	, m_Color(BANG_COLOR::PINK)
 {
 	m_BodyAnim = AddComponent<CAnimator>();
 	m_BodyAnim->AddAnimation(L"Player_Idle", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle.anim"));
@@ -106,6 +107,50 @@ void CPlayer::Tick()
 {
 	Vec2 vPos = GetPos();
 
+	static float AccTime = 0.f;
+	static float ColorChangeDuration = 0.1f;
+
+	if (m_Color == BANG_COLOR::WHITE)
+	{
+		AccTime += fDT;
+	}
+
+	if (m_RigidBody->GetDashLeftCount() == 2)
+	{
+		// red/blue -> white -> pink
+		if (m_Color == BANG_COLOR::RED || m_Color == BANG_COLOR::BLUE)
+		{
+			m_Color = BANG_COLOR::WHITE;
+		}
+		else if (m_Color == BANG_COLOR::WHITE && AccTime >= ColorChangeDuration)
+		{
+			m_Color = BANG_COLOR::PINK;
+			AccTime = 0.f;
+		}
+	}
+	else if (m_RigidBody->GetDashLeftCount() == 1)
+	{
+		// 1. pink -> red
+		// 2. blue -> white -> red
+		if (m_Color == BANG_COLOR::BLUE)
+		{
+			m_Color = BANG_COLOR::WHITE;
+		}
+		else if ((m_Color == BANG_COLOR::WHITE && AccTime >= ColorChangeDuration) || m_Color == BANG_COLOR::PINK)
+		{
+			m_Color = BANG_COLOR::RED;
+			AccTime = 0.f;
+		}
+	}
+	else if (m_RigidBody->GetDashLeftCount() == 0)
+	{
+		// red -> blue
+		if (m_Color == BANG_COLOR::RED)
+		{
+			m_Color = BANG_COLOR::BLUE;
+		}
+	}
+
 	if (KEY_TAP(KEY::SPACE))
 	{
 		DEBUG_LOG(LOG_LEVEL::LOG, L"Player Position : " + std::to_wstring(vPos.x) + L", " + std::to_wstring(vPos.y));
@@ -165,7 +210,6 @@ void CPlayer::Render()
 }
 
 #include "CPlatform.h"
-#include "CLevelMgr.h"
 #include "CTaskMgr.h"
 
 void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)

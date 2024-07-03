@@ -72,3 +72,11 @@ enum class LOG_LEVEL
 	WARNING,
 	BUG,
 };
+
+enum class BANG_COLOR
+{
+	PINK,
+	RED,
+	BLUE,
+	WHITE,
+};

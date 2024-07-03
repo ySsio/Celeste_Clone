@@ -17,8 +17,8 @@ CRigidBody::CRigidBody()
 	, m_GravityOriginalCoef(2.f)
 	, m_GravityJumpCoef(0.6f)
 	, m_JumpSpeed(600.f)
-	, m_DashCount(1)
-	, m_DashMaxCount(1)
+	, m_DashCount(2)
+	, m_DashMaxCount(2)
 	, m_DashSpeed(1000.f)
 	, m_DashTime(0.3f)
 	, m_DashAccTime(0.f)
@@ -109,7 +109,8 @@ void CRigidBody::FinalTick()
 		m_DashAccTime += fDT;
 
 		// 대쉬 반대 방향으로 DashFrictionCoef 만큼 마찰력
-		m_Velocity -= m_Velocity.Normalized() * m_DashFrictionCoef * fDT;
+		if (!m_Velocity.IsZero())
+			m_Velocity -= m_Velocity.Normalized() * m_DashFrictionCoef * fDT;
 
 		if (m_DashAccTime > m_DashTime)
 		{

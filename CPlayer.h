@@ -21,6 +21,8 @@ private:
     Vec2                m_Dir;
     bool                m_DirChanged;
 
+    BANG_COLOR          m_Color;
+
 public:
     CAnimator* GetBangAnimator() { return m_BangAnim; }
     CAnimator* GetBodyAnimator() { return m_BodyAnim; }
@@ -30,6 +32,7 @@ public:
     bool IsDirChanged() { return m_DirChanged; }
 
     CTexture* GetBuffer() { return m_Buffer; }
+    BANG_COLOR GetColor() { return m_Color; }
 
 public:
     virtual void Tick() override;

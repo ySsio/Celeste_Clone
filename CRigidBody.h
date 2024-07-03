@@ -55,6 +55,8 @@ public:
     void SetDashMaxCount(UINT _Cnt) { m_DashMaxCount = _Cnt; }
     UINT GetDashMaxCount() { return m_DashMaxCount; }
 
+    UINT GetDashLeftCount() { return m_DashCount; }
+
     bool CanDash() { return m_DashCount > 0; }
 
     Vec2 GetForce() { return m_Force; }

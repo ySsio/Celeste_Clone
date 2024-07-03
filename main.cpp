@@ -27,7 +27,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 메모리 누수 남으면 메모리 누수 남은 부분 숫자가 콘솔에 나오는데 그걸 밑에 매크로 함수 입력으로 넣어주면
     // 해당 메모리 누수 난 코드에 break 걸림
-    //_CrtSetBreakAlloc(2089);
+    //_CrtSetBreakAlloc(46348);
 
     MyRegisterClass(hInstance);
 

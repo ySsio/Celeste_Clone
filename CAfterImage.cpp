@@ -53,8 +53,6 @@ void CAfterImage::Tick()
 
 	if (m_AccTime > m_Duration)
 		Delete_Object(this);
-
-
 }
 
 void CAfterImage::Render()

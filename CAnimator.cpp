@@ -5,6 +5,9 @@
 #include "CObj.h"
 #include "CTexture.h"
 #include "CEngine.h"
+#include "CPlayer.h"
+
+#include "CAssetMgr.h"
 
 CAnimator::CAnimator()
 	: m_CurAnim(nullptr)
@@ -77,8 +80,37 @@ void CAnimator::Render(HDC _DC, bool _Player)
 		return;
 
 	const tAnimFrm& curFrm = m_CurAnim->GetFrm(m_CurIdx);
-	UINT Width = curFrm.Texture->GetWidth();
-	UINT Height = curFrm.Texture->GetHeight();
+
+
+	CTexture* curTex = curFrm.Texture;
+
+	wstring TexName = curTex->GetName();
+
+	if (TexName.substr(0, 5) == L"bangs")
+	{
+		CPlayer* pPlayer = dynamic_cast<CPlayer*>(GetOwner());
+
+		if (pPlayer)
+		{
+			if (pPlayer->GetColor() == BANG_COLOR::PINK)
+			{
+				TexName = TexName.substr(0, 5) + L"_pink" + TexName.substr(5);
+			}
+			else if (pPlayer->GetColor() == BANG_COLOR::RED)
+			{
+				TexName = TexName.substr(0, 5) + L"_red" + TexName.substr(5);
+			}
+			else if (pPlayer->GetColor() == BANG_COLOR::BLUE)
+			{
+				TexName = TexName.substr(0, 5) + L"_blue" + TexName.substr(5);
+			}
+
+			curTex = CAssetMgr::Get()->FindAsset<CTexture>(TexName);
+		}
+	}
+
+	UINT Width = curTex->GetWidth();
+	UINT Height = curTex->GetHeight();
 
 	Vec2 vPos = GetOwner()->GetRenderPos();
 	vPos += curFrm.Offset;
@@ -102,7 +134,7 @@ void CAnimator::Render(HDC _DC, bool _Player)
 	AlphaBlend(_DC
 		, _x, _y
 		, Width, Height
-		, curFrm.Texture->GetDC()
+		, curTex->GetDC()
 		, 0, 0
 		, Width, Height
 		, blend);

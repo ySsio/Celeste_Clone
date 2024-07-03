@@ -62,4 +62,9 @@
 									log.Time = 0.f;																			  \
 									CLogMgr::Get()->AddLog(log)	
 
-
+//RGB(95,205,228)
+#define BLUE_BANG	0x5fcde4
+//RGB(249,149,221)
+#define RED_BANG	0xf995dd
+//RGB(172,50,50)
+#define PINK_BANG	0xac3232

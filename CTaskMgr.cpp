@@ -63,6 +63,7 @@ void CTaskMgr::Tick()
 	{
 		delete obj;
 	}
+	m_GC.clear();
 
 	// task Ã³¸®
 	for (const auto& task : m_vecTask)
@@ -71,7 +72,6 @@ void CTaskMgr::Tick()
 	}
 
 	m_vecTask.clear();
-	m_GC.clear();
 	m_LevelChanged = false;
 }
 
