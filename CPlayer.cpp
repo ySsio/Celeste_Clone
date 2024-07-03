@@ -89,9 +89,16 @@ CPlayer::~CPlayer()
 {
 }
 
+#include "CLogMgr.h"
+
 void CPlayer::Tick()
 {
 	Vec2 vPos = GetPos();
+
+	if (KEY_TAP(KEY::SPACE))
+	{
+		DEBUG_LOG(LOG_LEVEL::LOG, L"Player Position : " + std::to_wstring(vPos.x) + L", " + std::to_wstring(vPos.y));
+	}
 
 	Vec2 vVelocity = m_RigidBody->GetVelocity();
 
@@ -116,6 +123,8 @@ void CPlayer::Tick()
 			m_DirChanged = true;
 		}
 	}
+
+	
 
 	if (KEY_TAP(KEY::UP) || KEY_PRESSED(KEY::UP))
 	{
@@ -223,7 +232,8 @@ void CPlayer::OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCo
 {
 	if (m_Collider->GetOverlapCount() == 0)
 	{
-		m_RigidBody->SetGravity(true);
+		if (!m_RigidBody->IsDash())
+			m_RigidBody->SetGravity(true);
 		m_RigidBody->SetGround(false);
 	}
 }

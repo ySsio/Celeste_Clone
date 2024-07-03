@@ -4,7 +4,7 @@
 #include "CTimeMgr.h"
 
 Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 2400.f);
-float CRigidBody::m_FrictionCoef = 600.f;
+float CRigidBody::m_FrictionCoef = 4800.f;
 
 CRigidBody::CRigidBody()
 	: m_Mass(1.f)
@@ -18,7 +18,7 @@ CRigidBody::CRigidBody()
 	, m_JumpSpeed(600.f)
 	, m_DashCount(1)
 	, m_DashMaxCount(1)
-	, m_DashSpeed(860.f)
+	, m_DashSpeed(700.f)
 	, m_DashTime(0.3f)
 	, m_DashAccTime(0.f)
 	, m_Dash(false)
@@ -50,23 +50,21 @@ void CRigidBody::EndJump()
 
 void CRigidBody::Dash(Vec2 _Dir)
 {
-	if (!CanDash())
+	if (!CanDash() || _Dir.IsZero())
 		return;
+
+	if (m_Jump)
+		EndJump();
 
 	m_Dash = true;
 	m_Gravity = false;
 	--m_DashCount;
-	if (!_Dir.IsZero())
-	{
-		SetVelocity(_Dir.Normalize() * m_DashSpeed);
-	}
+
+	SetVelocity(_Dir.Normalize() * m_DashSpeed);
 }
 
 void CRigidBody::MovePosition(Vec2 _Pos)
 {
-	if (m_Dash)
-		return;
-
 	GetOwner()->SetPos(_Pos);
 }
 
@@ -81,14 +79,30 @@ void CRigidBody::FinalTick()
 
 	m_Velocity += m_Accel * fDT;
 	
+	// 평소 (대쉬 아닐때)
 	if (!m_Dash)
 	{
+		// 1. 최대 속력을 넘지 않도록 조정
 		if (m_Velocity.Length() > m_MaxSpeed)
 		{
 			m_Velocity.Normalize();
 			m_Velocity *= m_MaxSpeed;
 		}
+
+		// 2. x 방향으로 마찰력을 줌
+		if (m_Velocity.x != 0.f)
+		{
+			float dir = m_Velocity.x > 0.f ? 1.f : -1.f;
+
+			m_Velocity.x = dir * (fabs(m_Velocity.x) - m_FrictionCoef * fDT);
+
+			if (fabs(m_Velocity.x) < 5.f)
+				m_Velocity.x = 0.f;
+		}
+
+
 	}
+	// 대쉬 
 	else
 	{
 		m_DashAccTime += fDT;
@@ -96,8 +110,6 @@ void CRigidBody::FinalTick()
 		if (m_DashAccTime > m_DashTime)
 		{
 			m_DashAccTime = 0.f;
-			m_Velocity.x = 0.f;
-			//m_Velocity.y = 0.f;
 			m_Dash = false;
 			m_Gravity = true;
 		}
