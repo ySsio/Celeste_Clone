@@ -53,6 +53,8 @@ void CAfterImage::Tick()
 
 	if (m_AccTime > m_Duration)
 		Delete_Object(this);
+
+
 }
 
 void CAfterImage::Render()
@@ -65,7 +67,7 @@ void CAfterImage::Render()
 	BLENDFUNCTION blend{};
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;
-	blend.SourceConstantAlpha = 255;
+	blend.SourceConstantAlpha = 255 * (1 - m_AccTime / m_Duration);
 	blend.AlphaFormat = AC_SRC_ALPHA;
 
 	AlphaBlend(BackDC
