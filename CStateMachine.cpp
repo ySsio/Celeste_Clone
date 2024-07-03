@@ -5,7 +5,7 @@
 #include "CPlayer.h"
 #include "CKeyMgr.h"
 
-//#include "CLogMgr.h"
+#include "CLogMgr.h"
 
 CStateMachine::CStateMachine()
     : m_CurState(nullptr)
@@ -37,7 +37,7 @@ void CStateMachine::ChangeState(const wstring& _StrName)
     assert(m_CurState);
     m_CurState->Enter();
 
-    //DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
+    DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
 }
 
 CState* CStateMachine::FindState(const wstring& _StrName)
@@ -57,35 +57,42 @@ void CStateMachine::FinalTick()
 
     // AnyState에서 상태변환되는 조건을 여기서 체크, 해당되는 거 있으면 변경
 
-    // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
-    if (pRigid->IsGround() && KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) && KEY_NONE(KEY::Z))
+    bool CanChangeState = !pRigid->IsDash();
+
+    if (CanChangeState)
     {
-        ChangeState(L"Idle");
+        // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
+        if (pRigid->IsGround() && KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) && KEY_NONE(KEY::Z))
+        {
+            ChangeState(L"Idle");
+        }
+
+        // Run State : 바닥에 닿아있고, 좌우키 눌려있으면
+        if (pRigid->IsGround() && (KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT)))
+        {
+            ChangeState(L"Run");
+        }
+
+        // Fall State : 바닥에 안 닿아있고 y축 속도가 양수일 때
+        if (!pRigid->IsGround() && pRigid->GetVelocity().y > 0.f)
+        {
+            ChangeState(L"Fall");
+        }
+
+        // Dash State : Dash 횟수가 0보다 크고, X키가 입력되었을 때
+        if (pRigid->CanDash() && KEY_TAP(KEY::X))
+        {
+            ChangeState(L"Dash");
+        }
+
+        // Climb State : 벽에 닿음 && Z키 입력
+        if (KEY_TAP(KEY::Z))
+        {
+
+        }
     }
 
-    // Run State : 바닥에 닿아있고, 좌우키 눌려있으면
-    if (pRigid->IsGround() && (KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT)))
-    {
-        ChangeState(L"Run");
-    }
-
-    // Fall State : 바닥에 안 닿아있고 y축 속도가 양수일 때
-    if (!pRigid->IsGround() && pRigid->GetVelocity().y > 0.f)
-    {
-        ChangeState(L"Fall");
-    }
-
-    // Dash State : Dash 횟수가 0보다 크고, X키가 입력되었을 때
-    if (pRigid->CanDash() && KEY_TAP(KEY::X))
-    {
-        ChangeState(L"Dash");
-    }
-
-    // Climb State : 벽에 닿음 && Z키 입력
-    if (KEY_TAP(KEY::Z))
-    {
-
-    }
+    
 
 
     // 현재 state 진행

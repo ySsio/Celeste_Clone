@@ -28,7 +28,7 @@ CState_Idle::~CState_Idle()
 
 void CState_Idle::Enter()
 {
-	PlayNextAnim();
+	PlayAnimation();
 }
 
 void CState_Idle::FinalTick()
@@ -37,7 +37,7 @@ void CState_Idle::FinalTick()
 
 	if (GetBodyAnimator()->IsDone())
 	{
-		PlayNextAnim();
+		PlayAnimation();
 	}
 
 	// #### State º¯°æ ####
@@ -50,7 +50,7 @@ void CState_Idle::FinalTick()
 
 }
 
-void CState_Idle::PlayNextAnim()
+void CState_Idle::PlayAnimation()
 {
 	m_AnimPlayList.pop_front();
 

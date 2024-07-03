@@ -9,8 +9,25 @@ CState_Dash::~CState_Dash()
 {
 }
 
+void CState_Dash::PlayAnimation()
+{
+	Vec2 vDir = GetOwner()->GetDir();
+
+	if (vDir.x == 1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Dash", true);
+		GetBodyAnimator()->Play(L"Player_Dash", true);
+	}
+	else if (vDir.x == -1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Dash_FlipX", true);
+		GetBodyAnimator()->Play(L"Player_Dash_FlipX", true);
+	}
+}
+
 void CState_Dash::Enter()
 {
+	PlayAnimation();
 }
 
 void CState_Dash::FinalTick()

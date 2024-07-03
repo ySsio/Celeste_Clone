@@ -30,3 +30,10 @@ void Release_Map(unordered_map<T1, T2*>& _map)
 void Debug_Render(DEBUG_SHAPE _Shape, PEN_TYPE _Pen, BRUSH_TYPE _Brush, Vec2 _Pos, Vec2 _Scale, float _Duration = 0.f);
 
 void ChangeLevel(LEVEL_TYPE _Type);
+
+
+
+// Bitmap
+
+// 잔상 만들기 위한 함수
+void FillAlphaNonZeroAreas(HBITMAP hBitmap, COLORREF rgba);

@@ -61,8 +61,9 @@ public:
     Vec2 GetVelocity() { return m_Velocity; }
     float GetMass() { return m_Mass; }
     float GetJumpSpeed() { return m_JumpSpeed; }
-    bool IsGround() { return m_Ground; }
 
+    bool IsGround() { return m_Ground; }
+    bool IsDash() { return m_Dash; }
     bool IsJump() { return m_Jump; }
 
 

@@ -14,7 +14,7 @@ public:
     virtual void FinalTick() override;
 
 public:
-    void PlayNextAnim();
+    virtual void PlayAnimation() override;
 
 public:
     CState_Idle();

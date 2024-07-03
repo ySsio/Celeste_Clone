@@ -21,6 +21,7 @@ CPlayer::CPlayer()
 	, m_Collider(nullptr)
 	, m_RigidBody(nullptr)
 	, m_Dir(Vec2(1.f,0.f))
+	, m_DirChanged(false)
 {
 	m_BodyAnim = AddComponent<CAnimator>();
 	m_BodyAnim->AddAnimation(L"Player_Idle", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle.anim"));
@@ -31,6 +32,7 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_Run", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Run.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Jump", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Fall", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Dash", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dash.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Idle_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_IdleA_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleA_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_IdleB_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleB_FlipX.anim"));
@@ -39,6 +41,7 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_Run_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Run_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Jump_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Fall_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Dash_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dash_FlipX.anim"));
 	m_BodyAnim->Play(L"Player_Idle");
 
 	m_BangAnim = AddComponent<CAnimator>();
@@ -50,6 +53,7 @@ CPlayer::CPlayer()
 	m_BangAnim->AddAnimation(L"Player_Bang_Run", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Run.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Jump", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Jump.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Fall", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Fall.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Dash", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Dash.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Idle_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Idle_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_IdleA_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleA_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_IdleB_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleB_FlipX.anim"));
@@ -58,6 +62,7 @@ CPlayer::CPlayer()
 	m_BangAnim->AddAnimation(L"Player_Bang_Run_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Run_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Jump_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Jump_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Fall_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Fall_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Dash_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Dash_FlipX.anim"));
 	m_BangAnim->Play(L"Player_Bang_Idle");
 
 
@@ -75,8 +80,8 @@ CPlayer::CPlayer()
 
 
 	m_Collider = AddComponent<CCollider>();
-	m_Collider->SetOffset(Vec2(0.f, 48.f));
-	m_Collider->SetScale(Vec2(34.f, 68.f));
+	m_Collider->SetOffset(Vec2(0.f, 46.f));
+	m_Collider->SetScale(Vec2(40.f, 68.f));
 
 }
 
@@ -89,17 +94,27 @@ void CPlayer::Tick()
 	Vec2 vPos = GetPos();
 
 	Vec2 vVelocity = m_RigidBody->GetVelocity();
+
+	m_DirChanged = false;
 	
 	bool Left = KEY_TAP(KEY::LEFT) || KEY_PRESSED(KEY::LEFT);
 	bool Right = KEY_TAP(KEY::RIGHT) || KEY_PRESSED(KEY::RIGHT);
 	
 	if (Left && !Right)
 	{
-		m_Dir.x = -1.f;
+		if (m_Dir.x != -1.f)
+		{
+			m_Dir.x = -1.f;
+			m_DirChanged = true;
+		}
 	}
 	else if (!Left && Right)
 	{
-		m_Dir.x = 1.f;
+		if (m_Dir.x != 1.f)
+		{
+			m_Dir.x = 1.f;
+			m_DirChanged = true;
+		}
 	}
 
 	if (KEY_TAP(KEY::UP) || KEY_PRESSED(KEY::UP))
@@ -171,6 +186,7 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 	float overlapY = (vColScale.y / 2.f + vOtherColScale.y / 2.f) - std::abs(dy);
 
 	// 침투 깊이가 더 작은 축을 따라 해소
+	// 옆으로 닿은 경우
 	if (overlapX < overlapY) {
 		m_RigidBody->SetGround(true);
 		m_RigidBody->SetVelocity(Vec2(0.f, m_RigidBody->GetVelocity().y));
@@ -185,6 +201,7 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 			vPos.x += (dx < 0) ? -overlapX - 0.1f : overlapX + 0.1f;
 		}
 	}
+	// 상하로 닿은 경우
 	else {
 		if (dy < 0)
 		{

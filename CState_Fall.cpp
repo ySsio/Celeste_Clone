@@ -11,6 +11,10 @@ CState_Fall::~CState_Fall()
 {
 }
 
+void CState_Fall::PlayAnimation()
+{
+}
+
 void CState_Fall::Enter()
 {
 	Vec2 vDir = GetOwner()->GetDir();

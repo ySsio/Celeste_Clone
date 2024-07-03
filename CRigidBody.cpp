@@ -3,8 +3,6 @@
 #include "CObj.h"
 #include "CTimeMgr.h"
 
-#include "CLogMgr.h"
-
 Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 2400.f);
 float CRigidBody::m_FrictionCoef = 600.f;
 
@@ -20,8 +18,8 @@ CRigidBody::CRigidBody()
 	, m_JumpSpeed(600.f)
 	, m_DashCount(1)
 	, m_DashMaxCount(1)
-	, m_DashSpeed(1080.f)
-	, m_DashTime(0.25f)
+	, m_DashSpeed(860.f)
+	, m_DashTime(0.3f)
 	, m_DashAccTime(0.f)
 	, m_Dash(false)
 {
@@ -48,8 +46,6 @@ void CRigidBody::EndJump()
 	SetVelocity(Vec2(m_Velocity.x, 0.f));
 	m_GravityCoef = m_GravityOriginalCoef;
 	m_Jump = false;
-
-	DEBUG_LOG(LOG_LEVEL::LOG, L"EndJump called");
 }
 
 void CRigidBody::Dash(Vec2 _Dir)
@@ -107,7 +103,7 @@ void CRigidBody::FinalTick()
 		}
 	}
 
-	if (m_Jump && fabs(m_Velocity.y) <= 1.f)
+	if (m_Jump && fabs(m_Velocity.y) <= 5.f)
 	{
 		EndJump();
 	}

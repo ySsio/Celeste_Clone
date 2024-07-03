@@ -4,6 +4,10 @@ class CState_Jump :
     public CState
 {
 
+
+public:
+    virtual void PlayAnimation() override;
+
 public:
     virtual void Enter() override;
     virtual void FinalTick() override;

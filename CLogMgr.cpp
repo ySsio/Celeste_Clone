@@ -4,7 +4,7 @@
 #include "CEngine.h"
 
 CLogMgr::CLogMgr()
-	: m_LogMaxLife(5.f)
+	: m_LogMaxLife(2.f)
 	, m_LogStep(20)
 {
 }

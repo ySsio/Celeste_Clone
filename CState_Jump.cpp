@@ -11,14 +11,9 @@ CState_Jump::~CState_Jump()
 {
 }
 
-void CState_Jump::Enter()
+void CState_Jump::PlayAnimation()
 {
-	CPlayer* pPlayer = GetOwner();
-	Vec2 vDir = pPlayer->GetDir();
-	CRigidBody* pRigid = pPlayer->GetRigidBody();
-
-	pRigid->Jump();
-	pRigid->SetGravity(true);
+	Vec2 vDir = GetOwner()->GetDir();
 
 	if (vDir.x == 1.f)
 	{
@@ -30,6 +25,18 @@ void CState_Jump::Enter()
 		GetBangAnimator()->Play(L"Player_Bang_Jump_FlipX");
 		GetBodyAnimator()->Play(L"Player_Jump_FlipX");
 	}
+}
+
+void CState_Jump::Enter()
+{
+	CPlayer* pPlayer = GetOwner();
+	
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
+	pRigid->Jump();
+	pRigid->SetGravity(true);
+
+	PlayAnimation();
 }
 
 void CState_Jump::FinalTick()
@@ -46,6 +53,11 @@ void CState_Jump::FinalTick()
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
 		pRigid->MovePosition(pPlayer->GetPos() + Vec2(400.f, 0.f) * fDT);
+	}
+
+	if (pPlayer->IsDirChanged())
+	{
+		PlayAnimation();
 	}
 
 

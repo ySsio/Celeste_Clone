@@ -2,7 +2,6 @@
 #include "CState_Run.h"
 
 CState_Run::CState_Run()
-	: m_Dir(1.f)
 {
 
 }
@@ -11,10 +10,9 @@ CState_Run::~CState_Run()
 {
 }
 
-void CState_Run::Enter()
+void CState_Run::PlayAnimation()
 {
 	Vec2 vDir = GetOwner()->GetDir();
-	m_Dir = vDir.x;
 
 	if (vDir.x == 1.f)
 	{
@@ -28,26 +26,20 @@ void CState_Run::Enter()
 	}
 }
 
+void CState_Run::Enter()
+{
+	PlayAnimation();
+}
+
 void CState_Run::FinalTick()
 {
 	CPlayer* pPlayer = GetOwner();
 	Vec2 vDir = GetOwner()->GetDir();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
-	if (m_Dir != vDir.x)
+	if (pPlayer->IsDirChanged())
 	{
-		m_Dir = vDir.x;
-
-		if (vDir.x == 1.f)
-		{
-			GetBangAnimator()->Play(L"Player_Bang_Run", true);
-			GetBodyAnimator()->Play(L"Player_Run", true);
-		}
-		else if (vDir.x == -1.f)
-		{
-			GetBangAnimator()->Play(L"Player_Bang_Run_FlipX", true);
-			GetBodyAnimator()->Play(L"Player_Run_FlipX", true);
-		}
+		PlayAnimation();
 	}
 	
 	if (KEY_PRESSED(KEY::LEFT))

@@ -5,6 +5,10 @@ class CState_Climb :
 {
 private:
 
+
+public:
+    virtual void PlayAnimation() override;
+
 public:
     virtual void Enter() override;
     virtual void FinalTick() override;

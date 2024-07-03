@@ -76,6 +76,8 @@ void CAnimator::Render()
 	UINT Height = curFrm.Texture->GetHeight();
 	vPos += curFrm.Offset;
 
+	FillAlphaNonZeroAreas(curFrm.Texture->GetBitMap(), 0x80FF0000);
+
 	BLENDFUNCTION blend{};
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;

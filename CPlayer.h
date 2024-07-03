@@ -16,6 +16,7 @@ private:
     CRigidBody*         m_RigidBody;
 
     Vec2                m_Dir;
+    bool                m_DirChanged;
 
 public:
     CAnimator* GetBangAnimator() { return m_BangAnim; }
@@ -23,6 +24,7 @@ public:
 	CCollider* GetCollider() { return m_Collider; }
     CRigidBody* GetRigidBody() { return m_RigidBody; }
     Vec2 GetDir() { return m_Dir; }
+    bool IsDirChanged() { return m_DirChanged; }
 
 public:
     virtual void Tick() override;

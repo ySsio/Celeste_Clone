@@ -33,7 +33,8 @@ public:
     CAnimator* GetBodyAnimator() { return m_BodyAnim; }
     //CRigidBody* GetRigidBody() { return m_Rigid; }
 
-    
+public:
+    virtual void PlayAnimation() = 0;
 
 public:
     virtual void Enter() = 0;
