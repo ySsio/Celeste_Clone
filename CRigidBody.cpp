@@ -5,6 +5,7 @@
 
 Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 2400.f);
 float CRigidBody::m_FrictionCoef = 4800.f;
+float CRigidBody::m_DashFrictionCoef = 1500.f;
 
 CRigidBody::CRigidBody()
 	: m_Mass(1.f)
@@ -18,7 +19,7 @@ CRigidBody::CRigidBody()
 	, m_JumpSpeed(600.f)
 	, m_DashCount(1)
 	, m_DashMaxCount(1)
-	, m_DashSpeed(700.f)
+	, m_DashSpeed(1000.f)
 	, m_DashTime(0.3f)
 	, m_DashAccTime(0.f)
 	, m_Dash(false)
@@ -106,6 +107,9 @@ void CRigidBody::FinalTick()
 	else
 	{
 		m_DashAccTime += fDT;
+
+		// 대쉬 반대 방향으로 DashFrictionCoef 만큼 마찰력
+		m_Velocity -= m_Velocity.Normalized() * m_DashFrictionCoef * fDT;
 
 		if (m_DashAccTime > m_DashTime)
 		{

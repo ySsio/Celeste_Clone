@@ -158,6 +158,15 @@
     <Filter Include="Game\05. Manager\LogMgr">
       <UniqueIdentifier>{a494f0ee-d08a-4477-8a2c-53c067d1ef6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03.Object\04. Effect">
+      <UniqueIdentifier>{f2e80b2f-3b0c-4c06-8852-96cc4a4380ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\04. Effect\Particle">
+      <UniqueIdentifier>{dabefedc-ed7f-46ce-99c3-cd1d74161bb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\04. Effect\AfterImage">
+      <UniqueIdentifier>{2705531f-6f91-405a-b52c-8a81757ff18a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -325,6 +334,9 @@
     <ClInclude Include="CLogMgr.h">
       <Filter>Game\05. Manager\LogMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CAfterImage.h">
+      <Filter>Game\03.Object\04. Effect\AfterImage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -491,6 +503,9 @@
     </ClCompile>
     <ClCompile Include="CLogMgr.cpp">
       <Filter>Game\05. Manager\LogMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CAfterImage.cpp">
+      <Filter>Game\03.Object\04. Effect\AfterImage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

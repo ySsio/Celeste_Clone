@@ -19,7 +19,7 @@ CUI::~CUI()
 
 void CUI::SetTexture(CTexture* _Tex)
 {
-	m_Tex = _Tex; SetScale(Vec2(_Tex->GetWidth(), _Tex->GetHeight()));
+	m_Tex = _Tex; SetScale(Vec2((float)_Tex->GetWidth(), (float)_Tex->GetHeight()));
 }
 
 void CUI::Tick()

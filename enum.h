@@ -40,10 +40,13 @@ enum class LEVEL_TYPE
 enum class LAYER_TYPE
 {
 	BACKGROUND,
-	PLATFORM,
+	EFFECT,
 	PLAYER,
-	UI,
+	PLATFORM,
+	PARTICLE,
 
+	
+	UI = 31,
 	END = 32,
 };
 

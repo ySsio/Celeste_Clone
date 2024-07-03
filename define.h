@@ -61,3 +61,5 @@
 									log.strLog = wstring(str.begin(), str.end()) + L"  Line " + strLine + L" : " _strLog;		  \
 									log.Time = 0.f;																			  \
 									CLogMgr::Get()->AddLog(log)	
+
+

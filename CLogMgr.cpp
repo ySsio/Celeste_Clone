@@ -54,7 +54,7 @@ void CLogMgr::Tick()
 
 		SetTextColor(BackDC, textColor);
 
-		iter->Time += DT;
+		iter->Time += fDT;
 		if (iter->Time >= m_LogMaxLife)
 		{
 			iter = m_LogList.erase(iter);

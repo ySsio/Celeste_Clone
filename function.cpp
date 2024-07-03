@@ -3,6 +3,7 @@
 #include "CDebugMgr.h"
 #include "CTaskMgr.h"
 
+
 void Debug_Render(DEBUG_SHAPE _Shape, PEN_TYPE _Pen, BRUSH_TYPE _Brush, Vec2 _Pos, Vec2 _Scale, float _Duration)
 {
 	tDebugShapeInfo tDebug{};
@@ -24,6 +25,16 @@ void ChangeLevel(LEVEL_TYPE _Type)
 	task.wParam = (DWORD_PTR)_Type;
 
 	CTaskMgr::Get()->AddTask(task);
+}
+
+
+void Delete_Object(CObj* _Obj)
+{
+    tTask task{};
+    task.TaskType = TASK_TYPE::DELETE_OBJECT;
+    task.wParam = (DWORD_PTR)_Obj;
+
+    CTaskMgr::Get()->AddTask(task);
 }
 
 void FillAlphaNonZeroAreas(HBITMAP hBitmap, COLORREF rgba)

@@ -37,7 +37,7 @@ void CStateMachine::ChangeState(const wstring& _StrName)
     assert(m_CurState);
     m_CurState->Enter();
 
-    DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
+    //DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
 }
 
 CState* CStateMachine::FindState(const wstring& _StrName)

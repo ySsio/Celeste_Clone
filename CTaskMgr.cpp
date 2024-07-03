@@ -71,6 +71,7 @@ void CTaskMgr::Tick()
 	}
 
 	m_vecTask.clear();
+	m_GC.clear();
 	m_LevelChanged = false;
 }
 

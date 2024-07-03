@@ -25,6 +25,7 @@ private:
 
 
     static float    m_FrictionCoef;
+    static float    m_DashFrictionCoef;
 
     UINT    m_DashCount;
     UINT    m_DashMaxCount;
