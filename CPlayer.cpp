@@ -13,8 +13,12 @@
 #include "CState_Fall.h"
 #include "CState_Jump.h"
 
+#include "CLevelMgr.h"
+#include "CLevel.h"
+#include "CAfterImage.h"
+
 CPlayer::CPlayer()
-	: m_HeadSprite(nullptr)
+	: m_Sprite(nullptr)
 	, m_BangAnim(nullptr)
 	, m_BodyAnim(nullptr)
 	, m_StateMachine(nullptr)
@@ -80,13 +84,20 @@ CPlayer::CPlayer()
 
 
 	m_Collider = AddComponent<CCollider>();
-	m_Collider->SetOffset(Vec2(0.f, 46.f));
-	m_Collider->SetScale(Vec2(40.f, 68.f));
+	m_Collider->SetOffset(Vec2(0.f, 50.f));
+	m_Collider->SetScale(Vec2(40.f, 60.f));
 
+
+	m_Buffer = new CTexture;
+	m_Buffer->CreateTexture(160,160);
+
+	m_Sprite = AddComponent<CSpriteRenderer>();
+	m_Sprite->SetTexture(m_Buffer);
 }
 
 CPlayer::~CPlayer()
 {
+	delete m_Buffer;
 }
 
 #include "CLogMgr.h"
@@ -124,8 +135,6 @@ void CPlayer::Tick()
 		}
 	}
 
-	
-
 	if (KEY_TAP(KEY::UP) || KEY_PRESSED(KEY::UP))
 	{
 		m_Dir.y = -1.f;
@@ -142,11 +151,17 @@ void CPlayer::Tick()
 
 void CPlayer::Render()
 {
+	if (m_Sprite)
+		m_Sprite->ClearTex();
+
 	if (m_BangAnim)
-		m_BangAnim->Render();
+		m_BangAnim->Render(m_Buffer->GetDC(), true);
 
 	if (m_BodyAnim)
-		m_BodyAnim->Render();
+		m_BodyAnim->Render(m_Buffer->GetDC(), true);
+
+	if (m_Sprite)
+		m_Sprite->Render();
 }
 
 #include "CPlatform.h"

@@ -3,17 +3,20 @@
 
 class CSpriteRenderer;
 class CAnimator;
+class CTexture;
 
 class CPlayer :
     public CObj
 {
 private:
-    CSpriteRenderer*    m_HeadSprite;
+    CSpriteRenderer*    m_Sprite;
     CAnimator*          m_BangAnim;
     CAnimator*          m_BodyAnim;
     CStateMachine*      m_StateMachine;
     CCollider*          m_Collider;
     CRigidBody*         m_RigidBody;
+
+    CTexture*           m_Buffer;
 
     Vec2                m_Dir;
     bool                m_DirChanged;
@@ -25,6 +28,8 @@ public:
     CRigidBody* GetRigidBody() { return m_RigidBody; }
     Vec2 GetDir() { return m_Dir; }
     bool IsDirChanged() { return m_DirChanged; }
+
+    CTexture* GetBuffer() { return m_Buffer; }
 
 public:
     virtual void Tick() override;

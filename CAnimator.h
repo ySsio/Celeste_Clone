@@ -30,6 +30,8 @@ public:
 public:
     virtual void FinalTick() override;
     void Render();
+    void Render(HDC _DC, bool _Player = false);
+    
 
 public:
     CAnimator();

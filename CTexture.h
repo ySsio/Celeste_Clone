@@ -15,6 +15,7 @@ public:
     UINT GetHeight() { return m_BitMapInfo.bmHeight; }
     HDC GetDC() { return m_DC; }
     HBITMAP GetBitMap() { return m_BitMap; }
+    BITMAP GetBitMapInfo() { return m_BitMapInfo; }
 
     bool GetFlipped() { return m_Flipped; }
 

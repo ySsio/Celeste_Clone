@@ -18,6 +18,8 @@ public:
     void SetTexture(CTexture* _pTex);
     void FlipX(bool _B) { m_FlipX = _B; }
 
+    void ClearTex();
+
 public:
     void Render();
 

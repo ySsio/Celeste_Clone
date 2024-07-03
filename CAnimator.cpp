@@ -12,6 +12,7 @@ CAnimator::CAnimator()
 	, m_CurIdx(0)
 	, m_FrmCnt(0)
 	, m_Repeat(true)
+	, m_Done(false)
 {
 }
 
@@ -67,16 +68,20 @@ void CAnimator::FinalTick()
 
 void CAnimator::Render()
 {
+	Render(BackDC);
+}
+
+void CAnimator::Render(HDC _DC, bool _Player)
+{
 	if (m_Done)
 		return;
 
-	Vec2 vPos = GetOwner()->GetRenderPos();
 	const tAnimFrm& curFrm = m_CurAnim->GetFrm(m_CurIdx);
 	UINT Width = curFrm.Texture->GetWidth();
 	UINT Height = curFrm.Texture->GetHeight();
-	vPos += curFrm.Offset;
 
-	FillAlphaNonZeroAreas(curFrm.Texture->GetBitMap(), 0x80FF0000);
+	Vec2 vPos = GetOwner()->GetRenderPos();
+	vPos += curFrm.Offset;
 
 	BLENDFUNCTION blend{};
 	blend.BlendOp = AC_SRC_OVER;
@@ -84,9 +89,18 @@ void CAnimator::Render()
 	blend.SourceConstantAlpha = 255;
 	blend.AlphaFormat = AC_SRC_ALPHA;
 
-	AlphaBlend(BackDC
-		, (int)(vPos.x - Width / 2.f)
-		, (int)(vPos.y - Height / 2.f)
+	int _x = (int)(vPos.x - Width / 2.f);
+	int _y = (int)(vPos.y - Height / 2.f);
+
+
+	if (_Player)
+	{
+		_x = (int)(curFrm.Offset.x - Width / 2.f + BODY_SCALE/2.f);
+		_y = (int)(curFrm.Offset.y - Height / 2.f + BODY_SCALE/2.f);
+	}
+
+	AlphaBlend(_DC
+		, _x, _y
 		, Width, Height
 		, curFrm.Texture->GetDC()
 		, 0, 0
