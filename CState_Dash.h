@@ -4,6 +4,11 @@ class CState_Dash :
     public CState
 {
 private:
+    float m_AccTime;
+
+    bool m_FirstAfterImage;
+    bool m_SecondAfterImage;
+    bool m_ThirdAfterImage;
 
 public:
     virtual void PlayAnimation() override;
