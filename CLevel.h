@@ -31,11 +31,16 @@ public:
     const vector<CObj*>& GetLayer(LAYER_TYPE _Type) { return m_ArrLayerObj[(UINT)_Type]; }
 
 public:
-    void AddObject(CObj* _Obj, LAYER_TYPE _Type);
     void SetBackGround(CTexture* _BackGround) { m_BackGround = _BackGround; }
+
+protected:
+    void AddObject(CObj* _Obj, LAYER_TYPE _Type);
 
 public:
     CLevel();
     ~CLevel();
+
+
+    friend class CTaskMgr;
 };
 

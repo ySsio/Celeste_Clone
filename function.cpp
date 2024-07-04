@@ -27,6 +27,16 @@ void ChangeLevel(LEVEL_TYPE _Type)
 	CTaskMgr::Get()->AddTask(task);
 }
 
+void Add_Object(CObj* _Obj, LAYER_TYPE _Type)
+{
+    tTask task{};
+    task.TaskType = TASK_TYPE::CREATE_OBJECT;
+    task.wParam = (DWORD_PTR)_Obj;
+    task.lParam = (DWORD_PTR)_Type;
+
+    CTaskMgr::Get()->AddTask(task);
+}
+
 
 void Delete_Object(CObj* _Obj)
 {
