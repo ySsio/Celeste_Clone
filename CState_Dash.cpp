@@ -41,31 +41,45 @@ void CState_Dash::Enter()
 	m_FirstAfterImage = false;
 	m_SecondAfterImage = false;
 	m_ThirdAfterImage = false;
+
+	CPlayer* pPlayer = GetOwner();
+	Vec2 vDir = pPlayer->GetDir();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
+	if (vDir.y != 0.f)
+	{
+		if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
+		{
+			vDir.x = 0.f;
+		}
+	}
+
+	// Dash
+	pRigid->Dash(vDir);
 }
 
 void CState_Dash::FinalTick()
 {
 	CPlayer* pPlayer = GetOwner();
-	Vec2 vDir = pPlayer->GetDir();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	m_AccTime += fDT;
 
-	if (m_AccTime >= 0.05f && !m_FirstAfterImage)
+	if (m_AccTime >= 0.01f && !m_FirstAfterImage)
 	{
 		m_FirstAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
 		CLevelMgr::Get()->GetCurLevel()->AddObject(pAfterImage, LAYER_TYPE::EFFECT);
 	}
-	if (m_AccTime >= 0.17f && !m_SecondAfterImage)
+	if (m_AccTime >= 0.1f && !m_SecondAfterImage)
 	{
 		m_SecondAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
 		CLevelMgr::Get()->GetCurLevel()->AddObject(pAfterImage, LAYER_TYPE::EFFECT);
 	}
-	if (m_AccTime >= 0.29f && !m_ThirdAfterImage)
+	if (m_AccTime >= 0.19f && !m_ThirdAfterImage)
 	{
 		m_ThirdAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
@@ -73,18 +87,9 @@ void CState_Dash::FinalTick()
 		CLevelMgr::Get()->GetCurLevel()->AddObject(pAfterImage, LAYER_TYPE::EFFECT);
 	}
 
-	if (KEY_TAP(KEY::X))
+	if (m_AccTime >= DASH_TIME)
 	{
-		if (vDir.y != 0.f)
-		{
-			if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
-			{
-				vDir.x = 0.f;
-			}
-		}
-
-		// Dash
-		pRigid->Dash(vDir);
+		GetStateMachine()->ChangeState(L"Fall");
 	}
 
 }

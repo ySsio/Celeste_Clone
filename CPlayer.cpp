@@ -32,7 +32,7 @@ CPlayer::CPlayer()
 	, m_HairTex(nullptr)
 	, m_HairSize{ 40.f, 35.f, 30.f, 25.f, 20.f }
 	, m_HairOffset{ 20.f, 15.f, 10.f, 5.f }
-	, m_HairCurPos(m_HairCount)
+	, m_HairCurPos(m_HairCount, Vec2(BODY_SCALE/2.f, BODY_SCALE/2.f))
 	, m_HairTargetPos(m_HairCount)
 
 {
@@ -109,6 +109,8 @@ CPlayer::~CPlayer()
 	delete m_Buffer;
 }
 
+#include "CLogMgr.h"
+
 void CPlayer::Tick()
 {
 	// Bang Color Update
@@ -119,6 +121,7 @@ void CPlayer::Tick()
 
 	// Hair Poisition Update
 	HairPosUpdate();
+
 }
 
 #include "CEngine.h"
@@ -271,24 +274,30 @@ void CPlayer::HairPosUpdate()
 	else
 		vDir.Normalize();
 
-	// 각 hair들의 target pos를 직전 hair의 curpos를 기준으로 vDir 방향으로 hairoffset만큼 떨어진 지점으로 설정
+	// 각 hair들의 target pos를 직전 hair의 curpos를 기준으로 vDir 방향으로 
+	// hairoffset만큼 떨어진 지점으로 설정
 	m_HairTargetPos[0] = vPos;
 	for (int i = 1; i < m_HairCount; ++i)
 	{
 		m_HairTargetPos[i] = m_HairCurPos[i - 1] + vDir * m_HairOffset[i - 1];
 	}
 
-	float Duration = 0.05f;
+	float Duration = 0.03f;
 
-	// 각 hair들의 curpos를 curpos부터 targetpos까지 0.05초만에 도착하는 속도로 이동
+	// 각 hair들의 curpos를 curpos부터 targetpos까지 Duration만에 도착하는 속도로 보간.
 	m_HairCurPos[0] = vPos;
 	for (int i = 1; i < m_HairCount; ++i)
 	{
 		m_HairCurPos[i] = m_HairTargetPos[i] * (fDT / Duration) + m_HairCurPos[i] * (1 - fDT / Duration);
 
+		// 여기 주석걸면 뛸때 머리카락 살랑살랑 흔들림
+		//if ((m_HairTargetPos[i] - m_HairCurPos[i]).Length() < 5.f)
+		//{
+		//	m_HairCurPos[i] = m_HairTargetPos[i];
+		//}
 	}
 
-
+	// 현재 BangColor에 맞춰서 Hair Texture도 변경
 	if (m_Color == BANG_COLOR::PINK)
 		m_HairTex = CAssetMgr::Get()->FindAsset<CTexture>(L"hair_pink");
 	else if (m_Color == BANG_COLOR::RED)

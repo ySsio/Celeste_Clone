@@ -42,13 +42,24 @@ void CState_Fall::FinalTick()
 	if (KEY_PRESSED(KEY::LEFT))
 	{
 		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(-400.f, 0.f) * fDT);
-		pRigid->SetVelocity(Vec2(-400.f, pRigid->GetVelocity().y));
+		pRigid->SetVelocity(Vec2(-PLAYER_SPEED, pRigid->GetVelocity().y));
 
 	}
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
 		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(400.f, 0.f) * fDT);
-		pRigid->SetVelocity(Vec2(400.f, pRigid->GetVelocity().y));
+		pRigid->SetVelocity(Vec2(PLAYER_SPEED, pRigid->GetVelocity().y));
+	}
+
+	if (vDir.x == 1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Fall", true);
+		GetBodyAnimator()->Play(L"Player_Fall", true);
+	}
+	else if (vDir.x == -1.f)
+	{
+		GetBangAnimator()->Play(L"Player_Bang_Fall_FlipX", true);
+		GetBodyAnimator()->Play(L"Player_Fall_FlipX", true);
 	}
 
 	// #### State º¯°æ ####

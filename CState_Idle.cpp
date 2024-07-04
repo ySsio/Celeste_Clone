@@ -40,9 +40,12 @@ void CState_Idle::FinalTick()
 		PlayAnimation();
 	}
 
+	// 속도를 0으로 설정
+	pPlayer->GetRigidBody()->SetVelocity(Vec2(0.f, 0.f));
+
+
 	// #### State 변경 ####
 
-	pPlayer->GetRigidBody()->SetVelocity(Vec2(0.f, 0.f));
 
 	// C키 입력 시 Jump State로 변경
 	if (KEY_TAP(KEY::C))

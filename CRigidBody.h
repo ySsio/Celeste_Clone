@@ -25,7 +25,7 @@ private:
 
 
     static float    m_FrictionCoef;
-    static float    m_DashFrictionCoef;
+    static Vec2     m_DashFrictionCoef;
 
     UINT    m_DashCount;
     UINT    m_DashMaxCount;
@@ -34,22 +34,24 @@ private:
     float   m_DashAccTime;
     bool    m_Dash;
 
+    Vec2    m_DashDir;
+
 
 public:
     void SetForce(Vec2 _Force) { m_Force = _Force; }
-    void SetAccel(Vec2 _Accel) { m_Accel = _Accel; }
     void SetVelocity(Vec2 _Velocity) { m_Velocity = _Velocity; }
     void SetMass(float _Mass) { m_Mass = _Mass; }
     void SetJumpSpeed(float _Speed) { m_JumpSpeed = _Speed; }
     void SetGravity(bool _b) { m_Gravity = _b; }
-    void SetGround(bool _b) { 
-        m_Ground = _b; 
+    void SetGround(bool _b) {
+        m_Ground = _b;
         if (_b)
             m_DashCount = m_DashMaxCount;
     }
 
+    float GetMaxSpeed() { return m_MaxSpeed; }
+
     void AddForce(Vec2 _Force) { m_Force += _Force; }
-    void AddAccel(Vec2 _Accel) { m_Accel += _Accel; }
     void AddVelocity(Vec2 _Velocity) { m_Velocity += _Velocity; }
 
     void SetDashMaxCount(UINT _Cnt) { m_DashMaxCount = _Cnt; }

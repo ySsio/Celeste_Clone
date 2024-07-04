@@ -68,3 +68,6 @@
 #define RED_BANG	0xf995dd
 //RGB(172,50,50)
 #define PINK_BANG	0xac3232
+
+#define	PLAYER_SPEED	400.f
+#define DASH_TIME	0.25f

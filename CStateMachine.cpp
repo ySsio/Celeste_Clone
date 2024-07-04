@@ -37,7 +37,7 @@ void CStateMachine::ChangeState(const wstring& _StrName)
     assert(m_CurState);
     m_CurState->Enter();
 
-    //DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
+    DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
 }
 
 CState* CStateMachine::FindState(const wstring& _StrName)
@@ -61,16 +61,28 @@ void CStateMachine::FinalTick()
 
     if (CanChangeState)
     {
-        // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
-        if (pRigid->IsGround() && KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) && KEY_NONE(KEY::Z))
-        {
-            ChangeState(L"Idle");
-        }
+        
 
-        // Run State : 바닥에 닿아있고, 좌우키 눌려있으면
-        if (pRigid->IsGround() && (KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT)))
+        if (pRigid->IsGround())
         {
-            ChangeState(L"Run");
+            // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
+            // Idle State : 속도가 0이면
+            if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) && KEY_NONE(KEY::Z))
+            //if (pRigid->GetVelocity().IsZero())
+            {
+                ChangeState(L"Idle");
+            }
+
+            // Run State : 바닥에 닿아있고, 좌우키 눌려있으면
+            if (KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT))
+            {
+                ChangeState(L"Run");
+            }
+
+        }
+        else
+        {
+
         }
 
         // Fall State : 바닥에 안 닿아있고 y축 속도가 양수일 때

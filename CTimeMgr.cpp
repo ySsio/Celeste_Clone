@@ -33,7 +33,6 @@ void CTimeMgr::Tick()
 		m_Play = !m_Play;
 	}
 
-
 	if (!m_Play)
 	{
 		m_fDT = 0.f;
