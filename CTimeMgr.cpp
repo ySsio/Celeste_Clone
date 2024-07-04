@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CTimeMgr.h"
 #include "CEngine.h"
+#include "CKeyMgr.h"
 
 CTimeMgr::CTimeMgr()
 	: m_Frequency{}
@@ -9,6 +10,7 @@ CTimeMgr::CTimeMgr()
 	, m_FPS(0)
 	, m_DT(0.)
 	, m_fDT(0.f)
+	, m_Play(true)
 {
 
 }
@@ -26,6 +28,19 @@ void CTimeMgr::Init()
 
 void CTimeMgr::Tick()
 {
+	if (KEY_TAP(KEY::SPACE))
+	{
+		m_Play = !m_Play;
+	}
+
+
+	if (!m_Play)
+	{
+		m_fDT = 0.f;
+		m_DT = 0.;
+		return;
+	}
+
 	LARGE_INTEGER PrevCount = m_CurCount;
 	QueryPerformanceCounter(&m_CurCount); // 현재 틱을 받음
 

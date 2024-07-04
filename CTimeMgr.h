@@ -17,6 +17,8 @@ private:
     double          m_DT;
     float           m_fDT;
 
+    bool            m_Play;
+
 public:
     double GetDT() { return m_DT; }
     float GetfDT() { return m_fDT; }
