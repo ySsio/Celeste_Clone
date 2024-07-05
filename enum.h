@@ -44,9 +44,10 @@ enum class LEVEL_TYPE
 enum class LAYER_TYPE
 {
 	BACKGROUND,
-	EFFECT,
+	PLAYER_EFFECT,
 	PLAYER,
 	PLATFORM,
+	EFFECT,
 	PARTICLE,
 
 	
@@ -83,4 +84,11 @@ enum class BANG_COLOR
 	RED,
 	BLUE,
 	WHITE,
+};
+
+enum class CAM_EFFECT
+{
+	RESPAWN,
+
+	NONE,
 };

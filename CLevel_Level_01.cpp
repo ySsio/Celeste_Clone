@@ -12,7 +12,7 @@
 
 CLevel_Level_01::CLevel_Level_01()
 {
-	SetSpawnPoint(Vec2(100.f, 500.f));
+	SetSpawnPoint(Vec2(450.f, 300.f));
 }
 
 CLevel_Level_01::~CLevel_Level_01()
@@ -29,7 +29,7 @@ void CLevel_Level_01::Enter()
 
 	CObj* pPlayer = new CPlayer;
 	pPlayer->SetName(L"Player");
-	pPlayer->SetPos(Vec2(450.f, 300.f));
+	pPlayer->SetPos(GetSpawnPoint());
 	pPlayer->SetScale(100.f, 100.f);
 
 	AddObject(pPlayer, LAYER_TYPE::PLAYER);

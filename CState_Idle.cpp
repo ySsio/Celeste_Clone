@@ -2,7 +2,7 @@
 #include "CState_Idle.h"
 
 
-
+#define IDLE_ANIM_LIST_COUNT 10
 
 CState_Idle::CState_Idle()
 {
@@ -16,7 +16,7 @@ CState_Idle::CState_Idle()
 	m_BodyAnimList.push_back(L"Player_IdleB");
 	m_BodyAnimList.push_back(L"Player_IdleC");
 
-	for (int i = 0; i < 6; ++i)
+	for (int i = 0; i < IDLE_ANIM_LIST_COUNT; ++i)
 	{
 		m_AnimPlayList.push_back(0);
 	}
@@ -28,6 +28,11 @@ CState_Idle::~CState_Idle()
 
 void CState_Idle::Enter()
 {
+	for (auto iter = m_AnimPlayList.begin(); iter != m_AnimPlayList.end(); ++iter)
+	{
+		*iter = 0;
+	}
+
 	PlayAnimation();
 }
 
@@ -57,8 +62,6 @@ void CState_Idle::FinalTick()
 
 void CState_Idle::PlayAnimation()
 {
-	m_AnimPlayList.pop_front();
-
 	int nextAnimIdx = m_AnimPlayList.front();
 
 	wstring nextBangAnimName = m_BangAnimList[nextAnimIdx];
@@ -73,6 +76,22 @@ void CState_Idle::PlayAnimation()
 	GetBangAnimator()->Play(nextBangAnimName);
 	GetBodyAnimator()->Play(nextBodyAnimName);
 
-	// 애니메이션 플레이리스트에 랜덤으로 하나를 추가한다.
-	m_AnimPlayList.push_back(rand() % m_BodyAnimList.size());
+	// 플레이한 애니메이션은 리스트에서 제거
+	m_AnimPlayList.pop_front();
+
+	// 플레이리스트가 비면 IDLE_ANIM_LIST_COUNT개를 다시 채움
+	// 랜덤 0 0 0 0 랜덤 0 0 0 0꼴로
+	if (m_AnimPlayList.empty())
+	{
+		m_AnimPlayList.push_back(rand() % m_BodyAnimList.size());
+		m_AnimPlayList.push_back(0);
+		m_AnimPlayList.push_back(0);
+		m_AnimPlayList.push_back(0);
+		m_AnimPlayList.push_back(0);
+		m_AnimPlayList.push_back(rand() % m_BodyAnimList.size());
+		m_AnimPlayList.push_back(0);
+		m_AnimPlayList.push_back(0);
+		m_AnimPlayList.push_back(0);
+		m_AnimPlayList.push_back(0);
+	}
 }

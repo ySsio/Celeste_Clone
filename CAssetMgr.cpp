@@ -26,7 +26,15 @@ void CAssetMgr::Init()
 	tAnimFrm FrmFlipX(Frm);
 
 
-	// Texture
+	// ##########        Texture     ############
+
+	// CamEffect - Respawn
+	pTex = new CTexture;
+	Vec2 vRes = CEngine::Get()->GetResolution();
+	pTex = LoadAsset<CTexture>(L"\\texture\\Effects\\CamEffect\\Respawn_Effect.png")->Stretch(Vec2(vRes.x, vRes.y * 4));
+
+
+	// Player Bang
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_pink00.png")->Scale(5.f));
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_pink01.png")->Scale(5.f));
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_pink02.png")->Scale(5.f));
@@ -37,12 +45,13 @@ void CAssetMgr::Init()
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_blue01.png")->Scale(5.f));
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_blue02.png")->Scale(5.f));
 
+	// Player Hair
 	LoadAsset<CTexture>(L"\\texture\\Player\\hair_pink.png");
 	LoadAsset<CTexture>(L"\\texture\\Player\\hair_blue.png");
 	LoadAsset<CTexture>(L"\\texture\\Player\\hair_red.png");
 	LoadAsset<CTexture>(L"\\texture\\Player\\hair_white.png");
 	
-	// Tile
+	// ##########        Tile        ############
 	CTile* pTile = new CTile;
 	pTile->SetTexture(LoadAsset<CTexture>(L"Tile_Girder", L"\\tilesets\\girder.png"));
 	pTile->SetScale(Vec2(8.f, 8.f));

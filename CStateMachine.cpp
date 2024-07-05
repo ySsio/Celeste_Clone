@@ -57,12 +57,10 @@ void CStateMachine::FinalTick()
 
     // AnyState에서 상태변환되는 조건을 여기서 체크, 해당되는 거 있으면 변경
 
-    bool CanChangeState = !pRigid->IsDash();
+    bool CanChangeState = !pRigid->IsDash() && (FindState(L"Dead") != m_CurState);
 
     if (CanChangeState)
     {
-        
-
         if (pRigid->IsGround())
         {
             // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
@@ -82,14 +80,14 @@ void CStateMachine::FinalTick()
         }
         else
         {
-
+            // Fall State : 바닥에 안 닿아있고 y축 속도가 양수일 때
+            if (pRigid->GetVelocity().y > 0.f)
+            {
+                ChangeState(L"Fall");
+            }
         }
 
-        // Fall State : 바닥에 안 닿아있고 y축 속도가 양수일 때
-        if (!pRigid->IsGround() && pRigid->GetVelocity().y > 0.f)
-        {
-            ChangeState(L"Fall");
-        }
+        
 
         // Dash State : Dash 횟수가 0보다 크고, X키가 입력되었을 때
         if (pRigid->CanDash() && KEY_TAP(KEY::X))

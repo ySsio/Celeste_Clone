@@ -167,6 +167,12 @@
     <Filter Include="Game\03.Object\04. Effect\AfterImage">
       <UniqueIdentifier>{2705531f-6f91-405a-b52c-8a81757ff18a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\08. Module\State\Dead">
+      <UniqueIdentifier>{08fbabaa-15bc-46a1-994f-c82947d9e965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\04. Effect\DeadEffect">
+      <UniqueIdentifier>{068bfdb2-6b50-4156-bbec-417b75e30a68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -337,6 +343,12 @@
     <ClInclude Include="CAfterImage.h">
       <Filter>Game\03.Object\04. Effect\AfterImage</Filter>
     </ClInclude>
+    <ClInclude Include="CState_Dead.h">
+      <Filter>Game\08. Module\State\Dead</Filter>
+    </ClInclude>
+    <ClInclude Include="CDeadEffect.h">
+      <Filter>Game\03.Object\04. Effect\DeadEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -506,6 +518,12 @@
     </ClCompile>
     <ClCompile Include="CAfterImage.cpp">
       <Filter>Game\03.Object\04. Effect\AfterImage</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Dead.cpp">
+      <Filter>Game\08. Module\State\Dead</Filter>
+    </ClCompile>
+    <ClCompile Include="CDeadEffect.cpp">
+      <Filter>Game\03.Object\04. Effect\DeadEffect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

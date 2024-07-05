@@ -9,6 +9,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CCamera.cpp;D:\cpp_Exercise\GameEngine\Gam
 D:\cpp_Exercise\GameEngine\GameEngine\CCollider.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CCollider.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CCollisionMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CCollisionMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CComponent.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CComponent.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CDeadEffect.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CDeadEffect.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CDebugMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CDebugMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CEngine.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CEngine.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CAnimUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CAnimUI.obj
@@ -34,6 +35,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CSpriteRenderer.cpp;D:\cpp_Exercise\GameEn
 D:\cpp_Exercise\GameEngine\GameEngine\CState.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CStateMachine.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CStateMachine.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CState_Dash.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState_Dash.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CState_Dead.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState_Dead.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CState_Fall.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState_Fall.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CState_Climb.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState_Climb.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CState_Idle.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState_Idle.obj

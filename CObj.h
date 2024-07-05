@@ -22,7 +22,7 @@ private:
 
     vector<CComponent*> m_vecComponent;
 
-    bool        m_Dead;
+    bool        m_PlayerDead;
 
 public:
     void SetLayerType(LAYER_TYPE _Type) { m_Type = _Type; }
@@ -31,13 +31,13 @@ public:
     }
     void SetScale(float _x, float _y) { m_Scale.x = _x; m_Scale.y = _y; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
-    void SetDead() { m_Dead = true; }
+    void SetDead() { m_PlayerDead = true; }
 
     LAYER_TYPE GetType() { return m_Type; }
     Vec2 GetPos() { return m_Pos; }
     Vec2 GetScale() { return m_Scale; }
     Vec2 GetRenderPos();
-    bool IsDead() { return m_Dead; }
+    bool IsDead() { return m_PlayerDead; }
 
     template<typename T>
     T* AddComponent()

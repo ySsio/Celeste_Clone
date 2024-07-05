@@ -24,6 +24,8 @@ public:
     void AddAnimation(const wstring& _AnimName, CAnimation* _Anim) { m_MapAnim.emplace(_AnimName, _Anim); }
     void Play(const wstring& _AnimName, bool _Repeat = false);
 
+    CAnimation* GetCurAnim() { return m_CurAnim; }
+
     const tAnimFrm& GetCurFrm();
 
     void Pause();

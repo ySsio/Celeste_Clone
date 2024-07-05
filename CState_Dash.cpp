@@ -70,21 +70,21 @@ void CState_Dash::FinalTick()
 		m_FirstAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
-		CLevelMgr::Get()->GetCurLevel()->AddObject(pAfterImage, LAYER_TYPE::EFFECT);
+		Add_Object(pAfterImage, LAYER_TYPE::PLAYER_EFFECT);
 	}
 	if (m_AccTime >= 0.1f && !m_SecondAfterImage)
 	{
 		m_SecondAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
-		CLevelMgr::Get()->GetCurLevel()->AddObject(pAfterImage, LAYER_TYPE::EFFECT);
+		Add_Object(pAfterImage, LAYER_TYPE::PLAYER_EFFECT);
 	}
 	if (m_AccTime >= 0.19f && !m_ThirdAfterImage)
 	{
 		m_ThirdAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
-		CLevelMgr::Get()->GetCurLevel()->AddObject(pAfterImage, LAYER_TYPE::EFFECT);
+		Add_Object(pAfterImage, LAYER_TYPE::PLAYER_EFFECT);
 	}
 
 	if (m_AccTime >= DASH_TIME)

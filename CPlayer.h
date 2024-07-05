@@ -22,12 +22,16 @@ private:
     bool                m_DirChanged;
 
     BANG_COLOR          m_Color;
+    float               m_ColorChangeDuration;
     int                 m_HairCount;
     CTexture*           m_HairTex;
     vector<float>       m_HairSize;
     vector<float>       m_HairOffset;
     vector<Vec2>        m_HairCurPos;
     vector<Vec2>        m_HairTargetPos;
+
+    bool                m_PlayerDead;
+    Vec2                m_BounceDir;
 
 
 public:
@@ -40,6 +44,10 @@ public:
 
     CTexture* GetBuffer() { return m_Buffer; }
     BANG_COLOR GetColor() { return m_Color; }
+
+    Vec2 GetBounceDir() { return m_BounceDir; }
+
+    void SetPlayerDead(bool _b) { m_PlayerDead = _b; }
 
 public:
     virtual void Tick() override;

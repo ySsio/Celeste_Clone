@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CObj.h"
 #include "CEngine.h"
-#include "CCamera.h"
 
 #include "CPlayer.h"
 
@@ -9,7 +8,7 @@
 
 CObj::CObj()
 	: m_Type(LAYER_TYPE::END)
-	, m_Dead(false)
+	, m_PlayerDead(false)
 {
 }
 
@@ -17,7 +16,7 @@ CObj::CObj(const CObj& _other)
 	: CBase(_other)
 	, m_Type(_other.m_Type)
 	, m_Pos(_other.m_Pos)
-	, m_Dead(false)
+	, m_PlayerDead(false)
 {
 }
 
@@ -29,7 +28,7 @@ CObj::~CObj()
 
 Vec2 CObj::GetRenderPos()
 {
-	return CCamera::Get()->GetRenderPos(GetPos());
+	return RENDER_POS(GetPos());
 }
 
 void CObj::FinalTick()

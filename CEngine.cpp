@@ -147,6 +147,8 @@ void CEngine::Render()
 	// BackBuffer¿¡ ·»´õ
 	CLevelMgr::Get()->Render();
 	CTimeMgr::Get()->Render();
+
+	CCamera::Get()->Render();
 	
 
 	CDebugMgr::Get()->Render();

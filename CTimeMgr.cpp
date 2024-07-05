@@ -10,7 +10,7 @@ CTimeMgr::CTimeMgr()
 	, m_FPS(0)
 	, m_DT(0.)
 	, m_fDT(0.f)
-	, m_Play(true)
+	, m_Play(false)
 {
 
 }

@@ -5,19 +5,19 @@ class CCollider :
     public CComponent
 {
 private:
-    Vec2    m_Offset;
+    Vec2    m_MaxDistance;
     Vec2    m_Scale;
     Vec2    m_FinalPos;
 
     int     m_OverlapCount;
 
 public:
-    Vec2 GetOffset() { return m_Offset; }
+    Vec2 GetOffset() { return m_MaxDistance; }
     Vec2 GetFinalPos() { return m_FinalPos; }
     Vec2 GetScale() { return m_Scale; }
     int GetOverlapCount() { return m_OverlapCount; }
 
-    void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
+    void SetOffset(Vec2 _Offset) { m_MaxDistance = _Offset; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
 public:

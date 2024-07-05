@@ -6,6 +6,7 @@
 Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 2400.f);
 float CRigidBody::m_FrictionCoef = 9600.f;
 Vec2 CRigidBody::m_DashFrictionCoef = Vec2(1400.f,2800.f);
+float CRigidBody::m_DeadFrictionCoef = 800.f;
 
 CRigidBody::CRigidBody()
 	: m_Mass(1.f)
@@ -80,7 +81,7 @@ void CRigidBody::FinalTick()
 	m_Velocity += m_Accel * fDT;
 	
 	// 평소 (대쉬 아닐때)
-	if (!m_Dash )
+	if (!m_Dash && !m_PlayerDead)
 	{
 		// 1. 최대 속력을 넘지 않도록 조정
 		if (m_Velocity.Length() > m_MaxSpeed)
@@ -101,6 +102,18 @@ void CRigidBody::FinalTick()
 		}
 
 	}
+	// 죽음
+	else if (m_PlayerDead)
+	{
+		// 마찰력을 줌
+		if (!m_Velocity.IsZero())
+		{
+			m_Velocity -= m_Velocity.Normalized() * m_DeadFrictionCoef * fDT;
+
+			if (m_Velocity.Length() < 5.f)
+				m_Velocity = Vec2(0.f, 0.f);
+		}
+	}
 	// 대쉬 
 	else if (m_Dash)
 	{
@@ -120,6 +133,7 @@ void CRigidBody::FinalTick()
 			m_Gravity = true;
 		}
 	}
+	
 
 	// 점프 중에 속도가 0에 가까워지면 (최고점) 점프 종료
 	if (m_Jump && fabs(m_Velocity.y) <= 5.f)

@@ -72,10 +72,4 @@ void CState_Jump::FinalTick()
 		GetStateMachine()->ChangeState(L"Fall");
 	}
 
-	// 최대 지점까지 점프를 해서 점프가 자동으로 종료되면 Fall state로 변경
-	if (!pRigid->IsJump())
-	{
-		GetStateMachine()->ChangeState(L"Fall");
-	}
-
 }

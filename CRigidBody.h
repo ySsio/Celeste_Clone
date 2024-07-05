@@ -9,6 +9,8 @@ private:
     Vec2    m_Accel;
     Vec2    m_Velocity;
 
+    static float    m_FrictionCoef;
+
     float   m_Mass;
 
     float   m_MaxSpeed;
@@ -24,7 +26,6 @@ private:
     float   m_JumpSpeed;
 
 
-    static float    m_FrictionCoef;
     static Vec2     m_DashFrictionCoef;
 
     UINT    m_DashCount;
@@ -35,6 +36,11 @@ private:
     bool    m_Dash;
 
     Vec2    m_DashDir;
+
+    static float    m_DeadFrictionCoef;
+
+    bool    m_PlayerDead;
+
 
 
 public:
@@ -48,6 +54,8 @@ public:
         if (_b)
             m_DashCount = m_DashMaxCount;
     }
+
+    void SetDead(bool _b) { m_PlayerDead = _b; }
 
     float GetMaxSpeed() { return m_MaxSpeed; }
 

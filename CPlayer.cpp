@@ -12,6 +12,7 @@
 #include "CState_Climb.h"
 #include "CState_Fall.h"
 #include "CState_Jump.h"
+#include "CState_Dead.h"
 
 #include "CLevelMgr.h"
 #include "CLevel.h"
@@ -28,12 +29,14 @@ CPlayer::CPlayer()
 	, m_Dir(Vec2(1.f,0.f))
 	, m_DirChanged(false)
 	, m_Color(BANG_COLOR::PINK)
+	, m_ColorChangeDuration(0.1f)
 	, m_HairCount(5)
 	, m_HairTex(nullptr)
 	, m_HairSize{ 40.f, 35.f, 30.f, 25.f, 20.f }
 	, m_HairOffset{ 20.f, 15.f, 10.f, 5.f }
 	, m_HairCurPos(m_HairCount, Vec2(BODY_SCALE/2.f, BODY_SCALE/2.f))
 	, m_HairTargetPos(m_HairCount)
+	, m_PlayerDead(false)
 
 {
 	m_BodyAnim = AddComponent<CAnimator>();
@@ -46,6 +49,7 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_Jump", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Fall", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Dash", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dash.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Dead", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dead.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Idle_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_IdleA_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleA_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_IdleB_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleB_FlipX.anim"));
@@ -55,6 +59,7 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_Jump_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Fall_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Dash_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dash_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Dead_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dead_FlipX.anim"));
 	m_BodyAnim->Play(L"Player_Idle");
 
 	m_BangAnim = AddComponent<CAnimator>();
@@ -86,6 +91,7 @@ CPlayer::CPlayer()
 	m_StateMachine->AddState(L"Hang", new CState_Climb);
 	m_StateMachine->AddState(L"Fall", new CState_Fall);
 	m_StateMachine->AddState(L"Jump", new CState_Jump);
+	m_StateMachine->AddState(L"Dead", new CState_Dead);
 	m_StateMachine->ChangeState(L"Idle");
 
 
@@ -114,13 +120,15 @@ CPlayer::~CPlayer()
 void CPlayer::Tick()
 {
 	// Bang Color Update
-	BangColorUpdate();
+	if (!m_PlayerDead)
+		BangColorUpdate();
 
 	// Direction Update
 	DirectionUpdate();
 
 	// Hair Poisition Update
-	HairPosUpdate();
+	if (!m_PlayerDead)
+		HairPosUpdate();
 
 }
 
@@ -132,30 +140,34 @@ void CPlayer::Render()
 		m_Sprite->ClearTex();
 
 	// hair render
-	for (int i = 0; i < m_HairCount; ++i)
+	if (!m_PlayerDead)
 	{
-		float size = m_HairSize[i];
+		for (int i = 0; i < m_HairCount; ++i)
+		{
+			float size = m_HairSize[i];
 
-		m_HairTex = m_HairTex->Stretch(Vec2(size, size));
+			m_HairTex = m_HairTex->Stretch(Vec2(size, size));
 
-		int Width = m_HairTex->GetWidth();
-		int Height = m_HairTex->GetHeight();
+			int Width = m_HairTex->GetWidth();
+			int Height = m_HairTex->GetHeight();
 
-		BLENDFUNCTION blend{};
-		blend.BlendOp = AC_SRC_OVER;
-		blend.BlendFlags = 0;
-		blend.SourceConstantAlpha = 255;
-		blend.AlphaFormat = AC_SRC_ALPHA;
+			BLENDFUNCTION blend{};
+			blend.BlendOp = AC_SRC_OVER;
+			blend.BlendFlags = 0;
+			blend.SourceConstantAlpha = 255;
+			blend.AlphaFormat = AC_SRC_ALPHA;
 
-		AlphaBlend(m_Buffer->GetDC()
-			, m_HairCurPos[i].x - Width / 2.f
-			, m_HairCurPos[i].y - Height / 2.f
-			, Width, Height
-			, m_HairTex->GetDC()
-			, 0, 0
-			, Width, Height
-			, blend);
+			AlphaBlend(m_Buffer->GetDC()
+				, m_HairCurPos[i].x - Width / 2.f
+				, m_HairCurPos[i].y - Height / 2.f
+				, Width, Height
+				, m_HairTex->GetDC()
+				, 0, 0
+				, Width, Height
+				, blend);
+		}
 	}
+	
 	
 
 	// bang render
@@ -177,7 +189,6 @@ void CPlayer::Render()
 void CPlayer::BangColorUpdate()
 {
 	static float AccTime = 0.f;
-	static float ColorChangeDuration = 0.1f;
 
 	if (m_Color == BANG_COLOR::WHITE)
 	{
@@ -191,7 +202,7 @@ void CPlayer::BangColorUpdate()
 		{
 			m_Color = BANG_COLOR::WHITE;
 		}
-		else if (m_Color == BANG_COLOR::WHITE && AccTime >= ColorChangeDuration)
+		else if (m_Color == BANG_COLOR::WHITE && AccTime >= m_ColorChangeDuration)
 		{
 			m_Color = BANG_COLOR::PINK;
 			AccTime = 0.f;
@@ -205,7 +216,7 @@ void CPlayer::BangColorUpdate()
 		{
 			m_Color = BANG_COLOR::WHITE;
 		}
-		else if ((m_Color == BANG_COLOR::WHITE && AccTime >= ColorChangeDuration) || m_Color == BANG_COLOR::PINK)
+		else if ((m_Color == BANG_COLOR::WHITE && AccTime >= m_ColorChangeDuration) || m_Color == BANG_COLOR::PINK)
 		{
 			m_Color = BANG_COLOR::RED;
 			AccTime = 0.f;
@@ -265,6 +276,7 @@ void CPlayer::HairPosUpdate()
 	Vec2 vOffset = Vec2(BODY_SCALE / 2.f, BODY_SCALE / 2.f);
 	Vec2 vPos = vOffset + m_BangAnim->GetCurFrm().Offset;
 
+
 	// 플레이어의 속도와 반대되는 방향으로 hair 들이 이동
 	Vec2 vDir = -m_RigidBody->GetVelocity();
 
@@ -313,21 +325,27 @@ void CPlayer::HairPosUpdate()
 
 void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
+	if (m_PlayerDead)
+		return;
+
 	if (LAYER_TYPE::PLATFORM == _Other->GetType())
 	{
 		CTileMap* pTileMap = _Other->GetComponent<CTileMap>();
 		if (pTileMap->IsTileDanger(_OtherCol))
 		{
-			tTask task{};
-			task.TaskType = TASK_TYPE::CHANGE_LEVEL;
-			task.wParam = (DWORD_PTR)CLevelMgr::Get()->GetCurLevel();
-			CTaskMgr::Get()->AddTask(task);
+			m_BounceDir = GetPos() - _OtherCol->GetFinalPos();
+			m_BounceDir.Normalize();
+
+			m_StateMachine->ChangeState(L"Dead");
 		}
 	}
 }
 
 void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
+	if (m_PlayerDead)
+		return;
+
 	Vec2 vPos = GetPos();
 	Vec2 vColPos = vPos + _Col->GetOffset();
 	Vec2 vColScale = _Col->GetScale();
@@ -390,7 +408,7 @@ void CPlayer::OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCo
 {
 	if (m_Collider->GetOverlapCount() == 0)
 	{
-		if (!m_RigidBody->IsDash())
+		if (!m_PlayerDead)  //!m_RigidBody->IsDash() &&
 			m_RigidBody->SetGravity(true);
 		m_RigidBody->SetGround(false);
 	}
