@@ -69,5 +69,15 @@
 //RGB(172,50,50)
 #define PINK_BANG	0xac3232
 
-#define	PLAYER_SPEED	400.f
-#define DASH_TIME	0.25f
+#define PI			3.14159f
+
+#define RENDER_POS(POS) GetRenderPosFromCam(POS)
+
+
+// RigidBody Variables
+#define	PLAYER_SPEED		400.f
+
+#define DASH_TIME			0.25f
+
+#define FrictionCoef		9600.f
+#define DeadFrictionCoef	800.f

@@ -38,7 +38,8 @@ void Delete_Object(CObj* _Obj);
 void Debug_Render(DEBUG_SHAPE _Shape, PEN_TYPE _Pen, BRUSH_TYPE _Brush, Vec2 _Pos, Vec2 _Scale, float _Duration = 0.f);
 
 
-
+// Camera
+Vec2 GetRenderPosFromCam(Vec2 _Pos);
 
 
 // Bitmap Control

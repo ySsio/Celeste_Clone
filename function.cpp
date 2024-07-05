@@ -2,6 +2,7 @@
 #include "function.h"
 #include "CDebugMgr.h"
 #include "CTaskMgr.h"
+#include "CCamera.h"
 
 
 void Debug_Render(DEBUG_SHAPE _Shape, PEN_TYPE _Pen, BRUSH_TYPE _Brush, Vec2 _Pos, Vec2 _Scale, float _Duration)
@@ -16,6 +17,11 @@ void Debug_Render(DEBUG_SHAPE _Shape, PEN_TYPE _Pen, BRUSH_TYPE _Brush, Vec2 _Po
 	tDebug.AccTime = 0.f;
 
 	CDebugMgr::Get()->AddDebugShape(tDebug);
+}
+
+Vec2 GetRenderPosFromCam(Vec2 _Pos)
+{
+    return CCamera::Get()->GetRenderPos(_Pos);
 }
 
 void ChangeLevel(LEVEL_TYPE _Type)
