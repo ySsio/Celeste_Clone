@@ -32,6 +32,8 @@ CState_Dead::~CState_Dead()
 {
 }
 
+
+
 void CState_Dead::PlayAnimation()
 {
 	Vec2 vDir = GetOwner()->GetBounceDir();
@@ -63,9 +65,12 @@ void CState_Dead::Enter()
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
+	// 마찰계수 설정
+	pRigid->SetFrictionCoef(FRICTION_DEAD);
+	pRigid->SetFrictionY(true);
+
 	// 상태 끝날 떄 반드시 다시 원래대로 돌려놓아야 할 세팅
 	pPlayer->SetPlayerDead(true);
-	pRigid->SetDead(true);
 	pRigid->SetGravity(false);
 	
 	// 충돌한 반대 방향으로 튕겨나감 (속도 : 400.f)
@@ -121,15 +126,25 @@ void CState_Dead::FinalTick()
 	// DeadEffect는 삭제하고, 플레이어를 Idle 상태로 전환
 	if (m_AccTime >= m_RespawnDuration + m_GatherWaitTime + m_SpreadDuration)
 	{
-		pPlayer->SetPos(SpawnPoint);
-
-		// 플레이어 상태를 원래대로 돌림
-		pPlayer->SetPlayerDead(false);
-		pRigid->SetDead(false);
-		pRigid->SetGravity(true);
-
-		Delete_Object(m_DeadEffect);
 		GetStateMachine()->ChangeState(L"Idle");
 	}
 	
+}
+
+void CState_Dead::Exit()
+{
+	CPlayer* pPlayer = GetOwner();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
+	Vec2 SpawnPoint = CLevelMgr::Get()->GetCurLevel()->GetSpawnPoint();
+
+	pPlayer->SetPos(SpawnPoint);
+
+	// 플레이어 상태를 원래대로 돌림
+	pPlayer->SetPlayerDead(false);
+	pRigid->SetGravity(true);
+	pRigid->SetFrictionCoef(FRICTION);
+	pRigid->SetFrictionY(false);
+
+	Delete_Object(m_DeadEffect);
 }

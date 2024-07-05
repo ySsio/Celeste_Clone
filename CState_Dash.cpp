@@ -11,11 +11,41 @@ CState_Dash::CState_Dash()
 	, m_FirstAfterImage(false)
 	, m_SecondAfterImage(false)
 	, m_ThirdAfterImage(false)
+	, m_DashSpeed(1260.f)
+	, m_AfterImageColor(ALPHA_HALF)
 {
 }
 
 CState_Dash::~CState_Dash()
 {
+}
+
+void CState_Dash::Dash()
+{
+	CPlayer* pPlayer = GetOwner();
+	Vec2 vDir = pPlayer->GetDir();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
+	if (pPlayer->GetDashCount() == 0)
+		return;
+
+	if (vDir.y != 0.f)
+	{
+		if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
+		{
+			vDir.x = 0.f;
+		}
+	}
+
+	// Dash
+	pRigid->SetSpeedLimit(false);
+	pRigid->SetFrictionCoef(FRICTION_DASH);
+	pRigid->SetFrictionY(true);
+	pRigid->SetGravity(false);
+
+	pPlayer->SubtractDashCount();
+
+	pRigid->SetVelocity(vDir.Normalize() * m_DashSpeed);
 }
 
 void CState_Dash::PlayAnimation()
@@ -36,26 +66,38 @@ void CState_Dash::PlayAnimation()
 
 void CState_Dash::Enter()
 {
-	PlayAnimation();
+	// 변수 초기화
 	m_AccTime = 0.f;
 	m_FirstAfterImage = false;
 	m_SecondAfterImage = false;
 	m_ThirdAfterImage = false;
 
+	// 애니메이션 재생
+	PlayAnimation();
+
+	// 대쉬
+	Dash();
+
+
+	// 잔상 색깔 결정
+	m_AfterImageColor = ALPHA_HALF;
+
+	if (GetOwner()->GetDashCount() >= 1)
+		m_AfterImageColor |= RED_BANG;
+	else
+		m_AfterImageColor |= BLUE_BANG;
+	
+}
+
+void CState_Dash::Exit()
+{
 	CPlayer* pPlayer = GetOwner();
-	Vec2 vDir = pPlayer->GetDir();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
-	if (vDir.y != 0.f)
-	{
-		if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT))
-		{
-			vDir.x = 0.f;
-		}
-	}
-
-	// Dash
-	pRigid->Dash(vDir);
+	pRigid->SetSpeedLimit(true);
+	pRigid->SetFrictionCoef(FRICTION);
+	pRigid->SetFrictionY(false);
+ 	pRigid->SetGravity(true);
 }
 
 void CState_Dash::FinalTick()
@@ -70,6 +112,7 @@ void CState_Dash::FinalTick()
 		m_FirstAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
+		pAfterImage->SetRGBA(m_AfterImageColor);
 		Add_Object(pAfterImage, LAYER_TYPE::PLAYER_EFFECT);
 	}
 	if (m_AccTime >= 0.1f && !m_SecondAfterImage)
@@ -77,16 +120,19 @@ void CState_Dash::FinalTick()
 		m_SecondAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
+		pAfterImage->SetRGBA(m_AfterImageColor);
 		Add_Object(pAfterImage, LAYER_TYPE::PLAYER_EFFECT);
 	}
-	if (m_AccTime >= 0.19f && !m_ThirdAfterImage)
+	if (m_AccTime >= 0.2f && !m_ThirdAfterImage)
 	{
 		m_ThirdAfterImage = true;
 		CAfterImage* pAfterImage = new CAfterImage(pPlayer->GetBuffer(), 0.5f);
 		pAfterImage->SetPos(pPlayer->GetPos());
+		pAfterImage->SetRGBA(m_AfterImageColor);
 		Add_Object(pAfterImage, LAYER_TYPE::PLAYER_EFFECT);
 	}
 
+	// 대쉬 시간이 지나면 대쉬 종료
 	if (m_AccTime >= DASH_TIME)
 	{
 		GetStateMachine()->ChangeState(L"Fall");

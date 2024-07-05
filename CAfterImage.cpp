@@ -12,6 +12,7 @@ CAfterImage::CAfterImage(CTexture* _SrcTex, float _Duration)
 	: m_Duration(_Duration)
 	, m_AccTime(0.f)
 	, m_Tex(nullptr)
+	, m_RGBA(0x805fcde4)
 { 
 	m_Tex = new CTexture;
 	UINT Width = _SrcTex->GetWidth();
@@ -39,12 +40,18 @@ CAfterImage::CAfterImage(CTexture* _SrcTex, float _Duration)
 	delete[] pBits;
 
 	//0x805fcde4, 0x80FF0000
-	FillAlphaNonZeroAreas(m_Tex->GetBitMap(), 0x805fcde4);
+	FillAlphaNonZeroAreas(m_Tex->GetBitMap(), m_RGBA);
 }
 
 CAfterImage::~CAfterImage()
 {
 	delete m_Tex;
+}
+
+void CAfterImage::SetRGBA(UINT _RGBA)
+{
+	m_RGBA = _RGBA;
+	FillAlphaNonZeroAreas(m_Tex->GetBitMap(), m_RGBA);
 }
 
 void CAfterImage::Tick()
@@ -65,7 +72,7 @@ void CAfterImage::Render()
 	BLENDFUNCTION blend{};
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;
-	blend.SourceConstantAlpha = 255 * (1 - m_AccTime / m_Duration);
+	blend.SourceConstantAlpha = (BYTE) (255 * (1 - m_AccTime / m_Duration));
 	blend.AlphaFormat = AC_SRC_ALPHA;
 
 	AlphaBlend(BackDC

@@ -28,12 +28,14 @@ CPlayer::CPlayer()
 	, m_RigidBody(nullptr)
 	, m_Dir(Vec2(1.f,0.f))
 	, m_DirChanged(false)
+	, m_DashMaxCount(2)
+	, m_DashCount(2)
 	, m_Color(BANG_COLOR::PINK)
 	, m_ColorChangeDuration(0.1f)
 	, m_HairCount(5)
 	, m_HairTex(nullptr)
 	, m_HairSize{ 40.f, 35.f, 30.f, 25.f, 20.f }
-	, m_HairOffset{ 20.f, 15.f, 10.f, 5.f }
+	, m_HairOffset{ 18.f, 14.f, 8.f, 5.f }
 	, m_HairCurPos(m_HairCount, Vec2(BODY_SCALE/2.f, BODY_SCALE/2.f))
 	, m_HairTargetPos(m_HairCount)
 	, m_PlayerDead(false)
@@ -195,7 +197,7 @@ void CPlayer::BangColorUpdate()
 		AccTime += fDT;
 	}
 
-	if (m_RigidBody->GetDashLeftCount() == 2)
+	if (m_DashCount == 2)
 	{
 		// red/blue -> white -> pink
 		if (m_Color == BANG_COLOR::RED || m_Color == BANG_COLOR::BLUE)
@@ -208,7 +210,7 @@ void CPlayer::BangColorUpdate()
 			AccTime = 0.f;
 		}
 	}
-	else if (m_RigidBody->GetDashLeftCount() == 1)
+	else if (m_DashCount == 1)
 	{
 		// 1. pink -> red
 		// 2. blue -> white -> red
@@ -222,7 +224,7 @@ void CPlayer::BangColorUpdate()
 			AccTime = 0.f;
 		}
 	}
-	else if (m_RigidBody->GetDashLeftCount() == 0)
+	else if (m_DashCount == 0)
 	{
 		// red -> blue
 		if (m_Color == BANG_COLOR::RED)
@@ -394,6 +396,9 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 			m_RigidBody->SetGravity(false);
 			m_RigidBody->SetGround(true);
 			m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
+
+			// 대쉬 회복
+			m_DashCount = m_DashMaxCount;
 		}
 		else
 		{
@@ -406,9 +411,9 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 
 void CPlayer::OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
-	if (m_Collider->GetOverlapCount() == 0)
+	if (_Col->GetOverlapCount() == 0)
 	{
-		if (!m_PlayerDead)  //!m_RigidBody->IsDash() &&
+		if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState() && !m_PlayerDead)
 			m_RigidBody->SetGravity(true);
 		m_RigidBody->SetGround(false);
 	}

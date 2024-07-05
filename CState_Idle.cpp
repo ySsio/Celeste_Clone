@@ -36,6 +36,10 @@ void CState_Idle::Enter()
 	PlayAnimation();
 }
 
+void CState_Idle::Exit()
+{
+}
+
 void CState_Idle::FinalTick()
 {
 	CPlayer* pPlayer = GetOwner();

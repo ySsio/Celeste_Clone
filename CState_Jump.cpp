@@ -34,9 +34,12 @@ void CState_Jump::Enter()
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	pRigid->Jump();
-	pRigid->SetGravity(true);
 
 	PlayAnimation();
+}
+
+void CState_Jump::Exit()
+{
 }
 
 void CState_Jump::FinalTick()
@@ -65,11 +68,14 @@ void CState_Jump::FinalTick()
 
 	// #### State 변경 ####
 
-	// C키를 떼면 점프를 종료하고 Fall state로 변경
-	if (KEY_RELEASED(KEY::C))
+	if (!pRigid->IsJump())
+	{
+		GetStateMachine()->ChangeState(L"Fall");
+	}
+	// C키를 떼면 점프를 종료
+	else if (KEY_RELEASED(KEY::C))
 	{
 		pRigid->EndJump();
-		GetStateMachine()->ChangeState(L"Fall");
 	}
 
 }

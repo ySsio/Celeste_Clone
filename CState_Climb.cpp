@@ -9,6 +9,10 @@ void CState_Climb::Enter()
 {
 }
 
+void CState_Climb::Exit()
+{
+}
+
 void CState_Climb::FinalTick()
 {
 }

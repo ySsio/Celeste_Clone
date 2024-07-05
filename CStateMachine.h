@@ -14,6 +14,7 @@ public:
     void AddState(const wstring& _StrName, CState* _State);
     void ChangeState(const wstring& _StrName);
     CState* FindState(const wstring& _StrName);
+    CState* GetCurState() { return m_CurState; }
     
 
 public:

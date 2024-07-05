@@ -62,12 +62,14 @@
 									log.Time = 0.f;																			  \
 									CLogMgr::Get()->AddLog(log)	
 
-//RGB(95,205,228)
-#define BLUE_BANG	0x5fcde4
+#define ALPHA_FULL	0xff000000
+#define	ALPHA_HALF	0x80000000
 //RGB(249,149,221)
-#define RED_BANG	0xf995dd
+#define PINK_BANG	0x00dd95f9
 //RGB(172,50,50)
-#define PINK_BANG	0xac3232
+#define RED_BANG	0x003232ac
+//RGB(95,205,228)
+#define BLUE_BANG	0x00e4cd5f
 
 #define PI			3.14159f
 
@@ -79,5 +81,7 @@
 
 #define DASH_TIME			0.25f
 
-#define FrictionCoef		9600.f
-#define DeadFrictionCoef	800.f
+#define FRICTION		Vec2(9600.f,9600.f)
+#define FRICTION_DASH	Vec2(1400.f,2800.f)
+#define FRICTION_DEAD	Vec2(800.f,800.f)
+

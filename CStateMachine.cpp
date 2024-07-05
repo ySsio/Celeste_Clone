@@ -33,8 +33,15 @@ void CStateMachine::ChangeState(const wstring& _StrName)
     if (pState == m_CurState)
         return;
 
+    // 현재 상태를 빠져나옴
+    if (m_CurState)
+        m_CurState->Exit();
+
+    // 요청한 state을 현재 state로 설정
     m_CurState = pState;
-    assert(m_CurState);
+    assert(m_CurState); // 등록되지 않은 state로 요청되었으면 에러
+
+    // 새로운 현재 state로 진입
     m_CurState->Enter();
 
     DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
@@ -57,7 +64,8 @@ void CStateMachine::FinalTick()
 
     // AnyState에서 상태변환되는 조건을 여기서 체크, 해당되는 거 있으면 변경
 
-    bool CanChangeState = !pRigid->IsDash() && (FindState(L"Dead") != m_CurState);
+    bool CanChangeState = FindState(L"Dash") != m_CurState 
+                       && FindState(L"Dead") != m_CurState;
 
     if (CanChangeState)
     {
@@ -90,7 +98,7 @@ void CStateMachine::FinalTick()
         
 
         // Dash State : Dash 횟수가 0보다 크고, X키가 입력되었을 때
-        if (pRigid->CanDash() && KEY_TAP(KEY::X))
+        if (pPlayer->GetDashCount() > 0 && KEY_TAP(KEY::X))
         {
             ChangeState(L"Dash");
         }

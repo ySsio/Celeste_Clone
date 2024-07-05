@@ -31,6 +31,10 @@ void CState_Fall::Enter()
 	}
 }
 
+void CState_Fall::Exit()
+{
+}
+
 void CState_Fall::FinalTick()
 {
 	CPlayer* pPlayer = GetOwner();

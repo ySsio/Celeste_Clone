@@ -9,6 +9,7 @@ class CPlayer :
     public CObj
 {
 private:
+    // Component
     CSpriteRenderer*    m_Sprite;
     CAnimator*          m_BangAnim;
     CAnimator*          m_BodyAnim;
@@ -16,11 +17,18 @@ private:
     CCollider*          m_Collider;
     CRigidBody*         m_RigidBody;
 
+    // Buffer
     CTexture*           m_Buffer;
 
     Vec2                m_Dir;
     bool                m_DirChanged;
 
+    // Dash
+    UINT                m_DashMaxCount;
+    UINT                m_DashCount;
+
+
+    // Hair
     BANG_COLOR          m_Color;
     float               m_ColorChangeDuration;
     int                 m_HairCount;
@@ -30,6 +38,7 @@ private:
     vector<Vec2>        m_HairCurPos;
     vector<Vec2>        m_HairTargetPos;
 
+    // Dead
     bool                m_PlayerDead;
     Vec2                m_BounceDir;
 
@@ -46,6 +55,12 @@ public:
     BANG_COLOR GetColor() { return m_Color; }
 
     Vec2 GetBounceDir() { return m_BounceDir; }
+
+    UINT GetDashCount() { return m_DashCount; }
+
+    void SetDashMaxCount(UINT _Count) { m_DashMaxCount = _Count; }
+    void SetDashCount(UINT _Count) { m_DashCount = _Count; }
+    void SubtractDashCount() { if (m_DashCount == 0) return; --m_DashCount; }
 
     void SetPlayerDead(bool _b) { m_PlayerDead = _b; }
 

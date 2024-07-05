@@ -10,10 +10,12 @@ private:
     Vec2    m_BounceDir;
 
     float   m_AccTime;
-    float   m_DeadDuration;
+    float   m_AnimDuration;
     float   m_RespawnDuration;
 
     float   m_SpreadDuration;
+    float   m_GatherWaitTime;
+
 
     bool    m_SpreadEffect;
     bool    m_Respawn;
@@ -26,6 +28,7 @@ public:
 
 public:
     virtual void Enter() override;
+    virtual void Exit() override;
     virtual void FinalTick() override;
 
 public:
