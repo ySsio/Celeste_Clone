@@ -23,23 +23,23 @@ CPalette::~CPalette()
 
 void CPalette::SetPalette()
 {
-	for (int i = 0; i < m_RowCnt; ++i)
+	for (UINT Row = 0; Row < m_RowCnt; ++Row)
 	{
-		for (int j = 0; j < m_ColCnt; ++j)
+		for (UINT Col = 0; Col < m_ColCnt; ++Col)
 		{
 			CTile* pTile = new CTile;
 			pTile->SetTexture(m_Tex);
-			pTile->SetScale(Vec2((float)m_UnitWidth, (float)m_UnitWidth));
-			pTile->SetLT(Vec2((float)i * m_UnitWidth, (float)j * m_UnitWidth));
+			pTile->SetScale(Vec2((float)m_UnitWidth, (float)m_UnitHeight));
+			pTile->SetLT(Vec2((float)Col * m_UnitWidth, (float)Row * m_UnitHeight));
 
 			if (m_HasCol)
 				pTile->SetColInfo();
 
 			pTile->SetDanger(m_IsDanger);
 
-			CAssetMgr::Get()->AddAsset<CTile>(L"Tile_Girder_" + std::to_wstring(i) + L"_" + std::to_wstring(j), pTile);
+			CAssetMgr::Get()->AddAsset<CTile>(L"Tile_Girder_" + std::to_wstring(Row) + L"_" + std::to_wstring(Col), pTile);
 
-			SetTile(i, j, pTile);
+			SetTile(Row, Col, pTile);
 		}
 	}
 }
@@ -82,11 +82,11 @@ void CPalette::Save(const wstring& _strRelativeFilePath)
 	fwrite(&m_IsDanger, sizeof(bool), 1, pFile);
 
 	// 6. tile 정보 저장
-	for (int i = 0; i < m_RowCnt; ++i)
+	for (UINT Row = 0; Row < m_RowCnt; ++Row)
 	{
-		for (int j = 0; j < m_ColCnt; ++j)
+		for (UINT Col = 0; Col < m_ColCnt; ++Col)
 		{
-			CTile* pTile = m_vecTile[i * m_ColCnt + j];
+			CTile* pTile = m_vecTile[Row * m_ColCnt + Col];
 			// 0. 타일 이름 저장
 			wstring Name = pTile->GetName();
 			int len = Name.length();
@@ -143,12 +143,12 @@ void CPalette::Load(const wstring& _strRelativeFilePath)
 	fread(&m_IsDanger, sizeof(bool), 1, pFile);
 
 	// 6. tile 정보 불러오기
-	for (int i = 0; i < m_RowCnt; ++i)
+	for (UINT Row = 0; Row < m_RowCnt; ++Row)
 	{
-		for (int j = 0; j < m_ColCnt; ++j)
+		for (UINT Col = 0; Col < m_ColCnt; ++Col)
 		{
 			CTile* pTile = new CTile;
-			m_vecTile[i * m_ColCnt + j] = pTile;
+			m_vecTile[Row * m_ColCnt + Col] = pTile;
 
 			// 0. 타일 이름 불러오기
 			wchar_t szBuff[255]{};

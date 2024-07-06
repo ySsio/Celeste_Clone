@@ -65,32 +65,37 @@ void CLevel_Level_01::Enter()
 	// Platform
 
 	CPlatform* pPlatform = new CPlatform;
-	pPlatform->SetPos(Vec2(200.f, 200.f));
+	pPlatform->SetPos(Vec2(0.f, 0.f));
 	CTileMap* pTileMap = pPlatform->GetComponent<CTileMap>();
-	pTileMap->SetRowCol(15, 20);
+	pTileMap->SetRowCol(25, 30);
 	pTileMap->SetScale(40, 40);
 
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 30; ++i)
 	{
-		pTileMap->SetTile(12, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
-		pTileMap->SetTile(13, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
-		pTileMap->SetTile(14, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
+		pTileMap->SetTile(20, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
+		pTileMap->SetTile(21, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
+		pTileMap->SetTile(22, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
 	}
-	pTileMap->SetTile(12, 19, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
-	pTileMap->SetTile(13, 19, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
-	pTileMap->SetTile(14, 19, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
+	pTileMap->SetTile(9, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
+	pTileMap->SetTile(10, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
+	pTileMap->SetTile(11, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
 
-
-	for (int i = 5; i < 10; ++i)
+	for (int i = 5; i < 19; ++i)
 	{
-		pTileMap->SetTile(5, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_1"));
-		pTileMap->SetTile(6, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_1"));
-		pTileMap->SetTile(7, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_1"));
+		pTileMap->SetTile(i, 17, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_0"));
 	}
 
-	for (int i = 0; i < 15; ++i)
+	pTileMap->SetTile(20, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
+	pTileMap->SetTile(21, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
+	pTileMap->SetTile(22, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
+
+
+	for (int i = 0; i < 6; ++i)
 	{
-		pTileMap->SetTile(i, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_0_2"));
+		for (int j = 0; j < 15; ++j)
+		{
+			pTileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Girder_" + std::to_wstring(j) + L"_" + std::to_wstring(i)));
+		}
 	}
 
 	pTileMap->AddCollider();

@@ -57,19 +57,19 @@ void CAssetMgr::Init()
 	CPalette* pPalette = nullptr;
 	CTile* pTile = nullptr;
 
-	pPalette = new CPalette;
-	pTex = LoadAsset<CTexture>(L"\\tilesets\\girder.png");
-	pPalette->SetTex(pTex);
-	pPalette->SetScale(8, 8);
-	pPalette->SetRowCol(15, 6);
-	pPalette->SetDanger(false);
-	pPalette->SetCol(true);
-	pPalette->SetPalette();
+	//pPalette = new CPalette;
+	//pTex = LoadAsset<CTexture>(L"\\tilesets\\girder.png");
+	//pPalette->SetTex(pTex);
+	//pPalette->SetScale(8, 8);
+	//pPalette->SetRowCol(15, 6);
+	//pPalette->SetDanger(false);
+	//pPalette->SetCol(true);
+	//pPalette->SetPalette();
 
 
-	pPalette->Save(L"\\tilesets\\palette\\girder.palette");
+	//pPalette->Save(L"\\tilesets\\palette\\girder.palette");
 
-	delete pPalette;
+	//delete pPalette;
 
 	pPalette = new CPalette;
 	pPalette->Load(L"\\tilesets\\palette\\girder.palette");
