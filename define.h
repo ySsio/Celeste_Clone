@@ -77,7 +77,10 @@
 
 
 // RigidBody Variables
-#define	PLAYER_SPEED		400.f
+#define PLAYER_MAX_SPEED	800.f
+#define	PLAYER_RUN_SPEED	400.f
+#define PLAYER_CLIMB_SPEED	300.f
+#define PLAYER_SLIDE_SPEED	400.f
 
 #define DASH_TIME			0.25f
 

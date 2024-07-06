@@ -38,7 +38,7 @@ void CState_Dead::PlayAnimation()
 {
 	Vec2 vDir = GetOwner()->GetBounceDir();
 
-	GetBangAnimator()->Pause();
+	GetBangAnimator()->End();
 
 	if (vDir.x > 0.f)
 	{

@@ -15,17 +15,29 @@ private:
     CAnimator*          m_BodyAnim;
     CStateMachine*      m_StateMachine;
     CCollider*          m_Collider;
+    CCollider*          m_WallDetector;
     CRigidBody*         m_RigidBody;
 
     // Buffer
     CTexture*           m_Buffer;
 
+    // Direction
     Vec2                m_Dir;
     bool                m_DirChanged;
+    bool                m_DirFix;
 
     // Dash
     UINT                m_DashMaxCount;
     UINT                m_DashCount;
+
+    // Ground
+    bool                m_IsGround;
+
+    // Wall
+    bool                m_IsWall;   // WallDetector가 충돌이 일어나면
+    
+    // ColUpdate
+    bool                m_ColUpdated;
 
 
     // Hair
@@ -58,11 +70,18 @@ public:
 
     UINT GetDashCount() { return m_DashCount; }
 
+    void SetDirFix(bool _b) { m_DirFix = _b; }
+
+
     void SetDashMaxCount(UINT _Count) { m_DashMaxCount = _Count; }
     void SetDashCount(UINT _Count) { m_DashCount = _Count; }
     void SubtractDashCount() { if (m_DashCount == 0) return; --m_DashCount; }
 
     void SetPlayerDead(bool _b) { m_PlayerDead = _b; }
+
+    bool CanJump() { return m_IsGround || m_IsWall; }
+    bool IsGround() { return m_IsGround; }
+    bool IsWall() { return m_IsWall; }
 
 public:
     virtual void Tick() override;

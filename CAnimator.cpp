@@ -38,7 +38,8 @@ const tAnimFrm& CAnimator::GetCurFrm()
 	return m_CurAnim->GetFrm(m_CurIdx);
 }
 
-void CAnimator::Pause()
+
+void CAnimator::End()
 {
 	m_CurAnim = nullptr;
 	m_AccTime = 0.f;
@@ -47,7 +48,7 @@ void CAnimator::Pause()
 
 void CAnimator::FinalTick()
 {
-	if (!m_CurAnim)
+	if (!m_CurAnim || m_Done)
 		return;
 
 	m_AccTime += fDT;
@@ -81,11 +82,10 @@ void CAnimator::Render()
 
 void CAnimator::Render(HDC _DC, bool _Player)
 {
-	if (m_Done)
+	if (!m_CurAnim)
 		return;
 
 	const tAnimFrm& curFrm = m_CurAnim->GetFrm(m_CurIdx);
-
 
 	CTexture* curTex = curFrm.Texture;
 

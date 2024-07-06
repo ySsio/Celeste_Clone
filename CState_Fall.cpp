@@ -46,13 +46,13 @@ void CState_Fall::FinalTick()
 	if (KEY_PRESSED(KEY::LEFT))
 	{
 		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(-400.f, 0.f) * fDT);
-		pRigid->SetVelocity(Vec2(-PLAYER_SPEED, pRigid->GetVelocity().y));
+		pRigid->SetVelocity(Vec2(-PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 
 	}
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
 		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(400.f, 0.f) * fDT);
-		pRigid->SetVelocity(Vec2(PLAYER_SPEED, pRigid->GetVelocity().y));
+		pRigid->SetVelocity(Vec2(PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 
 	if (vDir.x == 1.f)
@@ -66,10 +66,10 @@ void CState_Fall::FinalTick()
 		GetBodyAnimator()->Play(L"Player_Fall_FlipX", true);
 	}
 
-	// #### State 변경 ####
 
-	// 땅에 닿으면 Idle state로 변경
-	if (pRigid->IsGround())
+
+	// #### State 변경 ####
+	if (pPlayer->IsGround())
 	{
 		GetStateMachine()->ChangeState(L"Idle");
 	}

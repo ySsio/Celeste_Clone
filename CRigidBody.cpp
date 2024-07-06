@@ -7,8 +7,9 @@ Vec2 CRigidBody::m_GravityAccel = Vec2(0.f, 2400.f);
 
 CRigidBody::CRigidBody()
 	: m_Mass(1.f)
-	, m_MaxSpeed(800.f)
+	, m_MaxSpeed(PLAYER_MAX_SPEED)
 	, m_SpeedLimit(true)
+	, m_FrictionCoef(FRICTION)
 	, m_FrictionY(false)
 	, m_Gravity(true)
 	, m_Ground(false)

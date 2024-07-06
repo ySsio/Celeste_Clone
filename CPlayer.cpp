@@ -28,10 +28,14 @@ CPlayer::CPlayer()
 	, m_StateMachine(nullptr)
 	, m_Collider(nullptr)
 	, m_RigidBody(nullptr)
+	, m_Buffer(nullptr)
 	, m_Dir(Vec2(1.f,0.f))
 	, m_DirChanged(false)
+	, m_DirFix(false)
 	, m_DashMaxCount(2)
 	, m_DashCount(2)
+	, m_IsGround(false)
+	, m_IsWall(false)
 	, m_Color(BANG_COLOR::PINK)
 	, m_ColorChangeDuration(0.1f)
 	, m_HairCount(5)
@@ -53,6 +57,8 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_Jump", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Fall", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Dash", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dash.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Climb", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Climb.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Climb_Warning", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Climb_Warning.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Dead", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dead.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Idle_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Idle_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_IdleA_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_IdleA_FlipX.anim"));
@@ -63,6 +69,8 @@ CPlayer::CPlayer()
 	m_BodyAnim->AddAnimation(L"Player_Jump_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Jump_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Fall_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Fall_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Dash_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dash_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Climb_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Climb_FlipX.anim"));
+	m_BodyAnim->AddAnimation(L"Player_Climb_Warning_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Climb_Warning_FlipX.anim"));
 	m_BodyAnim->AddAnimation(L"Player_Dead_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Dead_FlipX.anim"));
 	m_BodyAnim->Play(L"Player_Idle");
 
@@ -76,6 +84,7 @@ CPlayer::CPlayer()
 	m_BangAnim->AddAnimation(L"Player_Bang_Jump", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Jump.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Fall", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Fall.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Dash", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Dash.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Climb", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Climb.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Idle_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Idle_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_IdleA_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleA_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_IdleB_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_IdleB_FlipX.anim"));
@@ -85,6 +94,7 @@ CPlayer::CPlayer()
 	m_BangAnim->AddAnimation(L"Player_Bang_Jump_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Jump_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Fall_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Fall_FlipX.anim"));
 	m_BangAnim->AddAnimation(L"Player_Bang_Dash_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Dash_FlipX.anim"));
+	m_BangAnim->AddAnimation(L"Player_Bang_Climb_FlipX", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Player_Bang_Climb_FlipX.anim"));
 	m_BangAnim->Play(L"Player_Bang_Idle");
 
 
@@ -92,7 +102,7 @@ CPlayer::CPlayer()
 	m_StateMachine->AddState(L"Idle", new CState_Idle);
 	m_StateMachine->AddState(L"Run", new CState_Run);
 	m_StateMachine->AddState(L"Dash", new CState_Dash);
-	m_StateMachine->AddState(L"Hang", new CState_Climb);
+	m_StateMachine->AddState(L"Climb", new CState_Climb);
 	m_StateMachine->AddState(L"Fall", new CState_Fall);
 	m_StateMachine->AddState(L"Jump", new CState_Jump);
 	m_StateMachine->AddState(L"Dead", new CState_Dead);
@@ -106,6 +116,10 @@ CPlayer::CPlayer()
 	m_Collider->SetOffset(Vec2(0.f, 50.f));
 	m_Collider->SetScale(Vec2(40.f, 60.f));
 
+
+	m_WallDetector = AddComponent<CCollider>();
+	m_WallDetector->SetScale(Vec2(1.f, 40.f));
+	
 
 	m_Buffer = new CTexture;
 	m_Buffer->CreateTexture(160,160);
@@ -128,7 +142,14 @@ void CPlayer::Tick()
 		BangColorUpdate();
 
 	// Direction Update
-	DirectionUpdate();
+	if (!m_DirFix)
+		DirectionUpdate();
+
+	// GrabDetector Offset Update
+	m_WallDetector->SetOffset(Vec2(20.f * m_Dir.x, 50.f));
+
+	// ColUpdated 초기화 (이번 프레임에서 처음 collision 이벤트 발생했을 때를 찾기 위함)
+	m_ColUpdated = false;
 
 	// Hair Poisition Update
 	if (!m_PlayerDead)
@@ -354,75 +375,102 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 	if (m_PlayerDead)
 		return;
 
-	Vec2 vPos = GetPos();
-	Vec2 vColPos = vPos + _Col->GetOffset();
-	Vec2 vColScale = _Col->GetScale();
-
-	float minX = vColPos.x - vColScale.x / 2.f;
-	float maxX = vColPos.x + vColScale.x / 2.f;
-	float minY = vColPos.y - vColScale.y / 2.f;
-	float maxY = vColPos.y + vColScale.y / 2.f;
-
-	Vec2 vOtherPos = _OtherCol->GetFinalPos();
-	Vec2 vOtherColScale = _OtherCol->GetScale();
-
-	float minOtherX = vOtherPos.x - vOtherColScale.x / 2.f;
-	float maxOtherX = vOtherPos.x + vOtherColScale.x / 2.f;
-	float minOtherY = vOtherPos.y - vOtherColScale.y / 2.f;
-	float maxOtherY = vOtherPos.y + vOtherColScale.y / 2.f;
-
-	float dx = vColPos.x - vOtherPos.x;
-	float dy = vColPos.y - vOtherPos.y;
-
-	// 각 축에서의 침투 깊이
-	float overlapX = (vColScale.x / 2.f + vOtherColScale.x / 2.f) - std::abs(dx);
-	float overlapY = (vColScale.y / 2.f + vOtherColScale.y / 2.f) - std::abs(dy);
-
-	// 침투 깊이가 더 작은 축을 따라 해소
-	// 옆으로 닿은 경우
-	if (overlapX < overlapY) {
-		m_RigidBody->SetGround(true);
-		m_RigidBody->SetVelocity(Vec2(0.f, m_RigidBody->GetVelocity().y));
-		if (KEY_PRESSED(KEY::Z))
-		{
-			vPos.x += (dx < 0) ? -overlapX + 0.1f : overlapX - 0.1f;
-			m_RigidBody->SetGravity(false);
-			m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
-		}
-		else
-		{
-			vPos.x += (dx < 0) ? -overlapX - 0.1f : overlapX + 0.1f;
-		}
-	}
-	// 상하로 닿은 경우
-	else {
-		if (dy < 0)
-		{
-			vPos.y -= overlapY;
-			m_RigidBody->SetGravity(false);
-			m_RigidBody->SetGround(true);
-			m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
-
-			// 대쉬 회복
-			// (대쉬 중일떄는 회복 x) - 보류
-			//if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState())
-			m_DashCount = m_DashMaxCount;
-		}
-		else
-		{
-			vPos.y += overlapY;
-		}
+	if (!m_ColUpdated)
+	{
+		m_IsGround = false;
+		m_IsWall = false;
+		m_ColUpdated = true;
 	}
 
-	SetPos(vPos);
+	if (_Col == m_Collider)
+	{
+		Vec2 vPos = GetPos();
+		Vec2 vColPos = vPos + _Col->GetOffset();
+		Vec2 vColScale = _Col->GetScale();
+
+		float minX = vColPos.x - vColScale.x / 2.f;
+		float maxX = vColPos.x + vColScale.x / 2.f;
+		float minY = vColPos.y - vColScale.y / 2.f;
+		float maxY = vColPos.y + vColScale.y / 2.f;
+
+		Vec2 vOtherPos = _OtherCol->GetFinalPos();
+		Vec2 vOtherColScale = _OtherCol->GetScale();
+
+		float minOtherX = vOtherPos.x - vOtherColScale.x / 2.f;
+		float maxOtherX = vOtherPos.x + vOtherColScale.x / 2.f;
+		float minOtherY = vOtherPos.y - vOtherColScale.y / 2.f;
+		float maxOtherY = vOtherPos.y + vOtherColScale.y / 2.f;
+
+		float dx = vColPos.x - vOtherPos.x;
+		float dy = vColPos.y - vOtherPos.y;
+
+		// 각 축에서의 침투 깊이
+		float overlapX = (vColScale.x / 2.f + vOtherColScale.x / 2.f) - std::abs(dx);
+		float overlapY = (vColScale.y / 2.f + vOtherColScale.y / 2.f) - std::abs(dy);
+
+		// 침투 깊이가 더 작은 축을 따라 해소
+		// 옆으로 닿은 경우
+		if (overlapX < overlapY)
+		{
+			// 겹친 길이만큼 다시 밀어냄
+			vPos.x += (dx < 0) ? -overlapX : overlapX;
+		}
+		// 상하로 닿은 경우
+		else if (overlapX > overlapY)
+		{
+			// 플레이어가 충돌체 위에서 닿은 경우
+			if (dy < 0)
+			{
+				// 겹친 길이만큼 다시 밀어냄
+				vPos.y -= overlapY;
+				m_RigidBody->SetGravity(false);
+				m_RigidBody->SetGround(true);
+				m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
+
+				m_IsGround = true;
+
+				// 대쉬 회복
+				// (대쉬 중일떄는 회복 x) - 보류
+				//if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState())
+				m_DashCount = m_DashMaxCount;
+
+				// ClimbAccTime 회복
+				m_StateMachine->FindState(L"Climb")->Reset();
+			}
+			// 플레이어가 충돌체 아래에서 닿은 경우
+			else
+			{
+				// 겹친 길이만큼 다시 밀어냄
+				vPos.y += overlapY;
+			}
+		}
+
+		SetPos(vPos);
+	}
+	else if (_Col == m_WallDetector)
+	{
+		m_IsWall = true;
+	}
+
+	
 }
 
 void CPlayer::OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
+	// 닿은 콜라이더가 없으면
 	if (_Col->GetOverlapCount() == 0)
 	{
 		if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState() && !m_PlayerDead)
 			m_RigidBody->SetGravity(true);
 		m_RigidBody->SetGround(false);
+
+		m_IsGround = false;
+		m_IsWall = false;
+
+		// Climb 상태 해제
+		if (m_StateMachine->FindState(L"Climb") == m_StateMachine->GetCurState())
+		{
+			m_StateMachine->ChangeState(L"Idle");
+		}
 	}
 }

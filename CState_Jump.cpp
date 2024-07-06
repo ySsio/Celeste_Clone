@@ -29,13 +29,13 @@ void CState_Jump::PlayAnimation()
 
 void CState_Jump::Enter()
 {
+	PlayAnimation();
+
 	CPlayer* pPlayer = GetOwner();
 	
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	pRigid->Jump();
-
-	PlayAnimation();
 }
 
 void CState_Jump::Exit()
@@ -51,13 +51,12 @@ void CState_Jump::FinalTick()
 	if (KEY_PRESSED(KEY::LEFT))
 	{
 		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(-400.f, 0.f) * fDT);
-		pRigid->SetVelocity(Vec2(-PLAYER_SPEED, pRigid->GetVelocity().y));
-
+		pRigid->SetVelocity(Vec2(-PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
 		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(400.f, 0.f) * fDT);
-		pRigid->SetVelocity(Vec2(PLAYER_SPEED, pRigid->GetVelocity().y));
+		pRigid->SetVelocity(Vec2(PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 
 	if (pPlayer->IsDirChanged())
@@ -77,5 +76,7 @@ void CState_Jump::FinalTick()
 	{
 		pRigid->EndJump();
 	}
+
+
 
 }

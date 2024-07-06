@@ -55,9 +55,14 @@ void CState_Idle::FinalTick()
 
 	// #### State 변경 ####
 
+	// Run State : 좌우키 눌려있으면
+	if (KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT))
+	{
+		GetStateMachine()->ChangeState(L"Run");
+	}
 
 	// C키 입력 시 Jump State로 변경
-	if (KEY_TAP(KEY::C))
+	if (KEY_TAP(KEY::C) && pPlayer->CanJump())
 	{
 		GetStateMachine()->ChangeState(L"Jump");
 	}

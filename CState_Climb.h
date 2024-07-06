@@ -4,10 +4,20 @@ class CState_Climb :
     public CState
 {
 private:
+    bool    m_Warning;
 
+    float   m_ClimbDuration;
+    float   m_SlideWaitTime;
+    float   m_AccTime;
+
+public:
+    virtual void Reset() override { m_AccTime = 0.f; m_Warning = false; }
 
 public:
     virtual void PlayAnimation() override;
+
+public:
+    void Slide(bool _Warning);
 
 public:
     virtual void Enter() override;

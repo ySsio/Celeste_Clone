@@ -36,7 +36,7 @@ public:
     void SetVelocity(Vec2 _Velocity) { m_Velocity = _Velocity; }
     void SetMass(float _Mass) { m_Mass = _Mass; }
 
-
+    void SetMaxSpeed(float _Speed) { m_MaxSpeed = _Speed; }
     void SetSpeedLimit(bool _b) { m_SpeedLimit = _b; }
 
     void SetJumpSpeed(float _Speed) { m_JumpSpeed = _Speed; }
