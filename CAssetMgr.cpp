@@ -2,6 +2,9 @@
 #include "CAssetMgr.h"
 #include "CEngine.h"
 
+
+#include "CPalette.h"
+
 CAssetMgr::CAssetMgr()
 {
 
@@ -29,10 +32,9 @@ void CAssetMgr::Init()
 	// ##########        Texture     ############
 
 	// CamEffect - Respawn
-	pTex = new CTexture;
 	Vec2 vRes = CEngine::Get()->GetResolution();
 	pTex = LoadAsset<CTexture>(L"\\texture\\Effects\\CamEffect\\Respawn_Effect.png")->Stretch(Vec2(vRes.x, vRes.y * 4));
-
+	
 
 	// Player Bang
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_pink00.png")->Scale(5.f));
@@ -52,13 +54,28 @@ void CAssetMgr::Init()
 	LoadAsset<CTexture>(L"\\texture\\Player\\hair_white.png");
 	
 	// ##########        Tile        ############
-	CTile* pTile = new CTile;
-	pTile->SetTexture(LoadAsset<CTexture>(L"Tile_Girder", L"\\tilesets\\girder.png"));
-	pTile->SetScale(Vec2(8.f, 8.f));
-	pTile->SetLT(Vec2(0.f, 0.f));
-	pTile->SetDanger(false);
-	pTile->SetColInfo();
-	AddTile(L"Tile_Girder_0", pTile);
+	CPalette* pPalette = nullptr;
+	CTile* pTile = nullptr;
+
+	pPalette = new CPalette;
+	pTex = LoadAsset<CTexture>(L"\\tilesets\\girder.png");
+	pPalette->SetTex(pTex);
+	pPalette->SetScale(8, 8);
+	pPalette->SetRowCol(15, 6);
+	pPalette->SetDanger(false);
+	pPalette->SetCol(true);
+	pPalette->SetPalette();
+
+
+	pPalette->Save(L"\\tilesets\\palette\\girder.palette");
+
+	delete pPalette;
+
+	pPalette = new CPalette;
+	pPalette->Load(L"\\tilesets\\palette\\girder.palette");
+
+	delete pPalette;
+
 
 	pTile = new CTile;
 	pTile->SetTexture(LoadAsset<CTexture>(L"Tile_Spike_Right", L"\\tilesets\\danger\\spikes\\default_right00.png"));

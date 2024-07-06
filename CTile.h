@@ -21,8 +21,8 @@ private:
     Vec2        m_LT;
     Vec2        m_Scale;
 
-    bool        m_hasCollider;
-    bool        m_isDanger;
+    bool        m_HasCol;
+    bool        m_IsDanger;
 
     tColInfo    m_ColInfo;
 
@@ -30,23 +30,23 @@ public:
     CTexture* GetTexture() { return m_Tex; }
     Vec2 GetLT() { return m_LT; }
     Vec2 GetScale() { return m_Scale; }
-    bool HasCollider() { return m_hasCollider; }
-    bool IsDanger() { return m_isDanger; }
+    bool HasCollider() { return m_HasCol; }
+    bool IsDanger() { return m_IsDanger; }
     const tColInfo& GetColInfo() { return m_ColInfo; }
 
     void SetTexture(CTexture* _Tex) { m_Tex = _Tex; }
     void SetLT(Vec2 _LT) { m_LT = _LT; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 
-    void SetDanger(bool _b) { m_isDanger = _b; }
+    void SetDanger(bool _b) { m_IsDanger = _b; }
 
     void SetColInfo() {
-        m_hasCollider = true;
+        m_HasCol = true;
         m_ColInfo = { Vec2(0.5, 0.5), Vec2(1.0, 1.0) };
     }
 
     void SetColInfo(Vec2 _RenderOffset, Vec2 _RenderScale) {
-        m_hasCollider = true;
+        m_HasCol = true;
         m_ColInfo = { _RenderOffset, _RenderScale };
     }
 

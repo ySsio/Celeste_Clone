@@ -4,8 +4,8 @@
 
 CTile::CTile()
 	: m_Tex(nullptr)
-	, m_hasCollider(false)
-	, m_isDanger(false)
+	, m_HasCol(false)
+	, m_IsDanger(false)
 	, m_ColInfo{}
 {
 }
