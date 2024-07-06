@@ -72,7 +72,7 @@ void CAfterImage::Render()
 	BLENDFUNCTION blend{};
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;
-	blend.SourceConstantAlpha = (BYTE) (255 * (1 - m_AccTime / m_Duration));
+	blend.SourceConstantAlpha = (BYTE) (255 * (1 - min(m_AccTime / m_Duration, 1.f)));
 	blend.AlphaFormat = AC_SRC_ALPHA;
 
 	AlphaBlend(BackDC
