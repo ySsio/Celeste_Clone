@@ -18,6 +18,8 @@
 #include "CLevel.h"
 #include "CAfterImage.h"
 
+#include "CEngine.h"
+
 
 CPlayer::CPlayer()
 	: m_Sprite(nullptr)
@@ -134,7 +136,7 @@ void CPlayer::Tick()
 
 }
 
-#include "CEngine.h"
+
 void CPlayer::Render()
 {
 	// clear Buffer
@@ -160,8 +162,8 @@ void CPlayer::Render()
 			blend.AlphaFormat = AC_SRC_ALPHA;
 
 			AlphaBlend(m_Buffer->GetDC()
-				, m_HairCurPos[i].x - Width / 2.f
-				, m_HairCurPos[i].y - Height / 2.f
+				, (int)(m_HairCurPos[i].x - Width / 2.f)
+				, (int)(m_HairCurPos[i].y - Height / 2.f)
 				, Width, Height
 				, m_HairTex->GetDC()
 				, 0, 0
@@ -212,13 +214,13 @@ void CPlayer::BangColorUpdate()
 	}
 	else if (m_DashCount == 1)
 	{
-		// 1. pink -> red
+		// 1. pink -> white -> red
 		// 2. blue -> white -> red
-		if (m_Color == BANG_COLOR::BLUE)
+		if (m_Color == BANG_COLOR::BLUE || m_Color == BANG_COLOR::PINK)
 		{
 			m_Color = BANG_COLOR::WHITE;
 		}
-		else if ((m_Color == BANG_COLOR::WHITE && AccTime >= m_ColorChangeDuration) || m_Color == BANG_COLOR::PINK)
+		else if (m_Color == BANG_COLOR::WHITE && AccTime >= m_ColorChangeDuration)
 		{
 			m_Color = BANG_COLOR::RED;
 			AccTime = 0.f;
@@ -226,8 +228,12 @@ void CPlayer::BangColorUpdate()
 	}
 	else if (m_DashCount == 0)
 	{
-		// red -> blue
+		// red -> white -> blue
 		if (m_Color == BANG_COLOR::RED)
+		{
+			m_Color = BANG_COLOR::WHITE;
+		}
+		if (m_Color == BANG_COLOR::WHITE && AccTime >= m_ColorChangeDuration)
 		{
 			m_Color = BANG_COLOR::BLUE;
 		}
@@ -398,6 +404,8 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 			m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
 
 			// 대쉬 회복
+			// (대쉬 중일떄는 회복 x) - 보류
+			//if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState())
 			m_DashCount = m_DashMaxCount;
 		}
 		else
