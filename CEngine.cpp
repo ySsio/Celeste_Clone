@@ -123,6 +123,15 @@ void CEngine::Progress()
 	// tick
 	CTimeMgr::Get()->Tick();
 	CKeyMgr::Get()->Tick();
+
+	static bool	Pause = false;
+
+	if (KEY_TAP(KEY::SPACE))
+		Pause = !Pause;
+
+	if (Pause)
+		return;
+
 	CLevelMgr::Get()->Tick();
 	CLevelMgr::Get()->FinalTick();
 	CCollisionMgr::Get()->Tick();

@@ -23,6 +23,7 @@ using std::queue;
 
 #include <map>
 using std::map;
+using std::pair;
 using std::make_pair;
 
 #include <array>
