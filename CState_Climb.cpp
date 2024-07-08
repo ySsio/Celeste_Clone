@@ -5,8 +5,8 @@
 
 CState_Climb::CState_Climb()
 	: m_Warning(false)
-	, m_ClimbDuration(4.f)
-	, m_SlideWaitTime(1.5f)
+	, m_ClimbDuration(3.5f)
+	, m_SlideWaitTime(1.f)
 	, m_AccTime(0.f)
 {
 }
@@ -41,13 +41,14 @@ void CState_Climb::Slide(bool _Warning)
 	pRigid->SetGravity(true);
 	pRigid->SetMaxSpeed(PLAYER_SLIDE_SPEED);
 
+	GetBangAnimator()->Init();
+	GetBangAnimator()->Pause();
+
 	if (!_Warning)
 	{
 		// 애니메이션 고정해서 미끄러지듯이 내려감
-		GetBangAnimator()->Pause();
-		GetBangAnimator()->Init();
-		GetBodyAnimator()->Pause();
 		GetBodyAnimator()->Init();
+		GetBodyAnimator()->Pause();
 	}
 
 }
@@ -85,15 +86,16 @@ void CState_Climb::FinalTick()
 
 		pRigid->SetVelocity(Vec2(0.f, 0.f));
 
+		GetBangAnimator()->Init();
+		GetBangAnimator()->Pause();
+
 		// 애니메이션 변경
 		if (vDir.x == 1.f)
 		{
-			GetBangAnimator()->Pause();
 			GetBodyAnimator()->Play(L"Player_Climb_Warning", true);
 		}
 		else if (vDir.x == -1.f)
 		{
-			GetBangAnimator()->Pause();
 			GetBodyAnimator()->Play(L"Player_Climb_Warning_FlipX", true);
 		}
 	}
@@ -142,10 +144,10 @@ void CState_Climb::FinalTick()
 
 			if (KEY_NONE(KEY::UP))
 			{
-				GetBangAnimator()->Pause();
 				GetBangAnimator()->Init();
-				GetBodyAnimator()->Pause();
+				GetBangAnimator()->Pause();
 				GetBodyAnimator()->Init();
+				GetBodyAnimator()->Pause();
 			}
 		}
 	}

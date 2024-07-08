@@ -83,6 +83,8 @@ public:
     bool IsGround() { return m_IsGround; }
     bool IsWall() { return m_IsWall; }
 
+    void ResetDash() { m_DashCount = m_DashMaxCount; }
+
 public:
     virtual void Tick() override;
     virtual void Render() override;

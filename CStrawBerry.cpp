@@ -57,7 +57,7 @@ void CStrawBerry::Tick()
 	if (m_Collected)
 	{
 		// 수집 애니메이션이 끝나면
-		if (!m_Animator->GetCurAnim())
+		if (m_Animator->IsDone())
 		{
 			// 이 객체를 파괴
 			Delete_Object(this);

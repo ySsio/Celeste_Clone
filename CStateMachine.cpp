@@ -14,7 +14,7 @@ CStateMachine::CStateMachine()
 
 CStateMachine::~CStateMachine()
 {
-    Release_Map(m_mapState);
+    Release_HashMap(m_mapState);
 }
 
 void CStateMachine::AddState(const wstring& _StrName, CState* _State)
@@ -71,7 +71,8 @@ void CStateMachine::FinalTick()
         if (pPlayer->IsGround())
         {
             // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
-            if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) && KEY_NONE(KEY::Z))
+            if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) && KEY_NONE(KEY::Z)
+                && FindState(L"Bounce") != m_CurState)
             {
                 ChangeState(L"Idle");
             }

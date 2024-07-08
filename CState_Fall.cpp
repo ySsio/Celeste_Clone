@@ -13,10 +13,6 @@ CState_Fall::~CState_Fall()
 
 void CState_Fall::PlayAnimation()
 {
-}
-
-void CState_Fall::Enter()
-{
 	Vec2 vDir = GetOwner()->GetDir();
 
 	if (vDir.x == 1.f)
@@ -29,6 +25,11 @@ void CState_Fall::Enter()
 		GetBangAnimator()->Play(L"Player_Bang_Fall_FlipX", true);
 		GetBodyAnimator()->Play(L"Player_Fall_FlipX", true);
 	}
+}
+
+void CState_Fall::Enter()
+{
+	PlayAnimation();
 }
 
 void CState_Fall::Exit()
@@ -55,15 +56,10 @@ void CState_Fall::FinalTick()
 		pRigid->SetVelocity(Vec2(PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 
-	if (vDir.x == 1.f)
+
+	if (pPlayer->IsDirChanged())
 	{
-		GetBangAnimator()->Play(L"Player_Bang_Fall", true);
-		GetBodyAnimator()->Play(L"Player_Fall", true);
-	}
-	else if (vDir.x == -1.f)
-	{
-		GetBangAnimator()->Play(L"Player_Bang_Fall_FlipX", true);
-		GetBodyAnimator()->Play(L"Player_Fall_FlipX", true);
+		PlayAnimation();
 	}
 
 

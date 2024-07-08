@@ -15,7 +15,19 @@ void Release_Vector(vector<T*>& _vec)
 }
 
 template <typename T1, typename T2>
-void Release_Map(unordered_map<T1, T2*>& _map)
+void Release_Map(map<T1, T2*>& _map)
+{
+	for (auto inst : _map)
+	{
+		if (inst.second == nullptr) continue;
+		delete inst.second;
+	}
+
+	_map.clear();
+}
+
+template <typename T1, typename T2>
+void Release_HashMap(unordered_map<T1, T2*>& _map)
 {
 	for (auto inst : _map)
 	{

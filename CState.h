@@ -36,7 +36,7 @@ public:
     virtual void Reset() {}
 
 public:
-    virtual void PlayAnimation() = 0;
+    virtual void PlayAnimation() {};
 
 public:
     virtual void Enter() = 0;

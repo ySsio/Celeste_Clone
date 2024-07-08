@@ -14,9 +14,9 @@ CRigidBody::CRigidBody()
 	, m_Gravity(true)
 	, m_Ground(false)
 	, m_Jump(false)
-	, m_GravityCoef(1.5f)
-	, m_GravityOriginalCoef(1.5f)
-	, m_GravityJumpCoef(1.f)
+	, m_GravityCoef(GRAVITY_COEF)
+	, m_GravityOriginalCoef(GRAVITY_COEF)
+	, m_GravityJumpCoef(GRAVITY_COEF_JUMP)
 	, m_JumpSpeed(800.f)
 {
 }

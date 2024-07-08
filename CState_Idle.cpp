@@ -43,6 +43,7 @@ void CState_Idle::Exit()
 void CState_Idle::FinalTick()
 {
 	CPlayer* pPlayer = GetOwner();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	if (GetBodyAnimator()->IsDone())
 	{
@@ -50,7 +51,7 @@ void CState_Idle::FinalTick()
 	}
 
 	// 속도를 0으로 설정
-	pPlayer->GetRigidBody()->SetVelocity(Vec2(0.f, 0.f));
+	pRigid->SetVelocity(Vec2(0.f, 0.f));
 
 
 	// #### State 변경 ####

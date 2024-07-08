@@ -13,10 +13,14 @@
 #include "CState_Fall.h"
 #include "CState_Jump.h"
 #include "CState_Dead.h"
+#include "CState_Bounce.h"
 
 #include "CLevelMgr.h"
 #include "CLevel.h"
 #include "CAfterImage.h"
+
+
+#include "CSpring.h"
 
 #include "CEngine.h"
 
@@ -36,6 +40,7 @@ CPlayer::CPlayer()
 	, m_DashCount(2)
 	, m_IsGround(false)
 	, m_IsWall(false)
+	, m_ColUpdated(false)
 	, m_Color(BANG_COLOR::PINK)
 	, m_ColorChangeDuration(0.1f)
 	, m_HairCount(5)
@@ -106,6 +111,7 @@ CPlayer::CPlayer()
 	m_StateMachine->AddState(L"Fall", new CState_Fall);
 	m_StateMachine->AddState(L"Jump", new CState_Jump);
 	m_StateMachine->AddState(L"Dead", new CState_Dead);
+	m_StateMachine->AddState(L"Bounce", new CState_Bounce);
 	m_StateMachine->ChangeState(L"Idle");
 
 
@@ -165,7 +171,7 @@ void CPlayer::Render()
 		m_Sprite->ClearTex();
 
 	// hair render
-	if (!m_PlayerDead)
+	if (!m_PlayerDead && m_HairTex)
 	{
 		for (int i = 0; i < m_HairCount; ++i)
 		{
@@ -357,7 +363,8 @@ void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 	if (m_PlayerDead)
 		return;
 
-	if (LAYER_TYPE::PLATFORM == _Other->GetType())
+	// 충돌한 오브젝트가 플랫폼인 경우
+	if (_Other->GetType() == LAYER_TYPE::PLATFORM)
 	{
 		CTileMap* pTileMap = _Other->GetComponent<CTileMap>();
 		if (pTileMap->IsTileDanger(_OtherCol))
@@ -367,7 +374,24 @@ void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 
 			m_StateMachine->ChangeState(L"Dead");
 		}
+
+		
 	}
+	else if (_Other->GetType() == LAYER_TYPE::OBJ)
+	{
+		CSpring* pSpring = dynamic_cast<CSpring*>(_Other);
+
+		// 스프링과 부딪힌 경우
+		if (pSpring)
+		{
+			// Bounce 상태 진입
+			CState_Bounce* pState = dynamic_cast<CState_Bounce*>(m_StateMachine->FindState(L"Bounce"));
+			pState->SetDir(pSpring->GetDir());
+
+			m_StateMachine->ChangeState(L"Bounce");
+		}
+	}
+	
 }
 
 void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
@@ -384,71 +408,83 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 
 	if (_Col == m_Collider)
 	{
-		Vec2 vPos = GetPos();
-		Vec2 vColPos = vPos + _Col->GetOffset();
-		Vec2 vColScale = _Col->GetScale();
-
-		float minX = vColPos.x - vColScale.x / 2.f;
-		float maxX = vColPos.x + vColScale.x / 2.f;
-		float minY = vColPos.y - vColScale.y / 2.f;
-		float maxY = vColPos.y + vColScale.y / 2.f;
-
-		Vec2 vOtherPos = _OtherCol->GetFinalPos();
-		Vec2 vOtherColScale = _OtherCol->GetScale();
-
-		float minOtherX = vOtherPos.x - vOtherColScale.x / 2.f;
-		float maxOtherX = vOtherPos.x + vOtherColScale.x / 2.f;
-		float minOtherY = vOtherPos.y - vOtherColScale.y / 2.f;
-		float maxOtherY = vOtherPos.y + vOtherColScale.y / 2.f;
-
-		float dx = vColPos.x - vOtherPos.x;
-		float dy = vColPos.y - vOtherPos.y;
-
-		// 각 축에서의 침투 깊이
-		float overlapX = (vColScale.x / 2.f + vOtherColScale.x / 2.f) - std::abs(dx);
-		float overlapY = (vColScale.y / 2.f + vOtherColScale.y / 2.f) - std::abs(dy);
-
-		// 침투 깊이가 더 작은 축을 따라 해소
-		// 옆으로 닿은 경우
-		if (overlapX < overlapY)
+		if (_Other->GetType() == LAYER_TYPE::PLATFORM)
 		{
-			// 겹친 길이만큼 다시 밀어냄
-			vPos.x += (dx < 0) ? -overlapX : overlapX;
-		}
-		// 상하로 닿은 경우
-		else if (overlapX > overlapY)
-		{
-			// 플레이어가 충돌체 위에서 닿은 경우
-			if (dy < 0)
+			Vec2 vPos = GetPos();
+			Vec2 vColPos = vPos + _Col->GetOffset();
+			Vec2 vColScale = _Col->GetScale();
+
+			float minX = vColPos.x - vColScale.x / 2.f;
+			float maxX = vColPos.x + vColScale.x / 2.f;
+			float minY = vColPos.y - vColScale.y / 2.f;
+			float maxY = vColPos.y + vColScale.y / 2.f;
+
+			Vec2 vOtherPos = _OtherCol->GetFinalPos();
+			Vec2 vOtherColScale = _OtherCol->GetScale();
+
+			float minOtherX = vOtherPos.x - vOtherColScale.x / 2.f;
+			float maxOtherX = vOtherPos.x + vOtherColScale.x / 2.f;
+			float minOtherY = vOtherPos.y - vOtherColScale.y / 2.f;
+			float maxOtherY = vOtherPos.y + vOtherColScale.y / 2.f;
+
+			float dx = vColPos.x - vOtherPos.x;
+			float dy = vColPos.y - vOtherPos.y;
+
+			// 각 축에서의 침투 깊이
+			float overlapX = (vColScale.x / 2.f + vOtherColScale.x / 2.f) - std::abs(dx);
+			float overlapY = (vColScale.y / 2.f + vOtherColScale.y / 2.f) - std::abs(dy);
+
+			// 침투 깊이가 더 작은 축을 따라 해소
+			// 옆으로 닿은 경우
+			if (overlapX < overlapY)
 			{
 				// 겹친 길이만큼 다시 밀어냄
-				vPos.y -= overlapY;
-				m_RigidBody->SetGravity(false);
-				m_RigidBody->SetGround(true);
-				m_RigidBody->SetVelocity(Vec2(m_RigidBody->GetVelocity().x, 0.f));
-
-				m_IsGround = true;
-
-				// 대쉬 회복
-				// (대쉬 중일떄는 회복 x) - 보류
-				//if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState())
-				m_DashCount = m_DashMaxCount;
-
-				// ClimbAccTime 회복
-				m_StateMachine->FindState(L"Climb")->Reset();
+				vPos.x += (dx < 0) ? -overlapX : overlapX;
 			}
-			// 플레이어가 충돌체 아래에서 닿은 경우
-			else
+			// 상하로 닿은 경우
+			else if (overlapX > overlapY)
 			{
-				// 겹친 길이만큼 다시 밀어냄
-				vPos.y += overlapY;
+				// 플레이어가 충돌체 위에서 닿은 경우
+				if (dy < 0)
+				{
+					// 겹친 길이만큼 다시 밀어냄
+					vPos.y -= overlapY;
+					m_RigidBody->SetGravity(false);
+					m_RigidBody->SetGround(true);
+
+					// Ground 세팅
+					m_IsGround = true;
+
+					// 대쉬 회복
+					// (대쉬 중일떄는 회복 x) - 보류
+					//if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState())
+					ResetDash();
+
+					// ClimbAccTime 회복
+					m_StateMachine->FindState(L"Climb")->Reset();
+				}
+				// 플레이어가 충돌체 아래에서 닿은 경우
+				else
+				{
+					// 겹친 길이만큼 다시 밀어냄
+					vPos.y += overlapY;
+				}
 			}
+
+			SetPos(vPos);
+		}
+		else if (_Other->GetType() == LAYER_TYPE::OBJ)
+		{
+			
 		}
 
-		SetPos(vPos);
+		
 	}
 	else if (_Col == m_WallDetector)
 	{
+		if (_Other->GetType() != LAYER_TYPE::PLATFORM)
+			return;
+
 		m_IsWall = true;
 	}
 

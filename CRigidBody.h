@@ -33,7 +33,9 @@ private:
 
 public:
     void SetForce(Vec2 _Force) { m_Force = _Force; }
-    void SetVelocity(Vec2 _Velocity) { m_Velocity = _Velocity; }
+    void SetVelocity(Vec2 _Velocity) { 
+        m_Velocity = _Velocity; 
+    }
     void SetMass(float _Mass) { m_Mass = _Mass; }
 
     void SetMaxSpeed(float _Speed) { m_MaxSpeed = _Speed; }
@@ -42,6 +44,8 @@ public:
     void SetJumpSpeed(float _Speed) { m_JumpSpeed = _Speed; }
     void SetGravity(bool _b) { m_Gravity = _b; }
 	void SetGround(bool _b) { m_Ground = _b; }
+
+    void SetGravityCoef(float _Coef) { m_GravityCoef = _Coef; }
 
 
     void SetFrictionCoef(Vec2 _Friction) { m_FrictionCoef = _Friction; }
