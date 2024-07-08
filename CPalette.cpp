@@ -37,7 +37,7 @@ void CPalette::SetPalette()
 
 			pTile->SetDanger(m_IsDanger);
 
-			CAssetMgr::Get()->AddAsset<CTile>(L"Tile_Girder_" + std::to_wstring(Row) + L"_" + std::to_wstring(Col), pTile);
+			CAssetMgr::Get()->AddAsset<CTile>(L"Tile_" + m_Tex->GetName() + L"_" + std::to_wstring(Row) + L"_" + std::to_wstring(Col), pTile);
 
 			SetTile(Row, Col, pTile);
 		}
@@ -63,7 +63,7 @@ void CPalette::Save(const wstring& _strRelativeFilePath)
 
 	// 1. 텍스쳐의 경로 저장 (문자열 저장할 때는 문자열 길이를 먼저 저장함)
 	wstring TexPath = m_Tex->GetPath();
-	int len = TexPath.length();
+	int len = (int)TexPath.length();
 	fwrite(&len, sizeof(int), 1, pFile);
 	fwrite(TexPath.c_str(), sizeof(wchar_t), len, pFile);
 
@@ -89,7 +89,7 @@ void CPalette::Save(const wstring& _strRelativeFilePath)
 			CTile* pTile = m_vecTile[Row * m_ColCnt + Col];
 			// 0. 타일 이름 저장
 			wstring Name = pTile->GetName();
-			int len = Name.length();
+			int len = (int)Name.length();
 			fwrite(&len, sizeof(int), 1, pFile);
 			fwrite(Name.c_str(), sizeof(wchar_t), len, pFile);
 			// 1. 텍스쳐 정보는 위의 텍스쳐를 공유할 것이므로 저장하지 않음. 로드할 때 신경쓰기
@@ -122,7 +122,9 @@ void CPalette::Load(const wstring& _strRelativeFilePath)
 	int len = 0;
 	fread(&len, sizeof(int), 1, pFile);
 	wchar_t szBuff[255]{};
-	fread(&szBuff, sizeof(wchar_t), len, pFile);
+
+	if (0< len && len < 255)
+		fread(&szBuff, sizeof(wchar_t), len, pFile);
 
 	wstring TexPath = szBuff;
 	m_Tex = CAssetMgr::Get()->LoadAsset<CTexture>(TexPath);
@@ -153,7 +155,9 @@ void CPalette::Load(const wstring& _strRelativeFilePath)
 			// 0. 타일 이름 불러오기
 			wchar_t szBuff[255]{};
 			fread(&len, sizeof(int), 1, pFile);
-			fread(&szBuff, sizeof(wchar_t), len, pFile);
+
+			if (0 < len && len < 255)
+				fread(&szBuff, sizeof(wchar_t), len, pFile);
 			wstring Name = szBuff;
 
 			// 1. 텍스쳐 정보 등록
