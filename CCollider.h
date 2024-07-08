@@ -9,6 +9,8 @@ private:
     Vec2    m_Scale;
     Vec2    m_FinalPos;
 
+    bool    m_Trigger;
+
     int     m_OverlapCount;
 
 public:
@@ -19,6 +21,9 @@ public:
 
     void SetOffset(Vec2 _Offset) { m_MaxDistance = _Offset; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
+
+    bool IsTrigger() { return m_Trigger; }
+    void SetTrigger(bool _b) { m_Trigger = _b; }
 
 public:
     virtual void FinalTick() override;

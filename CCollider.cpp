@@ -7,7 +7,8 @@
 #include "CEngine.h"
 
 CCollider::CCollider()
-	: m_OverlapCount(0)
+	: m_Trigger(false)
+	, m_OverlapCount(0)
 {
 }
 
