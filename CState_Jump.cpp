@@ -11,6 +11,26 @@ CState_Jump::~CState_Jump()
 {
 }
 
+void CState_Jump::Jump()
+{
+	CPlayer* pPlayer = GetOwner();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
+	pRigid->SetVelocity(Vec2(pRigid->GetVelocity().x, -PLAYER_JUMP_SPEED));
+	pRigid->SetGravityCoef(GRAVITY_COEF_JUMP);
+}
+
+void CState_Jump::EndJump()
+{
+	CPlayer* pPlayer = GetOwner();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
+	pRigid->SetVelocity(Vec2(pRigid->GetVelocity().x, 0.f));
+	pRigid->SetGravityCoef(GRAVITY_COEF);
+
+	GetStateMachine()->ChangeState(L"Fall");
+}
+
 void CState_Jump::PlayAnimation()
 {
 	Vec2 vDir = GetOwner()->GetDir();
@@ -31,15 +51,15 @@ void CState_Jump::Enter()
 {
 	PlayAnimation();
 
-	CPlayer* pPlayer = GetOwner();
-	
-	CRigidBody* pRigid = pPlayer->GetRigidBody();
-
-	pRigid->Jump();
+	Jump();
 }
 
 void CState_Jump::Exit()
 {
+	CPlayer* pPlayer = GetOwner();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
+	pRigid->SetGravityCoef(GRAVITY_COEF);
 }
 
 void CState_Jump::FinalTick()
@@ -50,12 +70,10 @@ void CState_Jump::FinalTick()
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
-		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(-400.f, 0.f) * fDT);
 		pRigid->SetVelocity(Vec2(-PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
-		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(400.f, 0.f) * fDT);
 		pRigid->SetVelocity(Vec2(PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 
@@ -64,19 +82,15 @@ void CState_Jump::FinalTick()
 		PlayAnimation();
 	}
 
+	
+
 
 	// #### State 변경 ####
-
-	if (!pRigid->IsJump())
+	Vec2 Velocity = pRigid->GetVelocity();
+	if (fabs(Velocity.y) <= 5.f || KEY_RELEASED(KEY::C))
 	{
-		GetStateMachine()->ChangeState(L"Fall");
+		EndJump();
 	}
-	// C키를 떼면 점프를 종료
-	else if (KEY_RELEASED(KEY::C))
-	{
-		pRigid->EndJump();
-	}
-
 
 
 }

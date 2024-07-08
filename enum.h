@@ -7,6 +7,8 @@ enum class PEN_TYPE
 	RED,
 	GREEN,
 	BLUE,
+
+	RED_DASH,
 	
 	END,
 };

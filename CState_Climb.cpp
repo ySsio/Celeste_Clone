@@ -5,7 +5,7 @@
 
 CState_Climb::CState_Climb()
 	: m_Warning(false)
-	, m_ClimbDuration(3.5f)
+	, m_ClimbDuration(6.f)
 	, m_SlideWaitTime(1.f)
 	, m_AccTime(0.f)
 {
@@ -112,7 +112,7 @@ void CState_Climb::FinalTick()
 	if (!m_Warning)
 	{
 		// Z키를 누르고 있으면 고정
-		if (KEY_PRESSED(KEY::Z))
+		if(KEY_PRESSED(KEY::Z))
 		{
 			// 플레이어 방향 고정
 			pPlayer->SetDirFix(true);
@@ -127,7 +127,7 @@ void CState_Climb::FinalTick()
 				pRigid->SetVelocity(Vec2(0.f, -PLAYER_CLIMB_SPEED));
 
 				// 올라가면 버틸 수 있는 시간 2배 속도로 감소 (한 번 더 더해줌으로써)
-				m_AccTime += fDT;
+				m_AccTime += 2 * fDT;
 			}
 
 			// Z를 누른 상태로 아래 키를 누르면 기어 내려감 (slide와 다름)

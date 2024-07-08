@@ -71,30 +71,28 @@ void CStateMachine::FinalTick()
         if (pPlayer->IsGround())
         {
             // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
-            if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) && KEY_NONE(KEY::Z)
+            if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) 
                 && FindState(L"Bounce") != m_CurState)
             {
                 ChangeState(L"Idle");
             }
         }
-        else
+
+        if (pPlayer->IsWall())
         {
-            if (!pPlayer->IsWall())
+            // Climb State : 벽에 닿아있고 Z키 또는 좌우키 눌려있을 떄
+            if ((KEY_PRESSED(KEY::Z) || KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT)))
             {
-                // Fall State : 바닥이랑 벽에 안 닿아있고 y축 속도가 양수일 때
-                if (pRigid->GetVelocity().y > 0.f)
-                {
-                    ChangeState(L"Fall");
-                }
+                ChangeState(L"Climb");
             }
         }
-
-        // Climb State : 바닥에 안 닿아있고 벽에만 닿아있을 떄
-        // Z키 또는 좌우키 눌려있을 떄
-        if (pPlayer->IsWall()
-            && (KEY_PRESSED(KEY::Z) || KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT)))
+        else
         {
-            ChangeState(L"Climb");
+            // Fall State : 바닥이랑 벽에 안 닿아있고 y축 속도가 양수일 때
+            if (!pPlayer->IsGround() && pRigid->GetVelocity().y > 0.f)
+            {
+                ChangeState(L"Fall");
+            }
         }
 
         // Dash State : Dash 횟수가 0보다 크고, X키가 입력되었을 때

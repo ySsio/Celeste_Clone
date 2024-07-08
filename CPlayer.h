@@ -55,6 +55,7 @@ private:
     Vec2                m_BounceDir;
 
 
+
 public:
     CAnimator* GetBangAnimator() { return m_BangAnim; }
     CAnimator* GetBodyAnimator() { return m_BodyAnim; }

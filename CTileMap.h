@@ -4,7 +4,7 @@
 class CTile;
 class CCollider;
 
-// 좌상단 위치가 Position
+// 좌상단 위치가 Position / Offset지정 가능
 class CTileMap :
     public CComponent
 {
@@ -14,6 +14,8 @@ private:
     UINT        m_RowCnt;
     UINT        m_ColCnt;
 
+    Vec2        m_Offset;
+
     vector<CTile*>      m_vecTile;
     unordered_map<CCollider*, Vec2> m_mapCol;
 
@@ -21,7 +23,7 @@ public:
     UINT GetRowCnt() { return m_RowCnt; }
     UINT GetColCnt() { return m_ColCnt; }
 
-    void SetScale(UINT _Width, UINT _Height) { m_UnitWidth = _Width; m_UnitHeight = _Height; }
+    void SetUnitScale(UINT _Width, UINT _Height) { m_UnitWidth = _Width; m_UnitHeight = _Height; }
 
     void SetRowCol(UINT _Row, UINT _Col) {
         m_RowCnt = _Row; 
@@ -29,6 +31,8 @@ public:
         m_vecTile.resize(_Row * _Col);
     }
     void SetTile(UINT _Row, UINT _Col, CTile* _Tile);
+
+    void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
 
     Vec2 FindCollider(CCollider* _Col);
     bool IsTileDanger(CCollider* _Col);

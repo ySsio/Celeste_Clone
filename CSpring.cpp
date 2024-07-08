@@ -15,9 +15,9 @@ CSpring::CSpring()
 	m_Animator->AddAnimation(L"Spring_Active", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Spring_Active.anim"));
 	m_Animator->Play(L"Spring_Idle", true);
 
-	CCollider* pCol = AddComponent<CCollider>();
-	pCol->SetOffset(Vec2(0.f, 30.f));
-	pCol->SetScale(Vec2(80.f, 20.f));
+	m_Collider = AddComponent<CCollider>();
+	m_Collider->SetOffset(Vec2(0.f, 30.f));
+	m_Collider->SetScale(Vec2(80.f, 20.f));
 }
 
 CSpring::~CSpring()

@@ -42,7 +42,6 @@ bool CTileMap::IsTileDanger(CCollider* _Col)
 
 void CTileMap::AddCollider()
 {
-	Vec2 vRenderPos = GetOwner()->GetRenderPos();
 	for (UINT Row = 0; Row < m_RowCnt; ++Row)
 	{
 		for (UINT Col = 0; Col < m_ColCnt; ++Col)
@@ -52,14 +51,12 @@ void CTileMap::AddCollider()
 				continue;
 			}
 
-			Vec2 vTilePos = vRenderPos;
-			vTilePos.y += Row * m_UnitHeight;
-			vTilePos.x += Col * m_UnitWidth;
+			Vec2 vTilePos = Vec2(Col * m_UnitWidth, Row * m_UnitHeight) + m_Offset;
 
 			const tColInfo& Info = m_vecTile[Row * m_ColCnt + Col]->GetColInfo();
 
 			CCollider* pCol = GetOwner()->AddComponent<CCollider>();
-			pCol->SetOffset(Vec2((float)(Col * m_UnitWidth), (float)(Row * m_UnitHeight)) + Vec2(Info.Offset.x * m_UnitWidth, Info.Offset.y * m_UnitHeight));
+			pCol->SetOffset(vTilePos + Vec2(Info.Offset.x * m_UnitWidth, Info.Offset.y * m_UnitHeight));
 			pCol->SetScale(Vec2(Info.Scale.x * m_UnitWidth, Info.Scale.y * m_UnitHeight));
 
 			m_mapCol.emplace(pCol, Vec2((float)Row, (float)Col));
@@ -74,6 +71,8 @@ void CTileMap::FinalTick()
 void CTileMap::Render()
 {
 	Vec2 vRenderPos = GetOwner()->GetRenderPos();
+	vRenderPos += m_Offset;
+
 	for (UINT Row = 0; Row < m_RowCnt; ++Row)
 	{
 		for (UINT Col = 0; Col < m_ColCnt; ++Col)

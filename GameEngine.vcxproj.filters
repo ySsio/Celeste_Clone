@@ -173,6 +173,27 @@
     <Filter Include="Game\03.Object\04. Effect\DeadEffect">
       <UniqueIdentifier>{068bfdb2-6b50-4156-bbec-417b75e30a68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03.Object\05. BackGround">
+      <UniqueIdentifier>{bde9be07-8a98-4091-8554-b286b5241116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Asset\Palette">
+      <UniqueIdentifier>{49bba1ab-3a73-44f9-ba51-86ebf50387a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\Strawberry">
+      <UniqueIdentifier>{c8f439bc-a3f4-4e03-abb9-2d91c5fbaeeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Manager\GameMgr">
+      <UniqueIdentifier>{a20d99de-3d63-4ece-bbfa-4ec4823dd8af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\Spring">
+      <UniqueIdentifier>{9d15012b-59b7-4b61-94de-cd18ca670421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. Module\State\Bounce">
+      <UniqueIdentifier>{339a156a-a5b1-420f-86eb-006df865a7d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\ZipMover">
+      <UniqueIdentifier>{7193a832-7f32-4c6a-ae4e-9b4ce88e9d79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -349,6 +370,27 @@
     <ClInclude Include="CDeadEffect.h">
       <Filter>Game\03.Object\04. Effect\DeadEffect</Filter>
     </ClInclude>
+    <ClInclude Include="CBackGround.h">
+      <Filter>Game\03.Object\05. BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="CPalette.h">
+      <Filter>Game\06. Asset\Palette</Filter>
+    </ClInclude>
+    <ClInclude Include="CStrawBerry.h">
+      <Filter>Game\03.Object\Strawberry</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameMgr.h">
+      <Filter>Game\05. Manager\GameMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpring.h">
+      <Filter>Game\03.Object\Spring</Filter>
+    </ClInclude>
+    <ClInclude Include="CState_Bounce.h">
+      <Filter>Game\08. Module\State\Bounce</Filter>
+    </ClInclude>
+    <ClInclude Include="CZipMover.h">
+      <Filter>Game\03.Object\ZipMover</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -524,6 +566,27 @@
     </ClCompile>
     <ClCompile Include="CDeadEffect.cpp">
       <Filter>Game\03.Object\04. Effect\DeadEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackGround.cpp">
+      <Filter>Game\03.Object\05. BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="CPalette.cpp">
+      <Filter>Game\06. Asset\Palette</Filter>
+    </ClCompile>
+    <ClCompile Include="CStrawBerry.cpp">
+      <Filter>Game\03.Object\Strawberry</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameMgr.cpp">
+      <Filter>Game\05. Manager\GameMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpring.cpp">
+      <Filter>Game\03.Object\Spring</Filter>
+    </ClCompile>
+    <ClCompile Include="CState_Bounce.cpp">
+      <Filter>Game\08. Module\State\Bounce</Filter>
+    </ClCompile>
+    <ClCompile Include="CZipMover.cpp">
+      <Filter>Game\03.Object\ZipMover</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

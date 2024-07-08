@@ -1,0 +1,67 @@
+﻿  pch.cpp
+  CAfterImage.cpp
+  CAnimation.cpp
+  CAnimator.cpp
+  CAsset.cpp
+  CAssetMgr.cpp
+  CBackGround.cpp
+  CBase.cpp
+  CButtonUI.cpp
+  CCamera.cpp
+  CCollider.cpp
+  CCollisionMgr.cpp
+  CComponent.cpp
+  CDeadEffect.cpp
+D:\cpp_Exercise\GameEngine\GameEngine\CDeadEffect.cpp(23,15): warning C4244: '인수': 'float'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/CDeadEffect.cpp'을(를) 컴파일하는 중)
+  
+  CDebugMgr.cpp
+  CEngine.cpp
+  CAnimUI.cpp
+  CKeyMgr.cpp
+  CLevel.cpp
+  CLevelMgr.cpp
+  CLevel_AnimEditor.cpp
+  컴파일하고 있습니다...
+  CLevel_Editor.cpp
+  CLevel_Level_01.cpp
+  CLevel_MapEditor.cpp
+  CLevel_Start.cpp
+  CLogMgr.cpp
+  CManager.cpp
+  CObj.cpp
+  CPalette.cpp
+  CPanelUI.cpp
+  CPathMgr.cpp
+  CPlatform.cpp
+  CPlayer.cpp
+  CRigidBody.cpp
+  CSelectObject.cpp
+  CSound.cpp
+  CSpriteRenderer.cpp
+  CState.cpp
+  CStateMachine.cpp
+  CState_Dash.cpp
+  CState_Dead.cpp
+  컴파일하고 있습니다...
+  CState_Fall.cpp
+  CState_Climb.cpp
+  CState_Idle.cpp
+  CState_Jump.cpp
+  CState_Run.cpp
+  CTaskMgr.cpp
+  CTextBoxUI.cpp
+  CTextUI.cpp
+  CTexture.cpp
+  CTile.cpp
+  CTileMap.cpp
+  CTimeMgr.cpp
+  CUI.cpp
+  CUIMgr.cpp
+  function.cpp
+  main.cpp
+  코드를 생성하고 있습니다.
+  Previous IPDB not found, fall back to full compilation.
+  All 3207 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  GameEngine.vcxproj -> D:\cpp_Exercise\GameEngine\Output\bin\GameEngine.exe

@@ -143,6 +143,7 @@
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CAsset.h" />
     <ClInclude Include="CAssetMgr.h" />
+    <ClInclude Include="CBackGround.h" />
     <ClInclude Include="CBase.h" />
     <ClInclude Include="CButtonUI.h" />
     <ClInclude Include="CCamera.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="CDebugMgr.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CAnimUI.h" />
+    <ClInclude Include="CGameMgr.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
@@ -163,6 +165,7 @@
     <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CManager.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="CPalette.h" />
     <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlatform.h" />
@@ -170,9 +173,11 @@
     <ClInclude Include="CRigidBody.h" />
     <ClInclude Include="CSelectObject.h" />
     <ClInclude Include="CSound.h" />
+    <ClInclude Include="CSpring.h" />
     <ClInclude Include="CSpriteRenderer.h" />
     <ClInclude Include="CState.h" />
     <ClInclude Include="CStateMachine.h" />
+    <ClInclude Include="CState_Bounce.h" />
     <ClInclude Include="CState_Dash.h" />
     <ClInclude Include="CState_Dead.h" />
     <ClInclude Include="CState_Fall.h" />
@@ -180,6 +185,7 @@
     <ClInclude Include="CState_Idle.h" />
     <ClInclude Include="CState_Jump.h" />
     <ClInclude Include="CState_Run.h" />
+    <ClInclude Include="CStrawBerry.h" />
     <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTextBoxUI.h" />
     <ClInclude Include="CTextUI.h" />
@@ -189,6 +195,7 @@
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
+    <ClInclude Include="CZipMover.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
     <ClInclude Include="function.h" />
@@ -205,6 +212,7 @@
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CAsset.cpp" />
     <ClCompile Include="CAssetMgr.cpp" />
+    <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CBase.cpp" />
     <ClCompile Include="CButtonUI.cpp" />
     <ClCompile Include="CCamera.cpp" />
@@ -215,6 +223,7 @@
     <ClCompile Include="CDebugMgr.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CAnimUI.cpp" />
+    <ClCompile Include="CGameMgr.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
@@ -226,6 +235,7 @@
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CManager.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CPalette.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlatform.cpp" />
@@ -233,9 +243,11 @@
     <ClCompile Include="CRigidBody.cpp" />
     <ClCompile Include="CSelectObject.cpp" />
     <ClCompile Include="CSound.cpp" />
+    <ClCompile Include="CSpring.cpp" />
     <ClCompile Include="CSpriteRenderer.cpp" />
     <ClCompile Include="CState.cpp" />
     <ClCompile Include="CStateMachine.cpp" />
+    <ClCompile Include="CState_Bounce.cpp" />
     <ClCompile Include="CState_Dash.cpp" />
     <ClCompile Include="CState_Dead.cpp" />
     <ClCompile Include="CState_Fall.cpp" />
@@ -243,6 +255,7 @@
     <ClCompile Include="CState_Idle.cpp" />
     <ClCompile Include="CState_Jump.cpp" />
     <ClCompile Include="CState_Run.cpp" />
+    <ClCompile Include="CStrawBerry.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTextBoxUI.cpp" />
     <ClCompile Include="CTextUI.cpp" />
@@ -252,6 +265,7 @@
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIMgr.cpp" />
+    <ClCompile Include="CZipMover.cpp" />
     <ClCompile Include="function.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">

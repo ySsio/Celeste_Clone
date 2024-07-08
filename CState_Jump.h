@@ -6,6 +6,10 @@ class CState_Jump :
 
 
 public:
+    void Jump();
+    void EndJump();
+
+public:
     virtual void PlayAnimation() override;
 
 public:

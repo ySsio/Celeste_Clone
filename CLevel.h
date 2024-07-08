@@ -3,13 +3,13 @@
 
 class CObj;
 class CTexture;
+struct tRoom;
 
 class CLevel :
     public CBase
 {
 private:
     array<vector<CObj*>, (UINT)LAYER_TYPE::END>     m_ArrLayerObj;
-    CTexture*   m_BackGround;
 
     Vec2        m_CheckPoint;
 
@@ -30,8 +30,6 @@ public:
     void SetSpawnPoint(Vec2 _Spawn) { m_CheckPoint = _Spawn; }
     const vector<CObj*>& GetLayer(LAYER_TYPE _Type) { return m_ArrLayerObj[(UINT)_Type]; }
 
-public:
-    void SetBackGround(CTexture* _BackGround) { m_BackGround = _BackGround; }
 
 protected:
     void AddObject(CObj* _Obj, LAYER_TYPE _Type);

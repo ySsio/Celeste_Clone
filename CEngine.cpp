@@ -49,6 +49,12 @@ void CEngine::CreateGDIObject()
 	m_ArrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
 	m_ArrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 
+	DWORD dashStyles[2] = { 10, 10 }; // 15 ÇÈ¼¿ ¼±, 10 ÇÈ¼¿ °£°Ý
+	LOGBRUSH lb;
+	lb.lbStyle = BS_SOLID;
+	lb.lbColor = RGB(97, 55, 54);
+	m_ArrPen[(UINT)PEN_TYPE::RED_DASH] = ExtCreatePen(PS_GEOMETRIC | PS_USERSTYLE, 5, &lb, 2, dashStyles);
+
 	m_ArrBrush[(UINT)BRUSH_TYPE::WHITE] = CreateSolidBrush(RGB(255, 255, 255));
 	m_ArrBrush[(UINT)BRUSH_TYPE::BLACK] = CreateSolidBrush(RGB(0, 0, 0));
 	m_ArrBrush[(UINT)BRUSH_TYPE::RED] = CreateSolidBrush(RGB(255, 0, 0));

@@ -21,6 +21,7 @@
 
 
 #include "CSpring.h"
+#include "CZipMover.h"
 
 #include "CEngine.h"
 
@@ -124,7 +125,7 @@ CPlayer::CPlayer()
 
 
 	m_WallDetector = AddComponent<CCollider>();
-	m_WallDetector->SetScale(Vec2(1.f, 40.f));
+	m_WallDetector->SetScale(Vec2(10.f, 40.f));
 	
 
 	m_Buffer = new CTexture;
@@ -198,8 +199,7 @@ void CPlayer::Render()
 				, blend);
 		}
 	}
-	
-	
+
 
 	// bang render
 	if (m_BangAnim)
@@ -408,7 +408,7 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 
 	if (_Col == m_Collider)
 	{
-		if (_Other->GetType() == LAYER_TYPE::PLATFORM)
+		if (!_OtherCol->IsTrigger())
 		{
 			Vec2 vPos = GetPos();
 			Vec2 vColPos = vPos + _Col->GetOffset();
@@ -440,6 +440,8 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 			{
 				// 겹친 길이만큼 다시 밀어냄
 				vPos.x += (dx < 0) ? -overlapX : overlapX;
+
+				
 			}
 			// 상하로 닿은 경우
 			else if (overlapX > overlapY)
@@ -450,7 +452,6 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 					// 겹친 길이만큼 다시 밀어냄
 					vPos.y -= overlapY;
 					m_RigidBody->SetGravity(false);
-					m_RigidBody->SetGround(true);
 
 					// Ground 세팅
 					m_IsGround = true;
@@ -462,6 +463,14 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 
 					// ClimbAccTime 회복
 					m_StateMachine->FindState(L"Climb")->Reset();
+
+					// AutoMove
+					CZipMover* pZip = dynamic_cast<CZipMover*>(_Other);
+					if (pZip)
+					{
+						pZip->Activate();
+						pZip->GetComponent<CRigidBody>()->SetAutoMove(this);
+					}
 				}
 				// 플레이어가 충돌체 아래에서 닿은 경우
 				else
@@ -473,19 +482,48 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 
 			SetPos(vPos);
 		}
-		else if (_Other->GetType() == LAYER_TYPE::OBJ)
-		{
-			
-		}
 
+		
 		
 	}
 	else if (_Col == m_WallDetector)
 	{
-		if (_Other->GetType() != LAYER_TYPE::PLATFORM)
+		if (_OtherCol->IsTrigger())
 			return;
 
 		m_IsWall = true;
+
+
+		// Z키 누르면 최대한 겹치도록 (Wall Detector의 절반지점까지 겹치도록) 이동
+		if (KEY_PRESSED(KEY::Z))
+		{
+			Vec2 vPos = GetPos();
+			Vec2 vColPos = vPos + _Col->GetOffset();
+			Vec2 vColScale = _Col->GetScale();
+
+			Vec2 vOtherPos = _OtherCol->GetFinalPos();
+			Vec2 vOtherColScale = _OtherCol->GetScale();
+
+			float dx = vColPos.x - vOtherPos.x;
+
+			// X축에서의 침투 깊이
+			float overlapX = (vColScale.x / 2.f + vOtherColScale.x / 2.f) - std::abs(dx);
+			
+			float needX = m_WallDetector->GetScale().x / 2.f - overlapX;
+
+			// 겹친 길이만큼 다시 밀어냄
+			vPos.x += (dx < 0) ? needX : -needX;
+
+			SetPos(vPos);
+
+			// AutoMove
+			CZipMover* pZip = dynamic_cast<CZipMover*>(_Other);
+			if (pZip)
+			{
+				pZip->Activate();
+				pZip->GetComponent<CRigidBody>()->SetAutoMove(this);
+			}
+		}
 	}
 
 	
@@ -498,15 +536,24 @@ void CPlayer::OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCo
 	{
 		if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState() && !m_PlayerDead)
 			m_RigidBody->SetGravity(true);
-		m_RigidBody->SetGround(false);
 
 		m_IsGround = false;
 		m_IsWall = false;
 
 		// Climb 상태 해제
-		if (m_StateMachine->FindState(L"Climb") == m_StateMachine->GetCurState())
+		if (_Col == m_WallDetector && 
+			m_StateMachine->FindState(L"Climb") == m_StateMachine->GetCurState())
 		{
 			m_StateMachine->ChangeState(L"Idle");
 		}
 	}
+
+	// AutoMove 해제
+	CZipMover* pZip = dynamic_cast<CZipMover*>(_Other);
+	if (pZip)
+	{
+		pZip->GetComponent<CRigidBody>()->SetAutoMove(nullptr);
+	}
+
+	
 }

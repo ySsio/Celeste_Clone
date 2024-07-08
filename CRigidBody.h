@@ -17,6 +17,7 @@ private:
 
     // Friction
     Vec2    m_FrictionCoef;
+    bool    m_FrictionX;
     bool    m_FrictionY;
 
     // Gravity
@@ -25,30 +26,28 @@ private:
     float   m_GravityOriginalCoef;
     float   m_GravityJumpCoef;
     bool    m_Gravity;
-    bool    m_Ground;
-    bool    m_Jump;
 
     float   m_JumpSpeed;
+
+    // AutoMove (나를 따라와야되는 녀석을 등록)
+    CObj*     m_Follower;
 
 
 public:
     void SetForce(Vec2 _Force) { m_Force = _Force; }
-    void SetVelocity(Vec2 _Velocity) { 
-        m_Velocity = _Velocity; 
-    }
+    void SetVelocity(Vec2 _Velocity) { m_Velocity = _Velocity; }
     void SetMass(float _Mass) { m_Mass = _Mass; }
 
     void SetMaxSpeed(float _Speed) { m_MaxSpeed = _Speed; }
     void SetSpeedLimit(bool _b) { m_SpeedLimit = _b; }
 
-    void SetJumpSpeed(float _Speed) { m_JumpSpeed = _Speed; }
     void SetGravity(bool _b) { m_Gravity = _b; }
-	void SetGround(bool _b) { m_Ground = _b; }
 
     void SetGravityCoef(float _Coef) { m_GravityCoef = _Coef; }
 
 
     void SetFrictionCoef(Vec2 _Friction) { m_FrictionCoef = _Friction; }
+    void SetFrictionX(bool _b) { m_FrictionX = _b; }
     void SetFrictionY(bool _b) { m_FrictionY = _b; }
 
     float GetMaxSpeed() { return m_MaxSpeed; }
@@ -56,21 +55,16 @@ public:
     void AddForce(Vec2 _Force) { m_Force += _Force; }
     void AddVelocity(Vec2 _Velocity) { m_Velocity += _Velocity; }
 
+	void SetAutoMove(CObj* _Rigid) { m_Follower = _Rigid; }
+
 
     Vec2 GetForce() { return m_Force; }
     Vec2 GetAccel() { return m_Accel; }
     Vec2 GetVelocity() { return m_Velocity; }
     float GetMass() { return m_Mass; }
-    float GetJumpSpeed() { return m_JumpSpeed; }
-
-    bool IsGround() { return m_Ground; }
-    bool IsJump() { return m_Jump; }
 
 
 public:
-    void Jump();
-    void EndJump();
-
     void MovePosition(Vec2 _Pos);
 
 public:

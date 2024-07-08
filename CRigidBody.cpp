@@ -10,14 +10,13 @@ CRigidBody::CRigidBody()
 	, m_MaxSpeed(PLAYER_MAX_SPEED)
 	, m_SpeedLimit(true)
 	, m_FrictionCoef(FRICTION)
+	, m_FrictionX(true)
 	, m_FrictionY(false)
 	, m_Gravity(true)
-	, m_Ground(false)
-	, m_Jump(false)
 	, m_GravityCoef(GRAVITY_COEF)
 	, m_GravityOriginalCoef(GRAVITY_COEF)
 	, m_GravityJumpCoef(GRAVITY_COEF_JUMP)
-	, m_JumpSpeed(800.f)
+	, m_JumpSpeed(PLAYER_JUMP_SPEED)
 {
 }
 
@@ -25,24 +24,6 @@ CRigidBody::~CRigidBody()
 {
 }
 
-void CRigidBody::Jump()
-{
-	if (!m_Ground)
-		return;
-
-	SetVelocity(Vec2(m_Velocity.x, -m_JumpSpeed));
-	m_GravityCoef = m_GravityJumpCoef;
-	m_Jump = true;
-}
-
-void CRigidBody::EndJump()
-{
-	assert(m_Jump);
-
-	SetVelocity(Vec2(m_Velocity.x, 0.f));
-	m_GravityCoef = m_GravityOriginalCoef;
-	m_Jump = false;
-}
 
 
 
@@ -70,7 +51,7 @@ void CRigidBody::FinalTick()
 
 	// 2. 마찰력
 	// x축
-	if (m_Velocity.x)
+	if (m_FrictionX && m_Velocity.x)
 	{
 		float dir = m_Velocity.Normalized().x;
 
@@ -92,17 +73,24 @@ void CRigidBody::FinalTick()
 	}
 	
 
+	Vec2 vPos = pOwner->GetPos();
+	Vec2 vDiff = m_Velocity * fDT;
 
-	// 점프 중에 속도가 0에 가까워지면 (최고점) 점프 종료
-	if (m_Jump && fabs(m_Velocity.y) <= 5.f)
+	if (m_Follower)
 	{
-		EndJump();
+		m_Follower->SetPos(m_Follower->GetPos() + vDiff);
+		
+
+		// 이걸 주석 걸면 Follower가 밀려날 때는 유리한데 당겨질 때는 순간적으로 콜라이더가 떨어지는 현상 발생
+		// 이걸 주석 안걸면 Follower가 당겨질 때는 유리한데 밀려나다가 멈췄을 때 Follower Rigidbody에서 이동한 거리가 있어서 튕겨나가 버리는 현상 발생
+		vector<CCollider*> cols = m_Follower->GetComponents<CCollider>();
+		for (auto col : cols)
+		{
+			col->FinalTick();
+		}
 	}
 
-	Vec2 vPos = pOwner->GetPos();
-	vPos += m_Velocity * fDT;
-
-	pOwner->SetPos(vPos);
+	pOwner->SetPos(vPos + vDiff);
 
 	m_Force = Vec2(0.f, 0.f);
 }

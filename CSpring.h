@@ -7,7 +7,11 @@ class CSpring :
 private:
     CAnimator*  m_Animator;
 
+    CCollider*  m_Collider;
+
     Vec2        m_Dir;
+
+    Vec2        m_BouncePos;
 
 
 public:

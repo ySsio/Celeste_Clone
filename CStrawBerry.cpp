@@ -23,6 +23,7 @@ CStrawBerry::CStrawBerry()
 	CCollider* pCol = AddComponent<CCollider>();
 	pCol->SetOffset(Vec2(0.f, 0.f));
 	pCol->SetScale(Vec2(40.f, 40.f));
+	pCol->SetTrigger(true);
 
 }
 
@@ -79,7 +80,7 @@ void CStrawBerry::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _Ot
 {
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_Other);
 
-	if (pPlayer)
+	if (pPlayer && !m_Collected)
 	{
 		m_Touched = true;
 		m_Target = pPlayer;

@@ -107,7 +107,20 @@ struct tDebugShapeInfo
 
 struct tLog
 {
-	wstring strLog;
-	float Time;
-	LOG_LEVEL Level;
+	wstring		strLog;
+	float		Time;
+	LOG_LEVEL	Level;
+};
+
+struct tRoom
+{
+	wstring			Name;
+	Vec2			Position;
+	Vec2			Size;
+	Vec2			CamPos;
+	Vec2			CamLimitLT;
+	Vec2			CamLimitRB;
+	vector<Vec2>	SpawnPoints;	// 플레이어 사망 위치에서 가장 가까운 지점을 찾아서 레벨의 현재 SpawnPoint를 지정
+
+	// Music
 };

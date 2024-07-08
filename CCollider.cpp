@@ -36,9 +36,9 @@ void CCollider::EndOverlap(CCollider* _Other)
 
 void CCollider::FinalTick()
 {
-	m_FinalPos = GetOwner()->GetPos() + m_MaxDistance;
+	m_FinalPos = GetOwner()->GetPos() + m_Offset;
 
-	Vec2 vRenderPos = GetOwner()->GetRenderPos() + m_MaxDistance;
+	Vec2 vRenderPos = GetOwner()->GetRenderPos() + m_Offset;
 	
 	if (m_OverlapCount > 0)
 		Debug_Render(DEBUG_SHAPE::RECTANGLE, PEN_TYPE::RED, BRUSH_TYPE::HOLLOW, vRenderPos, m_Scale);

@@ -8,7 +8,6 @@
 
 
 CLevel::CLevel()
-	: m_BackGround(nullptr)
 {
 }
 
@@ -68,26 +67,6 @@ void CLevel::FinalTick()
 
 void CLevel::Render()
 {
-	Vec2 vRes = CEngine::Get()->GetResolution();
-	if (m_BackGround)
-	{
-		BLENDFUNCTION blend{};
-		blend.BlendOp = AC_SRC_OVER;
-		blend.BlendFlags = 0;
-		blend.SourceConstantAlpha = 255;
-		blend.AlphaFormat = AC_SRC_ALPHA;
-
-		AlphaBlend(BackDC
-			, 0, 0
-			, (int)vRes.x
-			, (int)vRes.y
-			, m_BackGround->GetDC()
-			, 0, 0
-			, m_BackGround->GetWidth()
-			, m_BackGround->GetHeight()
-			, blend);
-	}
-
 	for (auto& Layer : m_ArrLayerObj)
 	{
 		for (auto& obj : Layer)

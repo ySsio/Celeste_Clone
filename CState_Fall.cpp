@@ -17,13 +17,13 @@ void CState_Fall::PlayAnimation()
 
 	if (vDir.x == 1.f)
 	{
-		GetBangAnimator()->Play(L"Player_Bang_Fall", true);
-		GetBodyAnimator()->Play(L"Player_Fall", true);
+		GetBangAnimator()->Play(L"Player_Bang_Fall");
+		GetBodyAnimator()->Play(L"Player_Fall");
 	}
 	else if (vDir.x == -1.f)
 	{
-		GetBangAnimator()->Play(L"Player_Bang_Fall_FlipX", true);
-		GetBodyAnimator()->Play(L"Player_Fall_FlipX", true);
+		GetBangAnimator()->Play(L"Player_Bang_Fall_FlipX");
+		GetBodyAnimator()->Play(L"Player_Fall_FlipX");
 	}
 }
 

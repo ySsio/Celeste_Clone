@@ -65,9 +65,9 @@ void CAnimator::FinalTick()
 				m_CurIdx = 0;
 			else
 			{
-				// 애니메이션이 끝났으면 마지막 프레임으로 멈춘 상태로 유지
+				// 애니메이션이 끝났으면 curAnim을 해제
 				m_Done = true;
-				--m_CurIdx;
+				m_CurAnim = nullptr;
 				m_AccTime = 0.f;
 			}
 		}

@@ -19,10 +19,10 @@ class CAssetMgr :
     SINGLE(CAssetMgr)
 
 private:
-    unordered_map<wstring, CTexture*>   m_mapTex;
-    unordered_map<wstring, CAnimation*> m_mapAnim;
-    unordered_map<wstring, CSound*>     m_mapSound;
-    unordered_map<wstring, CTile*>      m_mapTile;
+    map<wstring, CTexture*>   m_mapTex;
+    map<wstring, CAnimation*> m_mapAnim;
+    map<wstring, CSound*>     m_mapSound;
+    map<wstring, CTile*>      m_mapTile;
 
 public:
     template <typename T>
