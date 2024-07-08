@@ -23,6 +23,11 @@ CPalette::~CPalette()
 
 void CPalette::SetPalette()
 {
+	SetPalette(m_Tex->GetName());
+}
+
+void CPalette::SetPalette(const wstring& _Name)
+{
 	for (UINT Row = 0; Row < m_RowCnt; ++Row)
 	{
 		for (UINT Col = 0; Col < m_ColCnt; ++Col)
@@ -37,7 +42,7 @@ void CPalette::SetPalette()
 
 			pTile->SetDanger(m_IsDanger);
 
-			CAssetMgr::Get()->AddAsset<CTile>(L"Tile_" + m_Tex->GetName() + L"_" + std::to_wstring(Row) + L"_" + std::to_wstring(Col), pTile);
+			CAssetMgr::Get()->AddAsset<CTile>(L"Tile_" + _Name + L"_" + std::to_wstring(Row) + L"_" + std::to_wstring(Col), pTile);
 
 			SetTile(Row, Col, pTile);
 		}

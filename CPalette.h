@@ -39,6 +39,7 @@ public:
     void SetDanger(bool _b) { m_IsDanger = _b; }
 
     void SetPalette();
+    void SetPalette(const wstring& _Name);
 
 private:
     void SetTile(UINT _Row, UINT _Col, CTile* _Tile);
