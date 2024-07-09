@@ -47,12 +47,6 @@
 #define SELECT_FONT(DC, FONT, FONTSIZE) CSelectObject::SelectFont(FONT, FONTSIZE);
 
 
-#define DEFAULT_FRM_DURATION 0.07f
-
-#define BANG_SCALE 50.f
-#define BODY_SCALE 160.f
-
-
 #define DEBUG_LOG(_Level, _strLog)	wchar_t strLine[5];																		  \
 									wsprintf(strLine, L"%d", __LINE__);															  \
 									tLog log{};																				  \
@@ -74,6 +68,14 @@
 #define PI			3.14159f
 
 #define RENDER_POS(POS) GetRenderPosFromCam(POS)
+
+
+#define DEFAULT_FRM_DURATION 0.07f
+
+
+#define BANG_SCALE	50.f
+#define BODY_SCALE	160.f
+#define TILE_SCALE	40.f
 
 
 // RigidBody Variables

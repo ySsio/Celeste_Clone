@@ -29,22 +29,11 @@ CZipMover::CZipMover()
 	m_RigidBody->SetFrictionX(false);
 
 	m_TileMap = AddComponent<CTileMap>();
-	m_TileMap->SetRowCol(3, 3);
-	m_TileMap->SetUnitScale(40, 40);
-	m_TileMap->SetOffset(Vec2(-60.f, -60.f));
-
-	for (int i = 0; i < 3; ++i)
-	{
-		for (int j = 0; j < 3; ++j)
-		{
-			m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_" + std::to_wstring(i) + L"_" + std::to_wstring(j)));
-		}
-	}
-
-
+	//m_TileMap->SetUnitScale(TILE_SCALE, TILE_SCALE);
+	
 	m_Collider = AddComponent<CCollider>();
-	m_Collider->SetScale(Vec2(120.f, 120.f));
 
+	m_SpriteRenderer = AddComponent<CSpriteRenderer>();
 }
 
 CZipMover::~CZipMover()
@@ -52,12 +41,81 @@ CZipMover::~CZipMover()
 }
 
 
+
+void CZipMover::SetTile(UINT Row, UINT Col)
+{
+	// Row Col을 설정했을 때 모든 기본 값 자동으로 세팅
+	SetScale(Vec2(Col * TILE_SCALE, Row * TILE_SCALE));
+	m_Collider->SetScale(Vec2(Col * TILE_SCALE, Row * TILE_SCALE));
+	m_TileMap->SetRowCol(Row, Col);
+	m_TileMap->SetOffset(-Vec2(Col * TILE_SCALE/2.f, Row * TILE_SCALE/2.f));
+	m_SpriteRenderer->SetOffset(-Vec2(0.f, Row * TILE_SCALE/2.f - 30.f));
+
+	// 자동으로 타일을 채움
+	for (UINT i = 0; i < Row; ++i)
+	{
+		for (UINT j = 0; j < Col; ++j)
+		{
+			if (i == 0)
+			{
+				if (j == 0)
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_0_0"));
+				}
+				else if (j == Col -1)
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_0_2"));
+				}
+				else
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_0_1"));
+				}
+			}
+			else if (i == Row-1)
+			{
+				if (j == 0)
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_2_0"));
+				}
+				else if (j == Col -1)
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_2_2"));
+				}
+				else
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_2_1"));
+				}
+			}
+			else
+			{
+				if (j == 0)
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_1_0"));
+				}
+				else if (j == Col -1)
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_1_2"));
+				}
+				else
+				{
+					m_TileMap->SetTile(i, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_zipmover_block_1_1"));
+				}
+			}
+
+		}
+	}
+}
+
 void CZipMover::Tick()
 {
+	m_SpriteRenderer->SetTexture(CAssetMgr::Get()->FindAsset<CTexture>(L"light01"));
+
 	// 시작지점에서 끝지점으로 가속
 	if (m_Active)
 	{
 		m_AccTime += fDT;
+
+		m_SpriteRenderer->SetTexture(CAssetMgr::Get()->FindAsset<CTexture>(L"light03"));
 
 		if (m_AccTime >= m_StartDuration)
 		{
@@ -91,6 +149,8 @@ void CZipMover::Tick()
 	if (m_Return)
 	{
 		m_AccTime += fDT;
+
+		m_SpriteRenderer->SetTexture(CAssetMgr::Get()->FindAsset<CTexture>(L"light02"));
 
 		if (m_AccTime >= m_StopDuration)
 		{
@@ -140,11 +200,11 @@ void CZipMover::Render()
 
 	SELECT_PEN(BackDC, PEN_TYPE::RED_DASH);
 
-	MoveToEx(BackDC, StartRenderPos.x, StartRenderPos.y + 20.f, nullptr);
-	LineTo(BackDC, EndRenderPos.x, EndRenderPos.y + 20.f);
+	MoveToEx(BackDC, (int)StartRenderPos.x, (int)(StartRenderPos.y + 20.f), nullptr);
+	LineTo(BackDC, (int)EndRenderPos.x, (int)(EndRenderPos.y + 20.f));
 
-	MoveToEx(BackDC, StartRenderPos.x, StartRenderPos.y - 20.f, nullptr);
-	LineTo(BackDC, EndRenderPos.x, EndRenderPos.y - 20.f);
+	MoveToEx(BackDC, (int)StartRenderPos.x, (int)(StartRenderPos.y - 20.f), nullptr);
+	LineTo(BackDC, (int)EndRenderPos.x, (int)(EndRenderPos.y - 20.f));
 
 	AlphaBlend(BackDC
 		, (int)(StartRenderPos.x - Width/2.f)
@@ -168,5 +228,9 @@ void CZipMover::Render()
 	// 타일맵 렌더링 (Block)
 	if (m_TileMap)
 		m_TileMap->Render();
+
+	// 신호등 텍스쳐 렌더링
+	if (m_SpriteRenderer)
+		m_SpriteRenderer->Render();
 
 }

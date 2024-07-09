@@ -17,6 +17,7 @@ CRigidBody::CRigidBody()
 	, m_GravityOriginalCoef(GRAVITY_COEF)
 	, m_GravityJumpCoef(GRAVITY_COEF_JUMP)
 	, m_JumpSpeed(PLAYER_JUMP_SPEED)
+	, m_Follower(nullptr)
 {
 }
 

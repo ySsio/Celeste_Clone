@@ -133,9 +133,9 @@ void CLevel_Level_01::Enter()
 	// ZipMover
 	CZipMover* pZip = new CZipMover;
 	pZip->SetPos(Vec2(200.f, 500.f));
-	pZip->SetScale(Vec2(120.f, 120.f));
 	pZip->SetStartPos(Vec2(200.f, 500.f));
 	pZip->SetEndPos(Vec2(740.f, 500.f));
+	pZip->SetTile(2,4);
 
 	AddObject(pZip, LAYER_TYPE::OBJ);
 

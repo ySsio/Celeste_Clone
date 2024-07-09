@@ -4,6 +4,8 @@
 #include "CStrawBerry.h"
 
 CGameMgr::CGameMgr()
+	: m_Player(nullptr)
+	, m_StrawberryCnt(0)
 {
 
 }

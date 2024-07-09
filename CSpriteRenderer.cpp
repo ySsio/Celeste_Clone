@@ -61,7 +61,7 @@ void CSpriteRenderer::Render()
 
 	CObj* pOwner = GetOwner();
 
-	Vec2 FinalOffset = m_MaxDistance;
+	Vec2 FinalOffset = m_Offset;
 	CTexture* RenderTex = m_Tex;
 	if (m_FlipX)
 	{

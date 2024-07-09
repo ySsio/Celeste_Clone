@@ -72,7 +72,8 @@ void CStateMachine::FinalTick()
         {
             // Idle State : 아무 키도 안누르고, 바닥에 닿아있으면
             if (KEY_NONE(KEY::LEFT) && KEY_NONE(KEY::RIGHT) && KEY_NONE(KEY::C) 
-                && FindState(L"Bounce") != m_CurState)
+                && FindState(L"Bounce") != m_CurState
+                && FindState(L"Climb") != m_CurState)
             {
                 ChangeState(L"Idle");
             }

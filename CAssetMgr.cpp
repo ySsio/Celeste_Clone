@@ -53,8 +53,11 @@ void CAssetMgr::Init()
 	LoadAsset<CTexture>(L"\\texture\\Player\\hair_red.png");
 	LoadAsset<CTexture>(L"\\texture\\Player\\hair_white.png");
 
-	// ZipMover Cog
+	// ZipMover
 	LoadAsset<CTexture>(L"\\texture\\Objects\\zipmover\\cog.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"\\texture\\Objects\\zipmover\\light01.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"\\texture\\Objects\\zipmover\\light02.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"\\texture\\Objects\\zipmover\\light03.png")->Scale(5.f);
 	
 	// ##########        Tile        ############
 	CPalette* pPalette = nullptr;

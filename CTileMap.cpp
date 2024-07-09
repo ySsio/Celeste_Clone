@@ -6,8 +6,8 @@
 #include "CTexture.h"
 
 CTileMap::CTileMap()
-	: m_UnitWidth(0)
-	, m_UnitHeight(0)
+	: m_UnitWidth(TILE_SCALE)
+	, m_UnitHeight(TILE_SCALE)
 	, m_RowCnt(0)
 	, m_ColCnt(0)
 {
