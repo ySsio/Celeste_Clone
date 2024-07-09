@@ -7,6 +7,7 @@ enum class PEN_TYPE
 	RED,
 	GREEN,
 	BLUE,
+	ORANGE,
 
 	RED_DASH,
 	

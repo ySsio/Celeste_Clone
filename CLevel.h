@@ -14,6 +14,10 @@ private:
     Vec2        m_CheckPoint;
 
 public:
+    void Save();
+    void Load();
+
+public:
     virtual void Enter() = 0;
     virtual void Exit() final;
 
@@ -24,6 +28,7 @@ public:
 
 public:
     virtual void Tick_Derived() {}
+    virtual void Render_Derived() {}
 
 public:
     Vec2 GetSpawnPoint() { return m_CheckPoint; }

@@ -48,6 +48,7 @@ void CEngine::CreateGDIObject()
 	m_ArrPen[(UINT)PEN_TYPE::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
 	m_ArrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
 	m_ArrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
+	m_ArrPen[(UINT)PEN_TYPE::ORANGE] = CreatePen(PS_SOLID, 3, RGB(255, 127, 39));
 
 	DWORD dashStyles[2] = { 10, 10 }; // 15 ÇÈ¼¿ ¼±, 10 ÇÈ¼¿ °£°Ý
 	LOGBRUSH lb;

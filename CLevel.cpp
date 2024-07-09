@@ -25,6 +25,16 @@ void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 }
 
 
+void CLevel::Save()
+{
+
+}
+
+void CLevel::Load()
+{
+
+}
+
 void CLevel::Exit()
 {
 	for (auto& Layer : m_ArrLayerObj)
@@ -74,5 +84,7 @@ void CLevel::Render()
 			obj->Render();
 		}
 	}
+
+	Render_Derived();
 }
 

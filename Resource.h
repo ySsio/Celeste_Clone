@@ -13,6 +13,7 @@
 #define IDC_GAMEENGINE                  109
 #define IDR_MAINFRAME                   128
 #define IDD_DIALOG1                     129
+#define IDC_BUTTON1                     1000
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -31,7 +32,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        130
 #define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

@@ -28,6 +28,7 @@ public:
 
 public:
     Vec2 GetRenderPos(Vec2 _RealPos);
+    Vec2 GetRealPos(Vec2 _RenderPos);
 
 };
 

@@ -122,3 +122,11 @@ Vec2 CCamera::GetRenderPos(Vec2 _RealPos)
 
 	return _RealPos - vDiff;
 }
+
+Vec2 CCamera::GetRealPos(Vec2 _RenderPos)
+{
+	Vec2 vRes = CEngine::Get()->GetResolution();
+	Vec2 vDiff = m_CamPos - vRes / 2.f;
+
+	return _RenderPos + vDiff;
+}
