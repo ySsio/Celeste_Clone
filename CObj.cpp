@@ -8,6 +8,7 @@
 
 CObj::CObj()
 	: m_Type(LAYER_TYPE::END)
+	, m_Room(-1)
 	, m_PlayerDead(false)
 {
 }
@@ -16,6 +17,7 @@ CObj::CObj(const CObj& _other)
 	: CBase(_other)
 	, m_Type(_other.m_Type)
 	, m_Pos(_other.m_Pos)
+	, m_Room(-1)
 	, m_PlayerDead(false)
 {
 }

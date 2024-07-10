@@ -124,8 +124,6 @@ void CZipMover::Tick()
 
 			float Speed = max(vDiff.Length() / m_Duration, ZIP_MAX_SPEED);
 
-			CRigidBody* pPlayerRigid = CGameMgr::Get()->GetPlayer()->GetRigidBody();
-
 			m_RigidBody->SetMaxSpeed(Speed);
 			m_RigidBody->AddForce(m_Dir * Speed);
 
@@ -156,8 +154,6 @@ void CZipMover::Tick()
 		{
 			Vec2 vDiff = m_StartPos - m_EndPos;
 			m_Dir = vDiff.Normalized();
-
-			CRigidBody* pPlayerRigid = CGameMgr::Get()->GetPlayer()->GetRigidBody();
 
 			m_RigidBody->AddForce(m_Dir * ZIP_RETURN_SPEED);
 

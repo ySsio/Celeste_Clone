@@ -38,10 +38,24 @@ enum class LEVEL_TYPE
 	EDITOR,
 	EDITOR_ANIM,
 	EDITOR_MAP,
-	LEVEL_01,
+	LEVEL_01,			// Forsaken City
 	LEVEL_02,
 
 	END,
+};
+
+enum class ROOM_TYPE
+{
+	ROOM_0,
+	ROOM_1,
+	ROOM_2,
+	ROOM_3,
+	ROOM_4,
+	ROOM_5,
+	ROOM_6,
+	ROOM_7,
+	ROOM_8,
+	ROOM_9,
 };
 
 enum class LAYER_TYPE
@@ -93,6 +107,7 @@ enum class BANG_COLOR
 enum class CAM_EFFECT
 {
 	RESPAWN,
+	ROOMMOVE,
 
 	NONE,
 };

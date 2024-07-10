@@ -11,7 +11,26 @@ class CLevel :
 private:
     array<vector<CObj*>, (UINT)LAYER_TYPE::END>     m_ArrLayerObj;
 
-    Vec2        m_CheckPoint;
+    // room
+    int             m_PrevRoom;
+    int             m_CurRoom;
+    vector<tRoom>   m_Room;
+
+    bool            m_RoomMove;
+    float           m_AccTime;
+    float           m_RoomMoveDuration;
+
+    // ¾ø¾Ù º¯¼ö
+    Vec2            m_CheckPoint;
+
+public:
+    void AddRoom(const tRoom& _Room) { m_Room.push_back(_Room); }
+    int GetRoomCount() { return m_Room.size(); }
+
+    int GetCurRoom() { return m_CurRoom; }
+
+public:
+    void MoveRoom(int _Room);
 
 public:
     void Save();

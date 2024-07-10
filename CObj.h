@@ -19,6 +19,7 @@ private:
     Vec2        m_Pos;
     Vec2        m_Scale;
 
+    int         m_Room;
 
     vector<CComponent*> m_vecComponent;
 
@@ -32,12 +33,14 @@ public:
     void SetScale(float _x, float _y) { m_Scale.x = _x; m_Scale.y = _y; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
     void SetDead() { m_PlayerDead = true; }
+    void SetRoom(int _Room) { m_Room = _Room; }
 
     LAYER_TYPE GetType() { return m_Type; }
     Vec2 GetPos() { return m_Pos; }
     Vec2 GetScale() { return m_Scale; }
     Vec2 GetRenderPos();
     bool IsDead() { return m_PlayerDead; }
+    int GetRoom() { return m_Room; }
 
     template<typename T>
     T* AddComponent()
@@ -78,6 +81,7 @@ public:
     }
 
 public:
+    virtual void Init() {}
     virtual void Tick() = 0;
     virtual void FinalTick();
     virtual void Render();
