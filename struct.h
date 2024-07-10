@@ -11,6 +11,15 @@ struct Vec2
 	Vec2() : x(0.f), y(0.f) {}
 	Vec2(float _x, float _y) : x(_x), y(_y) {}
 
+	Vec2(UINT_PTR _param) { std::memcpy(this, &_param, sizeof(Vec2)); }
+
+	operator UINT_PTR() const
+	{
+		UINT_PTR result;
+		std::memcpy(&result, this, sizeof(Vec2));
+		return result;
+	}
+
 	Vec2& operator = (POINT _pt)
 	{
 		x = (float)_pt.x; y = (float)_pt.y;
@@ -116,11 +125,6 @@ struct tRoom
 {
 	wstring			Name;
 	Vec2			Position;
-	Vec2			Size;
-	Vec2			CamPos;
-	Vec2			CamLimitLT;
-	Vec2			CamLimitRB;
+	Vec2			Scale;
 	vector<Vec2>	SpawnPoints;	// 플레이어 사망 위치에서 가장 가까운 지점을 찾아서 레벨의 현재 SpawnPoint를 지정
-
-	// Music
 };

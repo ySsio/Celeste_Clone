@@ -11,6 +11,7 @@
 CCamera::CCamera()
 	: m_AccTime(0.f)
 	, m_Duration(2.f)
+	, m_Speed(0.f)
 	, m_CurEffect(CAM_EFFECT::NONE)
 	, m_Tex(nullptr)
 {
@@ -22,7 +23,7 @@ CCamera::~CCamera()
 
 }
 
-void CCamera::SetCamEffect(CAM_EFFECT _Effect)
+void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 {
 	m_CurEffect = _Effect;
 	m_AccTime = 0.f;
@@ -30,9 +31,19 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect)
 	switch (m_CurEffect)
 	{
 	case CAM_EFFECT::RESPAWN:
+	{
 		m_Duration = 2.f;
 		m_Tex = CAssetMgr::Get()->FindAsset<CTexture>(L"Respawn_Effect");
-	break;
+	}
+		break;
+	case CAM_EFFECT::ROOMMOVE:
+	{
+		// wParam : 카메라 이동할 좌표
+		m_Duration = 0.12f;
+		m_CamTargetPos = Vec2(_wParam);
+		m_Speed = (m_CamPos - m_CamTargetPos).Length() / m_Duration;
+	}
+		break;
 	}
 }
 
@@ -54,21 +65,36 @@ void CCamera::Tick()
 		m_CurEffect = CAM_EFFECT::NONE;
 	}
 
+	switch (m_CurEffect)
+	{
+	case CAM_EFFECT::RESPAWN:
+		break;
+	case CAM_EFFECT::ROOMMOVE:
+	{
+		Vec2 vDiff = m_CamTargetPos - m_CamPos;
+		m_CamPos += vDiff * m_AccTime / m_Duration;
+
+		if (vDiff.Length() < 2.f)
+			m_CamPos = m_CamTargetPos;
+	}
+		break;
+	}
+
 	if (KEY_PRESSED(KEY::W))
 	{
-		m_CamPos.y -= 300.f * fDT;
+		m_CamPos.y -= 600.f * fDT;
 	}
 	if (KEY_PRESSED(KEY::S))
 	{
-		m_CamPos.y += 300.f * fDT;
+		m_CamPos.y += 600.f * fDT;
 	}
 	if (KEY_PRESSED(KEY::A))
 	{
-		m_CamPos.x -= 300.f * fDT;
+		m_CamPos.x -= 600.f * fDT;
 	}
 	if (KEY_PRESSED(KEY::D))
 	{
-		m_CamPos.x += 300.f * fDT;
+		m_CamPos.x += 600.f * fDT;
 	}
 }
 
@@ -98,19 +124,16 @@ void CCamera::Render()
 			DestY = 0.f;
 		}
 
-
 		AlphaBlend(BackDC
 			, 0, (int)DestY
 			, (int)vRes.x, (int)vRes.y
 			, m_Tex->GetDC()
 			, 0
 			, (int)SrcY
-			, Width, (int)(vRes.y-DestY)
+			, Width, (int)(vRes.y - DestY)
 			, blend);
-
-
 	}
-		break;
+	break;
 	}
 }
 
