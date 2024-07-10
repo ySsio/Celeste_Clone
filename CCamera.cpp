@@ -40,10 +40,44 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 	{
 		// wParam : 카메라 이동할 좌표
 		m_Duration = 0.12f;
-		m_CamTargetPos = Vec2(_wParam);
+		m_CamTargetPos = GetAvailableCamPos(Vec2(_wParam));
 		m_Speed = (m_CamPos - m_CamTargetPos).Length() / m_Duration;
 	}
 		break;
+	}
+}
+
+Vec2 CCamera::GetAvailableCamPos(Vec2 _Pos)
+{
+	Vec2 vRes = CEngine::Get()->GetResolution();
+	Vec2 vCamPos = Vec2();
+
+	// x좌표
+	if (_Pos.x < vRes.x / 2.f + m_LimitLT.x)
+	{
+		vCamPos.x = vRes.x / 2.f + m_LimitLT.x;
+	}
+	else if (_Pos.x < m_LimitRB.x - vRes.x / 2.f)
+	{
+		vCamPos.x = _Pos.x;
+	}
+	else
+	{
+		vCamPos.x = m_LimitRB.x - vRes.x / 2.f;
+	}
+
+	// y좌표
+	if (_Pos.y < vRes.y / 2.f + m_LimitLT.y)
+	{
+		vCamPos.y = vRes.y / 2.f + m_LimitLT.y;
+	}
+	else if (_Pos.y < m_LimitRB.y - vRes.y / 2.f)
+	{
+		vCamPos.y = _Pos.y;
+	}
+	else
+	{
+		vCamPos.y = m_LimitRB.y - vRes.y / 2.f;
 	}
 }
 
