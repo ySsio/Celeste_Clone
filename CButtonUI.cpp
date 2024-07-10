@@ -22,7 +22,7 @@ void CButtonUI::Render_DerivedUI()
 	Vec2 vFinalPos = GetFinalPos();
 	Vec2 vScale = GetScale();
 
-	CTexture* pTex = GetTexture();
+	CTexture* pTex = GetTex();
 
 	if (pTex)
 	{

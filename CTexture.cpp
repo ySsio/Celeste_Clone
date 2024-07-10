@@ -102,6 +102,8 @@ void CTexture::Load(const wstring& _strRelativeFilePath)
 		Bitmap* pBitmap = new Bitmap(strFilePath.c_str());
 
 		pBitmap->GetHBITMAP(Color(0, 0, 0, 0), &m_BitMap);
+
+		GdiplusShutdown(gdiplustoken);
 	}
 
 

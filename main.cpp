@@ -9,12 +9,24 @@
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
-HINSTANCE hInst;                                // 현재 인스턴스입니다.
+extern HINSTANCE hInst = nullptr;                                // 현재 인스턴스입니다.
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    Editor(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+INT_PTR CALLBACK    Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+INT_PTR CALLBACK    Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
+extern HWND hEdit;
+extern HWND hEdit_Img;
+extern HWND hEdit_BG_Tile;
+extern HWND hEdit_Game_Tile;
+extern HWND hEdit_BG_OBJ;
+extern HWND hEdit_Game_OBJ;
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -36,10 +48,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HWND hWnd = CreateWindowW(L"MAIN_ENGINE", L"나의 게임", WS_OVERLAPPED | WS_SYSMENU,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
+    hEdit           = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT), CEngine::Get()->GetMainHwnd(), &Editor);
+    hEdit_Img       = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_IMG), CEngine::Get()->GetMainHwnd(), &Editor_Img);
+    hEdit_BG_Tile   = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_BG_TILE), CEngine::Get()->GetMainHwnd(), &Editor_Bg_Tile);
+    hEdit_Game_Tile = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_GAME_TILE), CEngine::Get()->GetMainHwnd(), &Editor_Game_Tile);
+    hEdit_BG_OBJ    = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_BG_OBJ), CEngine::Get()->GetMainHwnd(), &Editor);
+    hEdit_Game_OBJ  = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_GAME_OBJ), CEngine::Get()->GetMainHwnd(), &Editor);
+
     if (!hWnd)
     {
         return FALSE;
     }
+
 
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
@@ -123,18 +143,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
             break;
         case IDM_EXIT:
+        {
             DestroyWindow(hWnd);
+            DestroyWindow(hEdit);
+            DestroyWindow(hEdit_Img);
+            DestroyWindow(hEdit_BG_Tile);
+            DestroyWindow(hEdit_Game_Tile);
+            DestroyWindow(hEdit_BG_OBJ);
+            DestroyWindow(hEdit_Game_OBJ);
+        }
             break;
-        case ID_Anim_Add:
-
-            break;
-        case ID_Anim_Load:
-
-            break;
-        case ID_Map_Add:
-
-            break;
-        case ID_Map_Load:
+        case ID_MAP_EDIT:
+        {
+            ShowWindow(hEdit, SW_SHOW);
+        }
 
             break;
         default:
@@ -182,7 +204,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 // 정보 대화 상자의 메시지 처리기입니다.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    UNREFERENCED_PARAMETER(lParam);
     switch (message)
     {
     case WM_INITDIALOG:

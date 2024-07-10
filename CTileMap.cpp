@@ -84,7 +84,7 @@ void CTileMap::Render()
 			vTilePos.y += Row * m_UnitHeight;
 			vTilePos.x += Col * m_UnitWidth;
 
-			CTexture* pTex = m_vecTile[Row * m_ColCnt + Col]->GetTexture();
+			CTexture* pTex = m_vecTile[Row * m_ColCnt + Col]->GetTex();
 
 			StretchBlt(BackDC
 				, (int)vTilePos.x

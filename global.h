@@ -12,6 +12,8 @@
 #include <memory.h>
 #include <tchar.h>
 
+//#include <windowsx.h>
+
 #include <vector>
 using std::vector;
 

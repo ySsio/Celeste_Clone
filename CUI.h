@@ -24,7 +24,7 @@ public:
 
     void SetTexture(CTexture* _Tex);
 
-    CTexture* GetTexture() { return m_Tex; }
+    CTexture* GetTex() { return m_Tex; }
 
 
     Vec2 GetFinalPos() { return m_FinalPos; }

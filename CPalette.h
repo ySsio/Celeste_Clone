@@ -8,7 +8,7 @@ class CPalette :
     public CAsset
 {
 private:
-    CTexture*   m_Tex;
+    CTexture* m_Tex;
 
     UINT        m_UnitWidth;
     UINT        m_UnitHeight;
@@ -25,6 +25,7 @@ public:
     UINT GetRowCnt() { return m_RowCnt; }
     UINT GetColCnt() { return m_ColCnt; }
 
+    CTexture* GetTex() { return m_Tex; }
     void SetTex(CTexture* _Tex) { m_Tex = _Tex; }
 
     void SetScale(UINT _Width, UINT _Height) { m_UnitWidth = _Width; m_UnitHeight = _Height; }

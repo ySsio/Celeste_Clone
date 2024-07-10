@@ -11,7 +11,7 @@ private:
 
     float   m_Distance;
     float   m_MaxDistance;
-    float   m_Count;
+    int     m_Count;
 
     BANG_COLOR m_BaseColor;
     BANG_COLOR m_Color;

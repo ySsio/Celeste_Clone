@@ -27,7 +27,7 @@ private:
     tColInfo    m_ColInfo;
 
 public:
-    CTexture* GetTexture() { return m_Tex; }
+    CTexture* GetTex() { return m_Tex; }
     Vec2 GetLT() { return m_LT; }
     Vec2 GetScale() { return m_Scale; }
     bool HasCollider() { return m_HasCol; }

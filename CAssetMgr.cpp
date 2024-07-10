@@ -36,6 +36,10 @@ void CAssetMgr::Init()
 	pTex = LoadAsset<CTexture>(L"\\texture\\Effects\\CamEffect\\Respawn_Effect.png")->Stretch(Vec2(vRes.x, vRes.y * 4));
 	
 
+	// BackGround
+	LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png");
+	LoadAsset<CTexture>(L"Level0_bg3", L"\\texture\\bgs\\00\\bg3.png");
+
 	// Player Bang
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_pink00.png")->Scale(5.f));
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_pink01.png")->Scale(5.f));

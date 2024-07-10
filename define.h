@@ -44,7 +44,6 @@
 
 #define SELECT_PEN(DC, PEN)		CSelectObject SelectPen(DC,PEN)
 #define SELECT_BRUSH(DC, BRUSH) CSelectObject SelectBrush(DC,BRUSH)
-#define SELECT_FONT(DC, FONT, FONTSIZE) CSelectObject::SelectFont(FONT, FONTSIZE);
 
 
 #define DEBUG_LOG(_Level, _strLog)	wchar_t strLine[5];																		  \

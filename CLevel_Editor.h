@@ -3,11 +3,14 @@
 class CLevel_Editor :
     public CLevel
 {
-private:
+protected:
     HMENU   m_Menu;
 
 public:
     virtual void Enter() override;
+
+public:
+
 
 public:
     CLevel_Editor();
