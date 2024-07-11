@@ -87,6 +87,11 @@ public:
     virtual void Render();
 
 public:
+    // Save가 구현된 애들은 true를 반환.
+    virtual bool Save(FILE* _pFile) { return false; }
+    virtual void Load(FILE* _pFile) {}
+
+public:
 	virtual void OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol) {}
 	virtual void OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol) {}
 	virtual void OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCol) {}

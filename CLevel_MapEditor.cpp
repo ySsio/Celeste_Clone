@@ -28,6 +28,10 @@ extern HWND hEdit_Game_OBJ = nullptr;
 INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 CLevel_MapEditor::CLevel_MapEditor()
+	: m_GeneratingRoom(false)
+	, m_EditBG(false)
+	, m_EditGame(false)
+	, m_CurTile(nullptr)
 {
 	
 }
@@ -48,12 +52,19 @@ void CLevel_MapEditor::Enter()
 	ShowWindow(hEdit, SW_SHOW);
 
 
-	// Strawberry
-	CStrawBerry* pStrawberry = new CStrawBerry;
-	pStrawberry->SetPos(Vec2(200.f, 400.f));
-	pStrawberry->SetScale(Vec2(80.f, 80.f));
+	Load(L"\\map\\Level_MapEditor.level");
 
-	AddObject(pStrawberry, LAYER_TYPE::OBJ);
+
+	// Strawberry
+	//CStrawBerry* pStrawberry = new CStrawBerry;
+	//pStrawberry->SetPos(Vec2(200.f, 400.f));
+	//pStrawberry->SetScale(Vec2(80.f, 80.f));
+	//pStrawberry->SetRoom(0);
+
+	//AddObject(pStrawberry, LAYER_TYPE::OBJ);
+
+
+	
 
 }
 
@@ -62,40 +73,53 @@ void CLevel_MapEditor::Tick_Derived()
 	// 마우스가 가리키는 실제좌표를 계산
 	m_MouseRealPos = CCamera::Get()->GetRealPos(CKeyMgr::Get()->GetMousePos());
 
-
-	// 클릭한 좌표
-	if (KEY_TAP(KEY::RBtn))
+	if (m_GeneratingRoom)
 	{
-		// 룸 생성 시작
-		m_GeneratingRoom = true;
-		m_LT = m_MouseRealPos;
-	}
-
-	// 클릭 뗀 좌표
-	if (KEY_RELEASED(KEY::RBtn))
-	{
-		m_RB = m_MouseRealPos;
-
-		// 좌표 비교를 통해 LT와 RB를 재계산함
-		if (m_LT.x > m_RB.x)
+		// 클릭한 좌표
+		if (KEY_TAP(KEY::LBtn))
 		{
-			std::swap(m_LT.x, m_RB.x);
-		}
-		if (m_LT.y > m_RB.y)
-		{
-			std::swap(m_LT.y, m_RB.y);
+			m_LT = m_MouseRealPos;
 		}
 
-		m_LT = GetTileLT(m_LT);
-		m_RB = GetTileRB(m_RB);
+		// 클릭 뗀 좌표
+		if (KEY_RELEASED(KEY::LBtn))
+		{
+			m_RB = m_MouseRealPos;
 
-		m_Pos = (m_LT + m_RB) / 2.f;
-		m_Scale = m_RB - m_LT;
-		m_RowCol = m_Scale / TILE_SCALE;
+			// 좌표 비교를 통해 LT와 RB를 재계산함
+			if (m_LT.x > m_RB.x)
+			{
+				std::swap(m_LT.x, m_RB.x);
+			}
+			if (m_LT.y > m_RB.y)
+			{
+				std::swap(m_LT.y, m_RB.y);
+			}
 
-		// 룸 생성 종료
-		m_GeneratingRoom = false;
+			m_LT = GetTileLT(m_LT);
+			m_RB = GetTileRB(m_RB);
+
+			m_Pos = (m_LT + m_RB) / 2.f;
+			m_Scale = m_RB - m_LT;
+			m_RowCol = m_Scale / TILE_SCALE;
+
+			tRoom room{};
+			room.Position = m_Pos;
+			room.Scale = m_Scale;
+
+			AddRoom(room);
+			
+
+			// 룸 생성 종료
+			m_GeneratingRoom = false;
+		}
 	}
+	
+	// EditBG나 EditGame 상태가 아니면 m_CurTile을 해제함
+	if (!m_EditBG && m_EditGame)
+		m_CurTile = nullptr;
+
+	
 }
 
 void CLevel_MapEditor::Render_Derived()
@@ -236,8 +260,8 @@ LRESULT CALLBACK CustomPictureProc(HWND hWnd, UINT message, WPARAM wParam, LPARA
 		int y = HIWORD(lParam);
 
 		// 클릭된 타일의 인덱스 계산
-		int Col = floor(x / TILE_SCALE);
-		int Row = floor(y / TILE_SCALE);
+		int Col = (int)floor(x / TILE_SCALE);
+		int Row = (int)floor(y / TILE_SCALE);
 
 		// 선택된 타일 처리 (여기서는 메시지 박스 출력)
 		wstring TileName = L"Tile_";
@@ -298,7 +322,9 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			EndDialog(hDlg, LOWORD(wParam));
 
-			
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->GenerateRoom();
 
 			return (INT_PTR)TRUE;
 		}
@@ -353,6 +379,18 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			return (INT_PTR)TRUE;
 		}
 
+		// 저장 버튼
+		if (LOWORD(wParam) == IDC_BUTTON8)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->Save();
+
+			return (INT_PTR)TRUE;
+		}
+
 		break;
 	}
 	return (INT_PTR)FALSE;
@@ -374,6 +412,7 @@ INT_PTR CALLBACK Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level1_bg1"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level0_bg3"));
 
+
 		return (INT_PTR)TRUE;
 	}
 
@@ -382,7 +421,7 @@ INT_PTR CALLBACK Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 		{
 			// 콤보 박스에서 항목이 선택되었을 때
 			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
-			int selectedIndex = SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
 			wchar_t selectedText[256];
@@ -410,7 +449,10 @@ INT_PTR CALLBACK Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 
 
 		break;
+
 	}
+
+	
 	return (INT_PTR)FALSE;
 }
 
@@ -458,6 +500,11 @@ INT_PTR CALLBACK Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 			NULL
 		);
 
+		// BG Edit 상태에 진입
+		CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+		if (pLevel)
+			pLevel->EditBG(true);
+
 		return (INT_PTR)TRUE;
 	}
 
@@ -466,7 +513,7 @@ INT_PTR CALLBACK Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 		{
 			// 콤보 박스에서 항목이 선택되었을 때
 			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
-			int selectedIndex = SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
 			wchar_t selectedText[256];
@@ -487,16 +534,21 @@ INT_PTR CALLBACK Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 			}
 		}
 
-		if (LOWORD(wParam) == IDCANCEL)	// X 버튼
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)	// X 버튼
 		{
 			EndDialog(hDlg, LOWORD(wParam));
+
+			// BG Edit 상태에서 벗어남
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->EditBG(false);
+
 			return (INT_PTR)TRUE;
 		}
 
 
 
 		break;
-
 	}
 
 	
@@ -559,6 +611,12 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 			NULL
 		);
 
+
+		// Game Edit 상태에 진입
+		CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+		if (pLevel)
+			pLevel->EditGame(true);
+
 		return (INT_PTR)TRUE;
 	}
 
@@ -567,7 +625,7 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 		{
 			// 콤보 박스에서 항목이 선택되었을 때
 			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
-			int selectedIndex = SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
 			wchar_t selectedText[256];
@@ -588,16 +646,21 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 			}
 		}
 
-		if (LOWORD(wParam) == IDCANCEL)	// X 버튼
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)	// X 버튼
 		{
 			EndDialog(hDlg, LOWORD(wParam));
+
+			// Game Edit 상태에서 벗어남
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->EditGame(false);
+
 			return (INT_PTR)TRUE;
 		}
 
 
 
-		break;
-	
+		break;	
 	}
 
 

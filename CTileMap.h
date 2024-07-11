@@ -23,6 +23,9 @@ public:
     UINT GetRowCnt() { return m_RowCnt; }
     UINT GetColCnt() { return m_ColCnt; }
 
+    UINT GetUnitWidth() { return m_UnitWidth; }
+    UINT GetUnitHeight() { return m_UnitHeight; }
+
     void SetUnitScale(UINT _Width, UINT _Height) { m_UnitWidth = _Width; m_UnitHeight = _Height; }
 
     void SetRowCol(UINT _Row, UINT _Col) {
@@ -36,6 +39,9 @@ public:
 
     Vec2 FindCollider(CCollider* _Col);
     bool IsTileDanger(CCollider* _Col);
+
+    const vector<CTile*>& GetTileset() { return m_vecTile; }
+    bool HasCollider() { return m_mapCol.size() == 0 ? false : true; }
 
 public:
     void AddCollider();

@@ -17,6 +17,8 @@
 
 #include "CGameMgr.h"
 
+#include "CCamera.h"
+
 CLevel_Level_01::CLevel_Level_01()
 {
 	SetSpawnPoint(Vec2(450.f, 300.f));

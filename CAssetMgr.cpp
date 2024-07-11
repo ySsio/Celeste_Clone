@@ -37,8 +37,26 @@ void CAssetMgr::Init()
 	
 
 	// BackGround
-	LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png");
-	LoadAsset<CTexture>(L"Level0_bg3", L"\\texture\\bgs\\00\\bg3.png");
+	LoadAsset<CTexture>(L"Level0_bg0", L"\\texture\\bgs\\00\\bg0.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level0_bg1", L"\\texture\\bgs\\00\\bg1.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level0_bg2", L"\\texture\\bgs\\00\\bg2.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level0_bg3", L"\\texture\\bgs\\00\\bg3.png")->Scale(5.f);
+
+	LoadAsset<CTexture>(L"Level1_bg0", L"\\texture\\bgs\\01\\bg0.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level1_bg2", L"\\texture\\bgs\\01\\bg2.png")->Scale(5.f);
+
+	//LoadAsset<CTexture>(L"Level3_bg0", L"\\texture\\bgs\\03\\bg0.png")->Scale(5.f);
+	//LoadAsset<CTexture>(L"Level3_bg1", L"\\texture\\bgs\\03\\bg1.png")->Scale(5.f);
+	//LoadAsset<CTexture>(L"Level3_bg2", L"\\texture\\bgs\\03\\bg2.png")->Scale(5.f);
+	//LoadAsset<CTexture>(L"Level3_bg2b", L"\\texture\\bgs\\03\\bg2b.png")->Scale(5.f);
+	//LoadAsset<CTexture>(L"Level3_bg3", L"\\texture\\bgs\\03\\bg3.png")->Scale(5.f);
+	//LoadAsset<CTexture>(L"Level3_bg3b", L"\\texture\\bgs\\03\\bg3b.png")->Scale(5.f);
+
+	//LoadAsset<CTexture>(L"Level4_bg0", L"\\texture\\bgs\\04\\bg0.png")->Scale(5.f);
+	//LoadAsset<CTexture>(L"Level4_bg1", L"\\texture\\bgs\\04\\bg1.png")->Scale(5.f);
+
+
 
 	// Player Bang
 	CreateFlippedTexture(LoadAsset<CTexture>(L"\\texture\\Player\\bangs_pink00.png")->Scale(5.f));

@@ -106,6 +106,59 @@ void CZipMover::SetTile(UINT Row, UINT Col)
 	}
 }
 
+bool CZipMover::Save(FILE* _pFile)
+{
+	// 1. 오브젝트 종류를 문자열로 저장
+	wstring Type = L"ZipMover";
+	int len = (int)Type.length();
+	fwrite(&len, sizeof(int), 1, _pFile);
+	fwrite(Type.c_str(), sizeof(wchar_t), len, _pFile);
+
+	// 2. Room 정보 저장
+	int Room = GetRoom();
+	fwrite(&Room, sizeof(int), 1, _pFile);
+
+	// 3. 포지션 저장
+	Vec2 VecBuff = GetPos();
+	fwrite(&VecBuff, sizeof(Vec2), 1, _pFile);
+
+	// 4. StartPos 저장
+	fwrite(&m_StartPos, sizeof(Vec2), 1, _pFile);
+
+	// 5. EndPos 저장
+	fwrite(&m_EndPos, sizeof(Vec2), 1, _pFile);
+
+	// 6. RowCol 저장
+	VecBuff = Vec2((float)m_TileMap->GetRowCnt(), (float)m_TileMap->GetColCnt());
+	fwrite(&VecBuff, sizeof(Vec2), 1, _pFile);
+
+	return true;
+}
+
+void CZipMover::Load(FILE* _pFile)
+{
+	// 1. 오브젝트 종류를 보고 이 함수가 호출된 상황
+	// 2. Room 정보 불러옴
+	int Room = 0;
+	fread(&Room, sizeof(int), 1, _pFile);
+	SetRoom(Room);
+
+	// 3. 포지션을 받아와서 세팅
+	Vec2 VecBuff = Vec2();
+	fread(&VecBuff, sizeof(Vec2), 1, _pFile);
+	SetPos(VecBuff);
+
+	// 4. StartPos를 받아와서 세팅
+	fread(&m_StartPos, sizeof(Vec2), 1, _pFile);
+
+	// 5. EndPos 받아와서 세팅
+	fread(&m_EndPos, sizeof(Vec2), 1, _pFile);
+
+	// 6. RowCol 받아와서 세팅
+	fread(&VecBuff, sizeof(Vec2), 1, _pFile);
+	SetTile((UINT)VecBuff.x, (UINT)VecBuff.y);
+}
+
 void CZipMover::Tick()
 {
 	m_SpriteRenderer->SetTexture(CAssetMgr::Get()->FindAsset<CTexture>(L"light01"));

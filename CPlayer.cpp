@@ -25,6 +25,8 @@
 
 #include "CEngine.h"
 
+#include "CCamera.h"
+
 
 CPlayer::CPlayer()
 	: m_Sprite(nullptr)
@@ -161,7 +163,6 @@ void CPlayer::Tick()
 	// Hair Poisition Update
 	if (!m_PlayerDead)
 		HairPosUpdate();
-
 }
 
 

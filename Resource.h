@@ -32,6 +32,7 @@
 #define IDC_BUTTON6                     1027
 #define ID_ADD_IMG                      1027
 #define IDC_BUTTON7                     1028
+#define IDC_BUTTON8                     1029
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773

@@ -8,6 +8,7 @@ class CLevel_MapEditor :
     public CLevel_Editor
 {
 private:
+    // GUI 관련
     Vec2    m_MouseRealPos;
 
     Vec2    m_LT;
@@ -16,13 +17,21 @@ private:
     Vec2    m_Scale;
     Vec2    m_RowCol;
 
+    // 편집 중 속성
     bool    m_GeneratingRoom;
+    bool    m_EditBG;
+    bool    m_EditGame;
 
     CTile*  m_CurTile;
 
+    // 편집 중인 레벨, 방
+
+
 public:
     void SetCurTile(CTile* _Tile) { m_CurTile = _Tile; }
-
+    void GenerateRoom() { m_GeneratingRoom = true; }
+    void EditBG(bool _b) { m_EditBG = _b; }
+    void EditGame(bool _b) { m_EditGame = _b; }
 
 public:
     virtual void Enter() override;

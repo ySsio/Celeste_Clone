@@ -46,8 +46,8 @@ void CKeyMgr::Init()
 
 void CKeyMgr::Tick()
 {
-    if (CEngine::Get()->GetMainHwnd() != GetFocus())
-        return;
+    //if (CEngine::Get()->GetMainHwnd() != GetFocus())
+    //    return;
 
     // 모든 키 상태를 업데이트
     for (int i = 0; i < (UINT)KEY::END; ++i)

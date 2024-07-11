@@ -18,14 +18,13 @@ private:
 
     bool            m_RoomMove;
     float           m_AccTime;
-    float           m_RoomMoveDuration;
 
     // ¾ø¾Ù º¯¼ö
     Vec2            m_CheckPoint;
 
 public:
     void AddRoom(const tRoom& _Room) { m_Room.push_back(_Room); }
-    int GetRoomCount() { return m_Room.size(); }
+    int GetRoomCount() { return (int)m_Room.size(); }
 
     int GetCurRoom() { return m_CurRoom; }
 
@@ -34,7 +33,7 @@ public:
 
 public:
     void Save();
-    void Load();
+    void Load(const wstring& _strRelativeFilePath);
 
 public:
     virtual void Enter() = 0;

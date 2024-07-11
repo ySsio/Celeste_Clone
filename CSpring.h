@@ -20,6 +20,10 @@ public:
     Vec2 GetDir() { return m_Dir; }
 
 public:
+    virtual bool Save(FILE* _pFile) override;
+    virtual void Load(FILE* _pFile) override;
+
+public:
     virtual void Tick() override;
     virtual void Render() override;
 

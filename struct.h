@@ -123,8 +123,9 @@ struct tLog
 
 struct tRoom
 {
-	wstring			Name;
+	//wstring			Name;
 	Vec2			Position;
 	Vec2			Scale;
 	vector<Vec2>	SpawnPoints;	// 플레이어 사망 위치에서 가장 가까운 지점을 찾아서 레벨의 현재 SpawnPoint를 지정
+
 };

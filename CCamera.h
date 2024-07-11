@@ -12,6 +12,9 @@ private:
     Vec2        m_CamPos;
     Vec2        m_CamTargetPos;
 
+    Vec2        m_LimitLT;
+    Vec2        m_LimitRB;
+
     float       m_AccTime;
     float       m_Duration;
     float       m_Speed;
@@ -22,6 +25,10 @@ private:
 
 public:
     void SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam = 0);
+    void SetCamLimit(Vec2 _LT, Vec2 _RB) { m_LimitLT = _LT; m_LimitRB = _RB; }
+
+public:
+    Vec2 GetAvailableCamPos(Vec2 _Pos);
 
 public:
     virtual void Init() override;

@@ -13,12 +13,18 @@
 
 #include "CCamera.h"
 
+#include "CPathMgr.h"
+
+#include "CPlatform.h"
+#include "CSpring.h"
+#include "CStrawBerry.h"
+#include "CZipMover.h"
+
 CLevel::CLevel()
 	: m_PrevRoom(-1)
 	, m_CurRoom(-1)
 	, m_RoomMove(false)
 	, m_AccTime(0.f)
-	, m_RoomMoveDuration(0.3f)
 {
 }
 
@@ -39,12 +45,116 @@ void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 
 void CLevel::Save()
 {
+	wstring strFilePath = CPathMgr::Get()->GetContentPath();
+	strFilePath += L"\\map\\" + GetName() + L".level";
 
+	FILE* pFile = nullptr;
+
+	// 파일을 연다 (각 레벨에 등록된 이름으로 파일 만듦)
+	_wfopen_s(&pFile, strFilePath.c_str(), L"wb");
+
+	if (!pFile) return;
+
+	// ###    Room 정보를 저장    ###
+	// 1. Room 개수
+	int RoomCnt = (int)m_Room.size();
+	fwrite(&RoomCnt, sizeof(int), 1, pFile);
+
+	// 2. m_Room 벡터를 통째로 저장
+	fwrite(m_Room.data(), sizeof(tRoom), RoomCnt, pFile);
+
+	// ###    오브젝트 저장한 array를 돌면서 오브젝트에 Save를 호출함    ###
+	for (int Layer = 0; Layer < (int)LAYER_TYPE::END; ++Layer)
+	{
+		for (CObj* pObj : m_ArrLayerObj[Layer])
+		{
+			// 1. pObj save를 호출
+			// true를 반환하면 실제로 파일에 기록한 거고 false를 반환하면 기록 안된 것
+			bool IsSaved = pObj->Save(pFile);
+
+			// 2. save 되는 오브젝트의 경우, 어떤 레이어에 속해있었는지도 추가로 저장
+			if (IsSaved)
+			{
+				fwrite(&Layer, sizeof(int), 1, pFile);
+			}
+		}
+	}
+
+	fclose(pFile);
 }
 
-void CLevel::Load()
+void CLevel::Load(const wstring& _strRelativeFilePath)
 {
+	wstring strFilePath = CPathMgr::Get()->GetContentPath();
+	strFilePath += _strRelativeFilePath;
 
+	FILE* pFile = nullptr;
+
+	// 파일을 연다 (각 레벨에 등록된 이름으로 파일 만듦)
+	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
+
+	if (!pFile) return;
+
+	// ###    Room 정보를 로드    ###
+	// 1. Room 개수
+	int RoomCnt = 0;
+	fread(&RoomCnt, sizeof(int), 1, pFile);
+
+	// 2. m_Room 벡터를 로드
+	m_Room.resize(RoomCnt);
+	fread(m_Room.data(), sizeof(tRoom), RoomCnt, pFile);
+
+	// ###    File 마지막까지 읽으면서 오브젝트에 Load를 호출함    ###
+	while (true)
+	{
+		// 오브젝트 타입
+		int len = 0;
+		if (fread(&len, sizeof(int), 1, pFile) != 1) break;
+
+		std::vector<wchar_t> szBuff(len + 1);
+		if (fread(szBuff.data(), sizeof(wchar_t), len, pFile) != len) break;
+
+		// 오브젝트 타입에 따라 객체 생성
+		CObj* pObj = nullptr;
+
+		if (wcscmp(szBuff.data(), L"Platform")==0)
+		{
+			pObj = new CPlatform;
+		}
+		else if (wcscmp(szBuff.data(), L"Strawberry") == 0)
+		{
+			pObj = new CStrawBerry;
+		}
+		else if (wcscmp(szBuff.data(), L"Spring") == 0)
+		{
+			pObj = new CSpring;
+		}
+		else if (wcscmp(szBuff.data(), L"ZipMover") == 0)
+		{
+			pObj = new CZipMover;
+		}
+		else
+		{
+			assert(nullptr);
+		}
+
+		pObj->Load(pFile);
+
+
+		// Layer 정보 읽음
+		int Layer = 0;
+		fread(&Layer, sizeof(int), 1, pFile);
+
+		// 레벨에 추가!!
+		AddObject(pObj, (LAYER_TYPE)Layer);
+
+		// 파일의 끝에 도달하면 break
+		if (feof(pFile))
+			break;
+	}
+
+
+	fclose(pFile);
 }
 
 void CLevel::Exit()
@@ -68,6 +178,17 @@ void CLevel::MoveRoom(int _Room)
 
 	if (pPlayer)
 		pPlayer->ResetDash();
+
+	// 카메라 이동
+	// 1. 카메라 제한범위 설정
+	Vec2 RoomPos = m_Room[m_CurRoom].Position;
+	Vec2 RoomScale = m_Room[m_CurRoom].Scale;
+	Vec2 RoomLT = RoomPos - RoomScale / 2.f;
+	Vec2 RoomRB = RoomPos + RoomScale / 2.f;
+	CCamera::Get()->SetCamLimit(RoomLT, RoomRB);
+	
+	// 2. 플레이어 위치 전달 .. 자동으로 제한범위 내에서 카메라 위치 계산
+	CCamera::Get()->SetCamEffect(CAM_EFFECT::ROOMMOVE, (UINT_PTR)pPlayer->GetPos());
 }
 
 
@@ -78,7 +199,7 @@ void CLevel::Tick()
 	{
 		m_AccTime += fDT;
 
-		if (m_AccTime >= m_RoomMoveDuration)
+		if (m_AccTime >= ROOM_MOVE_DURATION)
 		{
 			m_AccTime = 0.f;
 			m_RoomMove = false;
@@ -139,7 +260,10 @@ void CLevel::FinalTick()
 		{
 			// 현재 룸에 있는 오브젝트가 아니면 넘어감
 			if ((*iter)->GetRoom() != m_CurRoom)
+			{
+				++iter;
 				continue;
+			}
 
 			// Final Tick
 			(*iter)->FinalTick();

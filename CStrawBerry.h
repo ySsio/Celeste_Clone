@@ -27,6 +27,10 @@ public:
 	virtual void OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol);
 
 public:
+	virtual bool Save(FILE* _pFile) override;
+	virtual void Load(FILE* _pFile) override;
+
+public:
 	virtual void Tick() override;
 	virtual void Render() override;
 

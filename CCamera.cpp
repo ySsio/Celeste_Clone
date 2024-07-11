@@ -39,7 +39,7 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 	case CAM_EFFECT::ROOMMOVE:
 	{
 		// wParam : 카메라 이동할 좌표
-		m_Duration = 0.12f;
+		m_Duration = ROOM_MOVE_DURATION;
 		m_CamTargetPos = GetAvailableCamPos(Vec2(_wParam));
 		m_Speed = (m_CamPos - m_CamTargetPos).Length() / m_Duration;
 	}
@@ -79,6 +79,8 @@ Vec2 CCamera::GetAvailableCamPos(Vec2 _Pos)
 	{
 		vCamPos.y = m_LimitRB.y - vRes.y / 2.f;
 	}
+	
+	return vCamPos;
 }
 
 void CCamera::Init()

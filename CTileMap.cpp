@@ -6,8 +6,8 @@
 #include "CTexture.h"
 
 CTileMap::CTileMap()
-	: m_UnitWidth(TILE_SCALE)
-	, m_UnitHeight(TILE_SCALE)
+	: m_UnitWidth((UINT)TILE_SCALE)
+	, m_UnitHeight((UINT)TILE_SCALE)
 	, m_RowCnt(0)
 	, m_ColCnt(0)
 {
@@ -51,7 +51,7 @@ void CTileMap::AddCollider()
 				continue;
 			}
 
-			Vec2 vTilePos = Vec2(Col * m_UnitWidth, Row * m_UnitHeight) + m_Offset;
+			Vec2 vTilePos = Vec2((float)Col * m_UnitWidth, (float)Row * m_UnitHeight) + m_Offset;
 
 			const tColInfo& Info = m_vecTile[Row * m_ColCnt + Col]->GetColInfo();
 
