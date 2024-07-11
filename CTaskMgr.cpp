@@ -17,42 +17,39 @@ CTaskMgr::~CTaskMgr()
 
 void CTaskMgr::ExecuteTask(const tTask& _task)
 {
-	for (auto& task : m_vecTask)
+	switch (_task.TaskType)
 	{
-		switch (task.TaskType)
-		{
-		case TASK_TYPE::CREATE_OBJECT:
-		// wParam : Object Address (CObj*) , lParam : Layer Type (LAYER_TYPE)
-		{
-			CLevel* pCurLevel = CLevelMgr::Get()->GetCurLevel();
-			pCurLevel->AddObject((CObj*)task.wParam, (LAYER_TYPE)task.lParam);
-		}
-			break;
-		case TASK_TYPE::DELETE_OBJECT:
-		// wParam : Object Address (CObj*)
-		{
-			CObj* pObj = (CObj*)task.wParam;
+	case TASK_TYPE::CREATE_OBJECT:
+	// wParam : Object Address (CObj*) , lParam : Layer Type (LAYER_TYPE)
+	{
+		CLevel* pCurLevel = CLevelMgr::Get()->GetCurLevel();
+		pCurLevel->AddObject((CObj*)_task.wParam, (LAYER_TYPE)_task.lParam);
+	}
+		break;
+	case TASK_TYPE::DELETE_OBJECT:
+	// wParam : Object Address (CObj*)
+	{
+		CObj* pObj = (CObj*)_task.wParam;
 
-			if (pObj->IsDead()) return;
+		if (pObj->IsDead()) return;
 
-			pObj->SetDead();
-			m_GC.push_back(pObj);
-		}
-			break;
-		case TASK_TYPE::CHANGE_LEVEL:
-		// wParam : Level Type (LEVEL_TYPE)
-		{
-			if (m_LevelChanged)
-				return;
+		pObj->SetDead();
+		m_GC.push_back(pObj);
+	}
+		break;
+	case TASK_TYPE::CHANGE_LEVEL:
+	// wParam : Level Type (LEVEL_TYPE)
+	{
+		if (m_LevelChanged)
+			return;
 
-			CLevelMgr::Get()->ChangeLevel((LEVEL_TYPE)task.wParam);
+		CLevelMgr::Get()->ChangeLevel((LEVEL_TYPE)_task.wParam);
 
-			m_LevelChanged = true;
-		}
-			break;
-		default:
-			break;
-		}
+		m_LevelChanged = true;
+	}
+		break;
+	default:
+		break;
 	}
 }
 
