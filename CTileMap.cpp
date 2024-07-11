@@ -86,7 +86,13 @@ void CTileMap::Render()
 
 			CTexture* pTex = m_vecTile[Row * m_ColCnt + Col]->GetTex();
 
-			StretchBlt(BackDC
+			BLENDFUNCTION blend{};
+			blend.BlendOp = AC_SRC_OVER;
+			blend.BlendFlags = 0;
+			blend.SourceConstantAlpha = 255;
+			blend.AlphaFormat = AC_SRC_ALPHA;
+
+			AlphaBlend(BackDC
 				, (int)vTilePos.x
 				, (int)vTilePos.y
 				, m_UnitWidth
@@ -96,7 +102,7 @@ void CTileMap::Render()
 				, (int)m_vecTile[Row * m_ColCnt + Col]->GetLT().y
 				, (int)m_vecTile[Row * m_ColCnt + Col]->GetScale().x
 				, (int)m_vecTile[Row * m_ColCnt + Col]->GetScale().y
-				, SRCCOPY);
+				, blend);
 
 		}
 	}
