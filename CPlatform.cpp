@@ -59,7 +59,12 @@ bool CPlatform::Save(FILE* _pFile)
 	{
 		for (UINT col = 0; col < ColCnt; ++col)
 		{
-			wstring TileName = Tileset[row * ColCnt + col]->GetName();
+			wstring TileName = L"";
+
+			// 타일 없는 곳은 L""로 저장
+			if (Tileset[row * ColCnt + col])
+				TileName = Tileset[row * ColCnt + col]->GetName();
+
 			int len = (int)TileName.length();
 			fwrite(&len, sizeof(int), 1, _pFile);
 			fwrite(TileName.c_str(), sizeof(wchar_t), len, _pFile);

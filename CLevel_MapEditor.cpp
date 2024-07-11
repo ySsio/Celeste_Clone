@@ -31,6 +31,8 @@ CLevel_MapEditor::CLevel_MapEditor()
 	, m_EditBG(false)
 	, m_EditGame(false)
 	, m_CurTile(nullptr)
+	, m_BGTile(nullptr)
+	, m_GameTile(nullptr)
 {
 	
 }
@@ -51,7 +53,7 @@ void CLevel_MapEditor::Enter()
 	ShowWindow(hEdit, SW_SHOW);
 
 
-	//Load(L"\\map\\Level_MapEditor.level");
+	Load(L"\\map\\Level_MapEditor.level");
 
 
 	// Strawberry
@@ -186,15 +188,15 @@ void CLevel_MapEditor::Tick_Derived()
 		if (m_EditBG)
 		{
 			// BG에 해당하는 Platform 타일 편집
-			if (KEY_PRESSED(KEY::LBtn))
+			if (KEY_PRESSED(KEY::LBtn) && m_BGTile)
 			{
 				CTileMap* pTileMap = m_BGTile->GetComponent<CTileMap>();
 				int RowCnt = (int)pTileMap->GetRowCnt();
 				int ColCnt = (int)pTileMap->GetColCnt();
 
 				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
-				int Col = floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
-				int Row = floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
+				int Col = (int)floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
+				int Row = (int)floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
 
 				if (0 <= Row && Row < RowCnt
 					&& 0 <= Col && Col < ColCnt)
@@ -207,15 +209,15 @@ void CLevel_MapEditor::Tick_Derived()
 		else if (m_EditGame)
 		{
 			// Game에 해당하는 Platform 타일 편집
-			if (KEY_PRESSED(KEY::LBtn))
+			if (KEY_PRESSED(KEY::LBtn) && m_GameTile)
 			{
 				CTileMap* pTileMap = m_GameTile->GetComponent<CTileMap>();
 				int RowCnt = (int)pTileMap->GetRowCnt();
 				int ColCnt = (int)pTileMap->GetColCnt();
 
 				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
-				int Col = floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
-				int Row = floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
+				int Col = (int)floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
+				int Row = (int)floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
 
 				if (0 <= Row && Row < RowCnt
 					&& 0 <= Col && Col < ColCnt)
