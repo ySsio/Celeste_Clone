@@ -13,7 +13,7 @@ struct Vec2
 
 	Vec2(UINT_PTR _param) { std::memcpy(this, &_param, sizeof(Vec2)); }
 
-	operator UINT_PTR() const
+	explicit operator UINT_PTR() const
 	{
 		UINT_PTR result;
 		std::memcpy(&result, this, sizeof(Vec2));

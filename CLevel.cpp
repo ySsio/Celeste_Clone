@@ -60,8 +60,22 @@ void CLevel::Save()
 	int RoomCnt = (int)m_Room.size();
 	fwrite(&RoomCnt, sizeof(int), 1, pFile);
 
-	// 2. m_Room 벡터를 통째로 저장
-	fwrite(m_Room.data(), sizeof(tRoom), RoomCnt, pFile);
+	// 2. m_Room 벡터를 저장
+	for (int i = 0; i < RoomCnt; ++i)
+	{
+		fwrite(&m_Room[i].Position, sizeof(Vec2), 1, pFile);
+		fwrite(&m_Room[i].Scale, sizeof(Vec2), 1, pFile);
+		
+		// 포인트 개수
+		int PointCnt = (int)m_Room[i].SpawnPoints.size();
+		fwrite(&PointCnt, sizeof(int), 1, pFile);
+
+		// 포인트 벡터 저장
+		for (int j = 0; j < PointCnt; ++j)
+		{
+			fwrite(&m_Room[i].SpawnPoints[j], sizeof(Vec2), RoomCnt, pFile);
+		}
+	}
 
 	// ###    오브젝트 저장한 array를 돌면서 오브젝트에 Save를 호출함    ###
 	for (int Layer = 0; Layer < (int)LAYER_TYPE::END; ++Layer)
@@ -101,8 +115,25 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 	fread(&RoomCnt, sizeof(int), 1, pFile);
 
 	// 2. m_Room 벡터를 로드
+	// resize
 	m_Room.resize(RoomCnt);
-	fread(m_Room.data(), sizeof(tRoom), RoomCnt, pFile);
+
+	for (int i = 0; i < RoomCnt; ++i)
+	{
+		fread(&m_Room[i].Position, sizeof(Vec2), 1, pFile);
+		fread(&m_Room[i].Scale, sizeof(Vec2), 1, pFile);
+
+		// 포인트 개수
+		int PointCnt = 0;
+		fread(&PointCnt, sizeof(int), 1, pFile);
+
+		// 포인트 벡터 로드
+		m_Room[i].SpawnPoints.resize(PointCnt);
+		for (int j = 0; j < PointCnt; ++j)
+		{
+			fread(&m_Room[i].SpawnPoints[j], sizeof(Vec2), RoomCnt, pFile);
+		}
+	}
 
 	// ###    File 마지막까지 읽으면서 오브젝트에 Load를 호출함    ###
 	while (true)

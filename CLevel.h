@@ -28,6 +28,8 @@ public:
 
     int GetCurRoom() { return m_CurRoom; }
 
+   vector<tRoom>& GetRooms() { return m_Room; }
+
 public:
     void MoveRoom(int _Room);
 

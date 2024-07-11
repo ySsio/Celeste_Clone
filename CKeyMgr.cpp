@@ -46,40 +46,40 @@ void CKeyMgr::Init()
 
 void CKeyMgr::Tick()
 {
-    //if (CEngine::Get()->GetMainHwnd() != GetFocus())
-    //    return;
-
-    // 모든 키 상태를 업데이트
-    for (int i = 0; i < (UINT)KEY::END; ++i)
+    if (CEngine::Get()->GetMainHwnd() == GetFocus())
     {
-        // 키가 눌렸으면
-        if (GetAsyncKeyState(KEY_MAP[i]) & 0x8001)
+        // 모든 키 상태를 업데이트
+        for (int i = 0; i < (UINT)KEY::END; ++i)
         {
-            // 전 프레임에 키가 눌리지 않았으면
-            if (!m_ArrKeyInfo[i].bPrevPressed)
+            // 키가 눌렸으면
+            if (GetAsyncKeyState(KEY_MAP[i]) & 0x8001)
             {
-                m_ArrKeyInfo[i].state = KEY_STATE::TAP;
+                // 전 프레임에 키가 눌리지 않았으면
+                if (!m_ArrKeyInfo[i].bPrevPressed)
+                {
+                    m_ArrKeyInfo[i].state = KEY_STATE::TAP;
+                }
+                // 전 프레임에 키가 눌려있었으면
+                else
+                {
+                    m_ArrKeyInfo[i].state = KEY_STATE::PRESSED;
+                }
+                m_ArrKeyInfo[i].bPrevPressed = true;
             }
-            // 전 프레임에 키가 눌려있었으면
             else
             {
-                m_ArrKeyInfo[i].state = KEY_STATE::PRESSED;
+                // 전 프레임에 키가 눌리지 않았으면
+                if (!m_ArrKeyInfo[i].bPrevPressed)
+                {
+                    m_ArrKeyInfo[i].state = KEY_STATE::NONE;
+                }
+                // 전 프레임에 키가 눌려있었으면
+                else
+                {
+                    m_ArrKeyInfo[i].state = KEY_STATE::RELEASED;
+                }
+                m_ArrKeyInfo[i].bPrevPressed = false;
             }
-            m_ArrKeyInfo[i].bPrevPressed = true;
-        }
-        else
-        {
-            // 전 프레임에 키가 눌리지 않았으면
-            if (!m_ArrKeyInfo[i].bPrevPressed)
-            {
-                m_ArrKeyInfo[i].state = KEY_STATE::NONE;
-            }
-            // 전 프레임에 키가 눌려있었으면
-            else
-            {
-                m_ArrKeyInfo[i].state = KEY_STATE::RELEASED;
-            }
-            m_ArrKeyInfo[i].bPrevPressed = false;
         }
     }
 

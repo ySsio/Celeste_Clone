@@ -106,6 +106,7 @@ void CLevel_MapEditor::Tick_Derived()
 			tRoom room{};
 			room.Position = m_Pos;
 			room.Scale = m_Scale;
+			room.SpawnPoints.push_back(m_Pos);
 
 			AddRoom(room);
 			
@@ -129,12 +130,14 @@ void CLevel_MapEditor::Render_Derived()
 	Vec2 vLT = RENDER_POS(GetTileLT(m_MouseRealPos));
 	Vec2 vRB = RENDER_POS(GetTileRB(m_MouseRealPos));
 
-	SELECT_PEN(BackDC, PEN_TYPE::ORANGE);
-	SELECT_BRUSH(BackDC, BRUSH_TYPE::HOLLOW);
+	{
+		SELECT_PEN(BackDC, PEN_TYPE::ORANGE);
+		SELECT_BRUSH(BackDC, BRUSH_TYPE::HOLLOW);
 
-	// 타일 경계 표시
-	Rectangle(BackDC
-		, (int)vLT.x, (int)vLT.y, (int)vRB.x, (int)vRB.y);
+		// 타일 경계 표시
+		Rectangle(BackDC
+			, (int)vLT.x, (int)vLT.y, (int)vRB.x, (int)vRB.y);
+	}
 
 	if (m_CurTile)
 	{
@@ -161,19 +164,21 @@ void CLevel_MapEditor::Render_Derived()
 
 	}
 
-	if (!m_GeneratingRoom)
+	vector<tRoom>& vecRoom = GetRooms();
+
+	for (auto& Room : vecRoom)
 	{
+		// Room의 경계를 표시
+		Vec2 vLT = Room.Position - Room.Scale / 2.f;
+		Vec2 vRB = Room.Position + Room.Scale / 2.f;
+
 		SELECT_PEN(BackDC, PEN_TYPE::BLUE);
 		SELECT_BRUSH(BackDC, BRUSH_TYPE::HOLLOW);
 
-		Vec2 RoomLT = RENDER_POS(m_LT);
-		Vec2 RoomRB = RENDER_POS(m_RB);
-
-		Rectangle(BackDC
-				, (int)RoomLT.x, (int)RoomLT.y, (int)RoomRB.x, (int)RoomRB.y);
-
-		
+		Rectangle(BackDC, (int)vLT.x, (int)vLT.y, (int)vRB.x, (int)vRB.y);
 	}
+
+	
 }
 
 Vec2 CLevel_MapEditor::GetTileLT(Vec2 _ClickPos)
@@ -320,8 +325,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 새 방 추가하기 버튼
 		if (LOWORD(wParam) == IDC_BUTTON2)
 		{
-			EndDialog(hDlg, LOWORD(wParam));
-
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 				pLevel->GenerateRoom();
@@ -332,8 +335,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 배경 이미지 설정 버튼
 		if (LOWORD(wParam) == IDC_BUTTON3)
 		{
-			EndDialog(hDlg, LOWORD(wParam));
-
 			ShowWindow(hEdit_Img, SW_SHOW);
 
 			return (INT_PTR)TRUE;
@@ -342,8 +343,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 배경 타일 편집 버튼
 		if (LOWORD(wParam) == IDC_BUTTON4)
 		{
-			EndDialog(hDlg, LOWORD(wParam));
-
 			ShowWindow(hEdit_BG_Tile, SW_SHOW);
 
 			return (INT_PTR)TRUE;
@@ -352,8 +351,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 게임 타일 편집 버튼
 		if (LOWORD(wParam) == IDC_BUTTON5)
 		{
-			EndDialog(hDlg, LOWORD(wParam));
-
 			ShowWindow(hEdit_Game_Tile, SW_SHOW);
 
 			return (INT_PTR)TRUE;
@@ -362,8 +359,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 배경 오브젝트 배치 버튼
 		if (LOWORD(wParam) == IDC_BUTTON6)
 		{
-			EndDialog(hDlg, LOWORD(wParam));
-
 			ShowWindow(hEdit_BG_OBJ, SW_SHOW);
 
 			return (INT_PTR)TRUE;
@@ -372,8 +367,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 게임 오브젝트 배치 버튼
 		if (LOWORD(wParam) == IDC_BUTTON7)
 		{
-			EndDialog(hDlg, LOWORD(wParam));
-
 			ShowWindow(hEdit_Game_OBJ, SW_SHOW);
 
 			return (INT_PTR)TRUE;
@@ -382,8 +375,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 저장 버튼
 		if (LOWORD(wParam) == IDC_BUTTON8)
 		{
-			EndDialog(hDlg, LOWORD(wParam));
-
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 				pLevel->Save();
