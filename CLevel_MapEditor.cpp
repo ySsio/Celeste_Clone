@@ -4,17 +4,16 @@
 #include "CEngine.h"
 #include "CPathMgr.h"
 #include "CAssetMgr.h"
-
+#include "CLevelMgr.h"
 #include "CKeyMgr.h"
-
 #include "CCamera.h"
-#include "CStrawBerry.h"
 
 #include "CPalette.h"
-
-#include "CLevelMgr.h"
-
 #include "CTile.h"
+
+#include "CStrawBerry.h"
+#include "CPlatform.h"
+
 
 extern HINSTANCE hInst;
 
@@ -52,16 +51,16 @@ void CLevel_MapEditor::Enter()
 	ShowWindow(hEdit, SW_SHOW);
 
 
-	Load(L"\\map\\Level_MapEditor.level");
+	//Load(L"\\map\\Level_MapEditor.level");
 
 
 	// Strawberry
-	//CStrawBerry* pStrawberry = new CStrawBerry;
-	//pStrawberry->SetPos(Vec2(200.f, 400.f));
-	//pStrawberry->SetScale(Vec2(80.f, 80.f));
-	//pStrawberry->SetRoom(0);
+	CStrawBerry* pStrawberry = new CStrawBerry;
+	pStrawberry->SetPos(Vec2(200.f, 400.f));
+	pStrawberry->SetScale(Vec2(80.f, 80.f));
+	pStrawberry->SetRoom(0);
 
-	//AddObject(pStrawberry, LAYER_TYPE::OBJ);
+	AddObject(pStrawberry, LAYER_TYPE::OBJ);
 
 
 	
@@ -73,6 +72,7 @@ void CLevel_MapEditor::Tick_Derived()
 	// 마우스가 가리키는 실제좌표를 계산
 	m_MouseRealPos = CCamera::Get()->GetRealPos(CKeyMgr::Get()->GetMousePos());
 
+	// 새로운 Room을 만든다 (마우스 드래그)
 	if (m_GeneratingRoom)
 	{
 		// 클릭한 좌표
@@ -101,24 +101,137 @@ void CLevel_MapEditor::Tick_Derived()
 
 			m_Pos = (m_LT + m_RB) / 2.f;
 			m_Scale = m_RB - m_LT;
-			m_RowCol = m_Scale / TILE_SCALE;
+			m_ColRow = m_Scale / TILE_SCALE;
 
 			tRoom room{};
 			room.Position = m_Pos;
 			room.Scale = m_Scale;
 			room.SpawnPoints.push_back(m_Pos);
 
+			SetCurRoom(GetRoomCount());
 			AddRoom(room);
-			
+
+			// 현재 편집중인 BGTile을 새로 만들어서 등록
+			m_BGTile = new CPlatform;
+			m_BGTile->SetPos(m_LT);
+			m_BGTile->SetRoom(GetCurRoom());
+			m_BGTile->GetComponent<CTileMap>()->SetRowCol((UINT)m_ColRow.y, (UINT)m_ColRow.x);
+
+			Add_Object(m_BGTile, LAYER_TYPE::BACKGROUND);
+
+			// 현재 편집중인 GameTile을 새로 만들어서 등록
+			m_GameTile = new CPlatform;
+			m_GameTile->SetPos(m_LT);
+			m_BGTile->SetRoom(GetCurRoom());
+			m_GameTile->GetComponent<CTileMap>()->SetRowCol((UINT)m_ColRow.y, (UINT)m_ColRow.x);
+
+			Add_Object(m_GameTile, LAYER_TYPE::PLATFORM);
 
 			// 룸 생성 종료
 			m_GeneratingRoom = false;
 		}
 	}
+	else
+	{
+		// 마우스 클릭 시 마우스 위치에 따라 편집중인 Room을 옮김
+		if (KEY_TAP(KEY::LBtn))
+		{
+			vector<tRoom>& Rooms = GetRooms();
+
+			// 룸을 순회하면서 어떤 룸을 클릭했는지 체크
+			// 아무 룸에도 해당하지 않으면 마지막 룸이 그대로 유지
+			for (int i = 0; i < Rooms.size(); ++i)
+			{
+				tRoom& room = Rooms[i];
+
+				if (room.Position.x - room.Scale.x / 2.f <= m_MouseRealPos.x
+					&& m_MouseRealPos.x <= room.Position.x + room.Scale.x / 2.f
+					&& room.Position.y - room.Scale.y / 2.f <= m_MouseRealPos.y
+					&& m_MouseRealPos.y <= room.Position.y + room.Scale.y / 2.f)
+				{
+					SetCurRoom(i);
+
+					m_Pos = room.Position;
+					m_Scale = room.Scale;
+					m_LT = m_Pos - m_Scale / 2.f;
+					m_RB = m_Pos + m_Scale / 2.f;
+					m_ColRow = (m_RB - m_LT) / TILE_SCALE;
+				}
+			}
+
+			// 룸에 해당하는 Platform을 현재 편집중인 platform으로 등록
+			const vector<CObj*>& vecBackGround = GetLayer(LAYER_TYPE::BACKGROUND);
+			const vector<CObj*>& vecPlatform = GetLayer(LAYER_TYPE::PLATFORM);
+
+			for (auto pObj : vecBackGround)
+			{
+				if (pObj->GetRoom() == GetCurRoom())
+				{
+					m_BGTile = dynamic_cast<CPlatform*>(pObj);
+					break;
+				}
+			}
+			
+			for (auto pObj : vecPlatform)
+			{
+				if (pObj->GetRoom() == GetCurRoom())
+				{
+					m_GameTile = dynamic_cast<CPlatform*>(pObj);
+					break;
+				}
+			}
+		}
+
+		// 편집 상태
+		if (m_EditBG)
+		{
+			// BG에 해당하는 Platform 타일 편집
+			if (KEY_PRESSED(KEY::LBtn))
+			{
+				CTileMap* pTileMap = m_BGTile->GetComponent<CTileMap>();
+				UINT RowCnt = pTileMap->GetRowCnt();
+				UINT ColCnt = pTileMap->GetColCnt();
+
+				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
+				int Col = floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
+				int Row = floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
+
+				if (0 <= Row && Row < RowCnt
+					&& 0 <= Col && Col < ColCnt)
+				{
+					pTileMap->SetTile(Row, Col, m_CurTile);
+				}
+
+			}
+		}
+		else if (m_EditGame)
+		{
+			// Game에 해당하는 Platform 타일 편집
+			if (KEY_PRESSED(KEY::LBtn))
+			{
+				CTileMap* pTileMap = m_GameTile->GetComponent<CTileMap>();
+				UINT RowCnt = pTileMap->GetRowCnt();
+				UINT ColCnt = pTileMap->GetColCnt();
+
+				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
+				int Col = floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
+				int Row = floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
+
+				if (0 <= Row && Row < RowCnt
+					&& 0 <= Col && Col < ColCnt)
+				{
+					pTileMap->SetTile(Row, Col, m_CurTile);
+				}
+			}
+		}
+		else
+		{
+			// EditBG나 EditGame 상태가 아니면 m_CurTile을 해제함
+			m_CurTile = nullptr;
+		}
+	}
 	
-	// EditBG나 EditGame 상태가 아니면 m_CurTile을 해제함
-	if (!m_EditBG && m_EditGame)
-		m_CurTile = nullptr;
+	
 
 	
 }

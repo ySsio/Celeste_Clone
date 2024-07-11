@@ -3,6 +3,7 @@
 
 class CAnimation;
 class CTile;
+class CPlatform;
 
 class CLevel_MapEditor :
     public CLevel_Editor
@@ -11,12 +12,6 @@ private:
     // GUI 관련
     Vec2    m_MouseRealPos;
 
-    Vec2    m_LT;
-    Vec2    m_RB;
-    Vec2    m_Pos;
-    Vec2    m_Scale;
-    Vec2    m_RowCol;
-
     // 편집 중 속성
     bool    m_GeneratingRoom;
     bool    m_EditBG;
@@ -24,7 +19,15 @@ private:
 
     CTile*  m_CurTile;
 
-    // 편집 중인 레벨, 방
+    // 편집 중인 Room 정보
+    Vec2    m_LT;
+    Vec2    m_RB;
+    Vec2    m_Pos;
+    Vec2    m_Scale;
+    Vec2    m_ColRow;
+
+    CPlatform*  m_BGTile;
+    CPlatform*  m_GameTile;
 
 
 public:
