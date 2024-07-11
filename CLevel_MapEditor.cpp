@@ -55,12 +55,12 @@ void CLevel_MapEditor::Enter()
 
 
 	// Strawberry
-	CStrawBerry* pStrawberry = new CStrawBerry;
-	pStrawberry->SetPos(Vec2(200.f, 400.f));
-	pStrawberry->SetScale(Vec2(80.f, 80.f));
-	pStrawberry->SetRoom(0);
+	//CStrawBerry* pStrawberry = new CStrawBerry;
+	//pStrawberry->SetPos(Vec2(200.f, 400.f));
+	//pStrawberry->SetScale(Vec2(80.f, 80.f));
+	//pStrawberry->SetRoom(0);
 
-	AddObject(pStrawberry, LAYER_TYPE::OBJ);
+	//AddObject(pStrawberry, LAYER_TYPE::OBJ);
 
 
 	
@@ -189,8 +189,8 @@ void CLevel_MapEditor::Tick_Derived()
 			if (KEY_PRESSED(KEY::LBtn))
 			{
 				CTileMap* pTileMap = m_BGTile->GetComponent<CTileMap>();
-				UINT RowCnt = pTileMap->GetRowCnt();
-				UINT ColCnt = pTileMap->GetColCnt();
+				int RowCnt = (int)pTileMap->GetRowCnt();
+				int ColCnt = (int)pTileMap->GetColCnt();
 
 				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
 				int Col = floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
@@ -210,8 +210,8 @@ void CLevel_MapEditor::Tick_Derived()
 			if (KEY_PRESSED(KEY::LBtn))
 			{
 				CTileMap* pTileMap = m_GameTile->GetComponent<CTileMap>();
-				UINT RowCnt = pTileMap->GetRowCnt();
-				UINT ColCnt = pTileMap->GetColCnt();
+				int RowCnt = (int)pTileMap->GetRowCnt();
+				int ColCnt = (int)pTileMap->GetColCnt();
 
 				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
 				int Col = floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);

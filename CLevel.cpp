@@ -45,8 +45,13 @@ void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 
 void CLevel::Save()
 {
+	Save(L"\\map\\" + GetName() + L".level");
+}
+
+void CLevel::Save(const wstring& _strRelativeFilePath)
+{
 	wstring strFilePath = CPathMgr::Get()->GetContentPath();
-	strFilePath += L"\\map\\" + GetName() + L".level";
+	strFilePath += _strRelativeFilePath;
 
 	FILE* pFile = nullptr;
 
