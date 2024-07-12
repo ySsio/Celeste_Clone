@@ -8,8 +8,8 @@ CUI::CUI()
 	: m_ParentUI(nullptr)
 	, m_MouseOn(false)
 	, m_LbtnDown(false)
-	, m_Tex(nullptr)
 {
+	m_Sprite = AddComponent<CSpriteRenderer>();
 }
 
 CUI::~CUI()
@@ -17,9 +17,14 @@ CUI::~CUI()
 	Release_Vector(m_ChildUI);
 }
 
-void CUI::SetTexture(CTexture* _Tex)
+void CUI::SetTex(CTexture* _Tex)
 {
-	m_Tex = _Tex; SetScale(Vec2((float)_Tex->GetWidth(), (float)_Tex->GetHeight()));
+	m_Sprite->SetTex(_Tex); SetScale(Vec2((float)_Tex->GetWidth(), (float)_Tex->GetHeight()));
+}
+
+Vec2 CUI::GetRenderPos()
+{
+	return RENDER_POS(GetFinalPos());
 }
 
 void CUI::Tick()

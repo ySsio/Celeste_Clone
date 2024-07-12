@@ -34,12 +34,23 @@ void CPanelUI::Render_DerivedUI()
 	Vec2 vFinalPos = GetFinalPos();
 	Vec2 vScale = GetScale();
 
-	SELECT_PEN(BackDC, PEN_TYPE::BLACK);
-	SELECT_BRUSH(BackDC, BRUSH_TYPE::GRAY);
+	CSpriteRenderer* pSprite = GetSprite();
 
-	Rectangle(BackDC
-		, (int)vFinalPos.x
-		, (int)vFinalPos.y
-		, (int)(vFinalPos.x + vScale.x)
-		, (int)(vFinalPos.y + vScale.y));
+	if (pSprite->GetTex())
+	{
+		pSprite->Render();
+	}
+	else
+	{
+		SELECT_PEN(BackDC, PEN_TYPE::BLACK);
+		SELECT_BRUSH(BackDC, BRUSH_TYPE::GRAY);
+
+		Rectangle(BackDC
+			, (int)vFinalPos.x
+			, (int)vFinalPos.y
+			, (int)(vFinalPos.x + vScale.x)
+			, (int)(vFinalPos.y + vScale.y));
+	}
+
+	
 }

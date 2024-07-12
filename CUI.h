@@ -11,7 +11,7 @@ private:
     CUI*            m_ParentUI;
     vector<CUI*>    m_ChildUI;
 
-    CTexture*       m_Tex;
+    CSpriteRenderer* m_Sprite;
 
     bool            m_MouseOn;
     bool            m_LbtnDown;
@@ -22,16 +22,20 @@ public:
     void AddChild(CUI* _Child) { _Child->SetParent(this); m_ChildUI.push_back(_Child); }
     void SetLbtnDown(bool _b) { m_LbtnDown = _b; }
 
-    void SetTexture(CTexture* _Tex);
+    void SetTex(CTexture* _Tex);
+    void SetTexOffset(Vec2 _Offset) { GetSprite()->SetOffset(_Offset); }
 
-    CTexture* GetTex() { return m_Tex; }
+    CTexture* GetTex() { return m_Sprite->GetTex(); }
 
+    CSpriteRenderer* GetSprite() { return m_Sprite; }
 
     Vec2 GetFinalPos() { return m_FinalPos; }
     CUI* GetParent() { return m_ParentUI; }
     const vector<CUI*>& GetChild() { return m_ChildUI; }
     bool IsMouseOn() { return m_MouseOn; }
     bool IsLbtnDown() { return m_LbtnDown; }
+
+    virtual Vec2 GetRenderPos();
 
 public:
     virtual void Tick() final;

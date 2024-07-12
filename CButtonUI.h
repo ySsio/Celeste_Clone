@@ -7,9 +7,12 @@ class CButtonUI :
 {
 private:
     function<void(void)>    m_Function;
+    int                     m_FontSize;
+    HFONT                   m_Font;
 
 public:
     void SetFunction(function<void(void)> _Func) { m_Function = _Func; }
+    void SetFontSize(int _Size);
 
 public:
     virtual void Tick_DerivedUI() override;

@@ -38,7 +38,7 @@ public:
     LAYER_TYPE GetType() { return m_Type; }
     Vec2 GetPos() { return m_Pos; }
     Vec2 GetScale() { return m_Scale; }
-    Vec2 GetRenderPos();
+    virtual Vec2 GetRenderPos();
     bool IsDead() { return m_PlayerDead; }
     int GetRoom() { return m_Room; }
 
