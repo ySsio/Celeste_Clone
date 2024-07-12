@@ -14,8 +14,10 @@ private:
 
     // 편집 중 속성
     bool    m_GeneratingRoom;
-    bool    m_EditBG;
-    bool    m_EditGame;
+    bool    m_EditBGTile;
+    bool    m_EditGameTile;
+    bool    m_EditBGObj;
+    bool    m_EditGameObj;
 
     CTile*  m_CurTile;
 
@@ -29,12 +31,24 @@ private:
     CPlatform*  m_BGTile;
     CPlatform*  m_GameTile;
 
+    CObj*       m_BGObj;
+    CObj*       m_GameObj;
+
 
 public:
     void SetCurTile(CTile* _Tile) { m_CurTile = _Tile; }
+    void SetBGObj(CObj* _Obj) { m_BGObj = _Obj; }
+    void SetGameObj(CObj* _Obj) { m_GameObj = _Obj; }
+
+    CObj* GetBGObj() { return m_BGObj; }
+    CObj* GetGameObj() { return m_GameObj; }
+
     void GenerateRoom() { m_GeneratingRoom = true; }
-    void EditBG(bool _b) { m_EditBG = _b; }
-    void EditGame(bool _b) { m_EditGame = _b; }
+    void EditBGTile(bool _b) { m_EditBGTile = _b; }
+    void EditGameTile(bool _b) { m_EditGameTile = _b; }
+
+    void EditBGObj(bool _b) { m_EditBGObj = _b; }
+    void EditGameObj(bool _b) { m_EditGameObj = _b; }
 
 public:
     virtual void Enter() override;

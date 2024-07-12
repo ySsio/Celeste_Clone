@@ -12,6 +12,8 @@
 #include "CTile.h"
 
 #include "CStrawBerry.h"
+#include "CSpring.h"
+#include "CZipMover.h"
 #include "CPlatform.h"
 
 
@@ -24,15 +26,18 @@ extern HWND hEdit_Game_Tile = nullptr;
 extern HWND hEdit_BG_OBJ = nullptr;
 extern HWND hEdit_Game_OBJ = nullptr;
 
-INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 CLevel_MapEditor::CLevel_MapEditor()
 	: m_GeneratingRoom(false)
-	, m_EditBG(false)
-	, m_EditGame(false)
+	, m_EditBGTile(false)
+	, m_EditGameTile(false)
+	, m_EditBGObj(false)
+	, m_EditGameObj(false)
 	, m_CurTile(nullptr)
 	, m_BGTile(nullptr)
 	, m_GameTile(nullptr)
+	, m_BGObj(nullptr)
+	, m_GameObj(nullptr)
 {
 	
 }
@@ -184,8 +189,8 @@ void CLevel_MapEditor::Tick_Derived()
 			}
 		}
 
-		// 편집 상태
-		if (m_EditBG)
+		// 타일 편집 상태
+		if (m_EditBGTile)
 		{
 			// BG에 해당하는 Platform 타일 편집
 			if (KEY_PRESSED(KEY::LBtn))
@@ -221,7 +226,7 @@ void CLevel_MapEditor::Tick_Derived()
 				}
 			}
 		}
-		else if (m_EditGame)
+		else if (m_EditGameTile)
 		{
 			// Game에 해당하는 Platform 타일 편집
 			if (KEY_PRESSED(KEY::LBtn))
@@ -261,6 +266,85 @@ void CLevel_MapEditor::Tick_Derived()
 		{
 			// EditBG나 EditGame 상태가 아니면 m_CurTile을 해제함
 			m_CurTile = nullptr;
+		}
+
+		// 오브젝트 편집 상태
+		if (m_EditBGObj)
+		{
+			if (m_BGObj)
+				m_BGObj->SetPos(GetTileCenter(m_MouseRealPos));
+
+			
+
+			if (KEY_RELEASED(KEY::LBtn))
+			{
+				m_BGObj = nullptr;
+			}
+		}
+		else if (m_EditGameObj)
+		{
+			if (m_GameObj)
+			{
+				Vec2 vScale = m_GameObj->GetScale();
+				Vec2 vPos{};
+
+				// 타일 수가 짝수 개일 때
+				if ((int)(vScale.x / TILE_SCALE) % 2 == 0)
+				{
+					vPos.x = GetTileLT(m_MouseRealPos).x;
+				}
+				// 타일 수가 홀수 개일 때
+				else
+				{
+					vPos.x = GetTileCenter(m_MouseRealPos).x;
+				}
+
+				// 타일 수가 짝수 개일 때
+				if ((int)(vScale.y / TILE_SCALE) % 2 == 0)
+				{
+					vPos.y = GetTileLT(m_MouseRealPos).y;
+				}
+				// 타일 수가 홀수 개일 때
+				else
+				{
+					vPos.y = GetTileCenter(m_MouseRealPos).y;
+				}
+
+				m_GameObj->SetPos(vPos);
+			}
+
+			if (KEY_TAP(KEY::LBtn))
+			{
+				CZipMover* pZip = dynamic_cast<CZipMover*>(m_GameObj);
+				if (pZip)
+				{
+					pZip->SetStartPos(GetTileCenter(m_MouseRealPos));
+				}
+			}
+
+			if (KEY_RELEASED(KEY::LBtn))
+			{
+				int RoomNum = 0;
+				RoomNum = GetCurRoom();
+				if (RoomNum == -1)
+					return;
+
+				if (m_GameObj)
+					m_GameObj->SetRoom(RoomNum);
+
+				CZipMover* pZip = dynamic_cast<CZipMover*>(m_GameObj);
+				if (pZip)
+				{
+					Vec2 vPos = GetTileCenter(m_MouseRealPos);
+					pZip->SetEndPos(vPos);
+					pZip->SetPos(pZip->GetStartPos());
+				}
+				m_GameObj = nullptr;
+			}
+		}
+		else
+		{
+
 		}
 	}
 	
@@ -493,8 +577,8 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 			{
-				pLevel->EditBG(true);
-				pLevel->EditGame(false);
+				pLevel->EditBGTile(true);
+				pLevel->EditGameTile(false);
 			}
 
 			ShowWindow(hEdit_BG_Tile, SW_SHOW);
@@ -509,8 +593,8 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 			{
-				pLevel->EditBG(false);
-				pLevel->EditGame(true);
+				pLevel->EditBGTile(false);
+				pLevel->EditGameTile(true);
 			}
 
 			ShowWindow(hEdit_Game_Tile, SW_SHOW);
@@ -523,6 +607,13 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			ShowWindow(hEdit_BG_OBJ, SW_SHOW);
 
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+			{
+				pLevel->EditBGObj(true);
+				pLevel->EditGameObj(false);
+			}
+
 			return (INT_PTR)TRUE;
 		}
 
@@ -530,6 +621,13 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		if (LOWORD(wParam) == IDC_BUTTON7)
 		{
 			ShowWindow(hEdit_Game_OBJ, SW_SHOW);
+
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+			{
+				pLevel->EditBGObj(false);
+				pLevel->EditGameObj(true);
+			}
 
 			return (INT_PTR)TRUE;
 		}
@@ -731,17 +829,13 @@ INT_PTR CALLBACK Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 			// BG Edit 상태에서 벗어남
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
-				pLevel->EditBG(false);
+				pLevel->EditBGTile(false);
 
 			return (INT_PTR)TRUE;
 		}
 
-
-
 		break;
 	}
-
-	
 
 	return (INT_PTR)FALSE;
 	
@@ -837,17 +931,224 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 			// Game Edit 상태에서 벗어남
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
-				pLevel->EditGame(false);
+				pLevel->EditGameTile(false);
 
 			return (INT_PTR)TRUE;
 		}
 
-
-
 		break;	
 	}
 
+	return (INT_PTR)FALSE;
 
+}
+
+INT_PTR CALLBACK Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	static HWND hPictureControl = NULL;
+	static wstring strPalette = L"";
+
+	switch (message)
+	{
+	case WM_INITDIALOG:
+	{
+		// 콤보 박스 핸들 가져오기
+		HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
+
+		// 콤보 박스에 항목 추가
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Strawberry"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spring"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("ZipMover"));
+
+		return (INT_PTR)TRUE;
+	}
+
+	case WM_COMMAND:
+		if (HIWORD(wParam) == CBN_SELCHANGE)
+		{
+			// 콤보 박스에서 항목이 선택되었을 때
+			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
+			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+
+			// 선택된 항목의 텍스트 가져오기
+			wchar_t selectedText[256];
+			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
+
+			strPalette = selectedText;
+
+			// selectedText로 텍스쳐를 가져옴
+			CTexture* pTex = CAssetMgr::Get()->FindAsset<CTexture>(strPalette);
+
+			if (hPictureControl)
+			{
+				// 커스텀 picture control에 이미지 세팅 메시지를 보냄 (CTexture 포인터 전달)
+				SendMessage(hPictureControl, STM_SETIMAGE, (WPARAM)pTex, NULL);
+
+				// WM_PAINT 메시지를 호출하기 위해 순간적으로 창을 비활성화 함
+				InvalidateRect(hDlg, NULL, TRUE);
+			}
+		}
+
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)	// X 버튼
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+
+			// Game Edit 상태에서 벗어남
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->EditGameTile(false);
+
+			return (INT_PTR)TRUE;
+		}
+
+		break;
+	}
+
+	return (INT_PTR)FALSE;
+
+}
+
+#include <commctrl.h>
+
+INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	HWND hRowEdit = GetDlgItem(hDlg, IDC_EDIT1);
+	HWND hColEdit = GetDlgItem(hDlg, IDC_EDIT2);
+
+	switch (message)
+	{
+	case WM_INITDIALOG:
+	{
+		// 콤보 박스 핸들 가져오기
+		HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
+
+		// 콤보 박스에 항목 추가
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Strawberry"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spring"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("ZipMover"));
+
+		// rowcol 세팅 기본적으로 비활성화
+		EnableWindow(hRowEdit, false);
+		EnableWindow(hColEdit, false);
+
+		// spin control과 edit control 연결
+		HWND hRowSpin = GetDlgItem(hDlg, IDC_SPIN1);
+		HWND hColSpin = GetDlgItem(hDlg, IDC_SPIN2);
+
+		SendMessage(hRowSpin, UDM_SETBUDDY, (WPARAM)hRowEdit, 0);
+		SendMessage(hColSpin, UDM_SETBUDDY, (WPARAM)hColEdit, 0);
+
+
+		//return (INT_PTR)TRUE;
+		break;
+	}
+
+	case WM_COMMAND:
+		if (HIWORD(wParam) == CBN_SELCHANGE)
+		{
+			// 콤보 박스에서 항목이 선택되었을 때
+			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
+			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+
+			// 선택된 항목의 텍스트 가져오기
+			wchar_t selectedText[256];
+			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
+
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+			{
+				EnableWindow(GetDlgItem(hDlg, IDC_EDIT1), false);
+				EnableWindow(GetDlgItem(hDlg, IDC_EDIT2), false);
+
+				if (wcscmp(selectedText, L"Strawberry") == 0)
+				{
+					CObj* pObj = new CStrawBerry;
+					pObj->SetScale(Vec2(80.f, 80.f));
+
+					SetWindowText(hRowEdit, std::to_wstring(2).c_str());
+					SetWindowText(hColEdit, std::to_wstring(2).c_str());
+
+					pLevel->SetGameObj(pObj);
+					Add_Object(pObj, LAYER_TYPE::OBJ);
+				}
+				else if (wcscmp(selectedText, L"Spring") == 0)
+				{
+					CObj* pObj = new CSpring;
+					pObj->SetScale(Vec2(80.f, 80.f));
+
+					SetWindowText(hRowEdit, std::to_wstring(1).c_str());
+					SetWindowText(hColEdit, std::to_wstring(2).c_str());
+
+					pLevel->SetGameObj(pObj);
+					Add_Object(pObj, LAYER_TYPE::OBJ);
+				}
+				else if (wcscmp(selectedText, L"ZipMover") == 0)
+				{
+					EnableWindow(GetDlgItem(hDlg, IDC_EDIT1), true);
+					EnableWindow(GetDlgItem(hDlg, IDC_EDIT2), true);
+
+					CObj* pObj = new CZipMover;
+
+					SetWindowText(hRowEdit, std::to_wstring(2).c_str());
+					SetWindowText(hColEdit, std::to_wstring(3).c_str());
+					
+					pLevel->SetGameObj(pObj);
+					Add_Object(pObj, LAYER_TYPE::OBJ);
+				}
+			}
+		}
+
+		if (HIWORD(wParam) == EN_CHANGE) {
+			if (LOWORD(wParam) == IDC_EDIT1 ) {
+				// Edit control에서 값을 받음
+				wchar_t buffer[256];
+				GetWindowText(hRowEdit, buffer, 256);
+				int newValue = _wtoi(buffer);
+
+				// Do something with newValue
+				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+				if (pLevel)
+				{
+					CZipMover* pObj = dynamic_cast<CZipMover*>(pLevel->GetGameObj());
+					if (pObj)
+					{
+						pObj->SetTile(newValue, pObj->GetCol());
+					}
+				}
+			}
+			else if (LOWORD(wParam) == IDC_EDIT2) {
+				// Edit control에서 값을 받음
+				wchar_t buffer[256];
+				GetWindowText(hColEdit, buffer, 256);
+				int newValue = _wtoi(buffer);
+
+				// Do something with newValue
+				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+				if (pLevel)
+				{
+					CZipMover* pObj = dynamic_cast<CZipMover*>(pLevel->GetGameObj());
+					if (pObj)
+					{
+						pObj->SetTile(pObj->GetRow(), newValue);
+					}
+				}
+			}
+		}
+
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)	// X 버튼
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+
+			// Game Edit 상태에서 벗어남
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->EditGameTile(false);
+
+			return (INT_PTR)TRUE;
+		}
+
+		break;
+	}
 
 	return (INT_PTR)FALSE;
 

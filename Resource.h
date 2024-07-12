@@ -32,8 +32,13 @@
 #define IDC_BUTTON6                     1027
 #define ID_ADD_IMG                      1027
 #define IDC_BUTTON7                     1028
+#define IDC_EDIT1                       1028
 #define IDC_BUTTON8                     1029
 #define IDC_BUTTON9                     1030
+#define IDC_SPIN1                       1041
+#define IDC_EDIT2                       1042
+#define IDC_SPIN8                       1043
+#define IDC_SPIN2                       1043
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -53,7 +58,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32781
-#define _APS_NEXT_CONTROL_VALUE         1028
+#define _APS_NEXT_CONTROL_VALUE         1035
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

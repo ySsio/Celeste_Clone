@@ -34,6 +34,7 @@ CZipMover::CZipMover()
 	m_Collider = AddComponent<CCollider>();
 
 	m_SpriteRenderer = AddComponent<CSpriteRenderer>();
+	m_SpriteRenderer->SetTex(CAssetMgr::Get()->FindAsset<CTexture>(L"light01"));
 }
 
 CZipMover::~CZipMover()

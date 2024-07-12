@@ -28,6 +28,9 @@ private:
 public:
     void SetStartPos(Vec2 _Pos) { m_StartPos = _Pos; }
     void SetEndPos(Vec2 _Pos) { m_EndPos = _Pos; }
+    
+    Vec2 GetStartPos() { return m_StartPos; }
+    Vec2 GetEndPos() { return m_EndPos; }
 
     void SetDuration(float _Duration) { m_Duration = _Duration; }
 
@@ -37,6 +40,8 @@ public:
     }
 
     void SetTile(UINT Row, UINT Col);
+    UINT GetRow() { return m_TileMap->GetRowCnt(); }
+    UINT GetCol() { return m_TileMap->GetColCnt(); }
 
 public:
     virtual bool Save(FILE* _pFile) override;
