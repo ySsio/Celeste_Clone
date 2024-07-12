@@ -161,14 +161,14 @@ void CZipMover::Load(FILE* _pFile)
 
 void CZipMover::Tick()
 {
-	m_SpriteRenderer->SetTexture(CAssetMgr::Get()->FindAsset<CTexture>(L"light01"));
+	m_SpriteRenderer->SetTex(CAssetMgr::Get()->FindAsset<CTexture>(L"light01"));
 
 	// 시작지점에서 끝지점으로 가속
 	if (m_Active)
 	{
 		m_AccTime += fDT;
 
-		m_SpriteRenderer->SetTexture(CAssetMgr::Get()->FindAsset<CTexture>(L"light03"));
+		m_SpriteRenderer->SetTex(CAssetMgr::Get()->FindAsset<CTexture>(L"light03"));
 
 		if (m_AccTime >= m_StartDuration)
 		{
@@ -201,7 +201,7 @@ void CZipMover::Tick()
 	{
 		m_AccTime += fDT;
 
-		m_SpriteRenderer->SetTexture(CAssetMgr::Get()->FindAsset<CTexture>(L"light02"));
+		m_SpriteRenderer->SetTex(CAssetMgr::Get()->FindAsset<CTexture>(L"light02"));
 
 		if (m_AccTime >= m_StopDuration)
 		{

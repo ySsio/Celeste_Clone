@@ -33,7 +33,7 @@ void CPalette::SetPalette(const wstring& _Name)
 		for (UINT Col = 0; Col < m_ColCnt; ++Col)
 		{
 			CTile* pTile = new CTile;
-			pTile->SetTexture(m_Tex);
+			pTile->SetTex(m_Tex);
 			pTile->SetScale(Vec2((float)m_UnitWidth, (float)m_UnitHeight));
 			pTile->SetLT(Vec2((float)Col * m_UnitWidth, (float)Row * m_UnitHeight));
 
@@ -166,7 +166,7 @@ void CPalette::Load(const wstring& _strRelativeFilePath)
 			wstring Name = szBuff;
 
 			// 1. 텍스쳐 정보 등록
-			pTile->SetTexture(m_Tex);
+			pTile->SetTex(m_Tex);
 
 			// 2. LT 정보 불러오기
 			Vec2 vBuffer{};

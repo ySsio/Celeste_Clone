@@ -134,7 +134,7 @@ CPlayer::CPlayer()
 	m_Buffer->CreateTexture(160,160);
 
 	m_Sprite = AddComponent<CSpriteRenderer>();
-	m_Sprite->SetTexture(m_Buffer);
+	m_Sprite->SetTex(m_Buffer);
 }
 
 CPlayer::~CPlayer()

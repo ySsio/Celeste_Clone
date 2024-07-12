@@ -62,55 +62,55 @@ void CLevel_AnimEditor::Enter()
 	CButtonUI* pButton = new CButtonUI;
 	pButton->SetPos(Vec2(200.f, 600.f));
 	pButton->SetFunction([=]() {m_AnimUI->DecrBangFrm();});
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_left.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_left.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(400.f, 600.f));
 	pButton->SetFunction([=]() {m_AnimUI->IncrBangFrm();});
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_right.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_right.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(200.f, 650.f));
 	pButton->SetFunction([=]() {m_AnimUI->DecrBodyFrm(); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_left.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_left.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(400.f, 650.f));
 	pButton->SetFunction([=]() {m_AnimUI->IncrBodyFrm(); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_right.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_right.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(200.f, 700.f));
 	pButton->SetFunction([=]() {m_AnimUI->DecrBangFrm(); m_AnimUI->DecrBodyFrm(); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_left.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_left.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(400.f, 700.f));
 	pButton->SetFunction([=]() {m_AnimUI->IncrBangFrm(); m_AnimUI->IncrBodyFrm(); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_right.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_right.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(500.f, 620.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\play.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\play.png"));
 	pButton->SetFunction([=]() {m_AnimUI->Play(); });
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(500.f, 680.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\pause.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\pause.png"));
 	pButton->SetFunction([=]() {m_AnimUI->Stop(); });
 
 	pPanel->AddChild(pButton);
@@ -184,7 +184,7 @@ void CLevel_AnimEditor::Enter()
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 170.f, tempY + 140.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\add.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\add.png"));
 	pButton->SetFunction([=]() {
 
 		// 현재 편집중인 애니메이션이 없으면 오류
@@ -268,7 +268,7 @@ void CLevel_AnimEditor::Enter()
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 200.f, tempY + 140.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\remove.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\remove.png"));
 	pButton->SetFunction([=]() {
 
 		// 현재 편집중인 애니메이션이 없으면 오류
@@ -316,14 +316,14 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 398.f));
 	pButton->SetFunction([=]() {int val = m_BangOffsetX->GetIntValue(); m_BangOffsetX->SetNumValue(val + 1); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 462.f));
 	pButton->SetFunction([=]() {int val = m_BangOffsetX->GetIntValue(); m_BangOffsetX->SetNumValue(val - 1);  });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
 
 	pPanel->AddChild(pButton);
 
@@ -343,14 +343,14 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 398.f));
 	pButton->SetFunction([=]() {int val = m_BangOffsetY->GetIntValue(); m_BangOffsetY->SetNumValue(val + 1); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 462.f));
 	pButton->SetFunction([=]() {int val = m_BangOffsetY->GetIntValue(); m_BangOffsetY->SetNumValue(val - 1); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
 
 	pPanel->AddChild(pButton);
 
@@ -369,7 +369,7 @@ void CLevel_AnimEditor::Enter()
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 40.f, 640.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\generate.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\generate.png"));
 	pButton->SetFunction([=]() {
 
 		// 이름이 없으면 오류
@@ -415,7 +415,7 @@ void CLevel_AnimEditor::Enter()
 		// 애니메이션이 저장되었음을 알림
 		MessageBox(CEngine::Get()->GetMainHwnd(), L"애니메이션이 저장되었습니다.", L"애니메이션 저장 완료", MB_OK);
 	});
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\save.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\save.png"));
 
 	pPanel->AddChild(pButton);
 
@@ -457,7 +457,7 @@ void CLevel_AnimEditor::Enter()
 				}
 			}
 		});
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\load.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\load.png"));
 
 	pPanel->AddChild(pButton);
 
@@ -497,7 +497,7 @@ void CLevel_AnimEditor::Enter()
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 170.f, tempY + 140.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\add.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\add.png"));
 	pButton->SetFunction([=]() {
 
 		// 현재 편집중인 애니메이션이 없으면 오류
@@ -577,7 +577,7 @@ void CLevel_AnimEditor::Enter()
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 200.f, tempY + 140.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\remove.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\remove.png"));
 	pButton->SetFunction([=]() {
 
 		// 현재 편집중인 애니메이션이 없으면 오류
@@ -625,14 +625,14 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 398.f));
 	pButton->SetFunction([=]() {int val = m_BodyOffsetX->GetIntValue(); m_BodyOffsetX->SetNumValue(val + 1); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 140.f, 462.f));
 	pButton->SetFunction([=]() {int val = m_BodyOffsetX->GetIntValue(); m_BodyOffsetX->SetNumValue(val - 1); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
 
 	pPanel->AddChild(pButton);
 
@@ -652,14 +652,14 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 398.f));
 	pButton->SetFunction([=]() {int val = m_BodyOffsetY->GetIntValue(); m_BodyOffsetY->SetNumValue(val + 1); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_up.png"));
 
 	pPanel->AddChild(pButton);
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 220.f, 462.f));
 	pButton->SetFunction([=]() {int val = m_BodyOffsetY->GetIntValue(); m_BodyOffsetY->SetNumValue(val - 1); });
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\arrow_down.png"));
 
 	pPanel->AddChild(pButton);
 
@@ -678,7 +678,7 @@ void CLevel_AnimEditor::Enter()
 
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 40.f, 640.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\generate.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\generate.png"));
 	pButton->SetFunction([=]() {
 
 		// 이름이 없으면 오류
@@ -717,7 +717,7 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 100.f, 640.f));
 	pButton->SetScale(Vec2(50.f, 30.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\save.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\save.png"));
 	pButton->SetFunction([=]() {
 		m_AnimUI->GetBody()->SetName(m_BodyName->GetValue());
 		SaveBodyAnimation(L"\\animation\\" + m_BodyName->GetValue() + L".anim");
@@ -732,7 +732,7 @@ void CLevel_AnimEditor::Enter()
 	pButton = new CButtonUI;
 	pButton->SetPos(Vec2(tempX + 160.f, 640.f));
 	pButton->SetScale(Vec2(80.f, 30.f));
-	pButton->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\load.png"));
+	pButton->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\load.png"));
 	pButton->SetFunction([=]() {
 
 		// 파일 탐색기에서 불러올 파일 선택

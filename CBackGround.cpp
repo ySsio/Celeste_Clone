@@ -13,7 +13,7 @@ CBackGround::~CBackGround()
 void CBackGround::AddTexture(CTexture* _Tex)
 {
 	CSpriteRenderer* pSprite = AddComponent<CSpriteRenderer>();
-	pSprite->SetTexture(_Tex);
+	pSprite->SetTex(_Tex);
 
 	m_Sprites.push_back(pSprite);
 }

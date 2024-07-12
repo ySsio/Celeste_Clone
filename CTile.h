@@ -34,7 +34,7 @@ public:
     bool IsDanger() { return m_IsDanger; }
     const tColInfo& GetColInfo() { return m_ColInfo; }
 
-    void SetTexture(CTexture* _Tex) { m_Tex = _Tex; }
+    void SetTex(CTexture* _Tex) { m_Tex = _Tex; }
     void SetLT(Vec2 _LT) { m_LT = _LT; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 

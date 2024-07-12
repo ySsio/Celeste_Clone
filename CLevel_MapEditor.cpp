@@ -53,7 +53,7 @@ void CLevel_MapEditor::Enter()
 	ShowWindow(hEdit, SW_SHOW);
 
 
-	Load(L"\\map\\Level_MapEditor.level");
+	//Load(L"\\map\\Level_MapEditor.level");
 
 
 	// Strawberry
@@ -188,7 +188,7 @@ void CLevel_MapEditor::Tick_Derived()
 		if (m_EditBG)
 		{
 			// BG에 해당하는 Platform 타일 편집
-			if (KEY_PRESSED(KEY::LBtn) && m_BGTile)
+			if (KEY_PRESSED(KEY::LBtn))
 			{
 				CTileMap* pTileMap = m_BGTile->GetComponent<CTileMap>();
 				int RowCnt = (int)pTileMap->GetRowCnt();
@@ -203,13 +203,28 @@ void CLevel_MapEditor::Tick_Derived()
 				{
 					pTileMap->SetTile(Row, Col, m_CurTile);
 				}
+			}
+			else if (KEY_PRESSED(KEY::RBtn))
+			{
+				CTileMap* pTileMap = m_BGTile->GetComponent<CTileMap>();
+				int RowCnt = (int)pTileMap->GetRowCnt();
+				int ColCnt = (int)pTileMap->GetColCnt();
 
+				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
+				int Col = (int)floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
+				int Row = (int)floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
+
+				if (0 <= Row && Row < RowCnt
+					&& 0 <= Col && Col < ColCnt)
+				{
+					pTileMap->SetTile(Row, Col, nullptr);
+				}
 			}
 		}
 		else if (m_EditGame)
 		{
 			// Game에 해당하는 Platform 타일 편집
-			if (KEY_PRESSED(KEY::LBtn) && m_GameTile)
+			if (KEY_PRESSED(KEY::LBtn))
 			{
 				CTileMap* pTileMap = m_GameTile->GetComponent<CTileMap>();
 				int RowCnt = (int)pTileMap->GetRowCnt();
@@ -223,6 +238,22 @@ void CLevel_MapEditor::Tick_Derived()
 					&& 0 <= Col && Col < ColCnt)
 				{
 					pTileMap->SetTile(Row, Col, m_CurTile);
+				}
+			}
+			else if (KEY_PRESSED(KEY::RBtn))
+			{
+				CTileMap* pTileMap = m_GameTile->GetComponent<CTileMap>();
+				int RowCnt = (int)pTileMap->GetRowCnt();
+				int ColCnt = (int)pTileMap->GetColCnt();
+
+				// 마우스 위치가 타일맵의 어떤 타일을 가리키는 지 계산
+				int Col = (int)floor((m_MouseRealPos.x - m_LT.x) / TILE_SCALE);
+				int Row = (int)floor((m_MouseRealPos.y - m_LT.y) / TILE_SCALE);
+
+				if (0 <= Row && Row < RowCnt
+					&& 0 <= Col && Col < ColCnt)
+				{
+					pTileMap->SetTile(Row, Col, nullptr);
 				}
 			}
 		}
@@ -458,6 +489,14 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 배경 타일 편집 버튼
 		if (LOWORD(wParam) == IDC_BUTTON4)
 		{
+			// BG Edit 상태에 진입
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+			{
+				pLevel->EditBG(true);
+				pLevel->EditGame(false);
+			}
+
 			ShowWindow(hEdit_BG_Tile, SW_SHOW);
 
 			return (INT_PTR)TRUE;
@@ -466,6 +505,14 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 게임 타일 편집 버튼
 		if (LOWORD(wParam) == IDC_BUTTON5)
 		{
+			// BG Edit 상태에 진입
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+			{
+				pLevel->EditBG(false);
+				pLevel->EditGame(true);
+			}
+
 			ShowWindow(hEdit_Game_Tile, SW_SHOW);
 
 			return (INT_PTR)TRUE;
@@ -493,6 +540,46 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 				pLevel->Save();
+
+			return (INT_PTR)TRUE;
+		}
+
+		// 불러오기 버튼
+		if (LOWORD(wParam) == IDC_BUTTON9)
+		{
+
+
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+			{
+				// 파일 탐색기에서 불러올 파일 선택
+				OPENFILENAME OFN{};
+				wchar_t szFilePath[255] = L"";
+				wchar_t filter[] = L"맵\0*.level\0모든 파일\0*.*\0";
+
+				OFN.lStructSize = sizeof(OPENFILENAME);
+				OFN.hwndOwner = CEngine::Get()->GetMainHwnd();	// 모달 채택할 윈도우를 지정해줌
+				OFN.lpstrFilter = filter;
+				OFN.lpstrFile = szFilePath;
+				OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+				OFN.nMaxFile = 255;	// 파일 문자열 최대 길이
+				wstring strAnimPath = CPathMgr::Get()->GetContentPath() + L"\\map";
+				OFN.lpstrInitialDir = strAnimPath.c_str(); // 창을 켰을 때 디폴트 경로
+
+				if (GetOpenFileName(&OFN)) {
+
+					wstring strExtension = CPathMgr::Get()->GetPathExtension(szFilePath);
+
+					if (wcscmp(strExtension.c_str(), L".level") == 0)
+					{
+						// 현재 오브젝트를 전부 비움
+						pLevel->Exit();
+
+						// 파일을 로드함
+						pLevel->Load(CPathMgr::Get()->GetRelativePath(szFilePath));
+					}
+				}
+			}
 
 			return (INT_PTR)TRUE;
 		}
@@ -606,10 +693,7 @@ INT_PTR CALLBACK Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 			NULL
 		);
 
-		// BG Edit 상태에 진입
-		CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
-		if (pLevel)
-			pLevel->EditBG(true);
+		
 
 		return (INT_PTR)TRUE;
 	}
@@ -716,12 +800,6 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 			hInst,
 			NULL
 		);
-
-
-		// Game Edit 상태에 진입
-		CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
-		if (pLevel)
-			pLevel->EditGame(true);
 
 		return (INT_PTR)TRUE;
 	}

@@ -18,7 +18,7 @@ CSpriteRenderer::~CSpriteRenderer()
 {
 }
 
-void CSpriteRenderer::SetTexture(CTexture* _pTex)
+void CSpriteRenderer::SetTex(CTexture* _pTex)
 {
 	m_Tex = _pTex;
 
