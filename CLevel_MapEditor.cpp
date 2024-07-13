@@ -17,11 +17,13 @@
 #include "CZipMover.h"
 #include "CPlatform.h"
 #include "CBackGround.h"
+#include "CPanelUI.h"
 
 
 extern HINSTANCE hInst;
 
 extern HWND hEdit = nullptr;
+extern HWND hEdit_Img = nullptr;
 extern HWND hEdit_BG_Tile = nullptr;
 extern HWND hEdit_Game_Tile = nullptr;
 extern HWND hEdit_BG_OBJ = nullptr;
@@ -61,19 +63,33 @@ void CLevel_MapEditor::Enter()
 	ShowWindow(hEdit, SW_SHOW);
 
 
-	//Load(L"\\map\\Level_MapEditor.level");
+	Load(L"\\map\\.level");
+
+	//Vec2 vRes = CEngine::Get()->GetResolution();
+
+	////CTexture* pTex = CAssetMgr::Get()->FindAsset<CTexture>(L"Level0_bg3");
+	////CTexture* pTex = CAssetMgr::Get()->FindAsset<CTexture>(L"Level3_bg2");
+	//CTexture* pTex = CAssetMgr::Get()->FindAsset<CTexture>(L"Level1_bg1");
+
+	//CPanelUI* pPanel = new CPanelUI;
+	//pPanel->SetTex(pTex);
+	////pPanel->SetPos(vRes / 2.f); 
+	////pPanel->SetPos(Vec2(vRes.x*4.f/5.f, vRes.y/12.f));
+	//pPanel->SetPos(Vec2(vRes.x/2.f, vRes.y/4.f));
+	//pPanel->SetMovable(false);
+	//pPanel->SetFix(true);
 
 
-	// Strawberry
-	//CStrawBerry* pStrawberry = new CStrawBerry;
-	//pStrawberry->SetPos(Vec2(200.f, 400.f));
-	//pStrawberry->SetScale(Vec2(80.f, 80.f));
-	//pStrawberry->SetRoom(0);
+	//vector<CObj*>& vec = const_cast<vector<CObj*>&>(GetLayer(LAYER_TYPE::BACKGROUND));
 
-	//AddObject(pStrawberry, LAYER_TYPE::OBJ);
+	//vec.push_back(pPanel);
 
+	//for (int i = vec.size()-1; i >= 1 ; --i)
+	//{
+	//	vec[i] = vec[i - 1];
+	//}
 
-	
+	//vec[0] = pPanel;
 
 }
 
@@ -671,6 +687,14 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			return (INT_PTR)TRUE;
 		}
 
+		// 배경 이미지 세팅 버튼
+		if (LOWORD(wParam) == IDC_BUTTON3)
+		{
+			ShowWindow(hEdit_Img, SW_SHOW);
+
+			return (INT_PTR)TRUE;
+		}
+
 
 		// 배경 타일 편집 버튼
 		if (LOWORD(wParam) == IDC_BUTTON4)
@@ -802,6 +826,74 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
 		break;
 	}
+	return (INT_PTR)FALSE;
+}
+
+INT_PTR CALLBACK Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	static HWND hComboBox = nullptr;
+	static CTexture* pTex = nullptr;
+
+	switch (message)
+	{
+	case WM_INITDIALOG:
+	{
+		// 콤보박스 핸들
+		hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
+
+		// 콤보박스 아이템 추가
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level1_bg1"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level0_bg3"));
+
+
+		return (INT_PTR)TRUE;
+	}
+
+	case WM_COMMAND:
+		if (HIWORD(wParam) == CBN_SELCHANGE)
+		{
+			// 콤보박스
+			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+
+			// 콤보박스 글 받아옴
+			wchar_t selectedText[256];
+			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
+
+			// selectedText로 텍스쳐 불러옴
+			pTex = CAssetMgr::Get()->FindAsset<CTexture>(selectedText);
+
+		}
+
+		if (LOWORD(wParam) == IDCANCEL)	// X 버튼
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+
+		// 추가 버튼
+		if (LOWORD(wParam) == ID_ADD_IMG)
+		{
+			Vec2 vRes = CEngine::Get()->GetResolution();
+
+			CLevel* pLevel = CLevelMgr::Get()->GetCurLevel();
+			CPanelUI* pPanel = new CPanelUI;
+			pPanel->SetTex(pTex);
+			pPanel->SetPos(vRes / 2.f);
+			pPanel->SetMovable(false);
+			pPanel->SetFix(true);
+
+
+			Add_Object(pPanel, LAYER_TYPE::BACKGROUND);
+
+			return (INT_PTR)TRUE;
+		}
+
+
+		break;
+
+	}
+
+
 	return (INT_PTR)FALSE;
 }
 

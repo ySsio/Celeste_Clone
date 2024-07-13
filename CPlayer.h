@@ -10,7 +10,7 @@ class CPlayer :
 {
 private:
     // Component
-    CSpriteRenderer*    m_Sprite;
+    CSpriteRenderer*    m_Tex;
     CAnimator*          m_BangAnim;
     CAnimator*          m_BodyAnim;
     CStateMachine*      m_StateMachine;

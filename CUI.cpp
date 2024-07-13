@@ -19,7 +19,8 @@ CUI::~CUI()
 
 void CUI::SetTex(CTexture* _Tex)
 {
-	m_Sprite->SetTex(_Tex); SetScale(Vec2((float)_Tex->GetWidth(), (float)_Tex->GetHeight()));
+	m_Sprite->SetTex(_Tex); 
+	SetScale(Vec2((float)_Tex->GetWidth(), (float)_Tex->GetHeight()));
 }
 
 Vec2 CUI::GetRenderPos()

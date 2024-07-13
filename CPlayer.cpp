@@ -29,7 +29,7 @@
 
 
 CPlayer::CPlayer()
-	: m_Sprite(nullptr)
+	: m_Tex(nullptr)
 	, m_BangAnim(nullptr)
 	, m_BodyAnim(nullptr)
 	, m_StateMachine(nullptr)
@@ -133,8 +133,8 @@ CPlayer::CPlayer()
 	m_Buffer = new CTexture;
 	m_Buffer->CreateTexture(160,160);
 
-	m_Sprite = AddComponent<CSpriteRenderer>();
-	m_Sprite->SetTex(m_Buffer);
+	m_Tex = AddComponent<CSpriteRenderer>();
+	m_Tex->SetTex(m_Buffer);
 }
 
 CPlayer::~CPlayer()
@@ -169,8 +169,8 @@ void CPlayer::Tick()
 void CPlayer::Render()
 {
 	// clear Buffer
-	if (m_Sprite)
-		m_Sprite->ClearTex();
+	if (m_Tex)
+		m_Tex->ClearTex();
 
 	// hair render
 	if (!m_PlayerDead && m_HairTex)
@@ -213,8 +213,8 @@ void CPlayer::Render()
 
 	
 	// Buffer to BackDC
-	if (m_Sprite)
-		m_Sprite->Render();
+	if (m_Tex)
+		m_Tex->Render();
 
 }
 

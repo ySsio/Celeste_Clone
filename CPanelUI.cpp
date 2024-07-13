@@ -4,6 +4,8 @@
 #include "CEngine.h"
 #include "CKeyMgr.h"
 
+#include "CAssetMgr.h"
+
 CPanelUI::CPanelUI()
 	: m_Movable(true)
 {
@@ -11,6 +13,73 @@ CPanelUI::CPanelUI()
 
 CPanelUI::~CPanelUI()
 {
+}
+
+bool CPanelUI::Save(FILE* _pFile)
+{
+	// 1. 오브젝트 타입을 문자열로 저장
+	wstring Type = L"PanelUI";
+	int len = (int)Type.length();
+	fwrite(&len, sizeof(int), 1, _pFile);
+	fwrite(Type.c_str(), sizeof(wchar_t), len, _pFile);
+
+	// 2. Room 정보 저장 (해야되나?)
+	int Room = GetRoom();
+	fwrite(&Room, sizeof(int), 1, _pFile);
+
+	// 3. 포지션 저장
+	Vec2 VecBuff = GetPos();
+	fwrite(&VecBuff, sizeof(Vec2), 1, _pFile);
+
+	// 4. Scale 저장
+	VecBuff = GetScale();
+	fwrite(&VecBuff, sizeof(Vec2), 1, _pFile);
+
+	// 4. 텍스쳐 이름 저장
+	wstring Tex = GetSprite()->GetTex()->GetName();
+	len = Tex.length();
+	fwrite(&len, sizeof(int), 1, _pFile);
+	fwrite(Tex.c_str(), sizeof(wchar_t), len, _pFile);
+
+	// 5. 고정 여부 저장
+	bool b = GetSprite()->GetFix();
+	fwrite(&b, sizeof(bool), 1, _pFile);
+	
+
+
+	return true;
+}
+
+void CPanelUI::Load(FILE* _pFile)
+{
+	// 1. 오브젝트 타입을 보고 이 함수가 호출된 상황
+	// 2. Room 정보 불러옴
+	int Room = 0;
+	fread(&Room, sizeof(int), 1, _pFile);
+	SetRoom(Room);
+
+	// 3. 포지션 저장
+	Vec2 VecBuff = Vec2();
+	fread(&VecBuff, sizeof(Vec2), 1, _pFile);
+	SetPos(VecBuff);
+
+	// 4. Scale 저장
+	fread(&VecBuff, sizeof(Vec2), 1, _pFile);
+	SetScale(VecBuff);
+
+	// 4. Tex 받아와서 세팅
+	int len = 0;
+	wchar_t szBuff[256]{};
+	fread(&len, sizeof(int), 1, _pFile);
+	fread(&szBuff, sizeof(wchar_t), len, _pFile);
+
+	SetTex(CAssetMgr::Get()->FindAsset<CTexture>(szBuff));
+	
+	// 5. 고정
+	bool b = false;
+	fread(&b, sizeof(bool), 1, _pFile);
+	SetFix(b);
+
 }
 
 void CPanelUI::Tick_DerivedUI()

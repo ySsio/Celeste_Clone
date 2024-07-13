@@ -46,12 +46,12 @@ void CAssetMgr::Init()
 	LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png")->Scale(5.f);
 	LoadAsset<CTexture>(L"Level1_bg2", L"\\texture\\bgs\\01\\bg2.png")->Scale(5.f);
 
-	//LoadAsset<CTexture>(L"Level3_bg0", L"\\texture\\bgs\\03\\bg0.png")->Scale(5.f);
-	//LoadAsset<CTexture>(L"Level3_bg1", L"\\texture\\bgs\\03\\bg1.png")->Scale(5.f);
-	//LoadAsset<CTexture>(L"Level3_bg2", L"\\texture\\bgs\\03\\bg2.png")->Scale(5.f);
-	//LoadAsset<CTexture>(L"Level3_bg2b", L"\\texture\\bgs\\03\\bg2b.png")->Scale(5.f);
-	//LoadAsset<CTexture>(L"Level3_bg3", L"\\texture\\bgs\\03\\bg3.png")->Scale(5.f);
-	//LoadAsset<CTexture>(L"Level3_bg3b", L"\\texture\\bgs\\03\\bg3b.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level3_bg0", L"\\texture\\bgs\\03\\bg0.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level3_bg1", L"\\texture\\bgs\\03\\bg1.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level3_bg2", L"\\texture\\bgs\\03\\bg2.png")->Stretch(Vec2(1600.f,1200.f));
+	LoadAsset<CTexture>(L"Level3_bg2b", L"\\texture\\bgs\\03\\bg2b.png")->Scale(10.f);
+	LoadAsset<CTexture>(L"Level3_bg3", L"\\texture\\bgs\\03\\bg3.png")->Scale(10.f);
+	LoadAsset<CTexture>(L"Level3_bg3b", L"\\texture\\bgs\\03\\bg3b.png")->Scale(10.f);
 
 	//LoadAsset<CTexture>(L"Level4_bg0", L"\\texture\\bgs\\04\\bg0.png")->Scale(5.f);
 	//LoadAsset<CTexture>(L"Level4_bg1", L"\\texture\\bgs\\04\\bg1.png")->Scale(5.f);

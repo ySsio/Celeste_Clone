@@ -24,6 +24,7 @@ public:
 
     void SetTex(CTexture* _Tex);
     void SetTexOffset(Vec2 _Offset) { GetSprite()->SetOffset(_Offset); }
+    void SetFix(bool _b) { if (m_Sprite) m_Sprite->SetFix(_b); }
 
     CTexture* GetTex() { return m_Sprite->GetTex(); }
 

@@ -10,6 +10,7 @@
 CSpriteRenderer::CSpriteRenderer()
 	: m_Tex(nullptr)
 	, m_FlippedTex(nullptr)
+	, m_Fix(false)
 	, m_FlipX(false)
 {
 }
@@ -69,7 +70,7 @@ void CSpriteRenderer::Render()
 		RenderTex = m_FlippedTex;
 	}
 
-	Vec2 vPos = pOwner->GetRenderPos() + FinalOffset;
+	Vec2 vPos = m_Fix ? pOwner->GetPos() + FinalOffset : pOwner->GetRenderPos() + FinalOffset;
 	int Width = RenderTex->GetWidth();
 	int Height = RenderTex->GetHeight();
 

@@ -20,6 +20,7 @@
 #include "CStrawBerry.h"
 #include "CZipMover.h"
 #include "CBackGround.h"
+#include "CPanelUI.h"
 
 CLevel::CLevel()
 	: m_PrevRoom(-1)
@@ -179,6 +180,10 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 		else if (wcscmp(szBuff.data(), L"BackGround") == 0)
 		{
 			pObj = new CBackGround;
+		}
+		else if (wcscmp(szBuff.data(), L"PanelUI") == 0)
+		{
+			pObj = new CPanelUI;
 		}
 		else
 		{

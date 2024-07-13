@@ -5,7 +5,7 @@ class CBackGround :
     public CObj
 {
 private:
-    CSpriteRenderer*    m_Sprite;
+    CSpriteRenderer*    m_Tex;
 
 public:
     void SetTexture(CTexture* _Tex);

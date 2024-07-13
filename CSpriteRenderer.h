@@ -11,6 +11,8 @@ private:
     CTexture*   m_Tex;
     CTexture*   m_FlippedTex;
 
+    bool m_Fix;
+
     bool m_FlipX;
 
 public:
@@ -18,6 +20,9 @@ public:
     void SetTex(CTexture* _pTex);
     CTexture* GetTex() { return m_Tex; }
     void FlipX(bool _B) { m_FlipX = _B; }
+
+	void SetFix(bool _b) { m_Fix = _b; }
+    bool GetFix() { return m_Fix; }
 
     void ClearTex();
 

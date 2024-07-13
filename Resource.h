@@ -22,7 +22,6 @@
 #define IDD_EDIT_GAME_OBJ               135
 #define IDD_EDIT_BG_TILE1               136
 #define IDD_EDIT_GAME_TILE              136
-#define IDD_DIALOG2                     137
 #define IDD_EDIT_NAME                   137
 #define IDC_BUTTON1                     1000
 #define IDC_BUTTON2                     1021
@@ -48,6 +47,7 @@
 #define ID_32774                        32774
 #define ID_32775                        32775
 #define ID_Anim_Add                     32776
+#define ID_Add_Image                    32776
 #define ID_Anim_Load                    32777
 #define ID_Map_Add                      32778
 #define ID_Map_Load                     32779

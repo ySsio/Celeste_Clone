@@ -7,7 +7,7 @@
 
 CBackGround::CBackGround()
 {
-	m_Sprite = AddComponent<CSpriteRenderer>();
+	m_Tex = AddComponent<CSpriteRenderer>();
 }
 
 CBackGround::~CBackGround()
@@ -16,7 +16,7 @@ CBackGround::~CBackGround()
 
 void CBackGround::SetTexture(CTexture* _Tex)
 {
-	m_Sprite->SetTex(_Tex);
+	m_Tex->SetTex(_Tex);
 	SetScale(Vec2((float)_Tex->GetWidth(), (float)_Tex->GetHeight()));
 }
 
@@ -37,7 +37,7 @@ bool CBackGround::Save(FILE* _pFile)
 	fwrite(&VecBuff, sizeof(Vec2), 1, _pFile);
 
 	// 4. 텍스쳐 이름 저장
-	wstring TexName = m_Sprite->GetTex()->GetPath();
+	wstring TexName = m_Tex->GetTex()->GetPath();
 	len = (int)TexName.length();
 	fwrite(&len, sizeof(int), 1, _pFile);
 	fwrite(TexName.c_str(), sizeof(wchar_t), len, _pFile);
@@ -66,12 +66,12 @@ void CBackGround::Load(FILE* _pFile)
 	if (0 <= len && len <= 256)
 		fread(&szBuff, sizeof(wchar_t), len, _pFile);
 
-	m_Sprite->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(szBuff)->Scale(5.f));
+	m_Tex->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(szBuff)->Scale(5.f));
 }
 
 void CBackGround::Render()
 {
-	if (m_Sprite)
-		m_Sprite->Render();
+	if (m_Tex)
+		m_Tex->Render();
 }
 
