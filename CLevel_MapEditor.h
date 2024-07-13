@@ -18,6 +18,7 @@ private:
     bool    m_EditGameTile;
     bool    m_EditBGObj;
     bool    m_EditGameObj;
+    bool    m_EditSpawnPoint;
 
     CTile*  m_CurTile;
 
@@ -49,6 +50,8 @@ public:
 
     void EditBGObj(bool _b) { m_EditBGObj = _b; }
     void EditGameObj(bool _b) { m_EditGameObj = _b; }
+
+    void EditSpawnPoint(bool _b) { m_EditSpawnPoint = _b; }
 
 public:
     virtual void Enter() override;

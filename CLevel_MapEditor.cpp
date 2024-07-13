@@ -7,6 +7,7 @@
 #include "CLevelMgr.h"
 #include "CKeyMgr.h"
 #include "CCamera.h"
+#include "CAssetMgr.h"
 
 #include "CPalette.h"
 #include "CTile.h"
@@ -33,6 +34,7 @@ CLevel_MapEditor::CLevel_MapEditor()
 	, m_EditGameTile(false)
 	, m_EditBGObj(false)
 	, m_EditGameObj(false)
+	, m_EditSpawnPoint(false)
 	, m_CurTile(nullptr)
 	, m_BGTile(nullptr)
 	, m_GameTile(nullptr)
@@ -113,7 +115,6 @@ void CLevel_MapEditor::Tick_Derived()
 			tRoom room{};
 			room.Position = m_Pos;
 			room.Scale = m_Scale;
-			room.SpawnPoints.push_back(m_Pos);
 
 			SetCurRoom(GetRoomCount());
 			AddRoom(room);
@@ -274,8 +275,6 @@ void CLevel_MapEditor::Tick_Derived()
 			if (m_BGObj)
 				m_BGObj->SetPos(GetTileCenter(m_MouseRealPos));
 
-			
-
 			if (KEY_RELEASED(KEY::LBtn))
 			{
 				m_BGObj = nullptr;
@@ -326,8 +325,8 @@ void CLevel_MapEditor::Tick_Derived()
 			{
 				int RoomNum = 0;
 				RoomNum = GetCurRoom();
-				if (RoomNum == -1)
-					return;
+				//if (RoomNum == -1)
+				//	return;
 
 				if (m_GameObj)
 					m_GameObj->SetRoom(RoomNum);
@@ -342,9 +341,20 @@ void CLevel_MapEditor::Tick_Derived()
 				m_GameObj = nullptr;
 			}
 		}
-		else
-		{
+		
 
+		// 스폰포인트 편집
+		if (m_EditSpawnPoint)
+		{
+			Vec2 vPos = GetTileLT(m_MouseRealPos);
+			
+			if (KEY_RELEASED(KEY::LBtn))
+			{
+				EditSpawnPoint(false);
+
+				vector<tRoom>& Rooms = GetRooms();
+				Rooms[GetCurRoom()].SpawnPoints.push_back(vPos);
+			}
 		}
 	}
 	
@@ -406,6 +416,60 @@ void CLevel_MapEditor::Render_Derived()
 		SELECT_BRUSH(BackDC, BRUSH_TYPE::HOLLOW);
 
 		Rectangle(BackDC, (int)vLT.x, (int)vLT.y, (int)vRB.x, (int)vRB.y);
+
+		for (auto& vPos : Room.SpawnPoints)
+		{
+			CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Player\\spawnpoint.png")->Stretch(Vec2(TILE_SCALE * 4, TILE_SCALE * 4));
+
+			BLENDFUNCTION blendFunction;
+			blendFunction.BlendOp = AC_SRC_OVER;
+			blendFunction.BlendFlags = 0;
+			blendFunction.SourceConstantAlpha = 255; // 전체 알파 값 (255는 완전 불투명)
+			blendFunction.AlphaFormat = AC_SRC_ALPHA;
+
+			int Width = pTex->GetWidth();
+			int Height = pTex->GetHeight();
+
+			AlphaBlend(BackDC
+				, (int)(vPos.x - Width / 2.f)
+				, (int)(vPos.y - Height / 2.f)
+				, pTex->GetWidth()
+				, pTex->GetHeight()
+				, pTex->GetDC()
+				, 0, 0
+				, pTex->GetWidth()
+				, pTex->GetHeight()
+				, blendFunction);
+		}
+	}
+
+	// 스폰포인트 편집
+	if (m_EditSpawnPoint)
+	{
+		// 현재 선택된 타일을 표시함 (반투명)
+		BLENDFUNCTION blendFunction;
+		blendFunction.BlendOp = AC_SRC_OVER;
+		blendFunction.BlendFlags = 0;
+		blendFunction.SourceConstantAlpha = 128; // 전체 알파 값 (255는 완전 불투명)
+		blendFunction.AlphaFormat = AC_SRC_ALPHA;
+
+		CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Player\\spawnpoint.png")->Stretch(Vec2(TILE_SCALE * 4, TILE_SCALE * 4));
+
+		Vec2 vPos = GetTileCenter(m_MouseRealPos);
+
+		int Width = pTex->GetWidth();
+		int Height = pTex->GetHeight();
+
+		AlphaBlend(BackDC
+			, (int)(vLT.x-Width/2.f)
+			, (int)(vLT.y-Height/2.f)
+			, pTex->GetWidth()
+			, pTex->GetHeight()
+			, pTex->GetDC()
+			, 0, 0
+			, pTex->GetWidth()
+			, pTex->GetHeight()
+			, blendFunction);
 	}
 
 	
@@ -628,6 +692,16 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 				pLevel->EditBGObj(false);
 				pLevel->EditGameObj(true);
 			}
+
+			return (INT_PTR)TRUE;
+		}
+
+		// 스폰포인트 추가 버튼
+		if (LOWORD(wParam) == IDC_BUTTON10)
+		{
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->EditSpawnPoint(true);
 
 			return (INT_PTR)TRUE;
 		}
