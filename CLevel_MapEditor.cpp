@@ -124,7 +124,6 @@ void CLevel_MapEditor::Tick_Derived()
 			// 현재 편집중인 BGTile을 새로 만들어서 등록
 			m_BGTile = new CPlatform;
 			m_BGTile->SetPos(m_LT);
-			m_BGTile->SetRoom(GetCurRoom());
 			m_BGTile->GetComponent<CTileMap>()->SetRowCol((UINT)m_ColRow.y, (UINT)m_ColRow.x);
 
 			Add_Object(m_BGTile, LAYER_TYPE::BACKGROUND);
@@ -132,8 +131,9 @@ void CLevel_MapEditor::Tick_Derived()
 			// 현재 편집중인 GameTile을 새로 만들어서 등록
 			m_GameTile = new CPlatform;
 			m_GameTile->SetPos(m_LT);
-			m_BGTile->SetRoom(GetCurRoom());
-			m_GameTile->GetComponent<CTileMap>()->SetRowCol((UINT)m_ColRow.y, (UINT)m_ColRow.x);
+			CTileMap* pTileMap = m_GameTile->GetComponent<CTileMap>();
+			pTileMap->SetRowCol((UINT)m_ColRow.y, (UINT)m_ColRow.x);
+			pTileMap->SetCollider(true);
 
 			Add_Object(m_GameTile, LAYER_TYPE::PLATFORM);
 
@@ -419,8 +419,8 @@ void CLevel_MapEditor::Render_Derived()
 	for (auto& Room : vecRoom)
 	{
 		// Room의 경계를 표시
-		Vec2 vLT = Room.Position - Room.Scale / 2.f;
-		Vec2 vRB = Room.Position + Room.Scale / 2.f;
+		Vec2 vLT = RENDER_POS(Room.Position - Room.Scale / 2.f);
+		Vec2 vRB = RENDER_POS(Room.Position + Room.Scale / 2.f);
 
 		SELECT_PEN(BackDC, PEN_TYPE::BLUE);
 		SELECT_BRUSH(BackDC, BRUSH_TYPE::HOLLOW);
@@ -1351,13 +1351,7 @@ INT_PTR CALLBACK Editor_Name(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 
 
 	case WM_COMMAND:
-		if (LOWORD(wParam) == IDCANCEL)	// X 버튼
-		{
-			EndDialog(hDlg, LOWORD(wParam));
-			return (INT_PTR)TRUE;
-		}
-
-		if (LOWORD(wParam) == IDC_EDIT1)
+		if (LOWORD(wParam) == IDOK)	// X 버튼
 		{
 			wchar_t buffer[256];
 			GetWindowText(hEdit, buffer, 256);
@@ -1366,9 +1360,10 @@ INT_PTR CALLBACK Editor_Name(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 				pLevel->SetLevelName(buffer);
+
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
 		}
-
-
 
 		break;
 	}

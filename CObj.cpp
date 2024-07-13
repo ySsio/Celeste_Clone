@@ -55,3 +55,5 @@ void CObj::Render()
 		, (int)(m_Pos.y + m_Scale.y / 2.f));
 
 }
+
+

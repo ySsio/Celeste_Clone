@@ -9,6 +9,7 @@ class CPlatform :
 private:
     CTileMap*   m_TileMap;
 
+
 public:
     void SetRowCol(UINT _Row, UINT _Col);
 

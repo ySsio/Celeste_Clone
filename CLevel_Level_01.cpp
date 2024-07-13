@@ -32,114 +32,92 @@ void CLevel_Level_01::Enter()
 {
 	Vec2 vRes = CEngine::Get()->GetResolution();
 
-	// BackGround
+	Load(L"\\map\\Test.level");
 
-	CBackGround* pBackGround = new CBackGround;
-	pBackGround->SetPos(Vec2(vRes.x / 2.f, vRes.y / 2.f));
-	AddObject(pBackGround, LAYER_TYPE::BACKGROUND); 
+	SetCurRoom(0);
 
-	CTexture* pBgTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png");
-	pBgTex->Stretch(vRes);
-	pBackGround->SetTexture(pBgTex);
-
-	//pBackGround = new CBackGround;
-	//pBackGround->SetPos(Vec2(vRes.x, 0.f));
-	//AddObject(pBackGround, LAYER_TYPE::BACKGROUND);
-
-	//pBgTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"Level3_bg2", L"\\texture\\bgs\\03\\bg2.png");
-	//pBgTex->Stretch(Vec2(vRes.x * 3.f/2.f ,vRes.y * 2.f));
-	//pBackGround->AddTexture(pBgTex);
-
-	pBackGround = new CBackGround;
-	pBackGround->SetPos(vRes/2.f);
-	AddObject(pBackGround, LAYER_TYPE::BACKGROUND);
-
-	pBgTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"Level0_bg3",L"\\texture\\bgs\\00\\bg3.png");
-	pBgTex->Stretch(vRes);
-	pBackGround->SetTexture(pBgTex);
-
-
-	// Player
+	//// Player
 
 	CPlayer* pPlayer = new CPlayer;
 	pPlayer->SetName(L"Player");
 	pPlayer->SetPos(GetSpawnPoint());
 	pPlayer->SetScale(100.f, 100.f);
+	pPlayer->SetRoom(0);
 
 	AddObject(pPlayer, LAYER_TYPE::PLAYER);
 
 	CGameMgr::Get()->SetPlayer(pPlayer);
 
 
-	// Platform
+	//// Platform
 
-	CPlatform* pPlatform = new CPlatform;
-	pPlatform->SetPos(Vec2(0.f, 0.f));
-	CTileMap* pTileMap = pPlatform->GetComponent<CTileMap>();
-	pTileMap->SetRowCol(25, 30);
-	pTileMap->SetUnitScale(40, 40);
-
-
-	wstring PaletteName = L"snow";
-
-	for (int i = 0; i < 30; ++i)
-	{
-		pTileMap->SetTile(20, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-		pTileMap->SetTile(21, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-		pTileMap->SetTile(22, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	}
-	pTileMap->SetTile(9, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	pTileMap->SetTile(10, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	pTileMap->SetTile(11, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-
-	for (int i = 5; i < 19; ++i)
-	{
-		pTileMap->SetTile(i, 23, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	}
-
-	pTileMap->SetTile(20, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
-	pTileMap->SetTile(21, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
-	pTileMap->SetTile(22, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
+	//CPlatform* pPlatform = new CPlatform;
+	//pPlatform->SetPos(Vec2(0.f, 0.f));
+	//CTileMap* pTileMap = pPlatform->GetComponent<CTileMap>();
+	//pTileMap->SetRowCol(25, 30);
+	//pTileMap->SetUnitScale(40, 40);
 
 
-	for (int i = 0; i < 6; ++i)
-	{
-		for (int j = 0; j < 15; ++j)
-		{
-			pTileMap->SetTile(i+1, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_" + std::to_wstring(j) + L"_" + std::to_wstring(i)));
-		}
-	}
+	//wstring PaletteName = L"snow";
 
-	pTileMap->AddCollider();
+	//for (int i = 0; i < 30; ++i)
+	//{
+	//	pTileMap->SetTile(20, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
+	//	pTileMap->SetTile(21, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
+	//	pTileMap->SetTile(22, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
+	//}
+	//pTileMap->SetTile(9, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
+	//pTileMap->SetTile(10, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
+	//pTileMap->SetTile(11, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
 
-	AddObject(pPlatform, LAYER_TYPE::PLATFORM);
+	//for (int i = 5; i < 19; ++i)
+	//{
+	//	pTileMap->SetTile(i, 23, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
+	//}
 
-
-	// Strawberry
-	CStrawBerry* pStrawberry = new CStrawBerry;
-	pStrawberry->SetPos(Vec2(200.f, 400.f));
-	pStrawberry->SetScale(Vec2(80.f, 80.f));
-
-	AddObject(pStrawberry, LAYER_TYPE::OBJ);
-
-
-	// Spring
-	CSpring* pSpring = new CSpring;
-	pSpring->SetPos(Vec2(200.f, 760.f));
-	pSpring->SetScale(Vec2(80.f, 80.f));
-	pSpring->SetDir(Vec2(0.f, -1.f));
-
-	AddObject(pSpring, LAYER_TYPE::OBJ);
+	//pTileMap->SetTile(20, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
+	//pTileMap->SetTile(21, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
+	//pTileMap->SetTile(22, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
 
 
-	// ZipMover
-	CZipMover* pZip = new CZipMover;
-	pZip->SetPos(Vec2(200.f, 500.f));
-	pZip->SetStartPos(Vec2(200.f, 500.f));
-	pZip->SetEndPos(Vec2(740.f, 500.f));
-	pZip->SetTile(2,4);
+	//for (int i = 0; i < 6; ++i)
+	//{
+	//	for (int j = 0; j < 15; ++j)
+	//	{
+	//		pTileMap->SetTile(i+1, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_" + std::to_wstring(j) + L"_" + std::to_wstring(i)));
+	//	}
+	//}
 
-	AddObject(pZip, LAYER_TYPE::OBJ);
+	//pTileMap->AddCollider();
+
+	//AddObject(pPlatform, LAYER_TYPE::PLATFORM);
+
+
+	//// Strawberry
+	//CStrawBerry* pStrawberry = new CStrawBerry;
+	//pStrawberry->SetPos(Vec2(200.f, 400.f));
+	//pStrawberry->SetScale(Vec2(80.f, 80.f));
+
+	//AddObject(pStrawberry, LAYER_TYPE::OBJ);
+
+
+	//// Spring
+	//CSpring* pSpring = new CSpring;
+	//pSpring->SetPos(Vec2(200.f, 760.f));
+	//pSpring->SetScale(Vec2(80.f, 80.f));
+	//pSpring->SetDir(Vec2(0.f, -1.f));
+
+	//AddObject(pSpring, LAYER_TYPE::OBJ);
+
+
+	//// ZipMover
+	//CZipMover* pZip = new CZipMover;
+	//pZip->SetPos(Vec2(200.f, 500.f));
+	//pZip->SetStartPos(Vec2(200.f, 500.f));
+	//pZip->SetEndPos(Vec2(740.f, 500.f));
+	//pZip->SetTile(2,4);
+
+	//AddObject(pZip, LAYER_TYPE::OBJ);
 
 	// 충돌 설정
 

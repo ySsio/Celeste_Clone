@@ -16,6 +16,8 @@ private:
 
     Vec2        m_Offset;
 
+    bool        m_HasCol;
+
     vector<CTile*>      m_vecTile;
     unordered_map<CCollider*, Vec2> m_mapCol;
 
@@ -41,7 +43,8 @@ public:
     bool IsTileDanger(CCollider* _Col);
 
     const vector<CTile*>& GetTileset() { return m_vecTile; }
-    bool HasCollider() { return m_mapCol.size() == 0 ? false : true; }
+    bool HasCollider() { return m_HasCol; }
+    void SetCollider(bool _b) { m_HasCol = _b; }
 
 public:
     void AddCollider();

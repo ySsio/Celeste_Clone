@@ -19,6 +19,7 @@
 #include "CSpring.h"
 #include "CStrawBerry.h"
 #include "CZipMover.h"
+#include "CBackGround.h"
 
 CLevel::CLevel()
 	: m_PrevRoom(-1)
@@ -38,7 +39,12 @@ CLevel::~CLevel()
 
 void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 {
-	m_ArrLayerObj[(UINT)_Type].push_back(_Obj); _Obj->SetLayerType(_Type);
+	m_ArrLayerObj[(UINT)_Type].push_back(_Obj);
+	_Obj->SetLayerType(_Type);
+
+	// 룸 세팅 안된 애들은 새로 추가할 때 현재 room으로 추가함.
+	if (_Obj->GetRoom() == -1)
+		_Obj->SetRoom(m_CurRoom);
 }
 
 
@@ -170,6 +176,10 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 		{
 			pObj = new CZipMover;
 		}
+		else if (wcscmp(szBuff.data(), L"BackGround") == 0)
+		{
+			pObj = new CBackGround;
+		}
 		else
 		{
 			assert(nullptr);
@@ -210,11 +220,20 @@ void CLevel::MoveRoom(int _Room)
 
 	m_RoomMove = true;
 
-	// 플레이어 대쉬 회복
+	// 플레이어 
 	CPlayer* pPlayer = CGameMgr::Get()->GetPlayer();
 
 	if (pPlayer)
+	{
+		// 플레이어 room 이동
+		pPlayer->SetRoom(_Room);
+
+		// 플레이어 대쉬 회복
 		pPlayer->ResetDash();
+	}
+
+
+	
 
 	// 카메라 이동
 	// 1. 카메라 제한범위 설정

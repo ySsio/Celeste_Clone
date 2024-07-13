@@ -10,6 +10,7 @@ CTileMap::CTileMap()
 	, m_UnitHeight((UINT)TILE_SCALE)
 	, m_RowCnt(0)
 	, m_ColCnt(0)
+	, m_HasCol(false)
 {
 
 }
@@ -62,6 +63,8 @@ void CTileMap::AddCollider()
 			m_mapCol.emplace(pCol, Vec2((float)Row, (float)Col));
 		}
 	}
+
+	SetCollider(true);
 }
 
 void CTileMap::FinalTick()
