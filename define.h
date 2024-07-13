@@ -76,7 +76,7 @@
 #define BODY_SCALE	160.f
 #define TILE_SCALE	40.f
 
-#define ROOM_MOVE_DURATION 0.12f
+#define ROOM_MOVE_DURATION 0.3f
 
 
 // RigidBody Variables

@@ -42,7 +42,7 @@ public:
 
     void SetColInfo() {
         m_HasCol = true;
-        m_ColInfo = { Vec2(0.5, 0.5), Vec2(1.0, 1.0) };
+        m_ColInfo = { Vec2(0.5f, 0.5f), Vec2(1.f, 1.f) };
     }
 
     void SetColInfo(Vec2 _RenderOffset, Vec2 _RenderScale) {

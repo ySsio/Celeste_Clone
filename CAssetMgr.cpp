@@ -143,36 +143,36 @@ void CAssetMgr::Init()
 
 
 	pTile = new CTile;
-	pTile->SetTex(LoadAsset<CTexture>(L"Tile_Spike_Down", L"\\tilesets\\danger\\spikes\\default_right00.png"));
+	pTile->SetTex(LoadAsset<CTexture>(L"Spike_Right", L"\\tilesets\\danger\\spikes\\default_right00.png"));
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo();
-	AddTile(L"Tile_Spike_Right", pTile);
+	pTile->SetColInfo(Vec2(0.3f, 0.5f), Vec2(0.6f,1.f));
+	AddTile(L"Tile_Spike_Right_0_0", pTile);
 
 	pTile = new CTile;
-	pTile->SetTex(LoadAsset<CTexture>(L"Tile_Spike_Left", L"\\tilesets\\danger\\spikes\\default_left00.png"));
+	pTile->SetTex(LoadAsset<CTexture>(L"Spike_Left", L"\\tilesets\\danger\\spikes\\default_left00.png"));
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo();
-	AddTile(L"Tile_Spike_Left", pTile);
+	pTile->SetColInfo(Vec2(0.7f, 0.5f), Vec2(0.6f, 1.f));
+	AddTile(L"Tile_Spike_Left_0_0", pTile);
 
 	pTile = new CTile;
-	pTile->SetTex(LoadAsset<CTexture>(L"Tile_Spike_Up", L"\\tilesets\\danger\\spikes\\default_up00.png"));
+	pTile->SetTex(LoadAsset<CTexture>(L"Spike_Up", L"\\tilesets\\danger\\spikes\\default_up00.png"));
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo();
-	AddTile(L"Tile_Spike_Up", pTile);
+	pTile->SetColInfo(Vec2(0.5f, 0.7f), Vec2(1.f, 0.6f));
+	AddTile(L"Tile_Spike_Up_0_0", pTile);
 
 	pTile = new CTile;
-	pTile->SetTex(LoadAsset<CTexture>(L"Tile_Spike_Down", L"\\tilesets\\danger\\spikes\\default_down00.png"));
+	pTile->SetTex(LoadAsset<CTexture>(L"Spike_Down", L"\\tilesets\\danger\\spikes\\default_down00.png"));
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo();
-	AddTile(L"Tile_Spike_Down", pTile);
+	pTile->SetColInfo(Vec2(0.5f, 0.3f), Vec2(1.f, 0.6f));
+	AddTile(L"Tile_Spike_Down_0_0", pTile);
 
 	
 

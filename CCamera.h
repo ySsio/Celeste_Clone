@@ -17,7 +17,6 @@ private:
 
     float       m_AccTime;
     float       m_Duration;
-    float       m_Speed;
 
     CTexture*   m_Tex;
 

@@ -11,7 +11,6 @@
 CCamera::CCamera()
 	: m_AccTime(0.f)
 	, m_Duration(2.f)
-	, m_Speed(0.f)
 	, m_CurEffect(CAM_EFFECT::NONE)
 	, m_Tex(nullptr)
 {
@@ -41,7 +40,6 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 		// wParam : 카메라 이동할 좌표
 		m_Duration = ROOM_MOVE_DURATION;
 		m_CamTargetPos = GetAvailableCamPos(Vec2(_wParam));
-		m_Speed = (m_CamPos - m_CamTargetPos).Length() / m_Duration;
 	}
 		break;
 	}
@@ -108,7 +106,8 @@ void CCamera::Tick()
 	case CAM_EFFECT::ROOMMOVE:
 	{
 		Vec2 vDiff = m_CamTargetPos - m_CamPos;
-		m_CamPos += vDiff * m_AccTime / m_Duration;
+		m_CamPos = m_CamTargetPos * (m_AccTime / m_Duration) + m_CamPos * (1 - m_AccTime / m_Duration);
+
 
 		if (vDiff.Length() < 2.f)
 			m_CamPos = m_CamTargetPos;
