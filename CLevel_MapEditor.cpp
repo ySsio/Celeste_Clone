@@ -16,6 +16,7 @@
 #include "CSpring.h"
 #include "CZipMover.h"
 #include "CPlatform.h"
+#include "CBackGround.h"
 
 
 extern HINSTANCE hInst;
@@ -277,6 +278,14 @@ void CLevel_MapEditor::Tick_Derived()
 
 			if (KEY_RELEASED(KEY::LBtn))
 			{
+				int RoomNum = 0;
+				RoomNum = GetCurRoom();
+				//if (RoomNum == -1)
+				//	return;
+
+				if (m_BGObj)
+					m_BGObj->SetRoom(RoomNum);
+
 				m_BGObj = nullptr;
 			}
 		}
@@ -1019,8 +1028,6 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 
 INT_PTR CALLBACK Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	static HWND hPictureControl = NULL;
-	static wstring strPalette = L"";
 
 	switch (message)
 	{
@@ -1030,9 +1037,100 @@ INT_PTR CALLBACK Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 		HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
 
 		// 콤보 박스에 항목 추가
-		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Strawberry"));
-		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spring"));
-		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("ZipMover"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\axe.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_a_left.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_a_middle.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_a_right.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_b_middle.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_b_right.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_c_left.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_c_middle.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\fence_c_right.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\house.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("0-prologue\\sign.png"));
+
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\bench_concrete.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\bench_concrete_snow.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\big_sign.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\big_sign_b.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\big_sign_c.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\big_sign_d.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\big_sign_e.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\big_sign_f.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\box.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\box_and_bottle.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\brazilian_coffee_building.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\broken_plane.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\camping_medium.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\camping_medium_ruined.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\camping_small.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\car_ruined.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\car_yellow.png"));
+
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\checkpoint.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\Collumn_concrete_E.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\Collumn_concrete_E_broken.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\Collumn_concrete_E_less_broken.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\Collumn_concrete_E_very_broken.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\Collumn_concrete_mid.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\Collumn_concrete_mid_broken.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\Collumn_concrete_mid_broken_E.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\collumn_small_broken.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\collumn_small_broken_b.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\collumn_small_E.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\collumn_small_mid.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\cook_pot.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\dashUpTwiceSign.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\flag00.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\hanging_lamp.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\haning_sign.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\house_unfinished.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\hydrant.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\informationKiosk.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\ladder.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\leftArrowSign.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\old_lamp.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\paint_buckets.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\plane.png"));
+		
+
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\post_broken.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\post_extra_broken.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\posterA.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\posterB.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\posterC.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\posterD.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\posterE.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\poted_plant.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\rags.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\ragsB.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\recliner.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\royal_pizza_building.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\royal_pizza_sign.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\satellite_dish.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\shack_old.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_forard.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_rockslide.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_slippery.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_that_way.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_under_construction.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_go_down.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_go_right.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_go_up.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_go_park.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_t_dash.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_t_go_down.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_t_go_right.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\sign_you_can_t_go_up.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\skelly.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\statue.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\trafic_lights.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\trafic_lights_ceiling.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\trafic_lights_ceiling_busted.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\weird_vase.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\windowA.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\windowB.png"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("1-forsakencity\\windowC.png"));
 
 		return (INT_PTR)TRUE;
 	}
@@ -1048,19 +1146,20 @@ INT_PTR CALLBACK Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			wchar_t selectedText[256];
 			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
 
-			strPalette = selectedText;
-
-			// selectedText로 텍스쳐를 가져옴
-			CTexture* pTex = CAssetMgr::Get()->FindAsset<CTexture>(strPalette);
-
-			if (hPictureControl)
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
 			{
-				// 커스텀 picture control에 이미지 세팅 메시지를 보냄 (CTexture 포인터 전달)
-				SendMessage(hPictureControl, STM_SETIMAGE, (WPARAM)pTex, NULL);
-
-				// WM_PAINT 메시지를 호출하기 위해 순간적으로 창을 비활성화 함
-				InvalidateRect(hDlg, NULL, TRUE);
+				CBackGround* pObj = pLevel->GetBGObj();
+				if (!pObj)
+				{
+					pObj = new CBackGround();
+					Add_Object(pObj, LAYER_TYPE::BACKGROUND);
+					pLevel->SetBGObj(pObj);
+				}
+				
+				pObj->SetTexture(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Objects\\decals\\" + wstring(selectedText))->Scale(5.f));
 			}
+			
 		}
 
 		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)	// X 버튼
@@ -1070,7 +1169,7 @@ INT_PTR CALLBACK Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			// Game Edit 상태에서 벗어남
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
-				pLevel->EditGameTile(false);
+				pLevel->EditBGObj(false);
 
 			return (INT_PTR)TRUE;
 		}

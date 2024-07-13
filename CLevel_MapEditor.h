@@ -4,6 +4,7 @@
 class CAnimation;
 class CTile;
 class CPlatform;
+class CBackGround;
 
 class CLevel_MapEditor :
     public CLevel_Editor
@@ -32,16 +33,16 @@ private:
     CPlatform*  m_BGTile;
     CPlatform*  m_GameTile;
 
-    CObj*       m_BGObj;
-    CObj*       m_GameObj;
+    CBackGround*    m_BGObj;
+    CObj*           m_GameObj;
 
 
 public:
     void SetCurTile(CTile* _Tile) { m_CurTile = _Tile; }
-    void SetBGObj(CObj* _Obj) { m_BGObj = _Obj; }
+    void SetBGObj(CBackGround* _Obj) { m_BGObj = _Obj; }
     void SetGameObj(CObj* _Obj) { m_GameObj = _Obj; }
 
-    CObj* GetBGObj() { return m_BGObj; }
+    CBackGround* GetBGObj() { return m_BGObj; }
     CObj* GetGameObj() { return m_GameObj; }
 
     void GenerateRoom() { m_GeneratingRoom = true; }

@@ -136,7 +136,22 @@ void CState_Dead::Exit()
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
-	Vec2 SpawnPoint = CLevelMgr::Get()->GetCurLevel()->GetSpawnPoint();
+	CLevel* pLevel = CLevelMgr::Get()->GetCurLevel();
+	vector<tRoom>& Rooms = pLevel->GetRooms();
+
+	Vec2 SpawnPoint = pPlayer->GetPos();
+	float dist = 10000.f;
+
+	// 현재 룸의 모든 스폰포인트 중 죽은 곳에서 가장 가까운 지점에서 부활
+	for (auto& point : Rooms[pLevel->GetCurRoom()].SpawnPoints)
+	{
+		float pointDist = (SpawnPoint - point).Length();
+		if (dist > pointDist)
+		{
+			dist = pointDist;
+			SpawnPoint = point;
+		}
+	}
 
 	pPlayer->SetPos(SpawnPoint);
 

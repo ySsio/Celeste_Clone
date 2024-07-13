@@ -1,32 +1,26 @@
 #include "pch.h"
 #include "CBackGround.h"
 
+#include "CTexture.h"
+
 CBackGround::CBackGround()
 {
-	m_TileMap = AddComponent<CTileMap>();
+	m_Sprite = AddComponent<CSpriteRenderer>();
 }
 
 CBackGround::~CBackGround()
 {
 }
 
-void CBackGround::AddTexture(CTexture* _Tex)
+void CBackGround::SetTexture(CTexture* _Tex)
 {
-	CSpriteRenderer* pSprite = AddComponent<CSpriteRenderer>();
-	pSprite->SetTex(_Tex);
-
-	m_Sprites.push_back(pSprite);
+	m_Sprite->SetTex(_Tex);
+	SetScale(Vec2(_Tex->GetWidth(), _Tex->GetHeight()));
 }
 
 void CBackGround::Render()
 {
-	for (auto Sprite : m_Sprites)
-	{
-		Sprite->Render();
-	}
-
-
-	m_TileMap->Render();
-
+	if (m_Sprite)
+		m_Sprite->Render();
 }
 

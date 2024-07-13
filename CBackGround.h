@@ -5,13 +5,10 @@ class CBackGround :
     public CObj
 {
 private:
-    vector<CSpriteRenderer*>    m_Sprites;
-    CTileMap*                   m_TileMap;
+    CSpriteRenderer*    m_Sprite;
 
 public:
-    void AddTexture(CTexture* _Tex);
-
-    CTileMap* GetTileMap() { return m_TileMap; }
+    void SetTexture(CTexture* _Tex);
 
 public:
     virtual void Tick() override {}

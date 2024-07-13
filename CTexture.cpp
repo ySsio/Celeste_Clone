@@ -8,6 +8,7 @@ CTexture::CTexture()
 	, m_BitMap(nullptr)
 	, m_BitMapInfo{}
 	, m_Flipped(false)
+	, m_Scaled(false)
 {
 }
 
@@ -42,6 +43,15 @@ CTexture* CTexture::Stretch(Vec2 _Resolution)
 	GetObject(m_BitMap, sizeof(BITMAP), &m_BitMapInfo);
 
 	return this;
+}
+
+CTexture* CTexture::Scale(float _Coef)
+{
+	if (m_Scaled)
+		return this;
+
+	m_Scaled = true;
+	return Stretch(Vec2(m_BitMapInfo.bmWidth * _Coef, m_BitMapInfo.bmHeight * _Coef));
 }
 
 void CTexture::Flip()

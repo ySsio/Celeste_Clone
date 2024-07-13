@@ -40,7 +40,7 @@ void CLevel_Level_01::Enter()
 
 	CTexture* pBgTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png");
 	pBgTex->Stretch(vRes);
-	pBackGround->AddTexture(pBgTex);
+	pBackGround->SetTexture(pBgTex);
 
 	//pBackGround = new CBackGround;
 	//pBackGround->SetPos(Vec2(vRes.x, 0.f));
@@ -56,7 +56,7 @@ void CLevel_Level_01::Enter()
 
 	pBgTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"Level0_bg3",L"\\texture\\bgs\\00\\bg3.png");
 	pBgTex->Stretch(vRes);
-	pBackGround->AddTexture(pBgTex);
+	pBackGround->SetTexture(pBgTex);
 
 
 	// Player

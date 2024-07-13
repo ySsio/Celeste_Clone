@@ -9,6 +9,7 @@ private:
     BITMAP      m_BitMapInfo;
 
     bool        m_Flipped;
+    bool        m_Scaled;
 
 public:
     UINT GetWidth() { return m_BitMapInfo.bmWidth; }
@@ -23,7 +24,7 @@ public:
 
 public:
     CTexture* Stretch(Vec2 _Resolution);
-    CTexture* Scale(float _Coef) { return Stretch(Vec2(m_BitMapInfo.bmWidth * _Coef, m_BitMapInfo.bmHeight * _Coef)); }
+    CTexture* Scale(float _Coef);
 
 public:
     void Flip();
