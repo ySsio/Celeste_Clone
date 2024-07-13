@@ -17,6 +17,9 @@ public:
     void SetRGBA(UINT _RGBA);
 
 public:
+    virtual void Init() override;
+
+public:
     virtual void Tick() override;
     virtual void Render() override;
 

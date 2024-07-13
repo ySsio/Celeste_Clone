@@ -54,6 +54,11 @@ void CAfterImage::SetRGBA(UINT _RGBA)
 	FillAlphaNonZeroAreas(m_Tex->GetBitMap(), m_RGBA);
 }
 
+void CAfterImage::Init()
+{
+	Delete_Object(this);
+}
+
 void CAfterImage::Tick()
 {
 	m_AccTime += fDT;

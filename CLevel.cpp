@@ -324,12 +324,6 @@ void CLevel::FinalTick()
 			// Final Tick
 			(*iter)->FinalTick();
 
-			// Dead 처리된 오브젝트를 제거함
-			if ((*iter)->IsDead())
-			{
-				iter = Layer.erase(iter);
-				continue;
-			}
 			++iter;
 		}
 	}
@@ -339,9 +333,18 @@ void CLevel::Render()
 {
 	for (auto& Layer : m_ArrLayerObj)
 	{
-		for (auto& obj : Layer)
+		for (auto iter = Layer.begin(); iter != Layer.end();)
 		{
-			obj->Render();
+			// Dead 처리된 오브젝트를 제거함
+			if ((*iter)->IsDead())
+			{
+				iter = Layer.erase(iter);
+				continue;
+			}
+
+			(*iter)->Render();
+
+			++iter;
 		}
 	}
 

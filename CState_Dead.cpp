@@ -56,14 +56,16 @@ void CState_Dead::Enter()
 	// 애니메이션 재생
 	PlayAnimation();
 
+	CPlayer* pPlayer = GetOwner();
+	CRigidBody* pRigid = pPlayer->GetRigidBody();
+
 	// 변수 초기화
 	m_AccTime = 0.f;
 	m_SpreadEffect = false;
 	m_Respawn = false;
 	m_GatherEffect = false;
+	m_SpawnPoint = pPlayer->GetPos();
 	
-	CPlayer* pPlayer = GetOwner();
-	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	// 마찰계수 설정
 	pRigid->SetFrictionCoef(FRICTION_DEAD);
@@ -102,12 +104,28 @@ void CState_Dead::FinalTick()
 		m_SpreadEffect = true;
 	}
 	
-	Vec2 SpawnPoint = CLevelMgr::Get()->GetCurLevel()->GetSpawnPoint();
-
 	// RespawnDuration이 지나고 DeadEffect를 리스폰 지점으로 이동시키고, 회전 방향 변경함
 	if (m_AccTime >= m_RespawnDuration && !m_Respawn)
 	{
-		m_DeadEffect->SetPos(SpawnPoint);
+		CLevel* pLevel = CLevelMgr::Get()->GetCurLevel();
+		vector<tRoom>& Rooms = pLevel->GetRooms();
+
+
+		Vec2 vPos = pPlayer->GetPos();
+		float dist = 10000.f;
+
+		// 현재 룸의 모든 스폰포인트 중 죽은 곳에서 가장 가까운 지점에서 부활
+		for (auto& point : Rooms[pLevel->GetCurRoom()].SpawnPoints)
+		{
+			float pointDist = (vPos - point).Length();
+			if (dist > pointDist)
+			{
+				dist = pointDist;
+				m_SpawnPoint = point;
+			}
+		}
+
+		m_DeadEffect->SetPos(m_SpawnPoint);
 		m_DeadEffect->SetRotationDir(-1.f);
 		
 		m_Respawn = true;
@@ -136,24 +154,9 @@ void CState_Dead::Exit()
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
-	CLevel* pLevel = CLevelMgr::Get()->GetCurLevel();
-	vector<tRoom>& Rooms = pLevel->GetRooms();
 
-	Vec2 SpawnPoint = pPlayer->GetPos();
-	float dist = 10000.f;
-
-	// 현재 룸의 모든 스폰포인트 중 죽은 곳에서 가장 가까운 지점에서 부활
-	for (auto& point : Rooms[pLevel->GetCurRoom()].SpawnPoints)
-	{
-		float pointDist = (SpawnPoint - point).Length();
-		if (dist > pointDist)
-		{
-			dist = pointDist;
-			SpawnPoint = point;
-		}
-	}
-
-	pPlayer->SetPos(SpawnPoint);
+	// 가장 가까운 스폰지점으로 이동
+	pPlayer->SetPos(m_SpawnPoint);
 
 	// 플레이어 상태를 원래대로 돌림
 	pPlayer->SetPlayerDead(false);

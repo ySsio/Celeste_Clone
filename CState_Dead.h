@@ -16,6 +16,8 @@ private:
     float   m_SpreadDuration;
     float   m_GatherWaitTime;
 
+    Vec2    m_SpawnPoint;
+
 
     bool    m_SpreadEffect;
     bool    m_Respawn;

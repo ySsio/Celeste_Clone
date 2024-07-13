@@ -22,7 +22,6 @@
 extern HINSTANCE hInst;
 
 extern HWND hEdit = nullptr;
-extern HWND hEdit_Img = nullptr;
 extern HWND hEdit_BG_Tile = nullptr;
 extern HWND hEdit_Game_Tile = nullptr;
 extern HWND hEdit_BG_OBJ = nullptr;
@@ -301,6 +300,7 @@ void CLevel_MapEditor::Tick_Derived()
 					vPos.y = GetTileCenter(m_MouseRealPos).y;
 				}
 
+				// 마우스 움직일 때 보이도록
 				m_BGObj->SetPos(vPos);
 
 				if (KEY_RELEASED(KEY::LBtn))
@@ -314,6 +314,7 @@ void CLevel_MapEditor::Tick_Derived()
 					
 					m_BGObj->SetRoom(RoomNum);
 
+					// 클릭하는 순간 nullptr로 설정하면서 위치 고정시킴
 					m_BGObj = nullptr;
 				}
 			}
@@ -350,6 +351,7 @@ void CLevel_MapEditor::Tick_Derived()
 					vPos.y = GetTileCenter(m_MouseRealPos).y;
 				}
 
+				// 마우스 움직일 때 보이도록
 				m_GameObj->SetPos(vPos);
 
 				if (KEY_TAP(KEY::LBtn))
@@ -669,13 +671,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			return (INT_PTR)TRUE;
 		}
 
-		// 배경 이미지 설정 버튼
-		if (LOWORD(wParam) == IDC_BUTTON3)
-		{
-			ShowWindow(hEdit_Img, SW_SHOW);
-
-			return (INT_PTR)TRUE;
-		}
 
 		// 배경 타일 편집 버튼
 		if (LOWORD(wParam) == IDC_BUTTON4)
@@ -810,65 +805,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	return (INT_PTR)FALSE;
 }
 
-
-// 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	UNREFERENCED_PARAMETER(lParam);
-	switch (message)
-	{
-	case WM_INITDIALOG:
-	{
-		// 콤보 박스 핸들 가져오기
-		HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
-
-		// 콤보 박스에 항목 추가
-		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level1_bg1"));
-		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level0_bg3"));
-
-
-		return (INT_PTR)TRUE;
-	}
-
-	case WM_COMMAND:
-		if (HIWORD(wParam) == CBN_SELCHANGE)
-		{
-			// 콤보 박스에서 항목이 선택되었을 때
-			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
-			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
-
-			// 선택된 항목의 텍스트 가져오기
-			wchar_t selectedText[256];
-			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
-
-			// selectedText로 텍스쳐를 가져옴
-			CTexture* pTex = CAssetMgr::Get()->FindAsset<CTexture>(selectedText);
-
-		}
-
-		if (LOWORD(wParam) == IDCANCEL)	// X 버튼
-		{
-			EndDialog(hDlg, LOWORD(wParam));
-			return (INT_PTR)TRUE;
-		}
-
-		// 이미지 추가 버튼
-		if (LOWORD(wParam) == IDC_BUTTON1)
-		{
-			
-
-
-			return (INT_PTR)TRUE;
-		}
-
-
-		break;
-
-	}
-
-	
-	return (INT_PTR)FALSE;
-}
 
 
 // 배경 타일 편집

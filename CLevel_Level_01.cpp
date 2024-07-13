@@ -30,14 +30,13 @@ CLevel_Level_01::~CLevel_Level_01()
 
 void CLevel_Level_01::Enter()
 {
-	Vec2 vRes = CEngine::Get()->GetResolution();
-
+	// ¸Ê ·Îµå
 	Load(L"\\map\\Test.level");
 
+	// ÇöÀç ·ë ¼³Á¤
 	SetCurRoom(0);
 
-	//// Player
-
+	// Player
 	CPlayer* pPlayer = new CPlayer;
 	pPlayer->SetName(L"Player");
 	pPlayer->SetPos(GetSpawnPoint());

@@ -41,6 +41,9 @@ public:
     void Gather() { m_Spread = false; m_AccTime = 0.f; }
 
 public:
+    virtual void Init() override;
+    
+public:
     virtual void Tick() override;
     virtual void Render() override;
 

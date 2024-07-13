@@ -62,7 +62,9 @@ void CBackGround::Load(FILE* _pFile)
 	int len = 0;
 	wchar_t szBuff[256]{};
 	fread(&len, sizeof(int), 1, _pFile);
-	fread(&szBuff, sizeof(wchar_t), len, _pFile);
+
+	if (0 <= len && len <= 256)
+		fread(&szBuff, sizeof(wchar_t), len, _pFile);
 
 	m_Sprite->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(szBuff)->Scale(5.f));
 }
