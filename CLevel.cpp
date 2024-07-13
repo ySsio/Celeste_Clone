@@ -42,10 +42,9 @@ void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 }
 
 
-
-void CLevel::Save()
+void CLevel::SaveWithName(const wstring& _Name)
 {
-	Save(L"\\map\\" + GetName() + L".level");
+	Save(L"\\map\\" + _Name + L".level");
 }
 
 void CLevel::Save(const wstring& _strRelativeFilePath)
@@ -101,6 +100,8 @@ void CLevel::Save(const wstring& _strRelativeFilePath)
 
 	fclose(pFile);
 }
+
+
 
 void CLevel::Load(const wstring& _strRelativeFilePath)
 {

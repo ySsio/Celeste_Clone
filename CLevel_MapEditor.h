@@ -13,6 +13,9 @@ private:
     // GUI 관련
     Vec2    m_MouseRealPos;
 
+    // 레벨 이름
+    wstring m_LevelName;
+
     // 편집 중 속성
     bool    m_GeneratingRoom;
     bool    m_EditBGTile;
@@ -53,6 +56,9 @@ public:
     void EditGameObj(bool _b) { m_EditGameObj = _b; }
 
     void EditSpawnPoint(bool _b) { m_EditSpawnPoint = _b; }
+
+    void SetLevelName(const wstring& _Name) { m_LevelName = _Name; }
+    const wstring& GetLevelName() { return m_LevelName; }
 
 public:
     virtual void Enter() override;

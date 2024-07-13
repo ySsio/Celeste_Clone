@@ -41,7 +41,7 @@ public:
     const vector<CObj*>& GetLayer(LAYER_TYPE _Type) { return m_ArrLayerObj[(UINT)_Type]; }
 
 public:
-    void Save();
+    void SaveWithName(const wstring& _Name);
     void Save(const wstring& _strRelativeFilePath);
     void Load(const wstring& _strRelativeFilePath);
 

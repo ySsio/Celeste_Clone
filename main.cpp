@@ -21,6 +21,7 @@ INT_PTR CALLBACK    Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARA
 INT_PTR CALLBACK    Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK    Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK    Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+INT_PTR CALLBACK    Editor_Name(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 extern HWND hEdit;
 extern HWND hEdit_Img;
@@ -28,6 +29,7 @@ extern HWND hEdit_BG_Tile;
 extern HWND hEdit_Game_Tile;
 extern HWND hEdit_BG_OBJ;
 extern HWND hEdit_Game_OBJ;
+extern HWND hEdit_Name;
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -56,6 +58,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     hEdit_Game_Tile = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_GAME_TILE), CEngine::Get()->GetMainHwnd(), &Editor_Game_Tile);
     hEdit_BG_OBJ    = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_BG_OBJ), CEngine::Get()->GetMainHwnd(), &Editor_Bg_Obj);
     hEdit_Game_OBJ  = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_GAME_OBJ), CEngine::Get()->GetMainHwnd(), &Editor_Game_Obj);
+    hEdit_Name      = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT_NAME), CEngine::Get()->GetMainHwnd(), &Editor_Name);
 
     if (!hWnd)
     {

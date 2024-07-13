@@ -22,6 +22,8 @@
 #define IDD_EDIT_GAME_OBJ               135
 #define IDD_EDIT_BG_TILE1               136
 #define IDD_EDIT_GAME_TILE              136
+#define IDD_DIALOG2                     137
+#define IDD_EDIT_NAME                   137
 #define IDC_BUTTON1                     1000
 #define IDC_BUTTON2                     1021
 #define IDC_BUTTON3                     1022
@@ -36,6 +38,7 @@
 #define IDC_BUTTON8                     1029
 #define IDC_BUTTON9                     1030
 #define IDC_BUTTON10                    1031
+#define IDC_BUTTON11                    1032
 #define IDC_SPIN1                       1041
 #define IDC_EDIT2                       1042
 #define IDC_SPIN2                       1043
@@ -56,7 +59,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        135
+#define _APS_NEXT_RESOURCE_VALUE        138
 #define _APS_NEXT_COMMAND_VALUE         32781
 #define _APS_NEXT_CONTROL_VALUE         1035
 #define _APS_NEXT_SYMED_VALUE           110

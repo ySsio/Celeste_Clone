@@ -27,6 +27,7 @@ extern HWND hEdit_BG_Tile = nullptr;
 extern HWND hEdit_Game_Tile = nullptr;
 extern HWND hEdit_BG_OBJ = nullptr;
 extern HWND hEdit_Game_OBJ = nullptr;
+extern HWND hEdit_Name = nullptr;
 
 
 CLevel_MapEditor::CLevel_MapEditor()
@@ -715,12 +716,20 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			return (INT_PTR)TRUE;
 		}
 
+		// 레벨 이름 설정
+		if (LOWORD(wParam) == IDC_BUTTON11)
+		{
+			ShowWindow(hEdit_Name, SW_SHOW);
+
+			return (INT_PTR)TRUE;
+		}
+
 		// 저장 버튼
 		if (LOWORD(wParam) == IDC_BUTTON8)
 		{
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
-				pLevel->Save();
+				pLevel->SaveWithName(pLevel->GetLevelName());
 
 			return (INT_PTR)TRUE;
 		}
@@ -728,8 +737,6 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		// 불러오기 버튼
 		if (LOWORD(wParam) == IDC_BUTTON9)
 		{
-
-
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 			{
@@ -1185,15 +1192,22 @@ INT_PTR CALLBACK Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 
 INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	HWND hRowEdit = GetDlgItem(hDlg, IDC_EDIT1);
-	HWND hColEdit = GetDlgItem(hDlg, IDC_EDIT2);
+	static HWND hRowEdit = nullptr;
+	static HWND hColEdit = nullptr;
+	static HWND hComboBox = nullptr;
+	static HWND hRowSpin = nullptr;
+	static HWND hColSpin = nullptr;
 
 	switch (message)
 	{
 	case WM_INITDIALOG:
 	{
-		// 콤보 박스 핸들 가져오기
-		HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
+		// 핸들 가져오기
+		hRowEdit = GetDlgItem(hDlg, IDC_EDIT1);
+		hColEdit = GetDlgItem(hDlg, IDC_EDIT2);
+		hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
+		hRowSpin = GetDlgItem(hDlg, IDC_SPIN1);
+		hColSpin = GetDlgItem(hDlg, IDC_SPIN2);
 
 		// 콤보 박스에 항목 추가
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Strawberry"));
@@ -1205,9 +1219,6 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 		EnableWindow(hColEdit, false);
 
 		// spin control과 edit control 연결
-		HWND hRowSpin = GetDlgItem(hDlg, IDC_SPIN1);
-		HWND hColSpin = GetDlgItem(hDlg, IDC_SPIN2);
-
 		SendMessage(hRowSpin, UDM_SETBUDDY, (WPARAM)hRowEdit, 0);
 		SendMessage(hColSpin, UDM_SETBUDDY, (WPARAM)hColEdit, 0);
 
@@ -1220,7 +1231,6 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 		if (HIWORD(wParam) == CBN_SELCHANGE)
 		{
 			// 콤보 박스에서 항목이 선택되었을 때
-			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
 			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
@@ -1230,8 +1240,8 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
 			{
-				EnableWindow(GetDlgItem(hDlg, IDC_EDIT1), false);
-				EnableWindow(GetDlgItem(hDlg, IDC_EDIT2), false);
+				EnableWindow(hRowEdit, false);
+				EnableWindow(hColEdit, false);
 
 				if (wcscmp(selectedText, L"Strawberry") == 0)
 				{
@@ -1325,4 +1335,42 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 
 	return (INT_PTR)FALSE;
 
+}
+
+INT_PTR CALLBACK Editor_Name(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	static HWND hEdit = nullptr;
+
+	switch (message)
+	{
+	case WM_INITDIALOG:
+	{
+		hEdit = GetDlgItem(hDlg, IDC_EDIT1);
+	}
+		return (INT_PTR)TRUE;
+
+
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDCANCEL)	// X 버튼
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+
+		if (LOWORD(wParam) == IDC_EDIT1)
+		{
+			wchar_t buffer[256];
+			GetWindowText(hEdit, buffer, 256);
+
+			// 이름 세팅
+			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
+			if (pLevel)
+				pLevel->SetLevelName(buffer);
+		}
+
+
+
+		break;
+	}
+	return (INT_PTR)FALSE;
 }

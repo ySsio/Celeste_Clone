@@ -15,7 +15,7 @@ CBackGround::~CBackGround()
 void CBackGround::SetTexture(CTexture* _Tex)
 {
 	m_Sprite->SetTex(_Tex);
-	SetScale(Vec2(_Tex->GetWidth(), _Tex->GetHeight()));
+	SetScale(Vec2((float)_Tex->GetWidth(), (float)_Tex->GetHeight()));
 }
 
 void CBackGround::Render()
