@@ -275,20 +275,51 @@ void CLevel_MapEditor::Tick_Derived()
 		if (m_EditBGObj)
 		{
 			if (m_BGObj)
-				m_BGObj->SetPos(GetTileCenter(m_MouseRealPos));
-
-			if (KEY_RELEASED(KEY::LBtn))
 			{
-				int RoomNum = 0;
-				RoomNum = GetCurRoom();
-				//if (RoomNum == -1)
-				//	return;
+				Vec2 vScale = m_BGObj->GetScale();
+				Vec2 vPos{};
 
-				if (m_BGObj)
+				// 타일 수가 짝수 개일 때
+				if ((int)(vScale.x / TILE_SCALE) % 2 == 0)
+				{
+					vPos.x = GetTileLT(m_MouseRealPos).x;
+				}
+				// 타일 수가 홀수 개일 때
+				else
+				{
+					vPos.x = GetTileCenter(m_MouseRealPos).x;
+				}
+
+				// 타일 수가 짝수 개일 때
+				if ((int)(vScale.y / TILE_SCALE) % 2 == 0)
+				{
+					vPos.y = GetTileLT(m_MouseRealPos).y;
+				}
+				// 타일 수가 홀수 개일 때
+				else
+				{
+					vPos.y = GetTileCenter(m_MouseRealPos).y;
+				}
+
+				m_BGObj->SetPos(vPos);
+
+				if (KEY_RELEASED(KEY::LBtn))
+				{
+					int RoomNum = 0;
+					RoomNum = GetCurRoom();
+					
+					// 현재 룸이 없을 때는 리턴
+					if (RoomNum == -1)
+						return;
+					
 					m_BGObj->SetRoom(RoomNum);
 
-				m_BGObj = nullptr;
+					m_BGObj = nullptr;
+				}
 			}
+				
+
+			
 		}
 		else if (m_EditGameObj)
 		{
@@ -320,36 +351,38 @@ void CLevel_MapEditor::Tick_Derived()
 				}
 
 				m_GameObj->SetPos(vPos);
-			}
 
-			if (KEY_TAP(KEY::LBtn))
-			{
-				CZipMover* pZip = dynamic_cast<CZipMover*>(m_GameObj);
-				if (pZip)
+				if (KEY_TAP(KEY::LBtn))
 				{
-					pZip->SetStartPos(GetTileCenter(m_MouseRealPos));
+					CZipMover* pZip = dynamic_cast<CZipMover*>(m_GameObj);
+					if (pZip)
+					{
+						pZip->SetStartPos(vPos);
+					}
 				}
-			}
 
-			if (KEY_RELEASED(KEY::LBtn))
-			{
-				int RoomNum = 0;
-				RoomNum = GetCurRoom();
-				//if (RoomNum == -1)
-				//	return;
+				if (KEY_RELEASED(KEY::LBtn))
+				{
+					int RoomNum = 0;
+					RoomNum = GetCurRoom();
 
-				if (m_GameObj)
+					// 현재 룸이 없을 때는 리턴
+					if (RoomNum == -1)
+						return;
+
 					m_GameObj->SetRoom(RoomNum);
 
-				CZipMover* pZip = dynamic_cast<CZipMover*>(m_GameObj);
-				if (pZip)
-				{
-					Vec2 vPos = GetTileCenter(m_MouseRealPos);
-					pZip->SetEndPos(vPos);
-					pZip->SetPos(pZip->GetStartPos());
+					CZipMover* pZip = dynamic_cast<CZipMover*>(m_GameObj);
+					if (pZip)
+					{
+						pZip->SetEndPos(vPos);
+						pZip->SetPos(pZip->GetStartPos());
+					}
+					m_GameObj = nullptr;
 				}
-				m_GameObj = nullptr;
 			}
+
+			
 		}
 		
 
@@ -867,6 +900,7 @@ INT_PTR CALLBACK Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("bgTempleB"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("bgWood"));
 
+
 		RegisterCustomPictureControl(hInst);
 
 		hPictureControl = CreateWindowEx(
@@ -970,6 +1004,11 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("tower"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("wood"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("woodStoneEdges"));
+
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spike_Right")); // Tile_Spike_Right_0_0
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spike_Left"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spike_Up"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spike_Down"));
 
 		RegisterCustomPictureControl(hInst);
 
