@@ -37,14 +37,14 @@ void CAssetMgr::Init()
 	
 
 	// BackGround
-	LoadAsset<CTexture>(L"Level0_bg0", L"\\texture\\bgs\\00\\bg0.png")->Scale(5.f);
-	LoadAsset<CTexture>(L"Level0_bg1", L"\\texture\\bgs\\00\\bg1.png")->Scale(5.f);
-	LoadAsset<CTexture>(L"Level0_bg2", L"\\texture\\bgs\\00\\bg2.png")->Scale(5.f);
-	LoadAsset<CTexture>(L"Level0_bg3", L"\\texture\\bgs\\00\\bg3.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level0_bg0", L"\\texture\\bgs\\00\\bg0.png")->Stretch(Vec2(1600.f,960.f));
+	LoadAsset<CTexture>(L"Level0_bg1", L"\\texture\\bgs\\00\\bg1.png")->Stretch(Vec2(1600.f,960.f));
+	LoadAsset<CTexture>(L"Level0_bg2", L"\\texture\\bgs\\00\\bg2.png")->Stretch(Vec2(1600.f,960.f));
+	LoadAsset<CTexture>(L"Level0_bg3", L"\\texture\\bgs\\00\\bg3.png")->Stretch(Vec2(1600.f,960.f));
 
-	LoadAsset<CTexture>(L"Level1_bg0", L"\\texture\\bgs\\01\\bg0.png")->Scale(5.f);
-	LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png")->Scale(5.f);
-	LoadAsset<CTexture>(L"Level1_bg2", L"\\texture\\bgs\\01\\bg2.png")->Scale(5.f);
+	LoadAsset<CTexture>(L"Level1_bg0", L"\\texture\\bgs\\01\\bg0.png")->Stretch(Vec2(1600.f,960.f));
+	LoadAsset<CTexture>(L"Level1_bg1", L"\\texture\\bgs\\01\\bg1.png")->Stretch(Vec2(1600.f,960.f));
+	LoadAsset<CTexture>(L"Level1_bg2", L"\\texture\\bgs\\01\\bg2.png")->Stretch(Vec2(1600.f,960.f));
 
 	LoadAsset<CTexture>(L"Level3_bg0", L"\\texture\\bgs\\03\\bg0.png")->Scale(5.f);
 	LoadAsset<CTexture>(L"Level3_bg1", L"\\texture\\bgs\\03\\bg1.png")->Scale(5.f);
@@ -174,8 +174,13 @@ void CAssetMgr::Init()
 	pTile->SetColInfo(Vec2(0.5f, 0.3f), Vec2(1.f, 0.6f));
 	AddTile(L"Tile_Spike_Down_0_0", pTile);
 
-	
-
+	pTile = new CTile;
+	pTile->SetTex(LoadAsset<CTexture>(L"Invisible", L"\\texture\\Objects\\Invisible.png"));
+	pTile->SetScale(Vec2(8.f, 8.f));
+	pTile->SetLT(Vec2(0.f, 0.f));
+	pTile->SetDanger(true);
+	pTile->SetColInfo(Vec2(0.5f, 0.9f), Vec2(1.f, 0.2f));
+	AddTile(L"Tile_Invisible_0_0", pTile);
 }
 
 void CAssetMgr::FlipTexture(CTexture* _pTex)

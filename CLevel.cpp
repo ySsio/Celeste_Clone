@@ -235,9 +235,19 @@ void CLevel::MoveRoom(int _Room)
 
 		// 플레이어 대쉬 회복
 		pPlayer->ResetDash();
+
+		// 플레이어 스태미나 회복
+		pPlayer->ResetStamina();
 	}
 
+	// 배경 이동
+	for (auto bg : m_ArrLayerObj[(UINT)LAYER_TYPE::BACKGROUND])
+	{
+		CPanelUI* pPanel = dynamic_cast<CPanelUI*>(bg);
 
+		if (pPanel)
+			pPanel->SetRoom(_Room);
+	}
 	
 
 	// 카메라 이동
@@ -249,7 +259,8 @@ void CLevel::MoveRoom(int _Room)
 	CCamera::Get()->SetCamLimit(RoomLT, RoomRB);
 	
 	// 2. 플레이어 위치 전달 .. 자동으로 제한범위 내에서 카메라 위치 계산
-	CCamera::Get()->SetCamEffect(CAM_EFFECT::ROOMMOVE, (UINT_PTR)pPlayer->GetPos());
+	if (pPlayer)
+		CCamera::Get()->SetCamEffect(CAM_EFFECT::ROOMMOVE, (UINT_PTR)pPlayer->GetPos());
 }
 
 
@@ -301,8 +312,8 @@ void CLevel::Tick()
 			if (m_RoomMove && obj->GetRoom() == m_PrevRoom)
 				obj->Init();
 
-			// 현재 룸에 해당하는 오브젝트만 업데이트
-			else if (obj->GetRoom() == m_CurRoom)
+			// 현재 룸, 이전 룸에 해당하는 오브젝트만 업데이트
+			else if (obj->GetRoom() == m_CurRoom || obj->GetRoom() == m_PrevRoom)
 				obj->Tick();
 		}
 	}
@@ -319,8 +330,8 @@ void CLevel::FinalTick()
 	{
 		for (auto iter = Layer.begin(); iter != Layer.end();)
 		{
-			// 현재 룸에 있는 오브젝트가 아니면 넘어감
-			if ((*iter)->GetRoom() != m_CurRoom)
+			// 현재 룸, 이전 룸에 있는 오브젝트가 아니면 넘어감
+			if ((*iter)->GetRoom() != m_CurRoom && (*iter)->GetRoom() != m_PrevRoom)
 			{
 				++iter;
 				continue;

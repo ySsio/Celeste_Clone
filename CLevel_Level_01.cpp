@@ -30,10 +30,10 @@ CLevel_Level_01::~CLevel_Level_01()
 void CLevel_Level_01::Enter()
 {
 	// ¸Ê ·Îµå
-	Load(L"\\map\\.level");
+	Load(L"\\map\\Test3.level");
 
 	// ÇöÀç ·ë ¼³Á¤
-	SetCurRoom(0);
+	MoveRoom(0);
 
 	// Sound Àç»ý
 	CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\bgm\\mus_lvl1_main_synths_loop.wav");

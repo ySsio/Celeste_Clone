@@ -69,7 +69,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
 
-    CEngine::Get()->Init(hWnd,1600,900);
+    CEngine::Get()->Init(hWnd,1600,920);
 
     MSG msg = {};
 

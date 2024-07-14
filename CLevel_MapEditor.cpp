@@ -174,7 +174,7 @@ void CLevel_MapEditor::Tick_Derived()
 					&& room.Position.y - room.Scale.y / 2.f <= m_MouseRealPos.y
 					&& m_MouseRealPos.y <= room.Position.y + room.Scale.y / 2.f)
 				{
-					SetCurRoom(i);
+					MoveRoom(i);
 
 					m_Pos = room.Position;
 					m_Scale = room.Scale;
@@ -193,7 +193,8 @@ void CLevel_MapEditor::Tick_Derived()
 				if (pObj->GetRoom() == GetCurRoom())
 				{
 					m_BGTile = dynamic_cast<CPlatform*>(pObj);
-					break;
+					if (m_BGTile)
+						break;
 				}
 			}
 			
@@ -1039,6 +1040,8 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spike_Left"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spike_Up"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spike_Down"));
+
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Invisible"));
 
 		RegisterCustomPictureControl(hInst);
 

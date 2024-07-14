@@ -8,6 +8,9 @@
 #include "CAssetMgr.h"
 #include "CTexture.h"
 
+#include "CGameMgr.h"
+#include "CPlayer.h"
+
 CCamera::CCamera()
 	: m_AccTime(0.f)
 	, m_Duration(2.f)
@@ -97,6 +100,14 @@ void CCamera::Tick()
 		m_AccTime = 0.f;
 		m_Tex = nullptr;
 		m_CurEffect = CAM_EFFECT::NONE;
+	}
+
+	CPlayer* pPlayer = CGameMgr::Get()->GetPlayer();
+
+	if (pPlayer)
+	{
+		Vec2 vPos = pPlayer->GetPos();
+		m_CamPos = GetAvailableCamPos(vPos);
 	}
 
 	switch (m_CurEffect)

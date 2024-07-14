@@ -117,7 +117,6 @@ void CState_Dead::FinalTick()
 		CLevel* pLevel = CLevelMgr::Get()->GetCurLevel();
 		vector<tRoom>& Rooms = pLevel->GetRooms();
 
-
 		Vec2 vPos = pPlayer->GetPos();
 		float dist = 10000.f;
 
@@ -129,8 +128,13 @@ void CState_Dead::FinalTick()
 			{
 				dist = pointDist;
 				m_SpawnPoint = point;
+
+				
 			}
 		}
+
+		// 가장 가까운 스폰지점으로 이동
+		pPlayer->SetPos(m_SpawnPoint);
 
 		m_DeadEffect->SetPos(m_SpawnPoint);
 		m_DeadEffect->SetRotationDir(-1.f);
@@ -165,9 +169,6 @@ void CState_Dead::Exit()
 {
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
-
-	// 가장 가까운 스폰지점으로 이동
-	pPlayer->SetPos(m_SpawnPoint);
 
 	// 플레이어 상태를 원래대로 돌림
 	pPlayer->SetPlayerDead(false);
