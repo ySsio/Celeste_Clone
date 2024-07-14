@@ -24,6 +24,13 @@ private:
 
     bool    m_Active;
     bool    m_Return;
+    bool    m_Reset;    // 한 번 작동한 뒤 휴식
+
+    // Sound
+    bool    m_SoundA;
+    bool    m_SoundB;
+    bool    m_SoundC;
+    bool    m_SoundD;
 
 public:
     void SetStartPos(Vec2 _Pos) { m_StartPos = _Pos; }
@@ -35,7 +42,7 @@ public:
     void SetDuration(float _Duration) { m_Duration = _Duration; }
 
     void Activate() {
-        if (!m_Active && !m_Return)
+        if (!m_Active && !m_Return && !m_Reset)
             m_Active = true;
     }
 

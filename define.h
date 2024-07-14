@@ -89,7 +89,7 @@
 #define PLAYER_SLIDE_SPEED	500.f
 #define PLAYER_BOUNCE_SPEED	1500.f
 
-#define ZIP_MAX_SPEED		3000.f
+#define ZIP_MAX_SPEED		2000.f
 #define ZIP_RETURN_SPEED	300.f
 
 #define DASH_TIME			0.25f

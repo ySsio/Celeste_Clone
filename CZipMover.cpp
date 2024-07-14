@@ -21,6 +21,10 @@ CZipMover::CZipMover()
 	, m_Collider(nullptr)
 	, m_Active(false)
 	, m_Return(false)
+	, m_SoundA(false)
+	, m_SoundB(false)
+	, m_SoundC(false)
+	, m_SoundD(false)
 {
 	m_RigidBody = AddComponent<CRigidBody>();
 	m_RigidBody->SetGravity(false);
@@ -173,6 +177,15 @@ void CZipMover::Tick()
 
 		if (m_AccTime >= m_StartDuration)
 		{
+			if (!m_SoundA)
+			{
+				// Sound 재생
+				CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_a_touch_01.wav");
+				pSound->Play();
+
+				m_SoundA = true;
+			}
+
 			Vec2 vDiff = m_EndPos - m_StartPos;
 			m_Dir = vDiff.Normalized();
 
@@ -200,12 +213,31 @@ void CZipMover::Tick()
 	// 끝지점에서 시작지점으로 천천히 되돌아온다.
 	if (m_Return)
 	{
+		if (!m_SoundB)
+		{
+			// Sound 재생
+			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_b_impact_01.wav");
+			pSound->Play();
+
+			m_SoundB = true;
+		}
+
 		m_AccTime += fDT;
 
 		m_SpriteRenderer->SetTex(CAssetMgr::Get()->FindAsset<CTexture>(L"light02"));
 
 		if (m_AccTime >= m_StopDuration)
 		{
+			if (!m_SoundC)
+			{
+				// Sound 재생
+				CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_c_return_01.wav");
+				pSound->Play();
+
+				m_SoundC = true;
+			}
+
+
 			Vec2 vDiff = m_StartPos - m_EndPos;
 			m_Dir = vDiff.Normalized();
 
@@ -223,9 +255,35 @@ void CZipMover::Tick()
 				m_RigidBody->SetVelocity(Vec2(0.f, 0.f));
 				m_RigidBody->SetForce(Vec2(0.f, 0.f));
 
+				// 한 번 작동한 뒤 휴식 상태에 진입
+				m_Reset = true;
 
 				m_AccTime = 0.f;
 			}
+		}
+	}
+
+	if (m_Reset)
+	{
+		m_AccTime += fDT;
+
+		if (!m_SoundD)
+		{
+			// Sound 재생
+			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_d_reset_01.wav");
+			pSound->Play();
+
+			m_SoundD = true;
+		}
+
+		if (m_AccTime >= m_StopDuration)
+		{
+			m_Reset = false;
+
+			// 사운드 변수 초기화
+			m_SoundA = m_SoundB = m_SoundC = m_SoundD = false;
+			
+			m_AccTime = 0.f;
 		}
 	}
 
