@@ -347,7 +347,8 @@ void CLevel::Render()
 				continue;
 			}
 
-			(*iter)->Render();
+			if ((*iter)->GetRoom() == m_CurRoom || (*iter)->GetRoom()==-1)
+				(*iter)->Render();
 
 			++iter;
 		}

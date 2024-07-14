@@ -39,11 +39,12 @@ CPlayer::CPlayer()
 	, m_Dir(Vec2(1.f,0.f))
 	, m_DirChanged(false)
 	, m_DirFix(false)
-	, m_DashMaxCount(2)
-	, m_DashCount(2)
+	, m_DashMaxCount(1)
+	, m_DashCount(1)
 	, m_IsGround(false)
 	, m_IsWall(false)
 	, m_ColUpdated(false)
+	, m_Stamina(PLAYER_STAMINA)
 	, m_Color(BANG_COLOR::PINK)
 	, m_ColorChangeDuration(0.1f)
 	, m_HairCount(5)
@@ -316,11 +317,11 @@ void CPlayer::HairPosUpdate()
 	// 플레이어의 속도와 반대되는 방향으로 hair 들이 이동
 	Vec2 vDir = -m_RigidBody->GetVelocity();
 
-	// 속도가 0일 때는 중력 방향으로 설정
-	if (vDir.IsZero())
-		vDir = Vec2(0.f, 1.f);
-	else
-		vDir.Normalize();
+	// y축 속도가 0일 때는 중력 방향으로 설정
+	if (vDir.y == 0.f)
+		vDir.y = 1.f;
+	
+	vDir.Normalize();
 
 	// 각 hair들의 target pos를 직전 hair의 curpos를 기준으로 vDir 방향으로 
 	// hairoffset만큼 떨어진 지점으로 설정
@@ -461,6 +462,9 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 					// (대쉬 중일떄는 회복 x) - 보류
 					//if (m_StateMachine->FindState(L"Dash") != m_StateMachine->GetCurState())
 					ResetDash();
+
+					// 스태미나 회복
+					ResetStamina();
 
 					// ClimbAccTime 회복
 					m_StateMachine->FindState(L"Climb")->Reset();

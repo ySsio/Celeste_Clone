@@ -10,6 +10,9 @@
 
 #include "CCamera.h"
 
+#include "CSound.h"
+#include "CAssetMgr.h"
+
 CState_Dead::CState_Dead()
 	: m_AccTime(0.f)
 	, m_AnimDuration(0.5f)
@@ -55,6 +58,10 @@ void CState_Dead::Enter()
 {
 	// 애니메이션 재생
 	PlayAnimation();
+
+	// Sound 재생
+	CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\char\\char_mad_death.wav");
+	pSound->Play();
 
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
@@ -135,6 +142,11 @@ void CState_Dead::FinalTick()
 	// Gather()을 실행해서 SpreadDuration동안 한 점으로 모은다
 	if (m_AccTime >= m_RespawnDuration + m_GatherWaitTime && !m_GatherEffect)
 	{
+		// Sound 재생
+		CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\char\\char_mad_revive.wav");
+		pSound->SetPosition(60.f);
+		pSound->Play();
+
 		m_DeadEffect->Gather();
 
 		m_GatherEffect = true;
@@ -153,7 +165,6 @@ void CState_Dead::Exit()
 {
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
-
 
 	// 가장 가까운 스폰지점으로 이동
 	pPlayer->SetPos(m_SpawnPoint);

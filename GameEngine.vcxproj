@@ -173,6 +173,7 @@
     <ClInclude Include="CRigidBody.h" />
     <ClInclude Include="CSelectObject.h" />
     <ClInclude Include="CSound.h" />
+    <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CSpring.h" />
     <ClInclude Include="CSpriteRenderer.h" />
     <ClInclude Include="CState.h" />
@@ -243,6 +244,7 @@
     <ClCompile Include="CRigidBody.cpp" />
     <ClCompile Include="CSelectObject.cpp" />
     <ClCompile Include="CSound.cpp" />
+    <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CSpring.cpp" />
     <ClCompile Include="CSpriteRenderer.cpp" />
     <ClCompile Include="CState.cpp" />

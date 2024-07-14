@@ -39,6 +39,9 @@ private:
     // ColUpdate
     bool                m_ColUpdated;
 
+    // Stamina 
+    float               m_Stamina;
+
 
     // Hair
     BANG_COLOR          m_Color;
@@ -62,6 +65,7 @@ public:
 	CCollider* GetCollider() { return m_Collider; }
     CRigidBody* GetRigidBody() { return m_RigidBody; }
     Vec2 GetDir() { return m_Dir; }
+    void SetDir(Vec2 _Dir) { m_Dir = _Dir; }
     bool IsDirChanged() { return m_DirChanged; }
 
     CTexture* GetBuffer() { return m_Buffer; }
@@ -73,6 +77,8 @@ public:
 
     void SetDirFix(bool _b) { m_DirFix = _b; }
 
+    void DecreaseStamina(float _f) { m_Stamina -= _f; if (m_Stamina < 0.f) m_Stamina = 0.f; }
+    float GetStamina() { return m_Stamina; }
 
     void SetDashMaxCount(UINT _Count) { m_DashMaxCount = _Count; }
     void SetDashCount(UINT _Count) { m_DashCount = _Count; }
@@ -85,6 +91,7 @@ public:
     bool IsWall() { return m_IsWall; }
 
     void ResetDash() { m_DashCount = m_DashMaxCount; }
+    void ResetStamina() { m_Stamina = PLAYER_STAMINA; }
 
 public:
     virtual void Tick() override;

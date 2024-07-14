@@ -82,7 +82,9 @@ void CStateMachine::FinalTick()
         if (pPlayer->IsWall())
         {
             // Climb State : 벽에 닿아있고 Z키 또는 좌우키 눌려있을 떄
-            if ((KEY_PRESSED(KEY::Z) || KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT)))
+            if ((KEY_PRESSED(KEY::Z) || KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT))
+                && FindState(L"Bounce") != m_CurState
+                && FindState(L"Jump") != m_CurState)
             {
                 ChangeState(L"Climb");
             }

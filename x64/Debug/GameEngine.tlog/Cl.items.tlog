@@ -34,6 +34,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CPlayer.cpp;D:\cpp_Exercise\GameEngine\Gam
 D:\cpp_Exercise\GameEngine\GameEngine\CRigidBody.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CRigidBody.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CSelectObject.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CSelectObject.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CSound.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CSound.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CSoundMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CSoundMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CSpring.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CSpring.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CSpriteRenderer.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CSpriteRenderer.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CState.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CState.obj

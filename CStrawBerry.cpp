@@ -51,7 +51,13 @@ void CStrawBerry::Tick()
 		{
 			m_Collected = true;
 			m_Touched = false;
+
+			// 애니메이션 재생
 			m_Animator->Play(L"Strawberry_Collected");
+
+			// Sound 재생
+			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav");
+			pSound->Play();
 		}
 	}
 

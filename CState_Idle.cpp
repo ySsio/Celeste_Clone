@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CState_Idle.h"
 
+#include "CSound.h"
+#include "CAssetMgr.h"
 
 #define IDLE_ANIM_LIST_COUNT 10
 
@@ -33,7 +35,12 @@ void CState_Idle::Enter()
 		*iter = 0;
 	}
 
+	// 애니메이션 재생
 	PlayAnimation();
+
+	// Sound 재생 (발소리)
+	CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\char\\char_mad_foot_00_dirt_01.wav");
+	pSound->Play();
 
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
@@ -57,8 +64,7 @@ void CState_Idle::FinalTick()
 		PlayAnimation();
 	}
 
-	
-
+	pRigid->SetVelocity(Vec2(0.f, 0.f));
 
 	// #### State 변경 ####
 

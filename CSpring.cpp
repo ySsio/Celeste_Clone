@@ -5,6 +5,7 @@
 
 #include "CPlayer.h"
 #include "CRigidBody.h"
+#include "CSound.h"
 
 CSpring::CSpring()
 	: m_Animator(nullptr)
@@ -93,6 +94,8 @@ void CSpring::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 		// Active 애니메이션 재생
 		m_Animator->Play(L"Spring_Active");
 
-
+		// Sound 재생
+		CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\spring\\game_gen_spring.wav");
+		pSound->Play();
 	}
 }

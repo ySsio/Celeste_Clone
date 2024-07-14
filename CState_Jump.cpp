@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "CState_Jump.h"
 
-
+#include "CSound.h"
+#include "CAssetMgr.h"
 
 CState_Jump::CState_Jump()
 {
@@ -16,7 +17,15 @@ void CState_Jump::Jump()
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
+	// 스태미나 감소 (6번 뛰면 모두 소진)
+	pPlayer->DecreaseStamina(PLAYER_STAMINA / 6.f);
+
+	// Sound 재생
+	CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\char\\char_mad_jump.wav");
+	pSound->Play();
+
 	pRigid->SetVelocity(Vec2(pRigid->GetVelocity().x, -PLAYER_JUMP_SPEED));
+	pRigid->SetGravity(true);
 	pRigid->SetGravityCoef(GRAVITY_COEF_JUMP);
 }
 
@@ -49,7 +58,7 @@ void CState_Jump::PlayAnimation()
 
 void CState_Jump::Enter()
 {
-	PlayAnimation();
+	PlayAnimation();	
 
 	Jump();
 }
@@ -86,8 +95,12 @@ void CState_Jump::FinalTick()
 
 
 	// #### State 변경 ####
+
+	// 일정 시간 지나면
+	
 	Vec2 Velocity = pRigid->GetVelocity();
-	if (fabs(Velocity.y) <= 5.f || KEY_RELEASED(KEY::C))
+
+	if (pRigid->GetVelocity().y > 0.f || KEY_RELEASED(KEY::C))
 	{
 		EndJump();
 	}

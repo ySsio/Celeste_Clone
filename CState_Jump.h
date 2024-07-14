@@ -3,7 +3,7 @@
 class CState_Jump :
     public CState
 {
-
+private:
 
 public:
     void Jump();

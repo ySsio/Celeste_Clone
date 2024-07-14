@@ -29,6 +29,7 @@ void CLevel_Start::Enter()
 	pPanel->SetMovable(false);
 	pPanel->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\BackGround.png"));
 	pPanel->SetTexOffset(vRes/2.f);
+	pPanel->SetFix(true);
 	AddObject(pPanel, LAYER_TYPE::UI);
 
 	HFONT hFont = CreateFont(
@@ -60,6 +61,7 @@ void CLevel_Start::Enter()
 	pBtn->SetTexOffset(Vec2(80.f, -130.f));
 	pBtn->SetFontSize(60);
 	pBtn->SetName(L"오르기");
+	pBtn->SetFix(true);
 
 	pPanel->AddChild(pBtn);
 	m_Btns.push_back(pBtn);
@@ -71,6 +73,7 @@ void CLevel_Start::Enter()
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
 	pBtn->SetFontSize(48);
 	pBtn->SetName(L"옵션");
+	pBtn->SetFix(true);
 
 	pPanel->AddChild(pBtn);
 	m_Btns.push_back(pBtn);
@@ -81,6 +84,7 @@ void CLevel_Start::Enter()
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\credits.png")->Scale(0.4f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
 	pBtn->SetFontSize(48);
+	pBtn->SetFix(true);
 	pBtn->SetName(L"제작진");
 
 	pPanel->AddChild(pBtn);
@@ -92,6 +96,7 @@ void CLevel_Start::Enter()
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\exit.png")->Scale(0.5f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
 	pBtn->SetFontSize(48);
+	pBtn->SetFix(true);
 	pBtn->SetName(L"종료");
 
 	pPanel->AddChild(pBtn);

@@ -5,6 +5,8 @@ class CState_Run :
     public CState
 {
 private:
+    float   m_AccTime;
+    float   m_Duration;
 
 public:
     virtual void PlayAnimation() override;

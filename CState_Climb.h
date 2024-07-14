@@ -6,7 +6,6 @@ class CState_Climb :
 private:
     bool    m_Warning;
 
-    float   m_ClimbDuration;
     float   m_SlideWaitTime;
     float   m_AccTime;
 

@@ -19,9 +19,6 @@ private:
     bool            m_RoomMove;
     float           m_AccTime;
 
-    // ¾ø¾Ù º¯¼ö
-    Vec2            m_CheckPoint;
-
 public:
     void AddRoom(const tRoom& _Room) { m_Room.push_back(_Room); }
     int GetRoomCount() { return (int)m_Room.size(); }
@@ -36,8 +33,6 @@ public:
     void MoveRoom(int _Room);
 
 public:
-    Vec2 GetSpawnPoint() { return m_CheckPoint; }
-    void SetSpawnPoint(Vec2 _Spawn) { m_CheckPoint = _Spawn; }
     const vector<CObj*>& GetLayer(LAYER_TYPE _Type) { return m_ArrLayerObj[(UINT)_Type]; }
 
 public:

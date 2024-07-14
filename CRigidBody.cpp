@@ -43,11 +43,14 @@ void CRigidBody::FinalTick()
 
 	m_Velocity += m_Accel * fDT;
 
-	// 1. 최대 속력을 넘지 않도록 조정
-	if (m_SpeedLimit && m_Velocity.Length() > m_MaxSpeed)
+	// 1. 최대 속력을 넘지 않도록 조정 - x축 y축 각각..
+	if (m_SpeedLimit)
 	{
-		m_Velocity.Normalize();
-		m_Velocity *= m_MaxSpeed;
+		if (fabs(m_Velocity.x) > m_MaxSpeed)
+			m_Velocity.x = m_Velocity.x > 0.f ? m_MaxSpeed : -m_MaxSpeed;
+		
+		if (fabs(m_Velocity.y) > m_MaxSpeed)
+			m_Velocity.y = m_Velocity.y > 0.f ? m_MaxSpeed : -m_MaxSpeed;
 	}
 
 	// 2. 마찰력

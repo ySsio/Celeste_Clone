@@ -63,7 +63,7 @@ void CLevel_MapEditor::Enter()
 	ShowWindow(hEdit, SW_SHOW);
 
 
-	Load(L"\\map\\.level");
+	//Load(L"\\map\\.level");
 
 	//Vec2 vRes = CEngine::Get()->GetResolution();
 
@@ -478,9 +478,11 @@ void CLevel_MapEditor::Render_Derived()
 
 		Rectangle(BackDC, (int)vLT.x, (int)vLT.y, (int)vRB.x, (int)vRB.y);
 
-		for (auto& vPos : Room.SpawnPoints)
+		for (auto vPos : Room.SpawnPoints)
 		{
 			CTexture* pTex = CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Player\\spawnpoint.png")->Stretch(Vec2(TILE_SCALE * 4, TILE_SCALE * 4));
+
+			vPos = RENDER_POS(vPos);
 
 			BLENDFUNCTION blendFunction;
 			blendFunction.BlendOp = AC_SRC_OVER;

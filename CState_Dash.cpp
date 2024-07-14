@@ -6,6 +6,9 @@
 #include "CLevelMgr.h"
 #include "CLevel.h"
 
+#include "CSound.h"
+#include "CAssetMgr.h"
+
 CState_Dash::CState_Dash()
 	: m_AccTime(0.f)
 	, m_FirstAfterImage(false)
@@ -74,6 +77,10 @@ void CState_Dash::Enter()
 
 	// 애니메이션 재생
 	PlayAnimation();
+
+	// Sound 재생
+	CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\char\\char_mad_dash_red_left.wav");
+	pSound->Play();
 
 	// 대쉬
 	Dash();

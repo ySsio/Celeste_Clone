@@ -21,7 +21,6 @@
 
 CLevel_Level_01::CLevel_Level_01()
 {
-	SetSpawnPoint(Vec2(450.f, 300.f));
 }
 
 CLevel_Level_01::~CLevel_Level_01()
@@ -36,10 +35,15 @@ void CLevel_Level_01::Enter()
 	// 현재 룸 설정
 	SetCurRoom(0);
 
+	// Sound 재생
+	CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\bgm\\mus_lvl1_main_synths_loop.wav");
+	pSound->SetPosition(4.f);
+	pSound->PlayToBGM(true);
+
 	// Player
 	CPlayer* pPlayer = new CPlayer;
 	pPlayer->SetName(L"Player");
-	pPlayer->SetPos(GetSpawnPoint());
+	pPlayer->SetPos(GetRooms()[GetCurRoom()].SpawnPoints[0]);
 	pPlayer->SetScale(100.f, 100.f);
 	pPlayer->SetRoom(0);
 

@@ -12,6 +12,7 @@
 #include "CTaskMgr.h"
 #include "CUIMgr.h"
 #include "CLogMgr.h"
+#include "CSoundMgr.h"
 
 CEngine::CEngine()
 	: m_MainHwnd(nullptr)
@@ -113,6 +114,7 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 	DeleteObject(SelectObject(m_BackBufferDC, m_BackBuffer));
 
 	// 매니저 초기화
+	CSoundMgr::Get()->Init();
 	CKeyMgr::Get()->Init();
 	CTimeMgr::Get()->Init();
 	CPathMgr::Get()->Init();

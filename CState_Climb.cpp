@@ -5,7 +5,6 @@
 
 CState_Climb::CState_Climb()
 	: m_Warning(false)
-	, m_ClimbDuration(6.f)
 	, m_SlideWaitTime(1.f)
 	, m_AccTime(0.f)
 {
@@ -57,6 +56,10 @@ void CState_Climb::Enter()
 {
 	PlayAnimation();
 
+	// 변수 초기화
+	m_Warning = false;
+	m_AccTime = 0.f;
+
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 	pRigid->SetMaxSpeed(PLAYER_CLIMB_SPEED);
@@ -68,6 +71,7 @@ void CState_Climb::Exit()
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 	pPlayer->SetDirFix(false);
 	pRigid->SetMaxSpeed(PLAYER_MAX_SPEED);
+	pRigid->SetGravity(true);
 }
 
 void CState_Climb::FinalTick()
@@ -76,11 +80,11 @@ void CState_Climb::FinalTick()
 	Vec2 vDir = GetOwner()->GetDir();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
-	// 시간 누적
-	m_AccTime += fDT;
+	// 스태미나 감소
+	pPlayer->DecreaseStamina(PLAYER_STAMINA / 4.f * fDT);
 	
-	// 시간이 지나면 Warning 상태로 진입
-	if (m_AccTime >= m_ClimbDuration && !m_Warning)
+	// 스태미나 0 되면 Warning 상태로 진입
+	if (pPlayer->GetStamina() <= 0.f && !m_Warning)
 	{
 		m_Warning = true;
 
@@ -126,8 +130,8 @@ void CState_Climb::FinalTick()
 			{
 				pRigid->SetVelocity(Vec2(0.f, -PLAYER_CLIMB_SPEED));
 
-				// 올라가면 버틸 수 있는 시간 2배 속도로 감소 (한 번 더 더해줌으로써)
-				m_AccTime += 2 * fDT;
+				// 올라가면 버틸 수 있는 시간 2배 속도로 감소 (한 번 더 스태미나를 빼줌)
+				pPlayer->DecreaseStamina(PLAYER_STAMINA / 4.f * fDT);
 			}
 
 			// Z를 누른 상태로 아래 키를 누르면 기어 내려감 (slide와 다름)
@@ -154,9 +158,10 @@ void CState_Climb::FinalTick()
 	else
 	{
 		// Warning 진입 
+		m_AccTime += fDT;
 		
 		// SlideWaitTime이 지나면 Slide
-		if (m_AccTime >= m_ClimbDuration + m_SlideWaitTime)
+		if (m_AccTime >= m_SlideWaitTime)
 		{
 			Slide(true);
 		}
@@ -179,8 +184,8 @@ void CState_Climb::FinalTick()
 		GetStateMachine()->ChangeState(L"Fall");
 	}
 	 
-	// C키 입력 시 Jump State로 변경
-	if (KEY_TAP(KEY::C) && pPlayer->CanJump())
+	// Warning 아닐 때, C키 입력 시 Jump State로 변경
+	if (!m_Warning && KEY_TAP(KEY::C) && pPlayer->CanJump())
 	{
 		GetStateMachine()->ChangeState(L"Jump");
 	}

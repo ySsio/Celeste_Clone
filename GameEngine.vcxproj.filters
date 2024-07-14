@@ -194,6 +194,9 @@
     <Filter Include="Game\03.Object\ZipMover">
       <UniqueIdentifier>{7193a832-7f32-4c6a-ae4e-9b4ce88e9d79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Manager\SoundMgr">
+      <UniqueIdentifier>{057b294e-d871-43c8-953d-06b6d0b51958}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -391,6 +394,9 @@
     <ClInclude Include="CZipMover.h">
       <Filter>Game\03.Object\ZipMover</Filter>
     </ClInclude>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>Game\05. Manager\SoundMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -587,6 +593,9 @@
     </ClCompile>
     <ClCompile Include="CZipMover.cpp">
       <Filter>Game\03.Object\ZipMover</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>Game\05. Manager\SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

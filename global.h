@@ -57,6 +57,13 @@ using namespace Gdiplus;
 // OPENFILENAME
 #include "commdlg.h"
 
+// »ç¿îµå
+#include <mmsystem.h>
+#include <dsound.h>
+#include <dinput.h>
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "dsound.lib")
+
 // ##################################################
 
 
