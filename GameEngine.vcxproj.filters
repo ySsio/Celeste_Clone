@@ -62,9 +62,6 @@
     <Filter Include="Game\07. Component\SpriteRenderer">
       <UniqueIdentifier>{bb2f79cd-c002-4270-ad59-80e4359008dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\04. Level\Level_Start">
-      <UniqueIdentifier>{dd1f7e6c-8495-43dc-bbc5-83b09778535f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\04. Level\Level_Editor">
       <UniqueIdentifier>{82618a91-d49a-4fab-bcea-5b865ec17d9a}</UniqueIdentifier>
     </Filter>
@@ -196,6 +193,12 @@
     </Filter>
     <Filter Include="Game\05. Manager\SoundMgr">
       <UniqueIdentifier>{057b294e-d871-43c8-953d-06b6d0b51958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\Level_Stage00">
+      <UniqueIdentifier>{bd0e2727-6411-4171-8b3a-2da1fae2d8af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\Level_Start">
+      <UniqueIdentifier>{dd1f7e6c-8495-43dc-bbc5-83b09778535f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +400,9 @@
     <ClInclude Include="CSoundMgr.h">
       <Filter>Game\05. Manager\SoundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CLevel_Level_00.h">
+      <Filter>Game\04. Level\Level_Stage00</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -596,6 +602,9 @@
     </ClCompile>
     <ClCompile Include="CSoundMgr.cpp">
       <Filter>Game\05. Manager\SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel_Level_00.cpp">
+      <Filter>Game\04. Level\Level_Stage00</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

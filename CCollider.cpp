@@ -40,8 +40,10 @@ void CCollider::FinalTick()
 
 	Vec2 vRenderPos = GetOwner()->GetRenderPos() + m_Offset;
 	
+#ifdef _DEBUG
 	if (m_OverlapCount > 0)
 		Debug_Render(DEBUG_SHAPE::RECTANGLE, PEN_TYPE::RED, BRUSH_TYPE::HOLLOW, vRenderPos, m_Scale);
 	else
 		Debug_Render(DEBUG_SHAPE::RECTANGLE, PEN_TYPE::GREEN, BRUSH_TYPE::HOLLOW, vRenderPos, m_Scale);
+#endif
 }

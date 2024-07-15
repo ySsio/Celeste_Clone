@@ -10,6 +10,7 @@ public:
     virtual void Enter() override;
 
 public:
+    virtual void Tick_Derived() override;
 
 
 public:

@@ -45,7 +45,7 @@
 #define SELECT_PEN(DC, PEN)		CSelectObject SelectPen(DC,PEN)
 #define SELECT_BRUSH(DC, BRUSH) CSelectObject SelectBrush(DC,BRUSH)
 
-
+#ifdef _DEBUG
 #define DEBUG_LOG(_Level, _strLog)	wchar_t strLine[5];																		  \
 									wsprintf(strLine, L"%d", __LINE__);															  \
 									tLog log{};																				  \
@@ -54,6 +54,7 @@
 									log.strLog = wstring(str.begin(), str.end()) + L"  Line " + strLine + L" : " _strLog;		  \
 									log.Time = 0.f;																			  \
 									CLogMgr::Get()->AddLog(log)	
+#endif
 
 #define ALPHA_FULL	0xff000000
 #define	ALPHA_HALF	0x80000000
@@ -102,3 +103,9 @@
 #define FRICTION_DASH	Vec2(1400.f,2800.f)
 #define FRICTION_DEAD	Vec2(800.f,800.f)
 
+
+// UI Variables
+#define MAIN_UI_BTN_ORI_POS_X	200.f
+#define MAIN_UI_BTN_POP_POS_X	250.f
+#define MAIN_UI_START_BTN_ORI_POS_X	160.f
+#define MAIN_UI_START_BTN_POP_POS_X	210.f

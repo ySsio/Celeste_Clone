@@ -30,7 +30,8 @@ CLevel_Level_01::~CLevel_Level_01()
 void CLevel_Level_01::Enter()
 {
 	// 맵 로드
-	Load(L"\\map\\Test3.level");
+	//Load(L"\\map\\.level");
+	Load(L"\\map\\Test5.level");
 
 	// 현재 룸 설정
 	MoveRoom(0);
@@ -52,78 +53,7 @@ void CLevel_Level_01::Enter()
 	CGameMgr::Get()->SetPlayer(pPlayer);
 
 
-	//// Platform
-
-	//CPlatform* pPlatform = new CPlatform;
-	//pPlatform->SetPos(Vec2(0.f, 0.f));
-	//CTileMap* pTileMap = pPlatform->GetComponent<CTileMap>();
-	//pTileMap->SetRowCol(25, 30);
-	//pTileMap->SetUnitScale(40, 40);
-
-
-	//wstring PaletteName = L"snow";
-
-	//for (int i = 0; i < 30; ++i)
-	//{
-	//	pTileMap->SetTile(20, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	//	pTileMap->SetTile(21, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	//	pTileMap->SetTile(22, i, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	//}
-	//pTileMap->SetTile(9, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	//pTileMap->SetTile(10, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	//pTileMap->SetTile(11, 0, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-
-	//for (int i = 5; i < 19; ++i)
-	//{
-	//	pTileMap->SetTile(i, 23, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_0_0"));
-	//}
-
-	//pTileMap->SetTile(20, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
-	//pTileMap->SetTile(21, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
-	//pTileMap->SetTile(22, 29, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_Spike_Right"));
-
-
-	//for (int i = 0; i < 6; ++i)
-	//{
-	//	for (int j = 0; j < 15; ++j)
-	//	{
-	//		pTileMap->SetTile(i+1, j, CAssetMgr::Get()->FindAsset<CTile>(L"Tile_" + PaletteName + L"_" + std::to_wstring(j) + L"_" + std::to_wstring(i)));
-	//	}
-	//}
-
-	//pTileMap->AddCollider();
-
-	//AddObject(pPlatform, LAYER_TYPE::PLATFORM);
-
-
-	//// Strawberry
-	//CStrawBerry* pStrawberry = new CStrawBerry;
-	//pStrawberry->SetPos(Vec2(200.f, 400.f));
-	//pStrawberry->SetScale(Vec2(80.f, 80.f));
-
-	//AddObject(pStrawberry, LAYER_TYPE::OBJ);
-
-
-	//// Spring
-	//CSpring* pSpring = new CSpring;
-	//pSpring->SetPos(Vec2(200.f, 760.f));
-	//pSpring->SetScale(Vec2(80.f, 80.f));
-	//pSpring->SetDir(Vec2(0.f, -1.f));
-
-	//AddObject(pSpring, LAYER_TYPE::OBJ);
-
-
-	//// ZipMover
-	//CZipMover* pZip = new CZipMover;
-	//pZip->SetPos(Vec2(200.f, 500.f));
-	//pZip->SetStartPos(Vec2(200.f, 500.f));
-	//pZip->SetEndPos(Vec2(740.f, 500.f));
-	//pZip->SetTile(2,4);
-
-	//AddObject(pZip, LAYER_TYPE::OBJ);
-
 	// 충돌 설정
-
 	CCollisionMgr::Get()->RegisterCollisionLayer(LAYER_TYPE::PLAYER, LAYER_TYPE::PLATFORM, true);
 	CCollisionMgr::Get()->RegisterCollisionLayer(LAYER_TYPE::PLAYER, LAYER_TYPE::OBJ, true);
 }

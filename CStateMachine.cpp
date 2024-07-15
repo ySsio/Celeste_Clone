@@ -44,7 +44,10 @@ void CStateMachine::ChangeState(const wstring& _StrName)
     // 새로운 현재 state로 진입
     m_CurState->Enter();
 
+#ifdef  _DEBUG
     DEBUG_LOG(LOG_LEVEL::LOG, L"State Changed : " + _StrName);
+#endif //  _DEBUG
+
 }
 
 CState* CStateMachine::FindState(const wstring& _StrName)

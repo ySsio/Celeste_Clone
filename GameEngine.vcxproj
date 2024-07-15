@@ -129,6 +129,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -160,6 +161,7 @@
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="CLevel_AnimEditor.h" />
     <ClInclude Include="CLevel_Editor.h" />
+    <ClInclude Include="CLevel_Level_00.h" />
     <ClInclude Include="CLevel_Level_01.h" />
     <ClInclude Include="CLevel_Start.h" />
     <ClInclude Include="CLogMgr.h" />
@@ -230,6 +232,7 @@
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CLevel_AnimEditor.cpp" />
     <ClCompile Include="CLevel_Editor.cpp" />
+    <ClCompile Include="CLevel_Level_00.cpp" />
     <ClCompile Include="CLevel_Level_01.cpp" />
     <ClCompile Include="CLevel_MapEditor.cpp" />
     <ClCompile Include="CLevel_Start.cpp" />

@@ -14,6 +14,8 @@
 #include "CPanelUI.h"
 #include "CButtonUI.h"
 
+#include "CKeyMgr.h"
+
 CLevel_Editor::CLevel_Editor()
 	: m_Menu(nullptr)
 {
@@ -51,4 +53,12 @@ void CLevel_Editor::Enter()
 	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_MAP); });
 
 	pPanel->AddChild(pButton);
+}
+
+void CLevel_Editor::Tick_Derived()
+{
+	if (KEY_TAP(KEY::ESC))
+	{
+		ChangeLevel(LEVEL_TYPE::START);
+	}
 }

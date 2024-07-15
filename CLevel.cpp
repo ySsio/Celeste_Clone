@@ -155,7 +155,7 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 		int len = 0;
 		if (fread(&len, sizeof(int), 1, pFile) != 1) break;
 
-		std::vector<wchar_t> szBuff(len + 1);
+		vector<wchar_t> szBuff(len + 1);
 		if (fread(szBuff.data(), sizeof(wchar_t), len, pFile) != len) break;
 
 		// 오브젝트 타입에 따라 객체 생성
@@ -252,11 +252,15 @@ void CLevel::MoveRoom(int _Room)
 
 	// 카메라 이동
 	// 1. 카메라 제한범위 설정
-	Vec2 RoomPos = m_Room[m_CurRoom].Position;
-	Vec2 RoomScale = m_Room[m_CurRoom].Scale;
-	Vec2 RoomLT = RoomPos - RoomScale / 2.f;
-	Vec2 RoomRB = RoomPos + RoomScale / 2.f;
-	CCamera::Get()->SetCamLimit(RoomLT, RoomRB);
+	if (m_Room.size() > 0)
+	{
+		Vec2 RoomPos = m_Room[m_CurRoom].Position;
+		Vec2 RoomScale = m_Room[m_CurRoom].Scale;
+		Vec2 RoomLT = RoomPos - RoomScale / 2.f;
+		Vec2 RoomRB = RoomPos + RoomScale / 2.f;
+		CCamera::Get()->SetCamLimit(RoomLT, RoomRB);
+	}
+	
 	
 	// 2. 플레이어 위치 전달 .. 자동으로 제한범위 내에서 카메라 위치 계산
 	if (pPlayer)

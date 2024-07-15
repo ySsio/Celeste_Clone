@@ -4,6 +4,7 @@
 #include "CLevel_Start.h"
 #include "CLevel_Editor.h"
 #include "CLevel_Level_01.h"
+#include "CLevel_Level_00.h"
 
 #include "CEngine.h"
 #include "CLevel_AnimEditor.h"
@@ -17,6 +18,7 @@ CLevelMgr::CLevelMgr()
 	m_ArrLevel[(UINT)LEVEL_TYPE::EDITOR]		= new CLevel_Editor;
 	m_ArrLevel[(UINT)LEVEL_TYPE::EDITOR_ANIM]	= new CLevel_AnimEditor;
 	m_ArrLevel[(UINT)LEVEL_TYPE::EDITOR_MAP]	= new CLevel_MapEditor;
+	m_ArrLevel[(UINT)LEVEL_TYPE::LEVEL_00]		= new CLevel_Level_00;
 	m_ArrLevel[(UINT)LEVEL_TYPE::LEVEL_01]		= new CLevel_Level_01;
 
 
@@ -27,7 +29,7 @@ CLevelMgr::CLevelMgr()
 	m_ArrLevel[(UINT)LEVEL_TYPE::LEVEL_01]->SetName(L"Level_01");
 
 
-	m_CurLevel = m_ArrLevel[(UINT)LEVEL_TYPE::LEVEL_01];
+	m_CurLevel = m_ArrLevel[(UINT)LEVEL_TYPE::START];
 }
 
 CLevelMgr::~CLevelMgr()

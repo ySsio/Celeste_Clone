@@ -9,6 +9,8 @@
 #include "CEngine.h"
 #include "CKeyMgr.h"
 
+#include "CSound.h"
+
 CLevel_Start::CLevel_Start()
 	: m_BtnIdx(0)
 {
@@ -27,7 +29,7 @@ void CLevel_Start::Enter()
 	pPanel->SetPos(Vec2(0.f,0.f));
 	pPanel->SetScale(vRes);
 	pPanel->SetMovable(false);
-	pPanel->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\BackGround.png"));
+	pPanel->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\BackGround.png")->Stretch(vRes));
 	pPanel->SetTexOffset(vRes/2.f);
 	pPanel->SetFix(true);
 	AddObject(pPanel, LAYER_TYPE::UI);
@@ -55,7 +57,7 @@ void CLevel_Start::Enter()
 	SetBkMode(BackDC, TRANSPARENT);
 
 	CButtonUI* pBtn = new CButtonUI;
-	pBtn->SetPos(Vec2(160.f, 350.f));
+	pBtn->SetPos(Vec2(MAIN_UI_START_BTN_POP_POS_X, 350.f));
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\start.png"));
 	pBtn->SetTexOffset(Vec2(80.f, -130.f));
@@ -67,19 +69,19 @@ void CLevel_Start::Enter()
 	m_Btns.push_back(pBtn);
 
 	pBtn = new CButtonUI;
-	pBtn->SetPos(Vec2(200.f, 480.f));
+	pBtn->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, 480.f));
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\options.png")->Scale(0.5f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
 	pBtn->SetFontSize(48);
-	pBtn->SetName(L"可记");
+	pBtn->SetName(L"祈笼");
 	pBtn->SetFix(true);
 
 	pPanel->AddChild(pBtn);
 	m_Btns.push_back(pBtn);
 
 	pBtn = new CButtonUI;
-	pBtn->SetPos(Vec2(200.f, 580.f));
+	pBtn->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, 580.f));
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\credits.png")->Scale(0.4f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
@@ -91,7 +93,7 @@ void CLevel_Start::Enter()
 	m_Btns.push_back(pBtn);
 
 	pBtn = new CButtonUI;
-	pBtn->SetPos(Vec2(200.f, 680.f));
+	pBtn->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, 680.f));
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\exit.png")->Scale(0.5f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
@@ -115,35 +117,55 @@ void CLevel_Start::Tick_Derived()
 	{
 		if (m_BtnIdx > 0)
 		{
-			m_Btns[m_BtnIdx]->SetPos(Vec2(m_Btns[m_BtnIdx]->GetPos().x - 50.f, m_Btns[m_BtnIdx]->GetPos().y));
+			// Sound 犁积
+			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav");
+			pSound->Play();
+
+			m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
 			--m_BtnIdx;
-			m_Btns[m_BtnIdx]->SetPos(Vec2(m_Btns[m_BtnIdx]->GetPos().x + 50.f, m_Btns[m_BtnIdx]->GetPos().y));
+
+			if (m_BtnIdx != 0)
+				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+			else
+				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_START_BTN_POP_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
 		}
 	}
 	if (KEY_TAP(KEY::DOWN))
 	{
 		if (m_BtnIdx < m_Btns.size()-1)
 		{
-			m_Btns[m_BtnIdx]->SetPos(Vec2(m_Btns[m_BtnIdx]->GetPos().x - 50.f, m_Btns[m_BtnIdx]->GetPos().y));
+			// Sound 犁积
+			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav");
+			pSound->Play();
+
+			if (m_BtnIdx != 0)
+				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+			else
+				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_START_BTN_ORI_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+
 			++m_BtnIdx;
-			m_Btns[m_BtnIdx]->SetPos(Vec2(m_Btns[m_BtnIdx]->GetPos().x + 50.f, m_Btns[m_BtnIdx]->GetPos().y));
+			m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
 		}
 	}
+
 
 	if (KEY_TAP(KEY::C))
 	{
 		switch (m_BtnIdx)
 		{
 		case 0:
+			ChangeLevel(LEVEL_TYPE::LEVEL_01);
 			break;
 			
 		case 1:
+			ChangeLevel(LEVEL_TYPE::EDITOR);
 			break;
 
 		case 2:
 			break;
 
 		case 3:
+			PostQuitMessage(0);
 			break;
 
 		default:

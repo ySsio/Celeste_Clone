@@ -111,14 +111,13 @@ void CPlatform::Load(FILE* _pFile)
 		for (UINT col = 0; col < ColCnt; ++col)
 		{
 			int len = 0;
-			wchar_t szBuff[256]{};
 			fread(&len, sizeof(int), 1, _pFile);
 
-			if (0<=len && len<=256)
-				fread(&szBuff, sizeof(wchar_t), len, _pFile);
+			vector<wchar_t> szBuff(len + 1);
+			fread(szBuff.data(), sizeof(wchar_t), len, _pFile);
 
 			// 타일 이름을 읽음
-			wstring TileName = szBuff;
+			wstring TileName = szBuff.data();
 
 			// 타일 이름으로 애셋매니저에서 타일을 불러와서 현재 (row,col)에 세팅
 			CTile* pTile = CAssetMgr::Get()->FindAsset<CTile>(TileName);

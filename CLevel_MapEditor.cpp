@@ -95,6 +95,12 @@ void CLevel_MapEditor::Enter()
 
 void CLevel_MapEditor::Tick_Derived()
 {
+	// 에디터 화면으로 이동
+	if (KEY_TAP(KEY::ESC))
+	{
+		ChangeLevel(LEVEL_TYPE::EDITOR);
+	}
+
 	// 마우스가 가리키는 실제좌표를 계산
 	m_MouseRealPos = CCamera::Get()->GetRealPos(CKeyMgr::Get()->GetMousePos());
 
@@ -845,8 +851,17 @@ INT_PTR CALLBACK Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 		hComboBox = GetDlgItem(hDlg, IDC_COMBO1);
 
 		// 콤보박스 아이템 추가
-		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level1_bg1"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level0_bg0"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level0_bg1"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level0_bg2"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level0_bg3"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level1_bg0"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level1_bg1"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level1_bg2"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level3_bg0"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level3_bg1"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level3_bg2"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Level3_bg3"));
 
 
 		return (INT_PTR)TRUE;
@@ -1357,7 +1372,7 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 			if (LOWORD(wParam) == IDC_EDIT1 ) {
 				// Edit control에서 값을 받음
 				wchar_t buffer[256];
-				GetWindowText(hRowEdit, buffer, 256);
+				GetWindowText(hRowEdit, buffer, 255);
 				int newValue = _wtoi(buffer);
 
 				// Do something with newValue
@@ -1374,7 +1389,7 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 			else if (LOWORD(wParam) == IDC_EDIT2) {
 				// Edit control에서 값을 받음
 				wchar_t buffer[256];
-				GetWindowText(hColEdit, buffer, 256);
+				GetWindowText(hColEdit, buffer, 255);
 				int newValue = _wtoi(buffer);
 
 				// Do something with newValue
@@ -1426,7 +1441,7 @@ INT_PTR CALLBACK Editor_Name(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 		if (LOWORD(wParam) == IDOK)	// X 버튼
 		{
 			wchar_t buffer[256];
-			GetWindowText(hEdit, buffer, 256);
+			GetWindowText(hEdit, buffer, 255);
 
 			// 이름 세팅
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());

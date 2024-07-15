@@ -37,7 +37,7 @@ bool CPanelUI::Save(FILE* _pFile)
 
 	// 4. 텍스쳐 이름 저장
 	wstring Tex = GetSprite()->GetTex()->GetName();
-	len = Tex.length();
+	len = (int)Tex.length();
 	fwrite(&len, sizeof(int), 1, _pFile);
 	fwrite(Tex.c_str(), sizeof(wchar_t), len, _pFile);
 
@@ -69,11 +69,12 @@ void CPanelUI::Load(FILE* _pFile)
 
 	// 4. Tex 받아와서 세팅
 	int len = 0;
-	wchar_t szBuff[256]{};
 	fread(&len, sizeof(int), 1, _pFile);
-	fread(&szBuff, sizeof(wchar_t), len, _pFile);
 
-	SetTex(CAssetMgr::Get()->FindAsset<CTexture>(szBuff));
+	vector<wchar_t> szBuff(len + 1);
+	fread(szBuff.data(), sizeof(wchar_t), len, _pFile);
+
+	SetTex(CAssetMgr::Get()->FindAsset<CTexture>(szBuff.data()));
 	
 	// 5. 고정
 	bool b = false;

@@ -122,7 +122,11 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 	CLevelMgr::Get()->Init();
 	CCollisionMgr::Get()->Init();
 	CCamera::Get()->Init();
+
+#ifdef _DEBUG
 	CDebugMgr::Get()->Init();
+#endif
+
 	CTaskMgr::Get()->Init();
 	CUIMgr::Get()->Init();
 }
@@ -145,8 +149,11 @@ void CEngine::Progress()
 	CLevelMgr::Get()->FinalTick();
 	CCollisionMgr::Get()->Tick();
 	CCamera::Get()->Tick();
-	CDebugMgr::Get()->Tick();
 	CUIMgr::Get()->Tick();
+
+#ifdef _DEBUG
+	CDebugMgr::Get()->Tick();
+#endif
 
 	// render
 	Render();
@@ -168,9 +175,10 @@ void CEngine::Render()
 
 	CCamera::Get()->Render();
 	
-
+#ifdef _DEBUG
 	CDebugMgr::Get()->Render();
 	CLogMgr::Get()->Tick();
+#endif
 
 	// MainBuffer¿¡ º¹»ç
 	BitBlt(m_MainDC

@@ -45,10 +45,10 @@ void Add_Object(CObj* _Obj, LAYER_TYPE _Type);
 
 void Delete_Object(CObj* _Obj);
 
-
 // Debug Render
+#ifdef _DEBUG
 void Debug_Render(DEBUG_SHAPE _Shape, PEN_TYPE _Pen, BRUSH_TYPE _Brush, Vec2 _Pos, Vec2 _Scale, float _Duration = 0.f);
-
+#endif
 
 // Camera
 Vec2 GetRenderPosFromCam(Vec2 _Pos);

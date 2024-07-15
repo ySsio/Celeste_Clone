@@ -60,13 +60,12 @@ void CBackGround::Load(FILE* _pFile)
 
 	// 4. 텍스쳐 이름 받아와서 로드
 	int len = 0;
-	wchar_t szBuff[256]{};
 	fread(&len, sizeof(int), 1, _pFile);
 
-	if (0 <= len && len <= 256)
-		fread(&szBuff, sizeof(wchar_t), len, _pFile);
+	vector<wchar_t> szBuff(len + 1);
+	fread(szBuff.data(), sizeof(wchar_t), len, _pFile);
 
-	m_Tex->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(szBuff)->Scale(5.f));
+	m_Tex->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(szBuff.data())->Scale(5.f));
 }
 
 void CBackGround::Render()
