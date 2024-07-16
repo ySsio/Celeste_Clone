@@ -23,6 +23,10 @@ CLevel_Start::~CLevel_Start()
 
 void CLevel_Start::Enter()
 {
+	// 변수 초기화
+	m_BtnIdx = 0;
+	m_Btns.clear();
+
 	Vec2 vRes = CEngine::Get()->GetResolution();
 
 	CPanelUI* pPanel = new CPanelUI;

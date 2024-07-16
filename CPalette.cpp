@@ -126,12 +126,11 @@ void CPalette::Load(const wstring& _strRelativeFilePath)
 	// 1. 텍스쳐의 경로 불러오기
 	int len = 0;
 	fread(&len, sizeof(int), 1, pFile);
-	wchar_t szBuff[255]{};
 
-	if (0< len && len < 255)
-		fread(&szBuff, sizeof(wchar_t), len, pFile);
+	vector<wchar_t> szBuff(len + 1);
+	fread(szBuff.data(), sizeof(wchar_t), len, pFile);
 
-	wstring TexPath = szBuff;
+	wstring TexPath = szBuff.data();
 	m_Tex = CAssetMgr::Get()->LoadAsset<CTexture>(TexPath);
 
 	// 2. 단위 너비, 높이 불러오기
@@ -158,12 +157,12 @@ void CPalette::Load(const wstring& _strRelativeFilePath)
 			m_vecTile[Row * m_ColCnt + Col] = pTile;
 
 			// 0. 타일 이름 불러오기
-			wchar_t szBuff[255]{};
+			int len = 0;
 			fread(&len, sizeof(int), 1, pFile);
 
-			if (0 < len && len < 255)
-				fread(&szBuff, sizeof(wchar_t), len, pFile);
-			wstring Name = szBuff;
+			vector<wchar_t> szBuff(len + 1);
+			fread(szBuff.data(), sizeof(wchar_t), len, pFile);
+			wstring Name = szBuff.data();
 
 			// 1. 텍스쳐 정보 등록
 			pTile->SetTex(m_Tex);

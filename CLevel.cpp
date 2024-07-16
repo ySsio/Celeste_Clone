@@ -84,7 +84,7 @@ void CLevel::Save(const wstring& _strRelativeFilePath)
 		// 포인트 벡터 저장
 		for (int j = 0; j < PointCnt; ++j)
 		{
-			fwrite(&m_Room[i].SpawnPoints[j], sizeof(Vec2), RoomCnt, pFile);
+			fwrite(&m_Room[i].SpawnPoints[j], sizeof(Vec2), 1, pFile);
 		}
 	}
 
@@ -144,7 +144,7 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 		m_Room[i].SpawnPoints.resize(PointCnt);
 		for (int j = 0; j < PointCnt; ++j)
 		{
-			fread(&m_Room[i].SpawnPoints[j], sizeof(Vec2), RoomCnt, pFile);
+			fread(&m_Room[i].SpawnPoints[j], sizeof(Vec2), 1, pFile);
 		}
 	}
 
@@ -153,10 +153,12 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 	{
 		// 오브젝트 타입
 		int len = 0;
-		if (fread(&len, sizeof(int), 1, pFile) != 1) break;
+		if (fread(&len, sizeof(int), 1, pFile) != 1)
+			break;
 
 		vector<wchar_t> szBuff(len + 1);
-		if (fread(szBuff.data(), sizeof(wchar_t), len, pFile) != len) break;
+		if (fread(szBuff.data(), sizeof(wchar_t), len, pFile) != len)
+			break;
 
 		// 오브젝트 타입에 따라 객체 생성
 		CObj* pObj = nullptr;

@@ -75,18 +75,18 @@ void CAnimation::Load(const wstring& _strRelativeFilePath)
 
 	while (true)
 	{
-		fwscanf_s(pFile, L"%s", szTitle, 256); // Animation Name
+		fwscanf_s(pFile, L"%s", szTitle, 255); // Animation Name
 		wstring str = szTitle;
 
 		if (str == L"[ANIMATION_NAME]")
 		{
-			fwscanf_s(pFile, L"%s", szWParam, 256);
+			fwscanf_s(pFile, L"%s", szWParam, 255);
 			SetName(szWParam);
 		}
 		else if (str == L"[FRAME_DATA]")
 		{
 			int size = 0;
-			fwscanf_s(pFile, L"%s : %d", szWParam, 256, &size); // L"Frame Count"
+			fwscanf_s(pFile, L"%s : %d", szWParam, 255, &size); // L"Frame Count"
 
 			m_vecFrm.resize(size);
 
@@ -98,13 +98,13 @@ void CAnimation::Load(const wstring& _strRelativeFilePath)
 
 				int Flipped = 0;
 
-				fwscanf_s(pFile, L"%s : %d", szTitle, 256, &idx); // L"Frame Index"
+				fwscanf_s(pFile, L"%s : %d", szTitle, 255, &idx); // L"Frame Index"
 
-				fwscanf_s(pFile, L"%s : %d", szTitle, 256, &Flipped); // L"Flipped"
+				fwscanf_s(pFile, L"%s : %d", szTitle, 255, &Flipped); // L"Flipped"
 
-				fwscanf_s(pFile, L"%s : %s", szTitle, 256, szWParam, 256); // L"Texture_Name"
-				fwscanf_s(pFile, L"%s : %s", szTitle, 256, szLParam, 256); // L"Texture_Path"
-				fwscanf_s(pFile, L"%s : %d, %d", szTitle, 256, &x, &y); // L"Texture_Scale"
+				fwscanf_s(pFile, L"%s : %s", szTitle, 255, szWParam, 255); // L"Texture_Name"
+				fwscanf_s(pFile, L"%s : %s", szTitle, 255, szLParam, 255); // L"Texture_Path"
+				fwscanf_s(pFile, L"%s : %d, %d", szTitle, 255, &x, &y); // L"Texture_Scale"
 
 				//if (wstring(szWParam))
 				//{
@@ -117,12 +117,12 @@ void CAnimation::Load(const wstring& _strRelativeFilePath)
 					m_vecFrm[idx].Texture = CAssetMgr::Get()->CreateFlippedTexture(m_vecFrm[idx].Texture);
 				}
 
-				fwscanf_s(pFile, L"%s : %d, %d", szTitle, 256, &x, &y); // L"Offset"
+				fwscanf_s(pFile, L"%s : %d, %d", szTitle, 255, &x, &y); // L"Offset"
 
 				m_vecFrm[idx].Offset.x = (float)x;
 				m_vecFrm[idx].Offset.y = (float)y;
 
-				fwscanf_s(pFile, L"%s : %f", szTitle, 256, &m_vecFrm[idx].Duration); // L"Duration"
+				fwscanf_s(pFile, L"%s : %f", szTitle, 255, &m_vecFrm[idx].Duration); // L"Duration"
 			}
 
 		}

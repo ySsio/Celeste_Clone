@@ -214,7 +214,7 @@ void CLevel_AnimEditor::Enter()
 		}
 
 		OPENFILENAME OFN{};
-		wchar_t szFilePath[255] = L"";
+		wchar_t szFilePath[255]{};
 		wchar_t filter[] = L"이미지\0*.png\0모든 파일\0*.*\0";
 
 		OFN.lStructSize = sizeof(OPENFILENAME);
@@ -458,7 +458,7 @@ void CLevel_AnimEditor::Enter()
 	pButton->SetFunction([=]() 
 		{
 			OPENFILENAME OFN{};
-			wchar_t szFilePath[255] = L"";
+			wchar_t szFilePath[255]{};
 			wchar_t filter[] = L"애니메이션\0*.anim\0모든 파일\0*.*\0";
 
 			OFN.lStructSize = sizeof(OPENFILENAME);
@@ -545,7 +545,7 @@ void CLevel_AnimEditor::Enter()
 		}
 
 		OPENFILENAME OFN{};
-		wchar_t szFilePath[4096] = L"";
+		wchar_t szFilePath[4096]{};
 		wchar_t filter[] = L"이미지\0*.png\0모든 파일\0*.*\0";
 
 		OFN.lStructSize = sizeof(OPENFILENAME);
@@ -790,7 +790,7 @@ void CLevel_AnimEditor::Enter()
 
 		// 파일 탐색기에서 불러올 파일 선택
 		OPENFILENAME OFN{};
-		wchar_t szFilePath[255] = L"";
+		wchar_t szFilePath[255]{};
 		wchar_t filter[] = L"애니메이션\0*.anim\0모든 파일\0*.*\0";
 
 		OFN.lStructSize = sizeof(OPENFILENAME);
@@ -942,7 +942,7 @@ void CLevel_AnimEditor::CreateBangAnimation()
 	strContentPath += L"\\map";
 
 	OPENFILENAME OFN{};
-	wchar_t szFilePath[255] = L"";
+	wchar_t szFilePath[255]{};
 	wchar_t filter[] = L"Animation\0*.anim\0모든 파일\0*.*\0";
 
 	OFN.lStructSize = sizeof(OPENFILENAME);

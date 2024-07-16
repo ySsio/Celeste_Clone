@@ -68,12 +68,10 @@ void CState_Bounce::FinalTick()
 
 	if (KEY_PRESSED(KEY::LEFT))
 	{
-		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(-400.f, 0.f) * fDT);
 		pRigid->SetVelocity(Vec2(-PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
-		//pRigid->MovePosition(pPlayer->GetPos() + Vec2(400.f, 0.f) * fDT);
 		pRigid->SetVelocity(Vec2(PLAYER_RUN_SPEED, pRigid->GetVelocity().y));
 	}
 

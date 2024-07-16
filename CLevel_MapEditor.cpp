@@ -80,16 +80,13 @@ void CLevel_MapEditor::Enter()
 	//pPanel->SetFix(true);
 
 
+	//Load(L"\\map\\NewTest.level");
+
+
 	//vector<CObj*>& vec = const_cast<vector<CObj*>&>(GetLayer(LAYER_TYPE::BACKGROUND));
 
-	//vec.push_back(pPanel);
-
-	//for (int i = vec.size()-1; i >= 1 ; --i)
-	//{
-	//	vec[i] = vec[i - 1];
-	//}
-
-	//vec[0] = pPanel;
+	//std::swap(vec[0], vec[1]);
+	//std::swap(vec[1], vec[2]);
 
 }
 
@@ -173,7 +170,7 @@ void CLevel_MapEditor::Tick_Derived()
 			// 아무 룸에도 해당하지 않으면 마지막 룸이 그대로 유지
 			for (int i = 0; i < Rooms.size(); ++i)
 			{
-				tRoom& room = Rooms[i];
+				const tRoom& room = Rooms[i];
 
 				if (room.Position.x - room.Scale.x / 2.f <= m_MouseRealPos.x
 					&& m_MouseRealPos.x <= room.Position.x + room.Scale.x / 2.f
@@ -803,7 +800,7 @@ INT_PTR CALLBACK Editor(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			{
 				// 파일 탐색기에서 불러올 파일 선택
 				OPENFILENAME OFN{};
-				wchar_t szFilePath[255] = L"";
+				wchar_t szFilePath[255]{};
 				wchar_t filter[] = L"맵\0*.level\0모든 파일\0*.*\0";
 
 				OFN.lStructSize = sizeof(OPENFILENAME);
@@ -874,7 +871,7 @@ INT_PTR CALLBACK Editor_Img(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 콤보박스 글 받아옴
-			wchar_t selectedText[256];
+			wchar_t selectedText[256]{};
 			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
 
 			// selectedText로 텍스쳐 불러옴
@@ -974,7 +971,7 @@ INT_PTR CALLBACK Editor_Bg_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
-			wchar_t selectedText[256];
+			wchar_t selectedText[256]{};
 			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
 			
 			strPalette = selectedText;
@@ -1083,7 +1080,7 @@ INT_PTR CALLBACK Editor_Game_Tile(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
-			wchar_t selectedText[256];
+			wchar_t selectedText[256]{};
 			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
 
 			strPalette = selectedText;
@@ -1237,7 +1234,7 @@ INT_PTR CALLBACK Editor_Bg_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
-			wchar_t selectedText[256];
+			wchar_t selectedText[256]{};
 			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
 
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
@@ -1321,7 +1318,7 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			// 선택된 항목의 텍스트 가져오기
-			wchar_t selectedText[256];
+			wchar_t selectedText[256]{};
 			SendMessage(hComboBox, CB_GETLBTEXT, selectedIndex, (LPARAM)selectedText);
 
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
@@ -1371,9 +1368,9 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 		if (HIWORD(wParam) == EN_CHANGE) {
 			if (LOWORD(wParam) == IDC_EDIT1 ) {
 				// Edit control에서 값을 받음
-				wchar_t buffer[256];
-				GetWindowText(hRowEdit, buffer, 255);
-				int newValue = _wtoi(buffer);
+				wchar_t szBuff[256]{};
+				GetWindowText(hRowEdit, szBuff, 255);
+				int newValue = _wtoi(szBuff);
 
 				// Do something with newValue
 				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
@@ -1388,9 +1385,9 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 			}
 			else if (LOWORD(wParam) == IDC_EDIT2) {
 				// Edit control에서 값을 받음
-				wchar_t buffer[256];
-				GetWindowText(hColEdit, buffer, 255);
-				int newValue = _wtoi(buffer);
+				wchar_t szBuff[256]{};
+				GetWindowText(hColEdit, szBuff, 255);
+				int newValue = _wtoi(szBuff);
 
 				// Do something with newValue
 				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
@@ -1440,13 +1437,13 @@ INT_PTR CALLBACK Editor_Name(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 	case WM_COMMAND:
 		if (LOWORD(wParam) == IDOK)	// X 버튼
 		{
-			wchar_t buffer[256];
-			GetWindowText(hEdit, buffer, 255);
+			wchar_t szBuff[256]{};
+			GetWindowText(hEdit, szBuff, 255);
 
 			// 이름 세팅
 			CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 			if (pLevel)
-				pLevel->SetLevelName(buffer);
+				pLevel->SetLevelName(szBuff);
 
 			EndDialog(hDlg, LOWORD(wParam));
 			return (INT_PTR)TRUE;

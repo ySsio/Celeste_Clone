@@ -101,7 +101,7 @@ wstring CPathMgr::GetFileDirectory(const wstring& _strFilePath)
 
 void CPathMgr::Init()
 {
-	wchar_t buff[256];
+	wchar_t buff[256]{};
 	GetCurrentDirectory(256, buff);
 
 	m_ContentPath = buff;
