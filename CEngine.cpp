@@ -13,6 +13,7 @@
 #include "CUIMgr.h"
 #include "CLogMgr.h"
 #include "CSoundMgr.h"
+#include "CGameMgr.h"
 
 CEngine::CEngine()
 	: m_MainHwnd(nullptr)
@@ -118,6 +119,7 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 	CKeyMgr::Get()->Init();
 	CTimeMgr::Get()->Init();
 	CPathMgr::Get()->Init();
+	CGameMgr::Get()->Init();
 	CAssetMgr::Get()->Init();
 	CLevelMgr::Get()->Init();
 	CCollisionMgr::Get()->Init();
@@ -135,6 +137,7 @@ void CEngine::Progress()
 {
 	// tick
 	CTimeMgr::Get()->Tick();
+	CGameMgr::Get()->Tick();
 	CKeyMgr::Get()->Tick();
 
 	static bool	Pause = false;
@@ -171,11 +174,11 @@ void CEngine::Render()
 
 	// BackBuffer¿¡ ·»´õ
 	CLevelMgr::Get()->Render();
-	CTimeMgr::Get()->Render();
 
 	CCamera::Get()->Render();
 	
 #ifdef _DEBUG
+	CTimeMgr::Get()->Render();
 	CDebugMgr::Get()->Render();
 	CLogMgr::Get()->Tick();
 #endif

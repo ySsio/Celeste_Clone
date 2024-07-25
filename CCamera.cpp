@@ -102,12 +102,16 @@ void CCamera::Tick()
 		m_CurEffect = CAM_EFFECT::NONE;
 	}
 
-	CPlayer* pPlayer = CGameMgr::Get()->GetPlayer();
-
-	if (pPlayer)
+	// 플레이어를 따라가는 카메라
+	if (m_CurEffect != CAM_EFFECT::ROOMMOVE)
 	{
-		Vec2 vPos = pPlayer->GetPos();
-		m_CamPos = GetAvailableCamPos(vPos);
+		CPlayer* pPlayer = CGameMgr::Get()->GetPlayer();
+
+		if (pPlayer)
+		{
+			Vec2 vPos = pPlayer->GetPos();
+			m_CamPos = GetAvailableCamPos(vPos);
+		}
 	}
 
 	switch (m_CurEffect)

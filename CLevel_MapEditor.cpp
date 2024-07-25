@@ -80,7 +80,7 @@ void CLevel_MapEditor::Enter()
 	//pPanel->SetFix(true);
 
 
-	//Load(L"\\map\\NewTest.level");
+	//Load(L"\\map\\Level_00_Test.level");
 
 
 	//vector<CObj*>& vec = const_cast<vector<CObj*>&>(GetLayer(LAYER_TYPE::BACKGROUND));

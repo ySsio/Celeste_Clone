@@ -3,6 +3,7 @@
 
 class CStrawBerry;
 class CPlayer;
+class CSaveData;
 
 class CGameMgr :
     public CManager
@@ -12,19 +13,25 @@ class CGameMgr :
 private:
     CPlayer*        m_Player;
 
-    int             m_StrawberryCnt;
-
-    // vector index가 딸기 번호고, 그 딸기가 먹혔는지 여부를 저장
-    vector<bool>    m_StrawberryTable;  
+    CSaveData*          m_CurSave;
+    vector<CSaveData*>  m_Saves;
 
 public:
     CPlayer* GetPlayer() { return m_Player; }
     void SetPlayer(CPlayer* _Player) { m_Player = _Player; }
 
     void AddStrawberry(CStrawBerry* _StrawBerry);
+    void AddDeathCount();
+
+    void AddNewSaveData();
+
+public:
+    void Save();
+    void Load(int Idx);
 
 public:
     virtual void Init() override;
+    void Tick();
 
 public:
     void SaveGame();

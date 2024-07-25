@@ -1,6 +1,11 @@
 #include "pch.h"
 #include "CPathMgr.h"
 
+#include <iostream>
+#include <filesystem>
+namespace fs =  std::filesystem;
+
+
 CPathMgr::CPathMgr()
 {
 
@@ -11,11 +16,11 @@ CPathMgr::~CPathMgr()
 
 }
 
-void CPathMgr::ChangeDirUp(wstring& _Path)
+wstring CPathMgr::ChangeDirUp(const wstring& _Path)
 {
 	size_t idx = _Path.rfind(L'\\');
 
-	_Path = _Path.substr(0, idx);
+	return _Path.substr(0, idx);
 }
 
 wstring CPathMgr::GetRelativePath(const wstring& _strFilePath)
@@ -104,8 +109,27 @@ void CPathMgr::Init()
 	wchar_t buff[256]{};
 	GetCurrentDirectory(256, buff);
 
-	m_ContentPath = buff;
-	ChangeDirUp(m_ContentPath);
+	wstring OutputPath = ChangeDirUp(buff);
+
+	m_ContentPath = OutputPath;
 	m_ContentPath += L"\\content";
 
+	m_SavePath = OutputPath;
+	m_SavePath += L"\\save";
+
+}
+
+vector<wstring> CPathMgr::GetFileList(const wstring& _strDirectory) {
+	vector<wstring> files;
+
+	try {
+		for (const auto& entry : fs::directory_iterator(_strDirectory)) {
+			files.push_back(entry.path().filename().wstring());
+		}
+	}
+	catch (const fs::filesystem_error& e) {
+		std::cerr << "Filesystem error: " << e.what() << std::endl;
+	}
+
+	return files;
 }

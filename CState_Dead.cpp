@@ -13,6 +13,8 @@
 #include "CSound.h"
 #include "CAssetMgr.h"
 
+#include "CGameMgr.h"
+
 CState_Dead::CState_Dead()
 	: m_AccTime(0.f)
 	, m_AnimDuration(0.5f)
@@ -56,6 +58,9 @@ void CState_Dead::PlayAnimation()
 
 void CState_Dead::Enter()
 {
+	// 게임매니저 데스 카운트 증가
+	CGameMgr::Get()->AddDeathCount();
+
 	// 애니메이션 재생
 	PlayAnimation();
 

@@ -30,8 +30,7 @@ CLevel_Level_01::~CLevel_Level_01()
 void CLevel_Level_01::Enter()
 {
 	// ¸Ê ·Îµå
-	//Load(L"\\map\\.level");
-	Load(L"\\map\\Test10.level");
+	Load(L"\\map\\Level_01.level");
 
 	// ÇöÀç ·ë ¼³Á¤
 	MoveRoom(0);

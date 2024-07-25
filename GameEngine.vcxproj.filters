@@ -200,6 +200,9 @@
     <Filter Include="Game\04. Level\Level_Start">
       <UniqueIdentifier>{dd1f7e6c-8495-43dc-bbc5-83b09778535f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\08. Module\SaveData">
+      <UniqueIdentifier>{9a93dd43-bd00-49b7-bb6e-93bfa0fb35e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -403,6 +406,9 @@
     <ClInclude Include="CLevel_Level_00.h">
       <Filter>Game\04. Level\Level_Stage00</Filter>
     </ClInclude>
+    <ClInclude Include="CSaveData.h">
+      <Filter>Game\08. Module\SaveData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -605,6 +611,9 @@
     </ClCompile>
     <ClCompile Include="CLevel_Level_00.cpp">
       <Filter>Game\04. Level\Level_Stage00</Filter>
+    </ClCompile>
+    <ClCompile Include="CSaveData.cpp">
+      <Filter>Game\08. Module\SaveData</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
