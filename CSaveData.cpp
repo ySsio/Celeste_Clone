@@ -3,8 +3,8 @@
 #include "CPathMgr.h"
 
 CSaveData::CSaveData()
-	: m_DeathCount(0)
-	, m_PlayTime(0.f)
+	: m_PlayTime(0.f)
+	, m_DeathCount(0)
 	, m_StrawberryCnt(0)
 {
 }
@@ -25,16 +25,14 @@ void CSaveData::Save(const wstring& _strFileName)
 	FILE* pFile = nullptr;
 	_wfopen_s(&pFile, SavePath.c_str(), L"wb");
 
-	// 1. DeathCount 저장
-	fwrite(&m_DeathCount, sizeof(int), 1, pFile);
-
-	// 2. playtime 저장
+	
+	// 1. playtime 저장
 	fwrite(&m_PlayTime, sizeof(float), 1, pFile);
 
-	// 3. Strawberry count 저장
+	// 2. Strawberry count 저장
 	fwrite(&m_StrawberryCnt, sizeof(int), 1, pFile);
 
-	// 4. Strawberry table 저장
+	// 3. Strawberry table 저장
 	// 각 array 요소마다 vector을 저장
 	for (int i = 0; i < (int)LEVEL_TYPE::END; ++i)
 	{
@@ -44,6 +42,15 @@ void CSaveData::Save(const wstring& _strFileName)
 
 		// vector 저장
 		fwrite(m_StrawberryTable[i].data(), sizeof(char), vecSize, pFile);
+	}
+
+	// 4. DeathCount 저장
+	fwrite(&m_DeathCount, sizeof(int), 1, pFile);
+
+	// 5. Death table 저장
+	for (int i = 0; i < (int)LEVEL_TYPE::END; ++i)
+	{
+		fwrite(&m_DeathTable[i], sizeof(int), 1, pFile);
 	}
 
 	fclose(pFile);
@@ -62,16 +69,13 @@ void CSaveData::Load(const wstring& _strFileName)
 
 	assert(pFile);
 
-	// 1. DeathCount 로드
-	fread(&m_DeathCount, sizeof(int), 1, pFile);
-
-	// 2. playtime 로드
+	// 1. playtime 로드
 	fread(&m_PlayTime, sizeof(float), 1, pFile);
 
-	// 3. Strawberry count 로드
+	// 2. Strawberry count 로드
 	fread(&m_StrawberryCnt, sizeof(int), 1, pFile);
 
-	// 4. Strawberry table 로드
+	// 3. Strawberry table 로드
 	// 각 array마다 vector을 불러옴
 	for (int i = 0; i < (int)LEVEL_TYPE::END; ++i)
 	{
@@ -84,6 +88,15 @@ void CSaveData::Load(const wstring& _strFileName)
 
 		// vector 로드
 		fread(m_StrawberryTable[i].data(), sizeof(char), vecSize, pFile);
+	}
+
+	// 4. DeathCount 로드
+	fread(&m_DeathCount, sizeof(int), 1, pFile);
+
+	// 5. Death table 로드
+	for (int i = 0; i < (int)LEVEL_TYPE::END; ++i)
+	{
+		fread(&m_DeathTable[i], sizeof(int), 1, pFile);
 	}
 
 	fclose(pFile);
