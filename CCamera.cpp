@@ -129,23 +129,6 @@ void CCamera::Tick()
 	}
 		break;
 	}
-
-	if (KEY_PRESSED(KEY::W))
-	{
-		m_CamPos.y -= 600.f * fDT;
-	}
-	if (KEY_PRESSED(KEY::S))
-	{
-		m_CamPos.y += 600.f * fDT;
-	}
-	if (KEY_PRESSED(KEY::A))
-	{
-		m_CamPos.x -= 600.f * fDT;
-	}
-	if (KEY_PRESSED(KEY::D))
-	{
-		m_CamPos.x += 600.f * fDT;
-	}
 }
 
 void CCamera::Render()

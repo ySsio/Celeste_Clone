@@ -5,6 +5,7 @@
 #include "CPathMgr.h"
 #include "CAssetMgr.h"
 #include "CLevelMgr.h"
+#include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CCamera.h"
 #include "CAssetMgr.h"
@@ -96,6 +97,24 @@ void CLevel_MapEditor::Tick_Derived()
 	if (KEY_TAP(KEY::ESC))
 	{
 		ChangeLevel(LEVEL_TYPE::EDITOR);
+	}
+
+	// 카메라 이동
+	if (KEY_PRESSED(KEY::W))
+	{
+		CCamera::Get()->m_CamPos.y -= 600.f * fDT;
+	}
+	if (KEY_PRESSED(KEY::S))
+	{
+		CCamera::Get()->m_CamPos.y += 600.f * fDT;
+	}
+	if (KEY_PRESSED(KEY::A))
+	{
+		CCamera::Get()->m_CamPos.x -= 600.f * fDT;
+	}
+	if (KEY_PRESSED(KEY::D))
+	{
+		CCamera::Get()->m_CamPos.x += 600.f * fDT;
 	}
 
 	// 마우스가 가리키는 실제좌표를 계산

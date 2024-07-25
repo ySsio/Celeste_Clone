@@ -23,7 +23,7 @@ private:
 
     vector<CComponent*> m_vecComponent;
 
-    bool        m_PlayerDead;
+    bool        m_Dead;
 
 public:
     void SetLayerType(LAYER_TYPE _Type) { m_Type = _Type; }
@@ -32,14 +32,14 @@ public:
     }
     void SetScale(float _x, float _y) { m_Scale.x = _x; m_Scale.y = _y; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
-    void SetDead() { m_PlayerDead = true; }
+    void SetDead() { m_Dead = true; }
     void SetRoom(int _Room) { m_Room = _Room; }
 
     LAYER_TYPE GetType() { return m_Type; }
     Vec2 GetPos() { return m_Pos; }
     Vec2 GetScale() { return m_Scale; }
     virtual Vec2 GetRenderPos();
-    bool IsDead() { return m_PlayerDead; }
+    bool IsDead() { return m_Dead; }
     int GetRoom() { return m_Room; }
 
     template<typename T>
@@ -49,6 +49,14 @@ public:
         m_vecComponent.push_back(pComp);
         pComp->SetOwner(this);
         return pComp;
+    }
+
+    template<typename T>
+    T* AddComponent(T* _Comp)
+    {
+        m_vecComponent.push_back(_Comp);
+        _Comp->SetOwner(this);
+        return _Comp;
     }
 
     template<typename T>
@@ -80,6 +88,8 @@ public:
         return ret;
     }
 
+    const vector<CComponent*>& GetComponents() { return m_vecComponent; }
+
 public:
     virtual void Init() {}
     virtual void Tick() = 0;
@@ -99,6 +109,7 @@ public:
 public:
     CObj();
     CObj(const CObj& _other);
+    virtual CObj* Clone() override = 0;
     ~CObj();
 };
 

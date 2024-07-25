@@ -12,11 +12,12 @@ private:
     CTexture*   m_FlippedTex;
 
     bool m_Fix;
-
     bool m_FlipX;
 
 public:
     void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
+    Vec2 GetOffset() { return m_Offset; }
+
     void SetTex(CTexture* _pTex);
     CTexture* GetTex() { return m_Tex; }
     void FlipX(bool _B) { m_FlipX = _B; }
@@ -30,6 +31,7 @@ public:
     void Render();
 
 public:
+    CLONE(CSpriteRenderer)
     CSpriteRenderer();
     ~CSpriteRenderer();
 };

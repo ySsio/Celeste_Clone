@@ -19,6 +19,7 @@ public:
 public:
 	CBase();
 	CBase(const CBase& _other);
+	virtual CBase* Clone() = 0;
 	virtual ~CBase();
 };
 

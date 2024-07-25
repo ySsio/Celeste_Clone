@@ -6,12 +6,13 @@ CImageUI::CImageUI()
 {
 }
 
+
 CImageUI::~CImageUI()
 {
 }
 
 void CImageUI::Render_DerivedUI()
-{
+{	
 	CSpriteRenderer* pSprite = GetSprite();
 
 	pSprite->Render();

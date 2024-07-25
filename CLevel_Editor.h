@@ -14,6 +14,7 @@ public:
 
 
 public:
+    CLONE_DISABLE(CLevel_Editor)
     CLevel_Editor();
     ~CLevel_Editor();
 };

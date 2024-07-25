@@ -25,6 +25,7 @@ CButtonUI::CButtonUI()
 	);
 }
 
+
 CButtonUI::~CButtonUI()
 {
 	// 폰트 삭제

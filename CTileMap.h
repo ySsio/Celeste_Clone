@@ -55,6 +55,7 @@ public:
     
 
 public:
+    CLONE(CTileMap)
     CTileMap();
     ~CTileMap();
 };

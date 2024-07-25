@@ -86,7 +86,9 @@ public:
 
 
 public:
+    CLONE(CAnimEditorUI)
     CAnimEditorUI();
+    CAnimEditorUI(const CAnimEditorUI& _Other);
     ~CAnimEditorUI();
 };
 

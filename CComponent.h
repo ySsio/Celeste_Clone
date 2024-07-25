@@ -17,7 +17,9 @@ public:
     virtual void FinalTick() {}
 
 public:
+    CLONE(CComponent)
     CComponent();
+    CComponent(const CComponent& _Other);
     ~CComponent();
 };
 

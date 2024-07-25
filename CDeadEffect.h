@@ -25,6 +25,7 @@ private:
 
     vector<Vec2>    m_Position;
 
+
     float           m_Rotation;
 
     float           m_RotationDir;
@@ -48,6 +49,7 @@ public:
     virtual void Render() override;
 
 public:
+    CLONE_DISABLE(CDeadEffect)
     CDeadEffect();
     ~CDeadEffect();
 };

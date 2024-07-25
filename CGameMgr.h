@@ -20,6 +20,8 @@ public:
     CPlayer* GetPlayer() { return m_Player; }
     void SetPlayer(CPlayer* _Player) { m_Player = _Player; }
 
+    const vector<CSaveData*>& GetSaves() { return m_Saves; }
+
     void AddStrawberry(CStrawBerry* _StrawBerry);
     void AddDeathCount();
 

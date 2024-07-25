@@ -14,6 +14,7 @@ public:
     virtual void FinalTick() override;
 
 public:
+    CLONE_DISABLE(CState_Fall)
     CState_Fall();
     ~CState_Fall();
 };

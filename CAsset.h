@@ -17,6 +17,7 @@ public:
 
     
 public:
+    CLONE_DISABLE(CAsset)
     CAsset();
     ~CAsset();
 

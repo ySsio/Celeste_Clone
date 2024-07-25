@@ -21,6 +21,7 @@ public:
     virtual void Render_DerivedUI() override;
 
 public:
+    CLONE(CPanelUI)
     CPanelUI();
     ~CPanelUI();
 };

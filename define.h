@@ -45,6 +45,12 @@
 #define SELECT_PEN(DC, PEN)		CSelectObject SelectPen(DC,PEN)
 #define SELECT_BRUSH(DC, BRUSH) CSelectObject SelectBrush(DC,BRUSH)
 
+// 복사 가상함수
+#define CLONE(Type) virtual Type* Clone() override {return new Type(*this);}
+
+#define CLONE_DISABLE(Type) virtual Type* Clone() override { return nullptr; } \
+							Type(const Type& _other) = delete;
+
 #ifdef _DEBUG
 #define DEBUG_LOG(_Level, _strLog)	wchar_t strLine[5];																		  \
 									wsprintf(strLine, L"%d", __LINE__);															  \
@@ -109,3 +115,4 @@
 #define MAIN_UI_BTN_POP_POS_X	250.f
 #define MAIN_UI_START_BTN_ORI_POS_X	160.f
 #define MAIN_UI_START_BTN_POP_POS_X	210.f
+#define SAVE_UI_BTN_POP_POS_X	325.f

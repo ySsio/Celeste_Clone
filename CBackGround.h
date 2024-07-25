@@ -19,6 +19,7 @@ public:
     virtual void Render() override;
 
 public:
+    CLONE(CBackGround)
     CBackGround();
     ~CBackGround();
 };

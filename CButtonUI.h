@@ -24,6 +24,7 @@ public:
     virtual void LBtnClicked();   // 눌렸다가 뗀 상태 (동일 버튼 상에서)
 
 public:
+    CLONE(CButtonUI)
     CButtonUI();
     ~CButtonUI();
 };

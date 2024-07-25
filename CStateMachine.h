@@ -21,6 +21,7 @@ public:
     virtual void FinalTick() override;
 
 public:
+    CLONE(CStateMachine)
     CStateMachine();
     ~CStateMachine();
 };

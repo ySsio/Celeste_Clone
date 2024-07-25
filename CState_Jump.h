@@ -18,6 +18,7 @@ public:
     virtual void FinalTick() override;
 
 public:
+    CLONE_DISABLE(CState_Jump)
     CState_Jump();
     ~CState_Jump();
 };

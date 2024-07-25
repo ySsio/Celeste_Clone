@@ -1,2 +1,76 @@
-﻿  CSaveData.cpp
+﻿  pch.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  CAfterImage.cpp
+  CAnimEditorUI.cpp
+  CAnimUI.cpp
+  CAnimation.cpp
+  CAnimator.cpp
+  CAsset.cpp
+  CAssetMgr.cpp
+  CBackGround.cpp
+  CBase.cpp
+  CButtonUI.cpp
+  CCamera.cpp
+  CCollider.cpp
+  CCollisionMgr.cpp
+  CComponent.cpp
+  CDeadEffect.cpp
+  CDebugMgr.cpp
+  CEngine.cpp
+  CGameMgr.cpp
+  CImageUI.cpp
+  CKeyMgr.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  CLevel.cpp
+  CLevelMgr.cpp
+  CLevel_AnimEditor.cpp
+  CLevel_Editor.cpp
+  CLevel_Level_00.cpp
+  CLevel_Level_01.cpp
+  CLevel_MapEditor.cpp
+  CLevel_Start.cpp
+  CLogMgr.cpp
+  CManager.cpp
+  CObj.cpp
+  CPalette.cpp
+  CPanelUI.cpp
+  CPathMgr.cpp
+  CPlatform.cpp
+  CPlayer.cpp
+  CRigidBody.cpp
+  CSaveData.cpp
+  CSelectObject.cpp
+  CSound.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  CSoundMgr.cpp
+  CSpring.cpp
+  CSpriteRenderer.cpp
+  CState.cpp
+  CStateMachine.cpp
+  CState_Bounce.cpp
+  CState_Climb.cpp
+  CState_Dash.cpp
+  CState_Dead.cpp
+  CState_Fall.cpp
+  CState_Idle.cpp
+  CState_Jump.cpp
+  CState_Run.cpp
+  CStrawBerry.cpp
+  CTaskMgr.cpp
+  CTextBoxUI.cpp
+  CTextUI.cpp
+  CTexture.cpp
+  CTile.cpp
+  CTileMap.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  CTimeMgr.cpp
+  CUI.cpp
+  CUIMgr.cpp
+  CZipMover.cpp
+  function.cpp
+  main.cpp
+  코드를 생성하고 있습니다...
   GameEngine.vcxproj -> D:\cpp_Exercise\GameEngine\Output\bin\GameEngine_D.exe

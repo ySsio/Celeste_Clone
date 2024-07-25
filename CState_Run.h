@@ -17,6 +17,7 @@ public:
     virtual void FinalTick() override;
 
 public:
+    CLONE_DISABLE(CState_Run)
     CState_Run();
     ~CState_Run();
 };

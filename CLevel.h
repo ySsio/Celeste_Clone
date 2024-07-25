@@ -59,6 +59,7 @@ protected:
     void AddObject(CObj* _Obj, LAYER_TYPE _Type);
 
 public:
+    CLONE_DISABLE(CLevel)
     CLevel();
     ~CLevel();
 

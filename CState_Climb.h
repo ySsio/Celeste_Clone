@@ -24,6 +24,7 @@ public:
     virtual void FinalTick() override;
 
 public:
+    CLONE_DISABLE(CState_Climb)
     CState_Climb();
     ~CState_Climb();
 };

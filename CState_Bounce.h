@@ -21,6 +21,7 @@ public:
 
 
 public:
+    CLONE_DISABLE(CState_Bounce)
     CState_Bounce();
     ~CState_Bounce();
 };

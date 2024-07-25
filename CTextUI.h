@@ -23,6 +23,7 @@ public:
 
 
 public:
+    CLONE(CTextUI);
     CTextUI();
     ~CTextUI();
 };

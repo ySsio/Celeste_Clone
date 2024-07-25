@@ -51,6 +51,7 @@ public:
     virtual void LBtnClicked() {}   // 눌렸다가 뗀 상태 (동일 버튼 상에서)
 
 public:
+    virtual CUI* Clone() override = 0;
     CUI();
     CUI(const CUI& _Other);
     ~CUI();

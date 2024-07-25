@@ -36,7 +36,9 @@ public:
 
 
 public:
+	CLONE(CStrawBerry)
 	CStrawBerry();
+	CStrawBerry(const CStrawBerry& _Other);
 	~CStrawBerry();
 };
 

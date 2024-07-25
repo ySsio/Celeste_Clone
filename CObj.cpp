@@ -9,17 +9,25 @@
 CObj::CObj()
 	: m_Type(LAYER_TYPE::END)
 	, m_Room(-1)
-	, m_PlayerDead(false)
+	, m_Dead(false)
 {
 }
 
-CObj::CObj(const CObj& _other)
-	: CBase(_other)
-	, m_Type(_other.m_Type)
-	, m_Pos(_other.m_Pos)
+CObj::CObj(const CObj& _Other)
+	: CBase(_Other)
+	, m_Type(_Other.m_Type)
+	, m_Pos(_Other.m_Pos)
+	, m_Scale(_Other.m_Scale)
 	, m_Room(-1)
-	, m_PlayerDead(false)
+	, m_Dead(false)
 {
+	for (auto& component : _Other.m_vecComponent)
+	{
+		CComponent* pClonedComponent = component->Clone();
+		AddComponent(pClonedComponent);
+
+		pClonedComponent->SetOwner(this);
+	}
 }
 
 CObj::~CObj()

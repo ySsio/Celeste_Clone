@@ -46,7 +46,8 @@ void CGameMgr::AddNewSaveData()
 
 void CGameMgr::Save()
 {
-	m_CurSave->Save(m_CurSave->GetName());
+	if (m_CurSave)
+		m_CurSave->Save(m_CurSave->GetName());
 }
 
 void CGameMgr::Load(int Idx)
@@ -70,8 +71,6 @@ void CGameMgr::Init()
 
 		m_Saves.push_back(pSave);
 	}
-
-	AddNewSaveData();
 }
 
 void CGameMgr::Tick()

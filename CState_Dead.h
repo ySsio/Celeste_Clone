@@ -34,6 +34,7 @@ public:
     virtual void FinalTick() override;
 
 public:
+    CLONE_DISABLE(CState_Dead)
     CState_Dead();
     ~CState_Dead();
 };

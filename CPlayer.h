@@ -108,8 +108,8 @@ public:
     virtual void OnCollisionExit(CCollider* _Col, CObj* _Other, CCollider* _OtherCol) override;
 
 public:
+    CLONE_DISABLE(CPlayer)
     CPlayer();
-    CPlayer(const CPlayer& _other) = delete;
     ~CPlayer();
 };
 

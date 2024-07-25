@@ -13,6 +13,13 @@ CPlatform::CPlatform()
 	m_TileMap = AddComponent<CTileMap>();
 }
 
+CPlatform::CPlatform(const CPlatform& _Other)
+	: CObj(_Other)
+	, m_TileMap(nullptr)
+{
+	m_TileMap = GetComponent<CTileMap>();
+}
+
 CPlatform::~CPlatform()
 {
 }

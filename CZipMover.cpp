@@ -41,6 +41,27 @@ CZipMover::CZipMover()
 	m_SpriteRenderer->SetTex(CAssetMgr::Get()->FindAsset<CTexture>(L"light01"));
 }
 
+CZipMover::CZipMover(const CZipMover& _Other)
+	: CObj(_Other)
+	, m_Duration(1.f)
+	, m_StartDuration(0.2f)
+	, m_StopDuration(0.7f)
+	, m_AccTime(0.f)
+	, m_RigidBody(nullptr)
+	, m_TileMap(nullptr)
+	, m_Collider(nullptr)
+	, m_Active(false)
+	, m_Return(false)
+	, m_SoundA(false)
+	, m_SoundB(false)
+	, m_SoundC(false)
+	, m_SoundD(false)
+{
+	m_RigidBody = GetComponent<CRigidBody>();
+	m_TileMap = GetComponent<CTileMap>();
+	m_Collider = GetComponent<CCollider>();
+}
+
 CZipMover::~CZipMover()
 {
 }

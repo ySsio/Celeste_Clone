@@ -19,6 +19,18 @@ CAnimator::CAnimator()
 {
 }
 
+CAnimator::CAnimator(const CAnimator& _Other)
+	: CComponent(_Other)
+	, m_MapAnim(_Other.m_MapAnim)
+	, m_CurAnim(_Other.m_CurAnim)
+	, m_AccTime(0.f)
+	, m_CurIdx(0)
+	, m_FrmCnt(_Other.m_FrmCnt)
+	, m_Repeat(_Other.m_Repeat)
+	, m_Done(false)
+{
+}
+
 CAnimator::~CAnimator()
 {
 }

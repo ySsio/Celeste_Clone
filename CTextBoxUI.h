@@ -44,7 +44,9 @@ public:
 
 
 public:
+    CLONE(CTextBoxUI)
     CTextBoxUI();
+    CTextBoxUI(const CTextBoxUI& _Other);
     ~CTextBoxUI();
 };
 

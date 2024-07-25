@@ -60,7 +60,9 @@ public:
 
 
 public:
+    CLONE(CZipMover)
     CZipMover();
+    CZipMover(const CZipMover& _Other);
     ~CZipMover();
 };
 

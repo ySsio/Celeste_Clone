@@ -25,6 +25,7 @@ public:
 
 
 public:
+    CLONE_DISABLE(CAfterImage)
     CAfterImage(CTexture* _SrcTex, float _Duration);
     ~CAfterImage();
 };

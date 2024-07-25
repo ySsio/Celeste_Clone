@@ -27,6 +27,19 @@ CStrawBerry::CStrawBerry()
 
 }
 
+CStrawBerry::CStrawBerry(const CStrawBerry& _Other)
+	: CObj(_Other)
+	, m_Target(nullptr)
+	, m_Offset(Vec2(60.f, 20.f))
+	, m_Animator(nullptr)
+	, m_MoveDuration(0.2f)
+	, m_Touched(false)
+	, m_Collected(false)
+{
+	m_Animator = GetComponent<CAnimator>();
+	m_Animator->Play(L"Strawberry_Idle", true);
+}
+
 CStrawBerry::~CStrawBerry()
 {
 }

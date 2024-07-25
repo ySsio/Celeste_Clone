@@ -14,9 +14,17 @@ CTextBoxUI::CTextBoxUI()
 	
 }
 
+CTextBoxUI::CTextBoxUI(const CTextBoxUI& _Other)
+	: CUI(_Other)
+	, m_CursorPos(0)
+	, m_CursorVisible(false)
+	, m_Integer(_Other.m_Integer)
+	, m_Float(_Other.m_Float)
+{
+}
+
 CTextBoxUI::~CTextBoxUI()
 {
-	
 
 }
 

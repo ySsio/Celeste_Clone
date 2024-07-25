@@ -16,6 +16,18 @@ CAnimEditorUI::CAnimEditorUI()
 {
 }
 
+CAnimEditorUI::CAnimEditorUI(const CAnimEditorUI& _Other)
+	: CUI(_Other)
+	, m_Bang(_Other.m_Bang)
+	, m_Body(_Other.m_Body)
+	, m_BangFrm(0)
+	, m_BodyFrm(0)
+	, m_BangFrmCnt(1)
+	, m_BodyFrmCnt(1)
+	, m_Play(false)
+{
+}
+
 CAnimEditorUI::~CAnimEditorUI()
 {
 }

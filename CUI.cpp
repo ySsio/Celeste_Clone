@@ -20,15 +20,12 @@ CUI::CUI(const CUI& _Other)
 	, m_MouseOn(false)
 	, m_LbtnDown(false)
 {
-	m_Sprite = AddComponent<CSpriteRenderer>();
-	m_Sprite->SetTex(_Other.m_Sprite->GetTex());
-	m_Sprite->SetFix(_Other.m_Sprite->GetFix());
-	m_Sprite->SetOffset(_Other.m_Sprite->GetOffset());
+	m_Sprite = GetComponent<CSpriteRenderer>();
 
 	// 자식 UI 복사
 	for (auto child : _Other.m_ChildUI)
 	{
-		CUI* pCopyChild{ child }; // copy constructor
+		CUI* pCopyChild = child->Clone(); // copy constructor
 
 		pCopyChild->m_ParentUI = this;
 		m_ChildUI.push_back(pCopyChild);
@@ -57,7 +54,7 @@ void CUI::Tick()
 	m_FinalPos = GetPos();
 
 	if (m_ParentUI) 
-		m_FinalPos += m_ParentUI->GetPos();
+		m_FinalPos += m_ParentUI->GetFinalPos();
 
 	Vec2 vScale = GetScale();
 	Vec2 vMousePos = CKeyMgr::Get()->GetMousePos();
@@ -80,6 +77,13 @@ void CUI::Tick()
 	for (auto childUI : m_ChildUI)
 	{
 		childUI->Tick();
+
+		// component tick
+		const vector<CComponent*>& Components = childUI->GetComponents();
+		for (auto comp : Components)
+		{
+			comp->FinalTick();
+		}
 	}
 }
 

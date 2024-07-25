@@ -22,7 +22,9 @@ public:
     virtual void Render() override;
 
 public:
+    CLONE(CPlatform)
     CPlatform();
+    CPlatform(const CPlatform& _Other);
     ~CPlatform();
 };
 

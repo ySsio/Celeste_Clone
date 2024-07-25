@@ -18,6 +18,7 @@ public:
     virtual void PlayAnimation() override;
 
 public:
+    CLONE_DISABLE(CState_Idle)
     CState_Idle();
     ~CState_Idle();
 };

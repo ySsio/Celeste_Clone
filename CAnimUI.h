@@ -12,13 +12,15 @@ private:
 public:
     void SetAnim(const wstring& _AnimName, CAnimation* _Anim);
 
-
 public:
+    virtual void Tick_DerivedUI() {};
     virtual void Render_DerivedUI() override;
 
 
 public:
+    CLONE(CAnimUI)
     CAnimUI();
+    CAnimUI(const CAnimUI& _Other);
     ~CAnimUI();
 
 };

@@ -32,7 +32,9 @@ public:
 
 
 public:
+    CLONE(CSpring)
     CSpring();
+    CSpring(const CSpring& _Other);
     ~CSpring();
 };
 

@@ -19,6 +19,7 @@ public:
 	void Load(const wstring& _strFileName);
 
 public:
+	CLONE_DISABLE(CSaveData)
 	CSaveData();
 	~CSaveData();
 	friend class CGameMgr;

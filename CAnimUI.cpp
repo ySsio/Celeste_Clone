@@ -7,6 +7,12 @@ CAnimUI::CAnimUI()
 	m_Anim = AddComponent<CAnimator>();
 }
 
+CAnimUI::CAnimUI(const CAnimUI& _Other)
+	: CUI(_Other)
+{
+	m_Anim = GetComponent<CAnimator>();
+}
+
 CAnimUI::~CAnimUI()
 {
 }
@@ -14,6 +20,7 @@ CAnimUI::~CAnimUI()
 void CAnimUI::SetAnim(const wstring& _AnimName, CAnimation* _Anim)
 {
 	m_Anim->AddAnimation(_AnimName, _Anim);
+	m_Anim->Play(_AnimName,true);
 }
 
 void CAnimUI::Render_DerivedUI()

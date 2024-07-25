@@ -21,6 +21,17 @@ CSpring::CSpring()
 	m_Collider->SetScale(Vec2(80.f, 20.f));
 }
 
+CSpring::CSpring(const CSpring& _Other)
+	: CObj(_Other)
+	, m_Animator(nullptr)
+	, m_Dir(Vec2(0.f, -1.f))
+{
+	m_Animator = GetComponent<CAnimator>();
+	m_Animator->Play(L"Spring_Idle", true);
+
+	m_Collider = AddComponent<CCollider>();
+}
+
 CSpring::~CSpring()
 {
 }

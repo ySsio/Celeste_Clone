@@ -31,6 +31,7 @@ public:
     virtual void FinalTick() override;
 
 public:
+    CLONE_DISABLE(CState_Dash)
     CState_Dash();
     ~CState_Dash();
 };
