@@ -6,10 +6,34 @@
 
 CUI::CUI()
 	: m_ParentUI(nullptr)
+	, m_Sprite(nullptr)
 	, m_MouseOn(false)
 	, m_LbtnDown(false)
 {
 	m_Sprite = AddComponent<CSpriteRenderer>();
+}
+
+CUI::CUI(const CUI& _Other)
+	: CObj(_Other)
+	, m_ParentUI(nullptr)
+	, m_Sprite(_Other.m_Sprite)
+	, m_MouseOn(false)
+	, m_LbtnDown(false)
+{
+	m_Sprite = AddComponent<CSpriteRenderer>();
+	m_Sprite->SetTex(_Other.m_Sprite->GetTex());
+	m_Sprite->SetFix(_Other.m_Sprite->GetFix());
+	m_Sprite->SetOffset(_Other.m_Sprite->GetOffset());
+
+	// 자식 UI 복사
+	for (auto child : _Other.m_ChildUI)
+	{
+		CUI* pCopyChild{ child }; // copy constructor
+
+		pCopyChild->m_ParentUI = this;
+		m_ChildUI.push_back(pCopyChild);
+
+	}
 }
 
 CUI::~CUI()

@@ -8,8 +8,9 @@ class CLevel_Start :
 {
 private:
     int                 m_BtnIdx;
+    int                 m_UIMode;
 
-    vector<CButtonUI*>  m_Btns;
+    array<vector<CButtonUI*>, 2>  m_Btns;
 
 public:
 

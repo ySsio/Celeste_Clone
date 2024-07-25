@@ -55,6 +55,8 @@ void CSaveData::Load(const wstring& _strFileName)
 	FILE* pFile = nullptr;
 	_wfopen_s(&pFile, SavePath.c_str(), L"rb");
 
+	assert(pFile);
+
 	// 1. DeathCount ·Îµå
 	fread(&m_DeathCount, sizeof(int), 1, pFile);
 

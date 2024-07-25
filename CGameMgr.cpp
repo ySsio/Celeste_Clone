@@ -17,6 +17,8 @@ CGameMgr::CGameMgr()
 
 CGameMgr::~CGameMgr()
 {
+	Save();
+
 	Release_Vector(m_Saves);
 }
 
@@ -39,7 +41,6 @@ void CGameMgr::AddNewSaveData()
 	swprintf(buffer, sizeof(buffer) / sizeof(wchar_t), L"%02d", (int)m_Saves.size() - 1);
 
 	wstring Name = L"Save" + wstring(buffer) + L".save";
-	pSave->SetName(Name);
 	pSave->Save(Name);
 }
 

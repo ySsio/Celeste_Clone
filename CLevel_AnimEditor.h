@@ -1,7 +1,7 @@
 #pragma once
 #include "CLevel_Editor.h"
 
-class CAnimUI;
+class CAnimEditorUI;
 class CTextUI;
 class CTextBoxUI;
 class CAnimation;
@@ -11,7 +11,7 @@ class CLevel_AnimEditor :
     public CLevel_Editor
 {
 private:
-    CAnimUI* m_AnimUI;
+    CAnimEditorUI* m_AnimEditorUI;
 
     UINT    m_BangFrm;
     UINT    m_BodyFrm;

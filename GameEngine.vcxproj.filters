@@ -140,9 +140,6 @@
     <Filter Include="Game\05. Manager\UIMgr">
       <UniqueIdentifier>{e0cf338d-023d-4581-a80a-f16711f9d016}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\03.Object\03. UI\Anim">
-      <UniqueIdentifier>{54165038-8d02-4428-84a8-ba6125a995c8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03.Object\03. UI\TextBox">
       <UniqueIdentifier>{f95d87cc-e1d1-46b0-a5cb-4f2a1a69d916}</UniqueIdentifier>
     </Filter>
@@ -202,6 +199,15 @@
     </Filter>
     <Filter Include="Game\08. Module\SaveData">
       <UniqueIdentifier>{9a93dd43-bd00-49b7-bb6e-93bfa0fb35e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\AnimEditor">
+      <UniqueIdentifier>{54165038-8d02-4428-84a8-ba6125a995c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\Anim">
+      <UniqueIdentifier>{b8d55701-086e-40a0-9ff7-d6a74ea22532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\Image">
+      <UniqueIdentifier>{d8e67f69-2552-48e9-a0d4-8714b1e0277a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -358,8 +364,8 @@
     <ClInclude Include="CUIMgr.h">
       <Filter>Game\05. Manager\UIMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CAnimUI.h">
-      <Filter>Game\03.Object\03. UI\Anim</Filter>
+    <ClInclude Include="CAnimEditorUI.h">
+      <Filter>Game\03.Object\03. UI\AnimEditor</Filter>
     </ClInclude>
     <ClInclude Include="CTextBoxUI.h">
       <Filter>Game\03.Object\03. UI\TextBox</Filter>
@@ -408,6 +414,12 @@
     </ClInclude>
     <ClInclude Include="CSaveData.h">
       <Filter>Game\08. Module\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageUI.h">
+      <Filter>Game\03.Object\03. UI\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimUI.h">
+      <Filter>Game\03.Object\03. UI\Anim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -564,8 +576,8 @@
     <ClCompile Include="CUIMgr.cpp">
       <Filter>Game\05. Manager\UIMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CAnimUI.cpp">
-      <Filter>Game\03.Object\03. UI\Anim</Filter>
+    <ClCompile Include="CAnimEditorUI.cpp">
+      <Filter>Game\03.Object\03. UI\AnimEditor</Filter>
     </ClCompile>
     <ClCompile Include="CTextBoxUI.cpp">
       <Filter>Game\03.Object\03. UI\TextBox</Filter>
@@ -614,6 +626,12 @@
     </ClCompile>
     <ClCompile Include="CSaveData.cpp">
       <Filter>Game\08. Module\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageUI.cpp">
+      <Filter>Game\03.Object\03. UI\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimUI.cpp">
+      <Filter>Game\03.Object\03. UI\Anim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

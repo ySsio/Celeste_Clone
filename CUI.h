@@ -52,6 +52,7 @@ public:
 
 public:
     CUI();
+    CUI(const CUI& _Other);
     ~CUI();
 };
 

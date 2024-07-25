@@ -3,6 +3,9 @@
 
 #include "CPanelUI.h"
 #include "CButtonUI.h"
+#include "CAnimUI.h"
+#include "CImageUI.h"
+
 #include "CAssetMgr.h"
 #include "CTexture.h"
 
@@ -13,6 +16,7 @@
 
 CLevel_Start::CLevel_Start()
 	: m_BtnIdx(0)
+	, m_UIMode(0)
 {
 }
 
@@ -25,7 +29,10 @@ void CLevel_Start::Enter()
 {
 	// 변수 초기화
 	m_BtnIdx = 0;
-	m_Btns.clear();
+	for (int i = 0; i < 2; ++i)
+	{
+		m_Btns[i].clear();
+	}
 
 	Vec2 vRes = CEngine::Get()->GetResolution();
 
@@ -70,7 +77,7 @@ void CLevel_Start::Enter()
 	pBtn->SetFix(true);
 
 	pPanel->AddChild(pBtn);
-	m_Btns.push_back(pBtn);
+	m_Btns[0].push_back(pBtn);
 
 	pBtn = new CButtonUI;
 	pBtn->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, 480.f));
@@ -82,7 +89,7 @@ void CLevel_Start::Enter()
 	pBtn->SetFix(true);
 
 	pPanel->AddChild(pBtn);
-	m_Btns.push_back(pBtn);
+	m_Btns[0].push_back(pBtn);
 
 	pBtn = new CButtonUI;
 	pBtn->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, 580.f));
@@ -94,7 +101,7 @@ void CLevel_Start::Enter()
 	pBtn->SetName(L"제작진");
 
 	pPanel->AddChild(pBtn);
-	m_Btns.push_back(pBtn);
+	m_Btns[0].push_back(pBtn);
 
 	pBtn = new CButtonUI;
 	pBtn->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, 680.f));
@@ -106,7 +113,22 @@ void CLevel_Start::Enter()
 	pBtn->SetName(L"종료");
 
 	pPanel->AddChild(pBtn);
-	m_Btns.push_back(pBtn);
+	m_Btns[0].push_back(pBtn);
+
+
+	// 세이브 데이터 UI
+	pBtn = new CButtonUI;
+	pBtn->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, 680.f));
+	pBtn->SetScale(Vec2(200.f, 70.f));
+	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\exit.png")->Scale(0.5f));
+	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
+	pBtn->SetFontSize(48);
+	pBtn->SetFix(true);
+	pBtn->SetName(L"종료");
+
+	pPanel->AddChild(pBtn);
+	m_Btns[1].push_back(pBtn);
+
 
 	// 원래 폰트로 복원
 	SelectObject(BackDC, hOldFont);
@@ -125,13 +147,13 @@ void CLevel_Start::Tick_Derived()
 			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav");
 			pSound->Play();
 
-			m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+			m_Btns[(int)m_UIMode][m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 			--m_BtnIdx;
 
 			if (m_BtnIdx != 0)
-				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+				m_Btns[m_UIMode][m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 			else
-				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_START_BTN_POP_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+				m_Btns[m_UIMode][m_BtnIdx]->SetPos(Vec2(MAIN_UI_START_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 		}
 	}
 	if (KEY_TAP(KEY::DOWN))
@@ -143,12 +165,12 @@ void CLevel_Start::Tick_Derived()
 			pSound->Play();
 
 			if (m_BtnIdx != 0)
-				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+				m_Btns[m_UIMode][m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 			else
-				m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_START_BTN_ORI_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+				m_Btns[m_UIMode][m_BtnIdx]->SetPos(Vec2(MAIN_UI_START_BTN_ORI_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 
 			++m_BtnIdx;
-			m_Btns[m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_BtnIdx]->GetPos().y));
+			m_Btns[m_UIMode][m_BtnIdx]->SetPos(Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 		}
 	}
 
