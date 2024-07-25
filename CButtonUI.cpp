@@ -5,24 +5,8 @@
 #include "CTexture.h"
 
 CButtonUI::CButtonUI()
-	: m_FontSize(24)
+	: m_Font(nullptr)
 {
-	m_Font = CreateFont(
-		m_FontSize,                        // 높이
-		0,                         // 폭
-		0,                         // 기울기 각도
-		0,                         // 베이스라인 각도
-		FW_BOLD,                   // 굵기
-		FALSE,                     // 이탤릭체
-		FALSE,                     // 밑줄
-		FALSE,                     // 취소선
-		DEFAULT_CHARSET,           // 문자셋
-		OUT_DEFAULT_PRECIS,        // 출력 정밀도
-		CLIP_DEFAULT_PRECIS,       // 클리핑 정밀도
-		DEFAULT_QUALITY,           // 출력 품질
-		DEFAULT_PITCH | FF_SWISS,  // 글꼴 가족 및 피치
-		L"나눔고딕"                   // 글꼴 이름
-	);
 }
 
 
@@ -33,14 +17,12 @@ CButtonUI::~CButtonUI()
 }
 
 
-void CButtonUI::SetFontSize(int _Size)
+void CButtonUI::SetFont(const wstring& _Name, int _Size)
 {
-	m_FontSize = _Size;
-
 	DeleteObject(m_Font);
 
 	m_Font = CreateFont(
-		m_FontSize,                        // 높이
+		_Size,                     // 높이
 		0,                         // 폭
 		0,                         // 기울기 각도
 		0,                         // 베이스라인 각도
@@ -53,7 +35,7 @@ void CButtonUI::SetFontSize(int _Size)
 		CLIP_DEFAULT_PRECIS,       // 클리핑 정밀도
 		DEFAULT_QUALITY,           // 출력 품질
 		DEFAULT_PITCH | FF_SWISS,  // 글꼴 가족 및 피치
-		L"나눔고딕"                   // 글꼴 이름
+		_Name.c_str()              // 글꼴 이름
 	);
 }
 

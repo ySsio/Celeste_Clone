@@ -6,6 +6,8 @@
 #include "CAnimUI.h"
 #include "CImageUI.h"
 #include "CTextUI.h"
+#include "CSaveUI.h"
+#include "CCurSaveUI.h"
 
 #include "CEngine.h"
 #include "CAssetMgr.h"
@@ -29,12 +31,16 @@ CLevel_Start::~CLevel_Start()
 
 void CLevel_Start::ChangeMode(int _Mode)
 {
+	DeselectBtn(m_BtnIdx);
+
 	m_UIMode = _Mode;
 
 	Vec2 vRes = CEngine::Get()->GetResolution();
 
 	// 패널을 알맞은 위치로 옮김
 	m_PanelUI->SetPos(Vec2(-vRes.x * _Mode, 0.f));
+
+	SelectBtn(0);
 }
 
 void CLevel_Start::SelectBtn(int _Idx)
@@ -94,6 +100,9 @@ void CLevel_Start::Enter()
 		m_Btns[i].clear();
 	}
 
+	// 텍스트 배경 제거
+	SetBkMode(BackDC, TRANSPARENT);
+
 	Vec2 vRes = CEngine::Get()->GetResolution();
 
 	m_PanelUI = new CPanelUI;
@@ -110,34 +119,14 @@ void CLevel_Start::Enter()
 
 	m_PanelUI->AddChild(pImage);
 
-	HFONT hFont = CreateFont(
-		48,                        // 높이
-		0,                         // 폭
-		0,                         // 기울기 각도
-		0,                         // 베이스라인 각도
-		FW_BOLD,                   // 굵기
-		FALSE,                     // 이탤릭체
-		FALSE,                     // 밑줄
-		FALSE,                     // 취소선
-		DEFAULT_CHARSET,           // 문자셋
-		OUT_DEFAULT_PRECIS,        // 출력 정밀도
-		CLIP_DEFAULT_PRECIS,       // 클리핑 정밀도
-		DEFAULT_QUALITY,           // 출력 품질
-		DEFAULT_PITCH | FF_SWISS,  // 글꼴 가족 및 피치
-		L"나눔고딕"                   // 글꼴 이름
-	);
-
-	// 폰트 선택
-	HFONT hOldFont = (HFONT)SelectObject(BackDC, hFont);
-
-	SetBkMode(BackDC, TRANSPARENT);
+	
 
 	CButtonUI* pBtn = new CButtonUI;
 	pBtn->SetPos(Vec2(MAIN_UI_START_BTN_POP_POS_X, 350.f));
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\start.png"));
 	pBtn->SetTexOffset(Vec2(80.f, -130.f));
-	pBtn->SetFontSize(60);
+	pBtn->SetFont(L"나눔고딕", 60);
 	pBtn->SetName(L"오르기");
 
 	m_PanelUI->AddChild(pBtn);
@@ -148,7 +137,7 @@ void CLevel_Start::Enter()
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\options.png")->Scale(0.5f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
-	pBtn->SetFontSize(48);
+	pBtn->SetFont(L"나눔고딕", 48);
 	pBtn->SetName(L"편집");
 
 	m_PanelUI->AddChild(pBtn);
@@ -159,7 +148,7 @@ void CLevel_Start::Enter()
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\credits.png")->Scale(0.4f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
-	pBtn->SetFontSize(48);
+	pBtn->SetFont(L"나눔고딕", 48);
 	pBtn->SetName(L"제작진");
 
 	m_PanelUI->AddChild(pBtn);
@@ -170,7 +159,7 @@ void CLevel_Start::Enter()
 	pBtn->SetScale(Vec2(200.f, 70.f));
 	pBtn->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\menu\\exit.png")->Scale(0.5f));
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
-	pBtn->SetFontSize(48);
+	pBtn->SetFont(L"나눔고딕", 48);
 	pBtn->SetName(L"종료");
 
 	m_PanelUI->AddChild(pBtn);
@@ -180,55 +169,21 @@ void CLevel_Start::Enter()
 	// 세이브 데이터 UI
 	const auto& Saves = CGameMgr::Get()->GetSaves();
 
-	CButtonUI* pSave = new CButtonUI;
-	pSave->SetPos(Vec2(vRes.x * 3.f/2.f, 150.f));
-	pSave->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\ticket.png")->Scale(0.9f));
+
+	CCurSaveUI* pCurSave = new CCurSaveUI;
+	pCurSave->SetPos(Vec2(vRes.x * 3.f/2.f, 150.f));
+	m_PanelUI->AddChild(pCurSave);
+	m_Btns[1].push_back(pCurSave);
+
+	pCurSave = new CCurSaveUI{ *pCurSave };
+	pCurSave->SetPos(Vec2(vRes.x * 3.f / 2.f, 450.f));
+	m_PanelUI->AddChild(pCurSave);
+	m_Btns[1].push_back(pCurSave);
+
+	CSaveUI* pSave = new CSaveUI;
+	pSave->SetPos(Vec2(vRes.x * 3.f / 2.f, 750.f));
 	m_PanelUI->AddChild(pSave);
 	m_Btns[1].push_back(pSave);
-
-	CImageUI* pCard = new CImageUI;
-	pCard->SetPos(Vec2(0.f, 0.f));
-	pCard->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\card.png")->Scale(0.9f));
-	pCard->SetTexOffset(Vec2(0.f, 0.f));
-	pSave->AddChild(pCard);
-
-	CAnimUI* pPortrait = new CAnimUI;
-	pPortrait->SetPos(Vec2(-200.f, 0.f));
-	pPortrait->SetAnim(L"Madeliene_Portrait", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Portrait.anim"));
-	pCard->AddChild(pPortrait);
-
-	pImage = new CImageUI;
-	pImage->SetPos(Vec2(-200.f, 0.f));
-	pImage->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\portraitOverlay.png")->Scale(0.9f));
-	pCard->AddChild(pImage);
-
-	CTextUI* pTextUI = new CTextUI;
-	pTextUI->SetPos(Vec2(50.f, -80.f));
-	pTextUI->SetText(L"매들린");
-	pTextUI->SetFont(L"Arial", 40);
-	pCard->AddChild(pTextUI);
-
-	pTextUI = new CTextUI;
-	pTextUI->SetPos(Vec2(50.f, -40.f));
-	pTextUI->SetText(L"코어");
-	pTextUI->SetFont(L"Arial", 30);
-	pCard->AddChild(pTextUI);
-
-	pBtn = new CButtonUI{ *pSave };
-	pBtn->SetPos(Vec2(vRes.x * 3.f / 2.f, 450.f));
-	m_PanelUI->AddChild(pBtn);
-	m_Btns[1].push_back(pBtn);
-
-	pBtn = new CButtonUI{ *pSave };
-	pBtn->SetPos(Vec2(vRes.x * 3.f / 2.f, 750.f));
-	m_PanelUI->AddChild(pBtn);
-	m_Btns[1].push_back(pBtn);
-
-	// 원래 폰트로 복원
-	SelectObject(BackDC, hOldFont);
-
-	// 폰트 삭제
-	DeleteObject(hFont);
 }
 
 void CLevel_Start::Tick_Derived()
@@ -274,8 +229,7 @@ void CLevel_Start::Tick_Derived()
 				m_PanelUI->SetPos(Vec2(-vRes.x, 0.f));
 
 				ChangeMode(1);
-
-
+				
 			}
 			break;
 
@@ -298,7 +252,7 @@ void CLevel_Start::Tick_Derived()
 
 		case 1 :
 		{
-
+			m_Btns[m_UIMode][m_BtnIdx]->GetFunction()();
 		}
 		break;
 

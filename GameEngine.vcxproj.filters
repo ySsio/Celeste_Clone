@@ -209,6 +209,12 @@
     <Filter Include="Game\03.Object\03. UI\Image">
       <UniqueIdentifier>{d8e67f69-2552-48e9-a0d4-8714b1e0277a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03.Object\03. UI\Button\SaveUI">
+      <UniqueIdentifier>{1a2c1820-cf95-4374-a34d-5d2bdf47f89b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\Button\SaveUI\CurSave">
+      <UniqueIdentifier>{9e9479ac-6703-45f0-879a-3371a0a505da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -421,6 +427,12 @@
     <ClInclude Include="CAnimUI.h">
       <Filter>Game\03.Object\03. UI\Anim</Filter>
     </ClInclude>
+    <ClInclude Include="CSaveUI.h">
+      <Filter>Game\03.Object\03. UI\Button\SaveUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CCurSaveUI.h">
+      <Filter>Game\03.Object\03. UI\Button\SaveUI\CurSave</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -632,6 +644,12 @@
     </ClCompile>
     <ClCompile Include="CAnimUI.cpp">
       <Filter>Game\03.Object\03. UI\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="CSaveUI.cpp">
+      <Filter>Game\03.Object\03. UI\Button\SaveUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CCurSaveUI.cpp">
+      <Filter>Game\03.Object\03. UI\Button\SaveUI\CurSave</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

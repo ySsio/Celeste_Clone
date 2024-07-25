@@ -172,6 +172,7 @@
     <ClInclude Include="CLevel_Start.h" />
     <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CManager.h" />
+    <ClInclude Include="CCurSaveUI.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPalette.h" />
     <ClInclude Include="CPanelUI.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CRigidBody.h" />
     <ClInclude Include="CSaveData.h" />
+    <ClInclude Include="CSaveUI.h" />
     <ClInclude Include="CSelectObject.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundMgr.h" />
@@ -247,6 +249,7 @@
     <ClCompile Include="CLevel_Start.cpp" />
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CManager.cpp" />
+    <ClCompile Include="CCurSaveUI.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPalette.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
@@ -255,6 +258,7 @@
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CRigidBody.cpp" />
     <ClCompile Include="CSaveData.cpp" />
+    <ClCompile Include="CSaveUI.cpp" />
     <ClCompile Include="CSelectObject.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
