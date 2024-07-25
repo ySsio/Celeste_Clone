@@ -42,7 +42,8 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 	{
 		// wParam : 카메라 이동할 좌표
 		m_Duration = ROOM_MOVE_DURATION;
-		m_CamTargetPos = GetAvailableCamPos(Vec2(_wParam));
+		m_StartPos = m_CamPos;
+		m_TargetPos = GetAvailableCamPos(Vec2(_wParam));
 	}
 		break;
 	}
@@ -95,12 +96,6 @@ void CCamera::Tick()
 	if (m_CurEffect != CAM_EFFECT::NONE)
 		m_AccTime += fDT;
 
-	if (m_AccTime >= m_Duration)
-	{
-		m_AccTime = 0.f;
-		m_Tex = nullptr;
-		m_CurEffect = CAM_EFFECT::NONE;
-	}
 
 	// 플레이어를 따라가는 카메라
 	if (m_CurEffect != CAM_EFFECT::ROOMMOVE)
@@ -120,14 +115,28 @@ void CCamera::Tick()
 		break;
 	case CAM_EFFECT::ROOMMOVE:
 	{
-		Vec2 vDiff = m_CamTargetPos - m_CamPos;
-		m_CamPos = m_CamTargetPos * (m_AccTime / m_Duration) + m_CamPos * (1 - m_AccTime / m_Duration);
+		Vec2 Diff = m_TargetPos - m_CamPos;
+		
+		Vec2 P1 = m_StartPos + Diff / 4.f;
+		Vec2 P2 = m_StartPos + Diff * 3.f / 4.f;
 
+		float ratio = m_AccTime / m_Duration;
+		ratio = easeInOut(ratio);
+		m_CamPos = cubicBezier(m_StartPos, P1, P2, m_TargetPos, ratio);
 
-		if (vDiff.Length() < 2.f)
-			m_CamPos = m_CamTargetPos;
+		if (m_AccTime >= m_Duration)
+		{
+			m_CamPos = m_TargetPos;
+		}
 	}
 		break;
+	}
+
+	if (m_AccTime >= m_Duration)
+	{
+		m_AccTime = 0.f;
+		m_Tex = nullptr;
+		m_CurEffect = CAM_EFFECT::NONE;
 	}
 }
 

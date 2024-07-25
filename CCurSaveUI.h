@@ -10,11 +10,11 @@ private:
     CSaveData*  m_SaveData;
 
 public:
-    void SetSaveData(CSaveData* _SaveData) { m_SaveData = _SaveData; }
+
 
 public:
     CLONE(CCurSaveUI)
-    CCurSaveUI();
+    CCurSaveUI(CSaveData* _SaveData);
     CCurSaveUI(const CCurSaveUI& _Other);
     ~CCurSaveUI();
 };

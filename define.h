@@ -116,3 +116,6 @@
 #define MAIN_UI_START_BTN_ORI_POS_X	160.f
 #define MAIN_UI_START_BTN_POP_POS_X	210.f
 #define SAVE_UI_BTN_POP_POS_X	325.f
+
+// Game Variables
+#define LEVEL_COUNT	8

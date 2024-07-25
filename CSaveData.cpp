@@ -45,12 +45,17 @@ void CSaveData::Save(const wstring& _strFileName)
 		// vector 저장
 		fwrite(m_StrawberryTable[i].data(), sizeof(char), vecSize, pFile);
 	}
+
+	fclose(pFile);
 }
 
 void CSaveData::Load(const wstring& _strFileName)
 {
 	wstring SavePath = CPathMgr::Get()->GetSavePath();
 	SavePath += L"\\" + _strFileName;
+
+	// 이름 로드
+	SetName(_strFileName);
 
 	FILE* pFile = nullptr;
 	_wfopen_s(&pFile, SavePath.c_str(), L"rb");
@@ -80,5 +85,7 @@ void CSaveData::Load(const wstring& _strFileName)
 		// vector 로드
 		fread(m_StrawberryTable[i].data(), sizeof(char), vecSize, pFile);
 	}
+
+	fclose(pFile);
 }
 

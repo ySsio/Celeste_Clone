@@ -77,13 +77,7 @@ void CUI::Tick()
 	for (auto childUI : m_ChildUI)
 	{
 		childUI->Tick();
-
-		// component tick
-		const vector<CComponent*>& Components = childUI->GetComponents();
-		for (auto comp : Components)
-		{
-			comp->FinalTick();
-		}
+		childUI->FinalTick();
 	}
 }
 

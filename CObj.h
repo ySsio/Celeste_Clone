@@ -25,11 +25,19 @@ private:
 
     bool        m_Dead;
 
+    // 부드럽게 이동
+    bool        m_Moving;
+    Vec2        m_StartPos;
+    Vec2        m_TargetPos;
+    float       m_AccTime;
+    float       m_Duration;
+
 public:
     void SetLayerType(LAYER_TYPE _Type) { m_Type = _Type; }
-    void SetPos(Vec2 _vPos) {
-        m_Pos = _vPos; 
-    }
+    void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
+
+    void SetPosSmooth(float _Duration, Vec2 _Pos);
+
     void SetScale(float _x, float _y) { m_Scale.x = _x; m_Scale.y = _y; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
     void SetDead() { m_Dead = true; }

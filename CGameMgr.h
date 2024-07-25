@@ -23,6 +23,7 @@ public:
     const vector<CSaveData*>& GetSaves() { return m_Saves; }
 
     void SetCurSave(int _Idx) { m_CurSave = m_Saves[_Idx]; }
+    void SetCurSave(CSaveData* _Save) { m_CurSave = _Save; }
 
     void AddStrawberry(CStrawBerry* _StrawBerry);
     void AddDeathCount();

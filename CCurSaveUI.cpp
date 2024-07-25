@@ -9,11 +9,59 @@
 #include "CAnimUI.h"
 #include "CTextUI.h"
 
-CCurSaveUI::CCurSaveUI()
-	: m_SaveData(nullptr)
+#include "CSaveData.h"
+
+CCurSaveUI::CCurSaveUI(CSaveData* _SaveData)
+	: m_SaveData(_SaveData)
 {
+	// 기능 : 게임매니저에서 현재 세이브 데이터를 설정함
+	SetFunction([=]() {CGameMgr::Get()->SetCurSave(_SaveData); });
+
+	// 티켓 부분 (본체)
 	SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\ticket.png")->Scale(0.9f));
 
+	for (int i = 0; i < LEVEL_COUNT; ++i)
+	{
+		CImageUI* pCollect = new CImageUI;
+		pCollect->SetPos(Vec2(65.f * i - 210.f, -20.f));
+		pCollect->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\dot.png"));
+
+		AddChild(pCollect);
+	}
+
+	CImageUI* pDeath = new CImageUI;
+	pDeath->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\collectables\\skullBlue.png"));
+	pDeath->SetPos(Vec2(-220.f, 50.f));
+	AddChild(pDeath);
+
+	CTextUI* pTextUI = new CTextUI;
+	pTextUI->SetPos(Vec2(-180.f, 30.f));
+	wstring dtCnt = L"x " + std::to_wstring(m_SaveData->GetDeathCount());
+	pTextUI->SetText(dtCnt.c_str());
+	pTextUI->SetFont(L"나눔고딕", 40);
+	AddChild(pTextUI);
+
+	pTextUI = new CTextUI;
+	pTextUI->SetPos(Vec2(120.f, 40.f));
+	float PlayTime = m_SaveData->GetPlayTime();
+	int min = floor(PlayTime) / 60;
+	int hour = min / 60;
+	min = min % 60;
+	float sec = PlayTime - 60 * 60 * hour - 60 * min;
+	wchar_t buffer[100]{};
+	swprintf_s(buffer, 100, L"%06.3f", sec);
+	wstring strSec = buffer;
+	swprintf_s(buffer, 100, L"%02d", hour);
+	wstring strHour = buffer;
+	swprintf_s(buffer, 100, L"%02d", min);
+	wstring strMin = buffer;
+
+	wstring strTime = strHour + L":" + strMin + L":" + strSec;
+	pTextUI->SetText(strTime.c_str());
+	pTextUI->SetFont(L"나눔고딕", 30);
+	AddChild(pTextUI);
+
+	// 카드 부분
 	CImageUI* pCard = new CImageUI;
 	pCard->SetPos(Vec2(0.f, 0.f));
 	pCard->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\card.png")->Scale(0.9f));
@@ -31,21 +79,30 @@ CCurSaveUI::CCurSaveUI()
 	pCard->AddChild(pImage);
 
 	pImage = new CImageUI;
-	pImage->SetPos(Vec2(50.f, 50.f));
-	pImage->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\collectables\\strawberry.png")->Scale(0.9f));
+	pImage->SetPos(Vec2(60.f, 50.f));
+	pImage->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\collectables\\strawberry.png")->Scale(0.8f));
 	pCard->AddChild(pImage);
 
-	CTextUI* pTextUI = new CTextUI;
+	pTextUI = new CTextUI;
 	pTextUI->SetPos(Vec2(50.f, -80.f));
 	pTextUI->SetText(L"매들린");
 	pTextUI->SetFont(L"나눔고딕", 40);
 	pCard->AddChild(pTextUI);
 
 	pTextUI = new CTextUI;
-	pTextUI->SetPos(Vec2(50.f, -40.f));
+	pTextUI->SetPos(Vec2(70.f, -30.f));
 	pTextUI->SetText(L"코어");
 	pTextUI->SetFont(L"나눔고딕", 30);
 	pCard->AddChild(pTextUI);
+
+	pTextUI = new CTextUI;
+	pTextUI->SetPos(Vec2(100.f, 35.f));
+	wstring stCnt = L"x " + std::to_wstring(m_SaveData->GetStrawberryCnt());
+	pTextUI->SetText(stCnt.c_str());
+	pTextUI->SetFont(L"나눔고딕", 40);
+	pCard->AddChild(pTextUI);
+
+	
 }
 
 CCurSaveUI::CCurSaveUI(const CCurSaveUI& _Other)

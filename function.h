@@ -58,3 +58,8 @@ Vec2 GetRenderPosFromCam(Vec2 _Pos);
 
 // 잔상 만들기 위한 함수
 void FillAlphaNonZeroAreas(HBITMAP hBitmap, COLORREF rgba);
+
+// Easing Function
+Vec2 cubicBezier(Vec2 P0, Vec2 P1, Vec2 P2, Vec2 P3, float t);
+
+float easeInOut(float t);

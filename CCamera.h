@@ -10,7 +10,8 @@ class CCamera :
 
 private:
     Vec2        m_CamPos;
-    Vec2        m_CamTargetPos;
+    Vec2        m_TargetPos;
+    Vec2        m_StartPos;
 
     Vec2        m_LimitLT;
     Vec2        m_LimitRB;

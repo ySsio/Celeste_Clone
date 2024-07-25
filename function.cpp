@@ -107,3 +107,25 @@ void FillAlphaNonZeroAreas(HBITMAP hBitmap, COLORREF rgba)
     DeleteDC(hdcMem);
 }
 
+Vec2 cubicBezier(Vec2 P0, Vec2 P1, Vec2 P2, Vec2 P3, float t)
+{
+    float u = 1 - t;
+    float tt = t * t;
+    float uu = u * u;
+    float uuu = uu * u;
+    float ttt = tt * t;
+
+    Vec2 point = (P0 * uuu) + (P1 * 3 * uu * t) + (P2 * 3 * u * tt) + (P3 * ttt);
+
+    return point;
+}
+
+float easeInOut(float t)
+{
+    if (t < 0.5) {
+        return 2 * t * t; // Ease In
+    }
+    else {
+        return 1 - 2 * (1 - t) * (1 - t); // Ease Out
+    }
+}

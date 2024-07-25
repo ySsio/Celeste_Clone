@@ -38,9 +38,11 @@ enum class LEVEL_TYPE
 	EDITOR,
 	EDITOR_ANIM,
 	EDITOR_MAP,
-	LEVEL_00,			// tutorial
-	LEVEL_01,			// Forsaken City
-	LEVEL_02,
+	LEVEL_00,				// tutorial
+	LEVEL_01_01,			// Forsaken City
+	LEVEL_01_02,
+	LEVEL_01_03,
+	LEVEL_02_01,
 
 	END,
 };
