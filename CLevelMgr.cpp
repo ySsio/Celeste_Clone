@@ -5,15 +5,19 @@
 #include "CLevel_Editor.h"
 #include "CLevel_Select.h"
 #include "CLevel_00.h"
-#include "CLevel_01.h"
+#include "CLevel_01_01.h"
 
 #include "CEngine.h"
 #include "CLevel_AnimEditor.h"
 #include "CLevel_MapEditor.h"
 
+#include "CCamera.h"
+#include "CGameMgr.h"
+
 CLevelMgr::CLevelMgr()
 	: m_ArrLevel{}
 	, m_CurLevel(nullptr)
+	, m_CurLevelType(LEVEL_TYPE::END)
 {
 	m_ArrLevel[(UINT)LEVEL_TYPE::START]			= new CLevel_Start;
 	m_ArrLevel[(UINT)LEVEL_TYPE::EDITOR]		= new CLevel_Editor;
@@ -72,6 +76,12 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 {
 	if (m_CurLevel)
 		m_CurLevel->Exit();
+
+	// 카메라 위치 초기화
+	CCamera::Get()->Init();
+	
+	// 플레이어 초기화
+	CGameMgr::Get()->SetPlayer(nullptr);
 
 	m_CurLevel = m_ArrLevel[(UINT)_Type];
 	m_CurLevelType = _Type;

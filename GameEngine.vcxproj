@@ -161,6 +161,7 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CAnimEditorUI.h" />
     <ClInclude Include="CGameMgr.h" />
+    <ClInclude Include="CGamePauseUI.h" />
     <ClInclude Include="CImageUI.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLevel.h" />
@@ -170,7 +171,7 @@
     <ClInclude Include="CLevel_AnimEditor.h" />
     <ClInclude Include="CLevel_Editor.h" />
     <ClInclude Include="CLevel_00.h" />
-    <ClInclude Include="CLevel_01.h" />
+    <ClInclude Include="CLevel_01_01.h" />
     <ClInclude Include="CLevel_Select.h" />
     <ClInclude Include="CLevel_Start.h" />
     <ClInclude Include="CLogMgr.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CAnimEditorUI.cpp" />
     <ClCompile Include="CGameMgr.cpp" />
+    <ClCompile Include="CGamePauseUI.cpp" />
     <ClCompile Include="CImageUI.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLevel.cpp" />
@@ -249,7 +251,7 @@
     <ClCompile Include="CLevel_AnimEditor.cpp" />
     <ClCompile Include="CLevel_Editor.cpp" />
     <ClCompile Include="CLevel_00.cpp" />
-    <ClCompile Include="CLevel_01.cpp" />
+    <ClCompile Include="CLevel_01_01.cpp" />
     <ClCompile Include="CLevel_MapEditor.cpp" />
     <ClCompile Include="CLevel_Select.cpp" />
     <ClCompile Include="CLevel_Start.cpp" />

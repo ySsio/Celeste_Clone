@@ -20,6 +20,10 @@
 CLevel_Select::CLevel_Select()
 	: m_BtnIdx(0)
 	, m_UIMode(0)
+	, m_Panel(nullptr)
+	, m_Hover(nullptr)
+	, m_Card(nullptr)
+	, m_Card_Collectable(nullptr)
 {
 }
 
@@ -41,10 +45,10 @@ void CLevel_Select::Enter()
 	m_Btns.clear();
 	m_BtnIdx = 0;
 	m_UIMode = 0;
+	m_Panel = nullptr;
 	m_Hover = nullptr;
 	m_Card = nullptr;
-	m_StrawberryCnt = nullptr;
-	m_DeathCnt = nullptr;
+	m_Card_Collectable = nullptr;
 
 	Vec2 vRes = CEngine::Get()->GetResolution();
 

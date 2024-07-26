@@ -173,7 +173,7 @@ void CLevel_Start::Enter()
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
 	pBtn->SetFont(L"³ª´®°íµñ", 48);
 	pBtn->SetName(L"Á¾·á");
-	pBtn->SetFunction([=]() {PostQuitMessage(0); });
+	pBtn->SetFunction([=]() { PostQuitMessage(0); });
 	
 
 	m_PanelUI->AddChild(pBtn);

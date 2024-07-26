@@ -100,7 +100,7 @@ void CStrawBerry::Tick()
 
 				CGameMgr::Get()->GetCurSave()->IncrStrawberryCnt();
 			}
-
+			
 		}
 	}
 }

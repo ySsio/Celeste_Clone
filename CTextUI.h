@@ -8,6 +8,7 @@ private:
     wstring     m_Text;
 
     HFONT       m_Font;
+    COLORREF    m_Color;
 
 
 public:
@@ -16,6 +17,7 @@ public:
     void SetText(const wstring& _Text);
 
     void SetFont(const wstring& _Font, UINT _Size);
+    void SetColor(COLORREF _Color) { m_Color = _Color; }
 
 public:
     virtual void Tick_DerivedUI() override;

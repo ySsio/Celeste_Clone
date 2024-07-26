@@ -23,6 +23,7 @@ public:
     double GetDT() { return m_DT; }
     float GetfDT() { return m_fDT; }
     
+    void Toggle() { m_Play = !m_Play; }
 
 public:
     virtual void Init() override;

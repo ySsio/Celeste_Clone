@@ -64,6 +64,7 @@ void CTextUI::Render_DerivedUI()
 
     // 폰트 선택
     HFONT hOldFont = (HFONT)SelectObject(BackDC, m_Font);
+    COLORREF hOldColor = SetTextColor(BackDC, m_Color);
 
     TextOut(BackDC
         , (int)(vFinalPos.x)
@@ -74,4 +75,5 @@ void CTextUI::Render_DerivedUI()
 
     // 원래 폰트로 복원
     SelectObject(BackDC, hOldFont);
+    SetTextColor(BackDC, hOldColor);
 }

@@ -332,8 +332,6 @@ void CLevel::Tick()
 		}
 	}
 	
-	
-	
 	for (auto& Layer : m_ArrLayerObj)
 	{
 		for (auto obj : Layer)
@@ -343,7 +341,10 @@ void CLevel::Tick()
 				obj->Init();
 
 			// 현재 룸, 이전 룸에 해당하는 오브젝트만 업데이트
-			else if (obj->GetRoom() == m_CurRoom || obj->GetRoom() == m_PrevRoom)
+			else if (obj->GetRoom() == m_CurRoom 
+				|| obj->GetRoom() == m_PrevRoom
+				|| obj->GetRoom() == -1 
+				|| obj->GetRoom() == -2)
 				obj->Tick();
 		}
 	}
@@ -361,14 +362,14 @@ void CLevel::FinalTick()
 		for (auto iter = Layer.begin(); iter != Layer.end();)
 		{
 			// 현재 룸, 이전 룸에 있는 오브젝트가 아니면 넘어감
-			if ((*iter)->GetRoom() != m_CurRoom && (*iter)->GetRoom() != m_PrevRoom)
+			if ((*iter)->GetRoom() == m_CurRoom 
+				|| (*iter)->GetRoom() != m_PrevRoom
+				|| (*iter)->GetRoom() != -1
+				|| (*iter)->GetRoom() != -2)
 			{
-				++iter;
-				continue;
+				// Final Tick
+				(*iter)->FinalTick();
 			}
-
-			// Final Tick
-			(*iter)->FinalTick();
 
 			++iter;
 		}

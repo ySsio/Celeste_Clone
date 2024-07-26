@@ -20,7 +20,9 @@ private:
     Vec2        m_Pos;
     Vec2        m_Scale;
 
-    int         m_Room;
+    int         m_Room; // 0 이상이 실제 room 번호고,
+                        // -1은 room에 속하진 않지만 tick과 render을 진행
+                        // -2는 tick만 진행하고 render는 하지 않는 옵션
 
     vector<CComponent*> m_vecComponent;
 

@@ -28,10 +28,12 @@ void CTimeMgr::Init()
 
 void CTimeMgr::Tick()
 {
+#ifdef _DEBUG
 	if (KEY_TAP(KEY::SPACE))
 	{
-		m_Play = !m_Play;
+		Toggle();
 	}
+#endif
 
 	if (!m_Play)
 	{

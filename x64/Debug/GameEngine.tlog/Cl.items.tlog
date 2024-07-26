@@ -16,6 +16,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CDebugMgr.cpp;D:\cpp_Exercise\GameEngine\G
 D:\cpp_Exercise\GameEngine\GameEngine\CEngine.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CEngine.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CAnimEditorUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CAnimEditorUI.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CGameMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CGameMgr.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CGamePauseUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CGamePauseUI.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CImageUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CImageUI.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CKeyMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CKeyMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel.obj
@@ -25,7 +26,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CLevelMgr.cpp;D:\cpp_Exercise\GameEngine\G
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel_AnimEditor.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_AnimEditor.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel_Editor.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_Editor.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel_00.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_00.obj
-D:\cpp_Exercise\GameEngine\GameEngine\CLevel_01.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_01.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CLevel_01_01.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_01_01.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel_MapEditor.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_MapEditor.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel_Select.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_Select.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CLevel_Start.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CLevel_Start.obj

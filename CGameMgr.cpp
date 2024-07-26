@@ -23,7 +23,7 @@ CGameMgr::~CGameMgr()
 	Release_Vector(m_Saves);
 }
 
-
+// 게임 제작용
 void CGameMgr::AddStrawberry(LEVEL_TYPE _Type, CObj* _StrawBerry)
 {
 	// 딸기 카운트 테이블에 집계

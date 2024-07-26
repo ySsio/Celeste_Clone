@@ -23,8 +23,6 @@ private:
     CLevelCardUI*               m_Card;     // 레벨 카드
     CLevelCardUI_Collectable*   m_Card_Collectable; // 수집 레벨카드
 
-    CTextUI*                m_StrawberryCnt;
-    CTextUI*                m_DeathCnt;
 
 public:
     void ChangeMode(int _Mode);
