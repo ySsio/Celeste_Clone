@@ -24,13 +24,13 @@ public:
 
 	float GetPlayTime() { return m_PlayTime; }
 
-	const vector<char>& GetStrawberryTable(LEVEL_TYPE _Type) { return m_StrawberryTable[(int)_Type]; }
-	const vector<char>& GetStrawberryTable(int _Idx) { return m_StrawberryTable[_Idx]; }
+	vector<char>& GetStrawberryTable(LEVEL_TYPE _Type) { return m_StrawberryTable[(int)_Type]; }
+	vector<char>& GetStrawberryTable(int _Idx) { return m_StrawberryTable[_Idx]; }
 
 	int GetDeathLevel(LEVEL_TYPE _Type) { return m_DeathTable[(int)_Type]; }
 	int GetDeathLevel(int _Idx) { return m_DeathTable[_Idx]; }
 
-
+	void IncrStrawberryCnt() { ++m_StrawberryCnt; }
 
 public:
 	void Save(const wstring& _strFileName);

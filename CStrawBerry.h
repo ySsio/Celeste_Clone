@@ -19,9 +19,15 @@ private:
 	bool		m_Touched;
 	bool		m_Collected;
 
+	int			m_StID;
+
+	bool		m_Ghost;
+
 
 public:
 	void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
+	void SetStId(int _ID) { m_StID = _ID; }
+	void SetGhost(bool _b);
 
 public:
 	virtual void OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol);

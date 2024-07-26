@@ -8,7 +8,7 @@
 #include "CTimeMgr.h"
 
 CObj::CObj()
-	: m_Type(LAYER_TYPE::END)
+	: m_LayerType(LAYER_TYPE::END)
 	, m_Room(-1)
 	, m_Dead(false)
 	, m_Moving(false)
@@ -19,7 +19,7 @@ CObj::CObj()
 
 CObj::CObj(const CObj& _Other)
 	: CBase(_Other)
-	, m_Type(_Other.m_Type)
+	, m_LayerType(_Other.m_LayerType)
 	, m_Pos(_Other.m_Pos)
 	, m_Scale(_Other.m_Scale)
 	, m_Room(-1)
@@ -92,7 +92,7 @@ void CObj::FinalTick()
 		CCollider* pCol = dynamic_cast<CCollider*>(comp);
 		if (pCol)
 		{
-			CCollisionMgr::Get()->RegisterCollider(pCol, m_Type);
+			CCollisionMgr::Get()->RegisterCollider(pCol, m_LayerType);
 		}
 	}
 }

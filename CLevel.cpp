@@ -7,13 +7,12 @@
 #include "CTexture.h"
 
 #include "CGameMgr.h"
+#include "CTimeMgr.h"
+#include "CPathMgr.h"
+
 #include "CPlayer.h"
 
-#include "CTimeMgr.h"
-
 #include "CCamera.h"
-
-#include "CPathMgr.h"
 
 #include "CPlatform.h"
 #include "CSpring.h"
@@ -21,6 +20,8 @@
 #include "CZipMover.h"
 #include "CBackGround.h"
 #include "CPanelUI.h"
+
+#include "CSaveData.h"
 
 CLevel::CLevel()
 	: m_PrevRoom(-1)
@@ -41,6 +42,7 @@ CLevel::~CLevel()
 void CLevel::AddObject(CObj* _Obj, LAYER_TYPE _Type)
 {
 	m_ArrLayerObj[(UINT)_Type].push_back(_Obj);
+	_Obj->SetLevelType(m_Type);
 	_Obj->SetLayerType(_Type);
 
 	// 룸 세팅 안된 애들은 새로 추가할 때 현재 room으로 추가함.
@@ -112,6 +114,9 @@ void CLevel::Save(const wstring& _strRelativeFilePath)
 
 void CLevel::Load(const wstring& _strRelativeFilePath)
 {
+	static int stId = 0;
+	stId = 0;
+
 	wstring strFilePath = CPathMgr::Get()->GetContentPath();
 	strFilePath += _strRelativeFilePath;
 
@@ -169,7 +174,24 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 		}
 		else if (wcscmp(szBuff.data(), L"Strawberry") == 0)
 		{
-			pObj = new CStrawBerry;
+			CStrawBerry* pSt = new CStrawBerry;
+
+			CGameMgr::Get()->AddStrawberry(m_Type, pSt);
+			pSt->SetStId(stId);
+
+			const auto& stTable = CGameMgr::Get()->GetCurSave()->GetStrawberryTable(m_Type);
+
+			// 애니메이션 설정
+			// 수집되지 않은 딸기
+			if (stTable[stId] == 0)
+				pSt->SetGhost(false);
+			// 수집된 딸기
+			else
+				pSt->SetGhost(true);
+
+
+			pObj = pSt;	// upcasting
+			++stId;	
 		}
 		else if (wcscmp(szBuff.data(), L"Spring") == 0)
 		{
@@ -217,6 +239,8 @@ void CLevel::Exit()
 	{
 		Release_Vector(Layer);
 	}
+
+	CGameMgr::Get()->ClearStrawberryCntTable(m_Type);
 }
 
 

@@ -4,9 +4,28 @@
 
 extern array<vector<LEVEL_TYPE>, LEVEL_COUNT + 3> LEVEL_MAP
 { {
-	{ LEVEL_TYPE::LEVEL_00 },
+	// 프롤로그
+	{ LEVEL_TYPE::PROLOGUE },
+	
+	// 챕터 1. 버림받은 도시
 	{ LEVEL_TYPE::LEVEL_01_01, LEVEL_TYPE::LEVEL_01_02, LEVEL_TYPE::LEVEL_01_03 },
+
+	// 챕터 2. 오래된 곳
 	{ LEVEL_TYPE::LEVEL_02_01 },
+
+	// 챕터 3. 셀레스티얼 리조트
+
+	// 챕터 4. 황금 산마루
+
+	// 챕터 5. 거울 사원
+
+	// 챕터 6. 반영
+
+	// 챕터 7. 정상
+
+	// 에필로그
+
+	// 챕터 8. 코어
 } };
 
 CSaveData::CSaveData()

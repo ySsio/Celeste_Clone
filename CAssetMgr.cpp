@@ -147,7 +147,7 @@ void CAssetMgr::Init()
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo(Vec2(0.3f, 0.5f), Vec2(0.6f,1.f));
+	pTile->SetColInfo(Vec2(0.15f, 0.5f), Vec2(0.3f,1.f));
 	AddTile(L"Tile_Spike_Right_0_0", pTile);
 
 	pTile = new CTile;
@@ -155,7 +155,7 @@ void CAssetMgr::Init()
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo(Vec2(0.7f, 0.5f), Vec2(0.6f, 1.f));
+	pTile->SetColInfo(Vec2(0.85f, 0.5f), Vec2(0.3f, 1.f));
 	AddTile(L"Tile_Spike_Left_0_0", pTile);
 
 	pTile = new CTile;
@@ -163,7 +163,7 @@ void CAssetMgr::Init()
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo(Vec2(0.5f, 0.7f), Vec2(1.f, 0.6f));
+	pTile->SetColInfo(Vec2(0.5f, 0.85f), Vec2(1.f, 0.3f));
 	AddTile(L"Tile_Spike_Up_0_0", pTile);
 
 	pTile = new CTile;
@@ -171,7 +171,7 @@ void CAssetMgr::Init()
 	pTile->SetScale(Vec2(8.f, 8.f));
 	pTile->SetLT(Vec2(0.f, 0.f));
 	pTile->SetDanger(true);
-	pTile->SetColInfo(Vec2(0.5f, 0.3f), Vec2(1.f, 0.6f));
+	pTile->SetColInfo(Vec2(0.5f, 0.15f), Vec2(1.f, 0.3f));
 	AddTile(L"Tile_Spike_Down_0_0", pTile);
 
 	pTile = new CTile;

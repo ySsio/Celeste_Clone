@@ -9,6 +9,7 @@ class CLevel :
     public CBase
 {
 private:
+    LEVEL_TYPE      m_Type;
     array<vector<CObj*>, (UINT)LAYER_TYPE::END>     m_ArrLayerObj;
 
     // room
@@ -27,6 +28,8 @@ public:
     void SetCurRoom(int _Room) { m_PrevRoom = m_CurRoom; m_CurRoom = _Room; }
 
    vector<tRoom>& GetRooms() { return m_Room; }
+
+   void SetLevelType(LEVEL_TYPE _Type) { m_Type = _Type; }
 
 public:
     // 인 게임에서 방을 옮길 떄 사용 (vs SetCurRoom)

@@ -44,7 +44,7 @@ void CLevel_01_01::Enter()
 	CPlayer* pPlayer = new CPlayer;
 	pPlayer->SetName(L"Player");
 	pPlayer->SetPos(GetRooms()[GetCurRoom()].SpawnPoints[0]);
-	pPlayer->SetScale(100.f, 100.f);
+	pPlayer->SetScale(Vec2(100.f, 100.f));
 	pPlayer->SetRoom(0);
 
 	AddObject(pPlayer, LAYER_TYPE::PLAYER);

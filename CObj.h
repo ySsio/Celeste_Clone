@@ -15,7 +15,8 @@ class CObj :
     public CBase
 {
 private:
-    LAYER_TYPE  m_Type;
+    LEVEL_TYPE  m_LevelType;
+    LAYER_TYPE  m_LayerType;
     Vec2        m_Pos;
     Vec2        m_Scale;
 
@@ -33,17 +34,20 @@ private:
     float       m_Duration;
 
 public:
-    void SetLayerType(LAYER_TYPE _Type) { m_Type = _Type; }
-    void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
+    void SetLevelType(LEVEL_TYPE _Type) { m_LevelType = _Type; }
+    LEVEL_TYPE GetLevelType() { return m_LevelType; }
+    
+    void SetLayerType(LAYER_TYPE _Type) { m_LayerType = _Type; }
+    LAYER_TYPE GetLayerType() { return m_LayerType; }
 
+
+    void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
     void SetPosSmooth(float _Duration, Vec2 _Pos);
 
-    void SetScale(float _x, float _y) { m_Scale.x = _x; m_Scale.y = _y; }
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
     void SetDead() { m_Dead = true; }
     void SetRoom(int _Room) { m_Room = _Room; }
 
-    LAYER_TYPE GetType() { return m_Type; }
     Vec2 GetPos() { return m_Pos; }
     Vec2 GetScale() { return m_Scale; }
     virtual Vec2 GetRenderPos();

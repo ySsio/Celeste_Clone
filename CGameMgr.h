@@ -16,6 +16,8 @@ private:
     CSaveData*          m_CurSave;
     vector<CSaveData*>  m_Saves;
 
+    array<int, (int)LEVEL_TYPE::END>  m_StrawberryCntTable;
+
 public:
     CPlayer* GetPlayer() { return m_Player; }
     void SetPlayer(CPlayer* _Player) { m_Player = _Player; }
@@ -26,10 +28,14 @@ public:
     void SetCurSave(CSaveData* _Save) { m_CurSave = _Save; }
 	CSaveData* GetCurSave() { return m_CurSave; }
 
-    void AddStrawberry(CStrawBerry* _StrawBerry);
+    void AddStrawberry(LEVEL_TYPE _Type, CObj* _StrawBerry);
     void AddDeathCount();
 
     CSaveData* AddNewSaveData();
+
+	void ClearStrawberryCntTable(LEVEL_TYPE _Type) { m_StrawberryCntTable[(int)_Type] = 0; }
+
+    int& GetStrawberryCnt(LEVEL_TYPE _Type) { return m_StrawberryCntTable[(int)_Type]; }
 
 public:
     void Save();
@@ -39,7 +45,5 @@ public:
     virtual void Init() override;
     void Tick();
 
-public:
-    void SaveGame();
 };
 

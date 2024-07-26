@@ -25,7 +25,7 @@ void CTextUI::SetText(const wstring& _Text)
     SIZE textSize{};
     GetTextExtentPoint32(BackDC, m_Text.c_str(), (int)m_Text.length(), &textSize);
     
-    SetScale((float)textSize.cx, (float)textSize.cy);
+    SetScale(Vec2((float)textSize.cx, (float)textSize.cy));
 
     // 원래 폰트로 복원
     SelectObject(BackDC, hOldFont);

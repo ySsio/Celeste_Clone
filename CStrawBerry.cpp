@@ -1,10 +1,13 @@
 #include "pch.h"
 #include "CStrawBerry.h"
 
-#include "CPlayer.h"
 #include "CAssetMgr.h"
-
+#include "CGameMgr.h"
 #include "CTimeMgr.h"
+
+#include "CPlayer.h"
+
+#include "CSaveData.h"
 
 CStrawBerry::CStrawBerry()
 	: m_Target(nullptr)
@@ -13,10 +16,13 @@ CStrawBerry::CStrawBerry()
 	, m_MoveDuration(0.2f)
 	, m_Touched(false)
 	, m_Collected(false)
+	, m_Ghost(false)
 {
 	m_Animator = AddComponent<CAnimator>();
 	m_Animator->AddAnimation(L"Strawberry_Idle", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Strawberry_Idle.anim"));
 	m_Animator->AddAnimation(L"Strawberry_Collected", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Strawberry_Collected.anim"));
+	m_Animator->AddAnimation(L"Ghostberry_Idle", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Ghostberry_Idle.anim"));
+	m_Animator->AddAnimation(L"Ghostberry_Collected", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Ghostberry_Collected.anim"));
 
 	m_Animator->Play(L"Strawberry_Idle",true);
 
@@ -35,6 +41,7 @@ CStrawBerry::CStrawBerry(const CStrawBerry& _Other)
 	, m_MoveDuration(0.2f)
 	, m_Touched(false)
 	, m_Collected(false)
+	, m_Ghost(false)
 {
 	m_Animator = GetComponent<CAnimator>();
 	m_Animator->Play(L"Strawberry_Idle", true);
@@ -66,7 +73,10 @@ void CStrawBerry::Tick()
 			m_Touched = false;
 
 			// 애니메이션 재생
-			m_Animator->Play(L"Strawberry_Collected");
+			if (!m_Ghost)
+				m_Animator->Play(L"Strawberry_Collected");
+			else
+				m_Animator->Play(L"Ghostberry_Collected");
 
 			// Sound 재생
 			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav");
@@ -83,6 +93,13 @@ void CStrawBerry::Tick()
 			Delete_Object(this);
 
 			// Game 데이터에 이 딸기가 수집되었다고 저장해줘야 함!!
+			if (!m_Ghost && !IsDead())
+			{
+				auto& stTable = CGameMgr::Get()->GetCurSave()->GetStrawberryTable(GetLevelType());
+				stTable[m_StID] = 1;
+
+				CGameMgr::Get()->GetCurSave()->IncrStrawberryCnt();
+			}
 
 		}
 	}
@@ -94,6 +111,16 @@ void CStrawBerry::Render()
 		m_Animator->Render();
 }
 
+
+void CStrawBerry::SetGhost(bool _b)
+{
+	m_Ghost = _b;
+
+	if (!_b)
+		m_Animator->Play(L"Strawberry_Idle",true);
+	else
+		m_Animator->Play(L"Ghostberry_Idle",true);
+}
 
 void CStrawBerry::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 {
@@ -113,7 +140,6 @@ bool CStrawBerry::Save(FILE* _pFile)
 	int len = (int)Type.length();
 	fwrite(&len, sizeof(int), 1, _pFile);
 	fwrite(Type.c_str(), sizeof(wchar_t), len, _pFile);
-
 
 	// 2. Room 정보 저장
 	int Room = GetRoom();

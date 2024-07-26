@@ -366,7 +366,7 @@ void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 		return;
 
 	// 충돌한 오브젝트가 플랫폼인 경우
-	if (_Other->GetType() == LAYER_TYPE::PLATFORM)
+	if (_Other->GetLayerType() == LAYER_TYPE::PLATFORM)
 	{
 		CTileMap* pTileMap = _Other->GetComponent<CTileMap>();
 		if (pTileMap->IsTileDanger(_OtherCol))
@@ -379,7 +379,7 @@ void CPlayer::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherC
 
 		
 	}
-	else if (_Other->GetType() == LAYER_TYPE::OBJ)
+	else if (_Other->GetLayerType() == LAYER_TYPE::OBJ)
 	{
 		CSpring* pSpring = dynamic_cast<CSpring*>(_Other);
 

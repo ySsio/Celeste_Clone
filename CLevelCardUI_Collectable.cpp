@@ -24,7 +24,7 @@ CLevelCardUI_Collectable::CLevelCardUI_Collectable()
 	// 데스 이미지
 	pImage = new CImageUI;
 	pImage->SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\collectables\\skullBlue.png")->Scale(0.8f));
-	pImage->SetPos(Vec2(-50.f, 30.f));
+	pImage->SetPos(Vec2(-50.f, 30.f	));
 	m_Card->AddChild(pImage);
 
 	m_StrawberryCnt = new CTextUI;
