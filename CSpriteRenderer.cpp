@@ -75,20 +75,28 @@ void CSpriteRenderer::Render()
 	int Width = RenderTex->GetWidth();
 	int Height = RenderTex->GetHeight();
 
-
+	
 	BLENDFUNCTION blend{};
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;
 	blend.SourceConstantAlpha = 255;
 	blend.AlphaFormat = AC_SRC_ALPHA;
 
-	AlphaBlend(BackDC
-		, (int)(vPos.x - Width / 2.f)
-		, (int)(vPos.y - Height / 2.f)
-		, Width, Height
-		, RenderTex->GetDC()
-		, 0, 0
-		, Width, Height
-		, blend);
+	if (!m_PartRender)
+	{
+		m_PartLT = Vec2(0.f, 0.f);
+		m_PartRB = Vec2(1.f, 1.f);
+	}
 
+	AlphaBlend(BackDC
+		, (int)(vPos.x - Width * (m_PartRB.x - m_PartLT.x) / 2.f)
+		, (int)(vPos.y - Height * (m_PartRB.y - m_PartLT.y) / 2.f)
+		, (int)(Width * (m_PartRB.x - m_PartLT.x))
+		, (int)(Height * (m_PartRB.y - m_PartLT.y))
+		, RenderTex->GetDC()
+		, (int)(Width * m_PartLT.x)
+		, (int)(Height * m_PartLT.y)
+		, (int)(Width * (m_PartRB.x - m_PartLT.x))
+		, (int)(Height * (m_PartRB.y - m_PartLT.y))
+		, blend);
 }

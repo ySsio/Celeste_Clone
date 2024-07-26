@@ -46,6 +46,8 @@ CObj::~CObj()
 
 void CObj::SetPosSmooth(float _Duration, Vec2 _Pos)
 {
+	if (m_Moving) return;
+
 	m_Duration = _Duration;
 	m_StartPos = m_Pos;
 	m_TargetPos = _Pos;

@@ -5,6 +5,7 @@
 
 #include "CTimeMgr.h"
 #include "CPathMgr.h"
+#include "CLevelMgr.h"
 
 #include "CSaveData.h"
 
@@ -29,10 +30,14 @@ void CGameMgr::AddStrawberry(CStrawBerry* _StrawBerry)
 
 void CGameMgr::AddDeathCount()
 {
+	// 레벨마다 데스 수 기록
+	++m_CurSave->m_DeathTable[(int)CLevelMgr::Get()->GetCurLevelType()];
+
+	// 전체 데스 수 기록
 	++m_CurSave->m_DeathCount;
 }
 
-void CGameMgr::AddNewSaveData()
+CSaveData* CGameMgr::AddNewSaveData()
 {
 	CSaveData* pSave = new CSaveData;
 	m_Saves.push_back(pSave);
@@ -42,6 +47,8 @@ void CGameMgr::AddNewSaveData()
 
 	wstring Name = L"Save" + wstring(buffer) + L".save";
 	pSave->Save(Name);
+
+	return pSave;
 }
 
 void CGameMgr::Save()

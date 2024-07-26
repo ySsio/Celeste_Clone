@@ -2,10 +2,18 @@
 #include "CSaveData.h"
 #include "CPathMgr.h"
 
+extern array<vector<LEVEL_TYPE>, LEVEL_COUNT + 3> LEVEL_MAP
+{ {
+	{ LEVEL_TYPE::LEVEL_00 },
+	{ LEVEL_TYPE::LEVEL_01_01, LEVEL_TYPE::LEVEL_01_02, LEVEL_TYPE::LEVEL_01_03 },
+	{ LEVEL_TYPE::LEVEL_02_01 },
+} };
+
 CSaveData::CSaveData()
 	: m_PlayTime(0.f)
 	, m_DeathCount(0)
 	, m_StrawberryCnt(0)
+	, m_DeathTable{}
 {
 }
 

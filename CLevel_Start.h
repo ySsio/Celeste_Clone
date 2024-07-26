@@ -29,7 +29,6 @@ public:
     virtual void Render_Derived();
 
 public:
-    CLONE_DISABLE(CLevel_Start)
     CLevel_Start();
     ~CLevel_Start();
 };

@@ -118,4 +118,4 @@
 #define SAVE_UI_BTN_POP_POS_X	325.f
 
 // Game Variables
-#define LEVEL_COUNT	8
+#define LEVEL_COUNT	7

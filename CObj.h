@@ -48,6 +48,7 @@ public:
     Vec2 GetScale() { return m_Scale; }
     virtual Vec2 GetRenderPos();
     bool IsDead() { return m_Dead; }
+    bool IsMoving() { return m_Moving; }
     int GetRoom() { return m_Room; }
 
     template<typename T>

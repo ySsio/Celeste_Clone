@@ -4,6 +4,7 @@
 #include "CEngine.h"
 #include "CAssetMgr.h"
 #include "CGameMgr.h"
+#include "CLevelMgr.h"
 
 #include "CImageUI.h"
 #include "CAnimUI.h"
@@ -13,7 +14,11 @@
 CSaveUI::CSaveUI()
 {
 	// 기능 : 새 세이브 데이터를 생성
-	SetFunction([]() {CGameMgr::Get()->AddNewSaveData(); });
+	SetFunction([]() {
+		CSaveData* pSave = CGameMgr::Get()->AddNewSaveData();
+		CGameMgr::Get()->SetCurSave(pSave);
+		CLevelMgr::Get()->ChangeLevel(LEVEL_TYPE::SELECT);
+	});
 
 	SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\ticket.png")->Scale(0.9f));
 

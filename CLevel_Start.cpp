@@ -103,6 +103,8 @@ void CLevel_Start::Enter()
 {
 	// 변수 초기화
 	m_BtnIdx = 0;
+	m_UIMode = 0;
+	m_PanelUI = nullptr;
 	for (int i = 0; i < 2; ++i)
 	{
 		m_Btns[i].clear();

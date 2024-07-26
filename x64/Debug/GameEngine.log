@@ -1,5 +1,5 @@
-﻿  CLevel_Start.cpp
-D:\cpp_Exercise\GameEngine\GameEngine\CLevel_Start.cpp(192,13): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 '/CLevel_Start.cpp'을(를) 컴파일하는 중)
+﻿  CLevelCardUI_Collectable.cpp
+D:\cpp_Exercise\GameEngine\GameEngine\CLevelCardUI_Collectable.cpp(58,87): warning C4267: '+=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/CLevelCardUI_Collectable.cpp'을(를) 컴파일하는 중)
   
   GameEngine.vcxproj -> D:\cpp_Exercise\GameEngine\Output\bin\GameEngine_D.exe

@@ -15,10 +15,20 @@ CTextUI::~CTextUI()
 
 void CTextUI::SetText(const wstring& _Text)
 {
+    // 폰트를 먼저 설정해야 정확한 사이즈가 나옴!!
+
     m_Text = _Text;
+
+    // 폰트 선택
+    HFONT hOldFont = (HFONT)SelectObject(BackDC, m_Font);
+
     SIZE textSize{};
     GetTextExtentPoint32(BackDC, m_Text.c_str(), (int)m_Text.length(), &textSize);
+    
     SetScale((float)textSize.cx, (float)textSize.cy);
+
+    // 원래 폰트로 복원
+    SelectObject(BackDC, hOldFont);
 }
 
 void CTextUI::SetFont(const wstring& _Name, UINT _Size)

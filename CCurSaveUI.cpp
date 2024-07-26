@@ -4,6 +4,7 @@
 #include "CEngine.h"
 #include "CAssetMgr.h"
 #include "CGameMgr.h"
+#include "CLevelMgr.h"
 
 #include "CImageUI.h"
 #include "CAnimUI.h"
@@ -15,12 +16,15 @@ CCurSaveUI::CCurSaveUI(CSaveData* _SaveData)
 	: m_SaveData(_SaveData)
 {
 	// 기능 : 게임매니저에서 현재 세이브 데이터를 설정함
-	SetFunction([=]() {CGameMgr::Get()->SetCurSave(_SaveData); });
+	SetFunction([=]() {
+		CGameMgr::Get()->SetCurSave(_SaveData); 
+		CLevelMgr::Get()->ChangeLevel(LEVEL_TYPE::SELECT);
+	});
 
 	// 티켓 부분 (본체)
 	SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\ticket.png")->Scale(0.9f));
 
-	for (int i = 0; i < LEVEL_COUNT; ++i)
+	for (int i = 0; i <= LEVEL_COUNT; ++i)
 	{
 		CImageUI* pCollect = new CImageUI;
 		pCollect->SetPos(Vec2(65.f * i - 210.f, -20.f));
@@ -37,8 +41,8 @@ CCurSaveUI::CCurSaveUI(CSaveData* _SaveData)
 	CTextUI* pTextUI = new CTextUI;
 	pTextUI->SetPos(Vec2(-180.f, 30.f));
 	wstring dtCnt = L"x " + std::to_wstring(m_SaveData->GetDeathCount());
-	pTextUI->SetText(dtCnt.c_str());
 	pTextUI->SetFont(L"나눔고딕", 40);
+	pTextUI->SetText(dtCnt.c_str());
 	AddChild(pTextUI);
 
 	pTextUI = new CTextUI;
@@ -57,8 +61,8 @@ CCurSaveUI::CCurSaveUI(CSaveData* _SaveData)
 	wstring strMin = buffer;
 
 	wstring strTime = strHour + L":" + strMin + L":" + strSec;
-	pTextUI->SetText(strTime.c_str());
 	pTextUI->SetFont(L"나눔고딕", 30);
+	pTextUI->SetText(strTime.c_str());
 	AddChild(pTextUI);
 
 	// 카드 부분
@@ -85,21 +89,21 @@ CCurSaveUI::CCurSaveUI(CSaveData* _SaveData)
 
 	pTextUI = new CTextUI;
 	pTextUI->SetPos(Vec2(50.f, -80.f));
-	pTextUI->SetText(L"매들린");
 	pTextUI->SetFont(L"나눔고딕", 40);
+	pTextUI->SetText(L"매들린");
 	pCard->AddChild(pTextUI);
 
 	pTextUI = new CTextUI;
 	pTextUI->SetPos(Vec2(70.f, -30.f));
-	pTextUI->SetText(L"코어");
 	pTextUI->SetFont(L"나눔고딕", 30);
+	pTextUI->SetText(L"코어");
 	pCard->AddChild(pTextUI);
 
 	pTextUI = new CTextUI;
 	pTextUI->SetPos(Vec2(100.f, 35.f));
 	wstring stCnt = L"x " + std::to_wstring(m_SaveData->GetStrawberryCnt());
-	pTextUI->SetText(stCnt.c_str());
 	pTextUI->SetFont(L"나눔고딕", 40);
+	pTextUI->SetText(stCnt.c_str());
 	pCard->AddChild(pTextUI);
 
 	

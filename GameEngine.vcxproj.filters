@@ -215,6 +215,15 @@
     <Filter Include="Game\03.Object\03. UI\Button\SaveUI\CurSave">
       <UniqueIdentifier>{9e9479ac-6703-45f0-879a-3371a0a505da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Level\Level_Select">
+      <UniqueIdentifier>{2ef68299-2fc6-4137-acb3-6b1fc6ccc20f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\LevelCard">
+      <UniqueIdentifier>{38ef375e-510e-44aa-8360-2c8154609827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03.Object\03. UI\LevelCard\LevelCard_Collectable">
+      <UniqueIdentifier>{f71d5d70-7450-4967-94db-a70c0bad6777}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -286,7 +295,7 @@
     <ClInclude Include="CLevel_Editor.h">
       <Filter>Game\04. Level\Level_Editor</Filter>
     </ClInclude>
-    <ClInclude Include="CLevel_Level_01.h">
+    <ClInclude Include="CLevel_01.h">
       <Filter>Game\04. Level\Level_Stage01</Filter>
     </ClInclude>
     <ClInclude Include="CCamera.h">
@@ -415,7 +424,7 @@
     <ClInclude Include="CSoundMgr.h">
       <Filter>Game\05. Manager\SoundMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CLevel_Level_00.h">
+    <ClInclude Include="CLevel_00.h">
       <Filter>Game\04. Level\Level_Stage00</Filter>
     </ClInclude>
     <ClInclude Include="CSaveData.h">
@@ -432,6 +441,15 @@
     </ClInclude>
     <ClInclude Include="CCurSaveUI.h">
       <Filter>Game\03.Object\03. UI\Button\SaveUI\CurSave</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel_Select.h">
+      <Filter>Game\04. Level\Level_Select</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelCardUI.h">
+      <Filter>Game\03.Object\03. UI\LevelCard</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelCardUI_Collectable.h">
+      <Filter>Game\03.Object\03. UI\LevelCard\LevelCard_Collectable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -504,7 +522,7 @@
     <ClCompile Include="CLevel_Editor.cpp">
       <Filter>Game\04. Level\Level_Editor</Filter>
     </ClCompile>
-    <ClCompile Include="CLevel_Level_01.cpp">
+    <ClCompile Include="CLevel_01.cpp">
       <Filter>Game\04. Level\Level_Stage01</Filter>
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
@@ -633,7 +651,7 @@
     <ClCompile Include="CSoundMgr.cpp">
       <Filter>Game\05. Manager\SoundMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CLevel_Level_00.cpp">
+    <ClCompile Include="CLevel_00.cpp">
       <Filter>Game\04. Level\Level_Stage00</Filter>
     </ClCompile>
     <ClCompile Include="CSaveData.cpp">
@@ -650,6 +668,15 @@
     </ClCompile>
     <ClCompile Include="CCurSaveUI.cpp">
       <Filter>Game\03.Object\03. UI\Button\SaveUI\CurSave</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel_Select.cpp">
+      <Filter>Game\04. Level\Level_Select</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelCardUI.cpp">
+      <Filter>Game\03.Object\03. UI\LevelCard</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelCardUI_Collectable.cpp">
+      <Filter>Game\03.Object\03. UI\LevelCard\LevelCard_Collectable</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

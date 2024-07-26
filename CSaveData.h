@@ -1,11 +1,7 @@
 #pragma once
 #include "CBase.h"
 
-array<vector<LEVEL_TYPE>, LEVEL_COUNT> LEVEL_MAP
-{ {
-	{LEVEL_TYPE::LEVEL_01_01,LEVEL_TYPE::LEVEL_01_02,LEVEL_TYPE::LEVEL_01_03},
-	{LEVEL_TYPE::LEVEL_02_01},
-} };
+extern array<vector<LEVEL_TYPE>, LEVEL_COUNT + 3> LEVEL_MAP;
 
 class CSaveData
 	: public CBase
@@ -30,6 +26,11 @@ public:
 
 	const vector<char>& GetStrawberryTable(LEVEL_TYPE _Type) { return m_StrawberryTable[(int)_Type]; }
 	const vector<char>& GetStrawberryTable(int _Idx) { return m_StrawberryTable[_Idx]; }
+
+	int GetDeathLevel(LEVEL_TYPE _Type) { return m_DeathTable[(int)_Type]; }
+	int GetDeathLevel(int _Idx) { return m_DeathTable[_Idx]; }
+
+
 
 public:
 	void Save(const wstring& _strFileName);

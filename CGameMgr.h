@@ -24,11 +24,12 @@ public:
 
     void SetCurSave(int _Idx) { m_CurSave = m_Saves[_Idx]; }
     void SetCurSave(CSaveData* _Save) { m_CurSave = _Save; }
+	CSaveData* GetCurSave() { return m_CurSave; }
 
     void AddStrawberry(CStrawBerry* _StrawBerry);
     void AddDeathCount();
 
-    void AddNewSaveData();
+    CSaveData* AddNewSaveData();
 
 public:
     void Save();

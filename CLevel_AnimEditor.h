@@ -69,7 +69,6 @@ public:
 
 
 public:
-    CLONE_DISABLE(CLevel_AnimEditor)
     CLevel_AnimEditor();
     ~CLevel_AnimEditor();
 };
