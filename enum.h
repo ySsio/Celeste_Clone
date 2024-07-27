@@ -76,6 +76,7 @@ enum class TASK_TYPE
 	CREATE_OBJECT,	// wParam : Object Address (CObj*) , lParam : Layer Type (LAYER_TYPE)
 	DELETE_OBJECT,	// wParam : Object Address (CObj*)
 	CHANGE_LEVEL,	// wParam : Level Address (CLevel*)
+	RESET_LEVEL,	
 
 };
 

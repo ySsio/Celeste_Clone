@@ -34,6 +34,14 @@ void ChangeLevel(LEVEL_TYPE _Type)
 	CTaskMgr::Get()->AddTask(task);
 }
 
+void ResetLevel()
+{
+    tTask task{};
+    task.TaskType = TASK_TYPE::RESET_LEVEL;
+
+    CTaskMgr::Get()->AddTask(task);
+}
+
 void Add_Object(CObj* _Obj, LAYER_TYPE _Type)
 {
     tTask task{};

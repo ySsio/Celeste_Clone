@@ -61,6 +61,9 @@ void CState_Dead::Enter()
 	// 게임매니저 데스 카운트 증가
 	CGameMgr::Get()->AddDeathCount();
 
+	// 레벨 Reset
+	ResetLevel();
+
 	// 카메라 진동 효과
 	CCamera::Get()->SetCamEffect(CAM_EFFECT::SHAKE, (UINT_PTR)Vec2(2.f,0.f));
 

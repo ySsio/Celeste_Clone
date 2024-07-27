@@ -48,8 +48,12 @@ void CTaskMgr::ExecuteTask(const tTask& _task)
 		m_LevelChanged = true;
 	}
 		break;
-	default:
-		break;
+	case TASK_TYPE::RESET_LEVEL:
+	// wParam : Level Type (LEVEL_TYPE)
+	{
+		CLevelMgr::Get()->GetCurLevel()->Reset();
+	}
+	break;
 	}
 }
 

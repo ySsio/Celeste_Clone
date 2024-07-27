@@ -45,6 +45,7 @@ public:
 
     void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
     void SetPosSmooth(float _Duration, Vec2 _Pos);
+    void StopMove() { m_Moving = false; }
 
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
     void SetDead() { m_Dead = true; }

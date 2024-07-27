@@ -137,7 +137,9 @@ void CStrawBerry::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _Ot
 void CStrawBerry::Init()
 {
 	m_Touched = false;
+	m_Collected = false;
 
+	StopMove();
 	SetPosSmooth(1.f, m_OriPos);
 }
 

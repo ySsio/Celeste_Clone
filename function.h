@@ -41,6 +41,8 @@ void Release_HashMap(unordered_map<T1, T2*>& _map)
 // Task
 void ChangeLevel(LEVEL_TYPE _Type);
 
+void ResetLevel();
+
 void Add_Object(CObj* _Obj, LAYER_TYPE _Type);
 
 void Delete_Object(CObj* _Obj);

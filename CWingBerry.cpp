@@ -10,6 +10,8 @@
 #include "CSaveData.h"
 
 CWingBerry::CWingBerry()
+	: m_OriRoom(-1)
+	, m_FlyAway(false)
 {
 	m_Animator->AddAnimation(L"Strawberry_Idle_Wing", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Strawberry_Idle_Wing.anim"));
 	m_Animator->AddAnimation(L"Ghostberry_Idle_Wing", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Ghostberry_Idle_Wing.anim"));
@@ -33,16 +35,28 @@ void CWingBerry::SetGhost(bool _b)
 
 void CWingBerry::Tick()
 {
-	if (!m_Touched && !m_Collected)
+	if (!m_Touched && !m_Collected && !m_FlyAway)
 	{
 		// 같은 방에 있는 플레이어가 대쉬 하면 위로 날아가서 사라짐
+		CPlayer* pPlayer = CGameMgr::Get()->GetPlayer();
 
+		if (pPlayer && pPlayer->GetRoom() == GetRoom()
+			&& pPlayer->GetComponent<CStateMachine>()->GetCurState() == pPlayer->GetComponent<CStateMachine>()->FindState(L"Dash"))
+		{
+			m_FlyAway = true;
+			m_OriRoom = GetRoom();
+			SetPosSmooth(1.f, GetPos() + Vec2(0.f, -900.f));
+		}
 	}
 
 	if (m_Touched)
 	{
+		// 만약 날아가던 중이엇으면 정지하고 플레이어를 따라가도록 함
+		StopMove();
+		m_FlyAway = false;
+
 		// 애니메이션 변경
-		if (m_Ghost)
+		if (!m_Ghost)
 			m_Animator->Play(L"Strawberry_Idle", true);
 		else
 			m_Animator->Play(L"Ghostberry_Idle", true);
@@ -94,6 +108,11 @@ void CWingBerry::Tick()
 
 		}
 	}
+
+	if (m_FlyAway && !IsMoving())
+	{
+		SetRoom(-2);
+	}
 }
 
 void CWingBerry::Init()
@@ -105,4 +124,32 @@ void CWingBerry::Init()
 		m_Animator->Play(L"Strawberry_Idle_Wing", true);
 	else
 		m_Animator->Play(L"Ghostberry_Idle_Wing", true);
+
+	m_FlyAway = false;
+
+	// 방 복귀
+	SetRoom(m_OriRoom);
+}
+
+bool CWingBerry::Save(FILE* _pFile)
+{
+	// 1. 오브젝트 종류를 문자열로 저장
+	wstring Type = L"Wingberry";
+	int len = (int)Type.length();
+	fwrite(&len, sizeof(int), 1, _pFile);
+	fwrite(Type.c_str(), sizeof(wchar_t), len, _pFile);
+
+	// 2. Room 정보 저장
+	int Room = GetRoom();
+	fwrite(&Room, sizeof(int), 1, _pFile);
+
+	// 3. 포지션 저장
+	Vec2 VecBuff = GetPos();
+	fwrite(&VecBuff, sizeof(Vec2), 1, _pFile);
+
+	// 4. Scale 저장
+	VecBuff = GetScale();
+	fwrite(&VecBuff, sizeof(Vec2), 1, _pFile);
+
+	return true;
 }

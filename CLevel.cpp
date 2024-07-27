@@ -17,6 +17,7 @@
 #include "CPlatform.h"
 #include "CSpring.h"
 #include "CStrawBerry.h"
+#include "CWingBerry.h"
 #include "CZipMover.h"
 #include "CBackGround.h"
 #include "CPanelUI.h"
@@ -193,6 +194,27 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 			pObj = pSt;	// upcasting
 			++stId;	
 		}
+		else if (wcscmp(szBuff.data(), L"WingBerry") == 0)
+		{
+			CStrawBerry* pSt = new CWingBerry;
+
+			CGameMgr::Get()->AddStrawberry(m_Type, pSt);
+			pSt->SetStId(stId);
+
+			const auto& stTable = CGameMgr::Get()->GetCurSave()->GetStrawberryTable(m_Type);
+
+			// 애니메이션 설정
+			// 수집되지 않은 딸기
+			if (stTable[stId] == 0)
+				pSt->SetGhost(false);
+			// 수집된 딸기
+			else
+				pSt->SetGhost(true);
+
+
+			pObj = pSt;	// upcasting
+			++stId;
+		}
 		else if (wcscmp(szBuff.data(), L"Spring") == 0)
 		{
 			pObj = new CSpring;
@@ -337,6 +359,11 @@ void CLevel::Tick()
 	{
 		for (auto obj : Layer)
 		{
+			// 이전 룸에 해당하는 오브젝트는 초기화 (컴포넌트 초기화도 여기서 처리)
+			// Reset 상태이면 모두 초기화
+			if (m_Reset || (m_RoomMove && (obj->GetRoom() == m_PrevRoom)))
+				obj->Init();
+
 			// 현재 룸, 이전 룸에 해당하는 오브젝트만 업데이트
 			if (obj->GetRoom() == m_CurRoom 
 				|| obj->GetRoom() == m_PrevRoom
@@ -344,14 +371,12 @@ void CLevel::Tick()
 				|| obj->GetRoom() == -2)
 				obj->Tick();
 
-			// 이전 룸에 해당하는 오브젝트는 초기화 (컴포넌트 초기화도 여기서 처리)
-			// 플레이어가 죽으면 초기화
-			if ((m_RoomMove && obj->GetRoom() == m_PrevRoom)
-				|| (pPlayer && pPlayer->GetComponent<CStateMachine>()->GetCurState() == pPlayer->GetComponent<CStateMachine>()->FindState(L"Dead")))
-				obj->Init();
 
 		}
 	}
+
+	if (m_Reset)
+		m_Reset = false;
 
 	Tick_Derived();
 }

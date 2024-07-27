@@ -40,7 +40,8 @@ void CLevel_00::Enter()
 
 	// test
 	CWingBerry* pBerry = new CWingBerry;
-	pBerry->SetPos(Vec2(100.f, 400.f));
+	pBerry->SetPos(Vec2(200.f, 500.f));
+	pBerry->SetOriPos(pBerry->GetPos());
 	pBerry->SetRoom(0);
 
 	AddObject(pBerry, LAYER_TYPE::OBJ);

@@ -20,6 +20,8 @@ private:
     bool            m_RoomMove;
     float           m_AccTime;
 
+    bool            m_Reset;
+
 public:
     void AddRoom(const tRoom& _Room) { m_Room.push_back(_Room); }
     int GetRoomCount() { return (int)m_Room.size(); }
@@ -30,6 +32,8 @@ public:
    vector<tRoom>& GetRooms() { return m_Room; }
 
    void SetLevelType(LEVEL_TYPE _Type) { m_Type = _Type; }
+
+   void Reset() { m_Reset = true; }
 
 public:
     // 인 게임에서 방을 옮길 떄 사용 (vs SetCurRoom)
