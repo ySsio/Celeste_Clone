@@ -6,7 +6,7 @@ class CPlayer;
 class CStrawBerry
 	: public CObj
 {
-private:
+protected:
 	CPlayer*	m_Target;	// 먹혔을 때 플레이어를 따라다니기 위해 플레이어를 target으로써 저장함
 	Vec2		m_TargetPos;
 
@@ -15,6 +15,7 @@ private:
 	Vec2		m_OriPos;
 
 	CAnimator*	m_Animator;
+	CCollider*	m_Collider;
 
 	float		m_MoveDuration;
 
@@ -30,7 +31,7 @@ public:
 	void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
 	void SetOriPos(Vec2 _Pos) { m_OriPos = _Pos; }
 	void SetStId(int _ID) { m_StID = _ID; }
-	void SetGhost(bool _b);
+	virtual void SetGhost(bool _b);
 
 
 public:

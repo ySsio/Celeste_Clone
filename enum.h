@@ -99,6 +99,7 @@ enum class CAM_EFFECT
 {
 	RESPAWN,
 	ROOMMOVE,
+	SHAKE,
 
 	NONE,
 };

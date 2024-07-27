@@ -9,6 +9,8 @@
 
 #include "CGamePauseUI.h"
 
+#include "CWingBerry.h"
+
 
 CLevel_00::CLevel_00()
 {
@@ -35,6 +37,13 @@ void CLevel_00::Enter()
 	AddObject(pPlayer, LAYER_TYPE::PLAYER);
 
 	CGameMgr::Get()->SetPlayer(pPlayer);
+
+	// test
+	CWingBerry* pBerry = new CWingBerry;
+	pBerry->SetPos(Vec2(100.f, 400.f));
+	pBerry->SetRoom(0);
+
+	AddObject(pBerry, LAYER_TYPE::OBJ);
 
 	// GamePauseUI
 	Vec2 vRes = CEngine::Get()->GetResolution();

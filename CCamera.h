@@ -19,6 +19,8 @@ private:
     float       m_AccTime;
     float       m_Duration;
 
+    Vec2        m_Amplitude;
+
     CTexture*   m_Tex;
 
     CAM_EFFECT  m_CurEffect;

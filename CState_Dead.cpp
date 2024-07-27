@@ -61,6 +61,9 @@ void CState_Dead::Enter()
 	// 게임매니저 데스 카운트 증가
 	CGameMgr::Get()->AddDeathCount();
 
+	// 카메라 진동 효과
+	CCamera::Get()->SetCamEffect(CAM_EFFECT::SHAKE, (UINT_PTR)Vec2(2.f,0.f));
+
 	// 애니메이션 재생
 	PlayAnimation();
 
@@ -107,6 +110,7 @@ void CState_Dead::FinalTick()
 		m_DeadEffect->SetBaseColor(pPlayer->GetColor());
 		m_DeadEffect->SetSpreadDuration(m_SpreadDuration);
 		m_DeadEffect->SetRotationDir(1.f);
+		m_DeadEffect->SetRoom(CLevelMgr::Get()->GetCurLevel()->GetCurRoom());
 		m_DeadEffect->Spread();
 
 		Add_Object(m_DeadEffect, LAYER_TYPE::EFFECT);
@@ -133,8 +137,6 @@ void CState_Dead::FinalTick()
 			{
 				dist = pointDist;
 				m_SpawnPoint = point;
-
-				
 			}
 		}
 
@@ -182,4 +184,5 @@ void CState_Dead::Exit()
 	pRigid->SetFrictionY(false);
 
 	Delete_Object(m_DeadEffect);
+	m_DeadEffect = nullptr;
 }

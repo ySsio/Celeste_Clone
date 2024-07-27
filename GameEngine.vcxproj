@@ -211,6 +211,7 @@
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
+    <ClInclude Include="CWingBerry.h" />
     <ClInclude Include="CZipMover.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
@@ -292,6 +293,7 @@
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIMgr.cpp" />
+    <ClCompile Include="CWingBerry.cpp" />
     <ClCompile Include="CZipMover.cpp" />
     <ClCompile Include="function.cpp" />
     <ClCompile Include="main.cpp" />

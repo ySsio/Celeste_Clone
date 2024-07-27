@@ -32,10 +32,6 @@ CDeadEffect::~CDeadEffect()
 {
 }
 
-void CDeadEffect::Init()
-{
-	Delete_Object(this);
-}
 
 void CDeadEffect::Tick()
 {

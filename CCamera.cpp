@@ -37,7 +37,7 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 		m_Duration = 2.f;
 		m_Tex = CAssetMgr::Get()->FindAsset<CTexture>(L"Respawn_Effect");
 	}
-		break;
+	break;
 	case CAM_EFFECT::ROOMMOVE:
 	{
 		// wParam : 카메라 이동할 좌표
@@ -45,7 +45,15 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 		m_StartPos = m_CamPos;
 		m_TargetPos = GetAvailableCamPos(Vec2(_wParam));
 	}
-		break;
+	break;
+	case CAM_EFFECT::SHAKE:
+	{
+		// wParam : 진폭
+		m_Amplitude = Vec2(_wParam);
+		m_Duration = 0.2f;
+		m_StartPos = m_CamPos;
+	}
+	break;
 	}
 }
 
@@ -112,7 +120,7 @@ void CCamera::Tick()
 	switch (m_CurEffect)
 	{
 	case CAM_EFFECT::RESPAWN:
-		break;
+	break;
 	case CAM_EFFECT::ROOMMOVE:
 	{
 		Vec2 Diff = m_TargetPos - m_CamPos;
@@ -129,7 +137,41 @@ void CCamera::Tick()
 			m_CamPos = m_TargetPos;
 		}
 	}
-		break;
+	break;
+	case CAM_EFFECT::SHAKE:
+	{
+		static float xDir = -1.f;
+		static float yDir = -1.f;
+		static float Frequency = 10.f;	// 1초에 10번, 즉 0.2초에 2번
+		static Vec2 ShakeOffset = Vec2(0.f, 0.f);
+
+		ShakeOffset.x += m_Amplitude.x * xDir * Frequency * 4.f * DT;
+		ShakeOffset.y += m_Amplitude.y * yDir * Frequency * 4.f * DT;
+
+		if (m_Amplitude.x < fabs(ShakeOffset.x))
+		{
+			ShakeOffset.x += 2 * (fabs(ShakeOffset.x) - m_Amplitude.x) * -xDir;
+
+			xDir *= -1.f;
+		}
+
+		if (m_Amplitude.y < fabs(ShakeOffset.y))
+		{
+			ShakeOffset.y += 2 * (fabs(ShakeOffset.y) - m_Amplitude.y) * -yDir;
+
+			yDir *= -1.f;
+		}
+
+
+		m_CamPos += ShakeOffset;
+
+		if (m_AccTime >= m_Duration)
+		{
+			ShakeOffset = Vec2(0.f, 0.f);
+			m_CamPos = m_StartPos;
+		}
+	}
+	break;
 	}
 
 	if (m_AccTime >= m_Duration)

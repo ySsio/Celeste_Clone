@@ -37,7 +37,11 @@ CAnimator::~CAnimator()
 
 void CAnimator::Play(const wstring& _AnimName, bool _Repeat)
 {
-	m_CurAnim = m_MapAnim.find(_AnimName)->second;
+	CAnimation* pAnim = m_MapAnim.find(_AnimName)->second;
+	if (pAnim == m_CurAnim)
+		return;
+	
+	m_CurAnim = pAnim;
 	m_CurIdx = 0;
 	m_FrmCnt = m_CurAnim->GetFrmCount();
 	m_Repeat = _Repeat;

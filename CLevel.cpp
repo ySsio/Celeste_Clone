@@ -337,16 +337,19 @@ void CLevel::Tick()
 	{
 		for (auto obj : Layer)
 		{
-			// 이전 룸에 해당하는 오브젝트는 초기화 (컴포넌트 초기화도 여기서 처리)
-			if (m_RoomMove && obj->GetRoom() == m_PrevRoom)
-				obj->Init();
-
 			// 현재 룸, 이전 룸에 해당하는 오브젝트만 업데이트
-			else if (obj->GetRoom() == m_CurRoom 
+			if (obj->GetRoom() == m_CurRoom 
 				|| obj->GetRoom() == m_PrevRoom
 				|| obj->GetRoom() == -1 
 				|| obj->GetRoom() == -2)
 				obj->Tick();
+
+			// 이전 룸에 해당하는 오브젝트는 초기화 (컴포넌트 초기화도 여기서 처리)
+			// 플레이어가 죽으면 초기화
+			if ((m_RoomMove && obj->GetRoom() == m_PrevRoom)
+				|| (pPlayer && pPlayer->GetComponent<CStateMachine>()->GetCurState() == pPlayer->GetComponent<CStateMachine>()->FindState(L"Dead")))
+				obj->Init();
+
 		}
 	}
 

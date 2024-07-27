@@ -13,6 +13,7 @@ CStrawBerry::CStrawBerry()
 	: m_Target(nullptr)
 	, m_Offset(Vec2(60.f,20.f))
 	, m_Animator(nullptr)
+	, m_Collider(nullptr)
 	, m_MoveDuration(0.2f)
 	, m_Touched(false)
 	, m_Collected(false)
@@ -26,10 +27,10 @@ CStrawBerry::CStrawBerry()
 
 	m_Animator->Play(L"Strawberry_Idle",true);
 
-	CCollider* pCol = AddComponent<CCollider>();
-	pCol->SetOffset(Vec2(0.f, 0.f));
-	pCol->SetScale(Vec2(40.f, 40.f));
-	pCol->SetTrigger(true);
+	m_Collider = AddComponent<CCollider>();
+	m_Collider->SetOffset(Vec2(0.f, 0.f));
+	m_Collider->SetScale(Vec2(40.f, 40.f));
+	m_Collider->SetTrigger(true);
 
 }
 
@@ -81,12 +82,6 @@ void CStrawBerry::Tick()
 			// Sound 재생
 			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav");
 			pSound->Play();
-		}
-		// 플레이어가 Dead State면 Init호출
-		else if (m_Target->GetComponent<CStateMachine>()->GetCurState() 
-			== m_Target->GetComponent<CStateMachine>()->FindState(L"Dead"))
-		{
-			Init();
 		}
 	}
 

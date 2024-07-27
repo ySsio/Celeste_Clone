@@ -8,6 +8,7 @@
 
 #include "CSound.h"
 #include "CAssetMgr.h"
+#include "CCamera.h"
 
 CState_Dash::CState_Dash()
 	: m_AccTime(0.f)
@@ -49,6 +50,14 @@ void CState_Dash::Dash()
 	pPlayer->SubtractDashCount();
 
 	pRigid->SetVelocity(vDir.Normalize() * m_DashSpeed);
+
+	// 카메라 shake효과
+	if (vDir.x != 0.f)
+		vDir.x = 2.f;
+	if (vDir.y != 0.f)
+		vDir.y = 2.f;
+
+	CCamera::Get()->SetCamEffect(CAM_EFFECT::SHAKE, (UINT_PTR)vDir);
 }
 
 void CState_Dash::PlayAnimation()

@@ -227,6 +227,9 @@
     <Filter Include="Game\03. Object\03. UI\GamePause">
       <UniqueIdentifier>{39ee642d-ef78-4e8f-acb4-65ed7af93ef6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Object\Strawberry\Wingberry">
+      <UniqueIdentifier>{22add639-8179-4189-b541-5776705a5354}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -457,6 +460,9 @@
     <ClInclude Include="CGamePauseUI.h">
       <Filter>Game\03. Object\03. UI\GamePause</Filter>
     </ClInclude>
+    <ClInclude Include="CWingBerry.h">
+      <Filter>Game\03. Object\Strawberry\Wingberry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -686,6 +692,9 @@
     </ClCompile>
     <ClCompile Include="CGamePauseUI.cpp">
       <Filter>Game\03. Object\03. UI\GamePause</Filter>
+    </ClCompile>
+    <ClCompile Include="CWingBerry.cpp">
+      <Filter>Game\03. Object\Strawberry\Wingberry</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
