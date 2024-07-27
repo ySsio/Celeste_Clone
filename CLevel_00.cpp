@@ -22,7 +22,7 @@ CLevel_00::~CLevel_00()
 
 void CLevel_00::Enter()
 {
-	Load(L"\\map\\Level_00_Test.level");
+	Load(L"\\map\\Level_00.level");
 
 	// ÇöÀç ·ë ¼³Á¤
 	MoveRoom(0);
@@ -32,14 +32,11 @@ void CLevel_00::Enter()
 	pPlayer->SetName(L"Player");
 	pPlayer->SetPos(GetRooms()[GetCurRoom()].SpawnPoints[0]);
 	pPlayer->SetScale(Vec2(100.f, 100.f));
-	pPlayer->SetRoom(0);
+	pPlayer->SetRoom(GetCurRoom());
 
 	AddObject(pPlayer, LAYER_TYPE::PLAYER);
 
 	CGameMgr::Get()->SetPlayer(pPlayer);
-
-	// test
-	
 
 	// GamePauseUI
 	Vec2 vRes = CEngine::Get()->GetResolution();

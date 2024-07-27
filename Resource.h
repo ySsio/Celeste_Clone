@@ -23,6 +23,8 @@
 #define IDD_EDIT_BG_TILE1               136
 #define IDD_EDIT_GAME_TILE              136
 #define IDD_EDIT_NAME                   137
+#define IDI_ICON1                       138
+#define IDI_ICON                        138
 #define IDC_BUTTON1                     1000
 #define IDC_BUTTON2                     1021
 #define IDC_BUTTON3                     1022
@@ -47,7 +49,6 @@
 #define ID_32774                        32774
 #define ID_32775                        32775
 #define ID_Anim_Add                     32776
-#define ID_Add_Image                    32776
 #define ID_Anim_Load                    32777
 #define ID_Map_Add                      32778
 #define ID_Map_Load                     32779
@@ -59,7 +60,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32781
 #define _APS_NEXT_CONTROL_VALUE         1035
 #define _APS_NEXT_SYMED_VALUE           110

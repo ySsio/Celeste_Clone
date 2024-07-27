@@ -11,6 +11,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CCamera.cpp;D:\cpp_Exercise\GameEngine\Gam
 D:\cpp_Exercise\GameEngine\GameEngine\CCollider.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CCollider.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CCollisionMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CCollisionMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CComponent.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CComponent.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CCrumbleBlock.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CCrumbleBlock.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CDeadEffect.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CDeadEffect.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CDebugMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CDebugMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CEngine.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CEngine.obj
@@ -67,6 +68,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CTileMap.cpp;D:\cpp_Exercise\GameEngine\Ga
 D:\cpp_Exercise\GameEngine\GameEngine\CTimeMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CTimeMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CUI.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CUI.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CUIMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CUIMgr.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CWingBerry.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CWingBerry.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CZipMover.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\CZipMover.obj
 D:\cpp_Exercise\GameEngine\GameEngine\function.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\function.obj
 D:\cpp_Exercise\GameEngine\GameEngine\main.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Release\main.obj

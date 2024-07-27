@@ -49,7 +49,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-    HWND hWnd = CreateWindowW(L"MAIN_ENGINE", L"나의 게임", WS_OVERLAPPED | WS_SYSMENU,
+    HWND hWnd = CreateWindowW(L"MAIN_ENGINE", L"Celeste", WS_OVERLAPPED | WS_SYSMENU,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
     hEdit           = CreateDialog(hInst, MAKEINTRESOURCE(IDD_EDIT), CEngine::Get()->GetMainHwnd(), &Editor);
@@ -113,12 +113,12 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_GAMEENGINE));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     wcex.lpszMenuName   = nullptr;
     wcex.lpszClassName  = L"MAIN_ENGINE";
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON));
 
     return RegisterClassExW(&wcex);
 }
