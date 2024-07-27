@@ -214,6 +214,7 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 			assert(nullptr);
 		}
 
+		// ·Îµå
 		pObj->Load(pFile);
 
 

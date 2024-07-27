@@ -1,12 +1,14 @@
 #include "pch.h"
 #include "CGamePauseUI.h"
 
+#include "CEngine.h"
+
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CAssetMgr.h"
 #include "CLevelMgr.h"
-
 #include "CGameMgr.h"
+
 #include "CPlayer.h"
 
 #include "CTextUI.h"

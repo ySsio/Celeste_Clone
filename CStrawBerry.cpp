@@ -82,6 +82,12 @@ void CStrawBerry::Tick()
 			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav");
 			pSound->Play();
 		}
+		// 플레이어가 Dead State면 Init호출
+		else if (m_Target->GetComponent<CStateMachine>()->GetCurState() 
+			== m_Target->GetComponent<CStateMachine>()->FindState(L"Dead"))
+		{
+			Init();
+		}
 	}
 
 	if (m_Collected)
@@ -133,6 +139,13 @@ void CStrawBerry::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _Ot
 	}
 }
 
+void CStrawBerry::Init()
+{
+	m_Touched = false;
+
+	SetPosSmooth(1.f, m_OriPos);
+}
+
 bool CStrawBerry::Save(FILE* _pFile)
 {
 	// 1. 오브젝트 종류를 문자열로 저장
@@ -168,6 +181,9 @@ void CStrawBerry::Load(FILE* _pFile)
 	Vec2 VecBuff = Vec2();
 	fread(&VecBuff, sizeof(Vec2), 1, _pFile);
 	SetPos(VecBuff);
+
+	// 3-1. 포지션으로 OriPos 설정
+	SetOriPos(VecBuff);
 
 	// 4. Scale 받아오기
 	fread(&VecBuff, sizeof(Vec2), 1, _pFile);

@@ -140,13 +140,6 @@ void CEngine::Progress()
 	CGameMgr::Get()->Tick();
 	CKeyMgr::Get()->Tick();
 
-	static bool	Pause = false;
-
-	if (KEY_TAP(KEY::SPACE))
-		Pause = !Pause;
-
-	if (Pause)
-		return;
 
 	CLevelMgr::Get()->Tick();
 	CLevelMgr::Get()->FinalTick();

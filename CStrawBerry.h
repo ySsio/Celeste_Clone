@@ -12,6 +12,8 @@ private:
 
 	Vec2		m_Offset;
 
+	Vec2		m_OriPos;
+
 	CAnimator*	m_Animator;
 
 	float		m_MoveDuration;
@@ -26,11 +28,16 @@ private:
 
 public:
 	void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
+	void SetOriPos(Vec2 _Pos) { m_OriPos = _Pos; }
 	void SetStId(int _ID) { m_StID = _ID; }
 	void SetGhost(bool _b);
 
+
 public:
 	virtual void OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol);
+
+public:
+	virtual void Init() override;
 
 public:
 	virtual bool Save(FILE* _pFile) override;

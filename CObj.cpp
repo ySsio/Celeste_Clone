@@ -61,6 +61,7 @@ Vec2 CObj::GetRenderPos()
 
 void CObj::FinalTick()
 {
+	// SetPosSmooth
 	if (m_Moving)
 	{
 		Vec2 Diff = m_TargetPos - m_StartPos;
@@ -86,6 +87,7 @@ void CObj::FinalTick()
 		}
 	}
 
+	// ÄÄÆ÷³ÍÆ® Final Tick
 	for (auto comp : m_vecComponent)
 	{
 		comp->FinalTick();

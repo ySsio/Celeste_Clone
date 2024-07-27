@@ -5,6 +5,9 @@
 
 #include "CPlayer.h"
 #include "CGameMgr.h"
+#include "CEngine.h"
+
+#include "CGamePauseUI.h"
 
 
 CLevel_00::CLevel_00()
@@ -32,6 +35,13 @@ void CLevel_00::Enter()
 	AddObject(pPlayer, LAYER_TYPE::PLAYER);
 
 	CGameMgr::Get()->SetPlayer(pPlayer);
+
+	// GamePauseUI
+	Vec2 vRes = CEngine::Get()->GetResolution();
+	CGamePauseUI* pUI = new CGamePauseUI;
+	pUI->SetPos(vRes / 2.f);
+	pUI->SetFix(true);
+	AddObject(pUI, LAYER_TYPE::UI);
 
 	// 충돌 설정
 	CCollisionMgr::Get()->RegisterCollisionLayer(LAYER_TYPE::PLAYER, LAYER_TYPE::PLATFORM, true);

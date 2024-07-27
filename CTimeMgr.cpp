@@ -10,7 +10,7 @@ CTimeMgr::CTimeMgr()
 	, m_FPS(0)
 	, m_DT(0.)
 	, m_fDT(0.f)
-	, m_Play(false)
+	, m_Play(true)
 {
 
 }
@@ -28,13 +28,6 @@ void CTimeMgr::Init()
 
 void CTimeMgr::Tick()
 {
-#ifdef _DEBUG
-	if (KEY_TAP(KEY::SPACE))
-	{
-		Toggle();
-	}
-#endif
-
 	if (!m_Play)
 	{
 		m_fDT = 0.f;
