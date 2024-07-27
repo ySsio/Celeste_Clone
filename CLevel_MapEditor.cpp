@@ -17,6 +17,7 @@
 #include "CWingBerry.h"
 #include "CSpring.h"
 #include "CZipMover.h"
+#include "CCrumbleBlock.h"
 #include "CPlatform.h"
 #include "CBackGround.h"
 #include "CPanelUI.h"
@@ -1317,6 +1318,7 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Strawberry_Wing"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spring"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("ZipMover"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("CrumbleBlock"));
 
 		// rowcol 세팅 기본적으로 비활성화
 		EnableWindow(hRowEdit, false);
@@ -1393,41 +1395,61 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 					pLevel->SetGameObj(pObj);
 					Add_Object(pObj, LAYER_TYPE::OBJ);
 				}
+				else if (wcscmp(selectedText, L"CrumbleBlock") == 0)
+				{
+					//EnableWindow(GetDlgItem(hDlg, IDC_EDIT1), false);
+					EnableWindow(GetDlgItem(hDlg, IDC_EDIT2), true);
+
+					CObj* pObj = new CCrumbleBlock;
+
+					SetWindowText(hRowEdit, std::to_wstring(1).c_str());
+					SetWindowText(hColEdit, std::to_wstring(3).c_str());
+
+					pLevel->SetGameObj(pObj);
+					Add_Object(pObj, LAYER_TYPE::OBJ);
+				}
 			}
 		}
 
 		if (HIWORD(wParam) == EN_CHANGE) {
 			if (LOWORD(wParam) == IDC_EDIT1 ) {
-				// Edit control에서 값을 받음
+				// Edit control(row)에서 값을 받음
 				wchar_t szBuff[256]{};
 				GetWindowText(hRowEdit, szBuff, 255);
-				int newValue = _wtoi(szBuff);
+				int row = _wtoi(szBuff);
 
 				// Do something with newValue
 				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 				if (pLevel)
 				{
-					CZipMover* pObj = dynamic_cast<CZipMover*>(pLevel->GetGameObj());
-					if (pObj)
+					CZipMover* pZip = dynamic_cast<CZipMover*>(pLevel->GetGameObj());
+					if (pZip)
 					{
-						pObj->SetTile(newValue, pObj->GetCol());
+						pZip->SetTile(row, pZip->GetCol());
 					}
+
 				}
 			}
 			else if (LOWORD(wParam) == IDC_EDIT2) {
-				// Edit control에서 값을 받음
+				// Edit control(col)에서 값을 받음
 				wchar_t szBuff[256]{};
 				GetWindowText(hColEdit, szBuff, 255);
-				int newValue = _wtoi(szBuff);
+				int col = _wtoi(szBuff);
 
 				// Do something with newValue
 				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 				if (pLevel)
 				{
-					CZipMover* pObj = dynamic_cast<CZipMover*>(pLevel->GetGameObj());
-					if (pObj)
+					CZipMover* pZip = dynamic_cast<CZipMover*>(pLevel->GetGameObj());
+					if (pZip)
 					{
-						pObj->SetTile(pObj->GetRow(), newValue);
+						pZip->SetTile(pZip->GetRow(), col);
+					}
+
+					CCrumbleBlock* pCB = dynamic_cast<CCrumbleBlock*>(pLevel->GetGameObj());
+					if (pCB)
+					{
+						pCB->SetTile(col);
 					}
 				}
 			}

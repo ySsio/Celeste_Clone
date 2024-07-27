@@ -94,6 +94,10 @@ void CCollisionMgr::CollisionLayerCheck(UINT _Layer1, UINT _Layer2)
 
 bool CCollisionMgr::CollisionCheck(CCollider* _Col1, CCollider* _Col2)
 {
+	// Active 하지 않은 녀석들에 대해서는 감지를 하지 않음
+	if (!_Col1->IsActive() || !_Col2->IsActive())
+		return false;
+
 	Vec2 vPos1 = _Col1->GetFinalPos();
 	Vec2 vPos2 = _Col2->GetFinalPos();
 	Vec2 vScale1 = _Col1->GetScale();

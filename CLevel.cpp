@@ -19,6 +19,7 @@
 #include "CStrawBerry.h"
 #include "CWingBerry.h"
 #include "CZipMover.h"
+#include "CCrumbleBlock.h"
 #include "CBackGround.h"
 #include "CPanelUI.h"
 
@@ -29,6 +30,8 @@ CLevel::CLevel()
 	, m_CurRoom(-1)
 	, m_RoomMove(false)
 	, m_AccTime(0.f)
+	, m_ResetCurRoom(false)
+	, m_Initialized(false)
 {
 }
 
@@ -229,6 +232,10 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 		{
 			pObj = new CZipMover;
 		}
+		else if (wcscmp(szBuff.data(), L"CrumbleBlock") == 0)
+		{
+			pObj = new CCrumbleBlock;
+		}
 		else if (wcscmp(szBuff.data(), L"BackGround") == 0)
 		{
 			pObj = new CBackGround;
@@ -361,30 +368,42 @@ void CLevel::Tick()
 		}
 	}
 	
+	bool init = false;
+
 	for (auto& Layer : m_ArrLayerObj)
 	{
 		for (auto obj : Layer)
 		{
-			// 이전 룸에 해당하는 오브젝트는 초기화 (컴포넌트 초기화도 여기서 처리)
-			// Reset 상태이면 모두 초기화
-			// 인게임에서만 Init호출
-			if ((m_Reset || (m_RoomMove && (obj->GetRoom() == m_PrevRoom)))
-				&& (LEVEL_TYPE::PROLOGUE <= m_Type && m_Type < LEVEL_TYPE::END))
+			// 오브젝트 초기화 함수 실행 (컴포넌트 초기화도 여기서 처리)
+			// 1. Room Move 상태 : Prev Room과 -1, -2에 대해 초기화 
+			// 2. Reset 상태: Cur room, -1, -2 초기화
+			// 3. 인게임(Start, 편집 레벨 등 제외)에서만 호출
+			if ((LEVEL_TYPE::PROLOGUE <= m_Type && m_Type < LEVEL_TYPE::END)
+				&& !m_Initialized
+				&& ((m_RoomMove && (obj->GetRoom() == m_PrevRoom || obj->GetRoom() == -1 || obj->GetRoom() == -2))
+					|| (m_ResetCurRoom && (obj->GetRoom() == m_CurRoom || obj->GetRoom() == -1 || obj->GetRoom() == -2))))
+			{
 				obj->Init();
+				init = true;
+			}
 
 			// 현재 룸, 이전 룸에 해당하는 오브젝트만 업데이트
-			if (obj->GetRoom() == m_CurRoom 
+			if (obj->GetRoom() == m_CurRoom
 				|| obj->GetRoom() == m_PrevRoom
 				|| obj->GetRoom() == -1 
 				|| obj->GetRoom() == -2)
 				obj->Tick();
-
-
 		}
 	}
 
-	if (m_Reset)
-		m_Reset = false;
+	if (init)
+		m_Initialized = true;
+
+	if (m_ResetCurRoom)
+		m_ResetCurRoom = false;
+
+	if (!m_RoomMove && !m_ResetCurRoom)
+		m_Initialized = false;
 
 	Tick_Derived();
 }

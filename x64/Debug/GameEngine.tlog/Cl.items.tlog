@@ -11,6 +11,7 @@ D:\cpp_Exercise\GameEngine\GameEngine\CCamera.cpp;D:\cpp_Exercise\GameEngine\Gam
 D:\cpp_Exercise\GameEngine\GameEngine\CCollider.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CCollider.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CCollisionMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CCollisionMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CComponent.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CComponent.obj
+D:\cpp_Exercise\GameEngine\GameEngine\CCrumbleBlock.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CCrumbleBlock.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CDeadEffect.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CDeadEffect.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CDebugMgr.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CDebugMgr.obj
 D:\cpp_Exercise\GameEngine\GameEngine\CEngine.cpp;D:\cpp_Exercise\GameEngine\GameEngine\x64\Debug\CEngine.obj

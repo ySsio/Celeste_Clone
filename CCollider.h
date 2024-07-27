@@ -13,6 +13,8 @@ private:
 
     int     m_OverlapCount;
 
+    bool    m_Active;
+
 public:
     Vec2 GetOffset() { return m_Offset; }
     Vec2 GetFinalPos() { return m_FinalPos; }
@@ -24,6 +26,9 @@ public:
 
     bool IsTrigger() { return m_Trigger; }
     void SetTrigger(bool _b) { m_Trigger = _b; }
+
+    bool IsActive() { return m_Active; }
+    void SetActive(bool _b) { m_Active = _b; }
 
 public:
     virtual void FinalTick() override;

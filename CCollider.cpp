@@ -9,6 +9,7 @@
 CCollider::CCollider()
 	: m_Trigger(false)
 	, m_OverlapCount(0)
+	, m_Active(true)
 {
 }
 

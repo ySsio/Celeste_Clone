@@ -4,6 +4,7 @@
 #include "CAssetMgr.h"
 #include "CGameMgr.h"
 #include "CTimeMgr.h"
+#include "CKeyMgr.h"
 
 #include "CPlayer.h"
 
@@ -40,12 +41,12 @@ void CWingBerry::Tick()
 		// 같은 방에 있는 플레이어가 대쉬 하면 위로 날아가서 사라짐
 		CPlayer* pPlayer = CGameMgr::Get()->GetPlayer();
 
-		if (pPlayer && pPlayer->GetRoom() == GetRoom()
-			&& pPlayer->GetComponent<CStateMachine>()->GetCurState() == pPlayer->GetComponent<CStateMachine>()->FindState(L"Dash"))
+		if (pPlayer && pPlayer->GetRoom() == GetRoom() && KEY_TAP(KEY::X))
 		{
 			m_FlyAway = true;
 			m_OriRoom = GetRoom();
-			SetPosSmooth(1.f, GetPos() + Vec2(0.f, -900.f));
+			StopMove();
+			SetPosSmooth(2.f, GetPos() + Vec2(0.f, -900.f));
 		}
 	}
 

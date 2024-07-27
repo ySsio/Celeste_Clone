@@ -21,6 +21,12 @@ private:
     vector<CTile*>      m_vecTile;
     unordered_map<CCollider*, Vec2> m_mapCol;
 
+    // Crumble
+    bool        m_Crumble;
+    float       m_AccTime;
+    float       m_Duration;
+    vector<Vec2>        m_CrumbleOffsets;
+
 public:
     UINT GetRowCnt() { return m_RowCnt; }
     UINT GetColCnt() { return m_ColCnt; }
@@ -45,6 +51,8 @@ public:
     const vector<CTile*>& GetTileset() { return m_vecTile; }
     bool HasCollider() { return m_HasCol; }
     void SetCollider(bool _b) { m_HasCol = _b; }
+    
+    void Crumble(bool _b) { m_Crumble = _b; if (_b) m_CrumbleOffsets.resize(m_RowCnt * m_ColCnt); }
 
 public:
     void AddCollider();

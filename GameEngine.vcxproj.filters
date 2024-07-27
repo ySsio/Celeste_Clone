@@ -230,6 +230,9 @@
     <Filter Include="Game\03. Object\Strawberry\Wingberry">
       <UniqueIdentifier>{22add639-8179-4189-b541-5776705a5354}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Object\CrumbleBlock">
+      <UniqueIdentifier>{1c9b257d-e4f7-418a-8642-144ae4e8d401}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h" />
@@ -463,6 +466,9 @@
     <ClInclude Include="CWingBerry.h">
       <Filter>Game\03. Object\Strawberry\Wingberry</Filter>
     </ClInclude>
+    <ClInclude Include="CCrumbleBlock.h">
+      <Filter>Game\03. Object\CrumbleBlock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -695,6 +701,9 @@
     </ClCompile>
     <ClCompile Include="CWingBerry.cpp">
       <Filter>Game\03. Object\Strawberry\Wingberry</Filter>
+    </ClCompile>
+    <ClCompile Include="CCrumbleBlock.cpp">
+      <Filter>Game\03. Object\CrumbleBlock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

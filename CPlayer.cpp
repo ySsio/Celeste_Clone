@@ -22,6 +22,7 @@
 
 #include "CSpring.h"
 #include "CZipMover.h"
+#include "CCrumbleBlock.h"
 
 #include "CEngine.h"
 
@@ -469,13 +470,22 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 					// ClimbAccTime 회복
 					m_StateMachine->FindState(L"Climb")->Reset();
 
-					// AutoMove
+					// ZipMover AutoMove
 					CZipMover* pZip = dynamic_cast<CZipMover*>(_Other);
 					if (pZip)
 					{
 						pZip->Activate();
 						pZip->GetComponent<CRigidBody>()->SetAutoMove(this);
 					}
+
+					// CrumbleBlock Crumble
+					CCrumbleBlock* pCB = dynamic_cast<CCrumbleBlock*>(_Other);
+					if (pCB)
+					{
+						pCB->Activate();
+						pCB->Crumble(true);
+					}
+
 				}
 				// 플레이어가 충돌체 아래에서 닿은 경우
 				else
@@ -521,12 +531,20 @@ void CPlayer::OnCollision(CCollider* _Col, CObj* _Other, CCollider* _OtherCol)
 
 			SetPos(vPos);
 
-			// AutoMove
+			// ZipMover AutoMove
 			CZipMover* pZip = dynamic_cast<CZipMover*>(_Other);
 			if (pZip)
 			{
 				pZip->Activate();
 				pZip->GetComponent<CRigidBody>()->SetAutoMove(this);
+			}
+
+			// CrumbleBlock Crumble
+			CCrumbleBlock* pCB = dynamic_cast<CCrumbleBlock*>(_Other);
+			if (pCB)
+			{
+				pCB->Activate();
+				pCB->Crumble(true);
 			}
 		}
 	}

@@ -4,6 +4,7 @@
 #include "CObj.h"
 #include "CTile.h"
 #include "CTexture.h"
+#include "CTimeMgr.h"
 
 CTileMap::CTileMap()
 	: m_UnitWidth((UINT)TILE_SCALE)
@@ -11,6 +12,9 @@ CTileMap::CTileMap()
 	, m_RowCnt(0)
 	, m_ColCnt(0)
 	, m_HasCol(false)
+	, m_Crumble(false)
+	, m_AccTime(0.f)
+	, m_Duration(0.04f)
 {
 
 }
@@ -76,6 +80,11 @@ void CTileMap::Render()
 	Vec2 vRenderPos = GetOwner()->GetRenderPos();
 	vRenderPos += m_Offset;
 
+	if (m_Crumble)
+	{
+		m_AccTime += fDT;
+	}
+
 	for (UINT Row = 0; Row < m_RowCnt; ++Row)
 	{
 		for (UINT Col = 0; Col < m_ColCnt; ++Col)
@@ -88,6 +97,20 @@ void CTileMap::Render()
 			vTilePos.x += Col * m_UnitWidth;
 
 			CTexture* pTex = m_vecTile[Row * m_ColCnt + Col]->GetTex();
+
+			if (m_Crumble)
+			{
+				// Duration마다 랜덤한 오프셋 설정
+				if (m_AccTime >= m_Duration)
+				{
+					static int Len = (int)(TILE_SCALE / 8.f);
+
+					// 랜덤한 오프셋 부여
+					m_CrumbleOffsets[Row * m_ColCnt + Col] = Vec2(rand() % (Len * 2) - Len, rand() % (Len * 2) - Len);
+				}
+
+				vTilePos += m_CrumbleOffsets[Row * m_ColCnt + Col];
+			}
 
 			BLENDFUNCTION blend{};
 			blend.BlendOp = AC_SRC_OVER;
@@ -108,5 +131,11 @@ void CTileMap::Render()
 				, blend);
 
 		}
+	}
+
+	if (m_Crumble)
+	{
+		if (m_AccTime >= m_Duration)
+			m_AccTime -= m_Duration;
 	}
 }

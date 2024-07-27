@@ -92,34 +92,17 @@ void CAssetMgr::Init()
 	// 주의 !! Palette Save Load 중 하나만 할 것!! 안 그러면 Leak 남음
 
 	// Palette Save
-	//for (auto& name : strList)
-	//{
-	//	wstring filepath = L"\\tilesets\\" + name + L".png";
-
-	//	pPalette = new CPalette;
-	//	pTex = LoadAsset<CTexture>(filepath);
-	//	pPalette->SetTex(pTex);
-	//	pPalette->SetScale(8, 8);
-	//	pPalette->SetRowCol(15, 6);
-	//	pPalette->SetDanger(false);
-	//	pPalette->SetCol(true);
-	//	pPalette->SetPalette();
-
-	//	pPalette->Save(L"\\tilesets\\palette\\" + name + L".palette");
-
-	//	delete pPalette;
-	//}
 
 	//pPalette = new CPalette;
-	//pTex = LoadAsset<CTexture>(L"\\texture\\Objects\\zipmover\\block.png");
+	//pTex = LoadAsset<CTexture>(L"CrumbleOutline", L"\\texture\\Objects\\crumbleBlock\\outline.png");
 	//pPalette->SetTex(pTex);
 	//pPalette->SetScale(8, 8);
-	//pPalette->SetRowCol(3, 3);
+	//pPalette->SetRowCol(1, 4);
 	//pPalette->SetDanger(false);
-	//pPalette->SetCol(true);
-	//pPalette->SetPalette(L"zipmover_block");
+	//pPalette->SetCol(false);
+	//pPalette->SetPalette(L"CrumbleOutline");
 
-	//pPalette->Save(L"\\tilesets\\palette\\zipmover_block.palette");
+	//pPalette->Save(L"\\tilesets\\palette\\CrumbleOutline.palette");
 
 	//delete pPalette;
 
@@ -139,8 +122,16 @@ void CAssetMgr::Init()
 	pPalette->Load(L"\\tilesets\\palette\\zipmover_block.palette");
 
 	delete pPalette;
-	
-	
+
+	pPalette = new CPalette;
+	pPalette->Load(L"\\tilesets\\palette\\CrumbleBlock.palette");
+
+	delete pPalette;
+
+	pPalette = new CPalette;
+	pPalette->Load(L"\\tilesets\\palette\\CrumbleOutline.palette");
+
+	delete pPalette;
 
 
 	pTile = new CTile;

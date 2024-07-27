@@ -20,7 +20,9 @@ private:
     bool            m_RoomMove;
     float           m_AccTime;
 
-    bool            m_Reset;
+    bool            m_ResetCurRoom;
+
+    bool            m_Initialized;  // 초기화를 매 틱 호출하지 않기 위한 변수
 
 public:
     void AddRoom(const tRoom& _Room) { m_Room.push_back(_Room); }
@@ -33,7 +35,7 @@ public:
 
    void SetLevelType(LEVEL_TYPE _Type) { m_Type = _Type; }
 
-   void Reset() { m_Reset = true; }
+   void Reset() { m_ResetCurRoom = true; }
 
 public:
     // 인 게임에서 방을 옮길 떄 사용 (vs SetCurRoom)

@@ -156,6 +156,7 @@
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CComponent.h" />
+    <ClInclude Include="CCrumbleBlock.h" />
     <ClInclude Include="CDeadEffect.h" />
     <ClInclude Include="CDebugMgr.h" />
     <ClInclude Include="CEngine.h" />
@@ -237,6 +238,7 @@
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CComponent.cpp" />
+    <ClCompile Include="CCrumbleBlock.cpp" />
     <ClCompile Include="CDeadEffect.cpp" />
     <ClCompile Include="CDebugMgr.cpp" />
     <ClCompile Include="CEngine.cpp" />
