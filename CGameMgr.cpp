@@ -29,6 +29,9 @@ void CGameMgr::AddStrawberry(LEVEL_TYPE _Type, CObj* _StrawBerry)
 	// 딸기 카운트 테이블에 집계
 	++m_StrawberryCntTable[(int)_Type];
 
+	if (!m_CurSave)
+		return;
+
 	// 딸기 카운트가 테이블 사이즈보다 크면 새로운 딸기가 추가되었음을 의미함.
 	// 따라서 딸기 수집여부 테이블에도 추가해줌
 	if (m_StrawberryCntTable[(int)_Type]

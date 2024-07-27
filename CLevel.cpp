@@ -180,19 +180,22 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 			CGameMgr::Get()->AddStrawberry(m_Type, pSt);
 			pSt->SetStId(stId);
 
-			const auto& stTable = CGameMgr::Get()->GetCurSave()->GetStrawberryTable(m_Type);
+			if (CGameMgr::Get()->GetCurSave())
+			{
+				const auto& stTable = CGameMgr::Get()->GetCurSave()->GetStrawberryTable(m_Type);
 
-			// 애니메이션 설정
-			// 수집되지 않은 딸기
-			if (stTable[stId] == 0)
-				pSt->SetGhost(false);
-			// 수집된 딸기
-			else
-				pSt->SetGhost(true);
-
+				// 애니메이션 설정
+				// 수집되지 않은 딸기
+				if (stTable[stId] == 0)
+					pSt->SetGhost(false);
+				// 수집된 딸기
+				else
+					pSt->SetGhost(true);
+				
+				++stId;	
+			}
 
 			pObj = pSt;	// upcasting
-			++stId;	
 		}
 		else if (wcscmp(szBuff.data(), L"WingBerry") == 0)
 		{
@@ -201,19 +204,22 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 			CGameMgr::Get()->AddStrawberry(m_Type, pSt);
 			pSt->SetStId(stId);
 
-			const auto& stTable = CGameMgr::Get()->GetCurSave()->GetStrawberryTable(m_Type);
+			if (CGameMgr::Get()->GetCurSave())
+			{
+				const auto& stTable = CGameMgr::Get()->GetCurSave()->GetStrawberryTable(m_Type);
 
-			// 애니메이션 설정
-			// 수집되지 않은 딸기
-			if (stTable[stId] == 0)
-				pSt->SetGhost(false);
-			// 수집된 딸기
-			else
-				pSt->SetGhost(true);
+				// 애니메이션 설정
+				// 수집되지 않은 딸기
+				if (stTable[stId] == 0)
+					pSt->SetGhost(false);
+				// 수집된 딸기
+				else
+					pSt->SetGhost(true);
 
+				++stId;
+			}
 
 			pObj = pSt;	// upcasting
-			++stId;
 		}
 		else if (wcscmp(szBuff.data(), L"Spring") == 0)
 		{

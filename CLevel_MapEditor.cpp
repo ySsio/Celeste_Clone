@@ -14,6 +14,7 @@
 #include "CTile.h"
 
 #include "CStrawBerry.h"
+#include "CWingBerry.h"
 #include "CSpring.h"
 #include "CZipMover.h"
 #include "CPlatform.h"
@@ -419,6 +420,13 @@ void CLevel_MapEditor::Tick_Derived()
 						pZip->SetEndPos(vPos);
 						pZip->SetPos(pZip->GetStartPos());
 					}
+
+					CStrawBerry* pSt = dynamic_cast<CStrawBerry*>(m_GameObj);
+					if (pSt)
+					{
+						pSt->SetOriPos(vPos);
+					}
+
 					m_GameObj = nullptr;
 				}
 			}
@@ -1314,6 +1322,7 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 
 		// 콤보 박스에 항목 추가
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Strawberry"));
+		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Strawberry_Wing"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("Spring"));
 		SendMessage(hComboBox, CB_ADDSTRING, 0, (LPARAM)_T("ZipMover"));
 
@@ -1353,6 +1362,17 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 
 					SetWindowText(hRowEdit, std::to_wstring(2).c_str());
 					SetWindowText(hColEdit, std::to_wstring(2).c_str());
+
+					pLevel->SetGameObj(pObj);
+					Add_Object(pObj, LAYER_TYPE::OBJ);
+				}
+				else if (wcscmp(selectedText, L"Strawberry_Wing") == 0)
+				{
+					CObj* pObj = new CWingBerry;
+					pObj->SetScale(Vec2(200.f, 120.f));
+
+					SetWindowText(hRowEdit, std::to_wstring(3).c_str());
+					SetWindowText(hColEdit, std::to_wstring(5).c_str());
 
 					pLevel->SetGameObj(pObj);
 					Add_Object(pObj, LAYER_TYPE::OBJ);
