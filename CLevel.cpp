@@ -197,7 +197,7 @@ void CLevel::Load(const wstring& _strRelativeFilePath)
 
 			pObj = pSt;	// upcasting
 		}
-		else if (wcscmp(szBuff.data(), L"WingBerry") == 0)
+		else if (wcscmp(szBuff.data(), L"Wingberry") == 0)
 		{
 			CStrawBerry* pSt = new CWingBerry;
 
@@ -367,7 +367,9 @@ void CLevel::Tick()
 		{
 			// 이전 룸에 해당하는 오브젝트는 초기화 (컴포넌트 초기화도 여기서 처리)
 			// Reset 상태이면 모두 초기화
-			if (m_Reset || (m_RoomMove && (obj->GetRoom() == m_PrevRoom)))
+			// 인게임에서만 Init호출
+			if ((m_Reset || (m_RoomMove && (obj->GetRoom() == m_PrevRoom)))
+				&& (LEVEL_TYPE::PROLOGUE <= m_Type && m_Type < LEVEL_TYPE::END))
 				obj->Init();
 
 			// 현재 룸, 이전 룸에 해당하는 오브젝트만 업데이트

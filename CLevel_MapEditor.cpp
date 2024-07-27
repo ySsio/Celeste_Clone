@@ -82,13 +82,11 @@ void CLevel_MapEditor::Enter()
 	//pPanel->SetFix(true);
 
 
-	//Load(L"\\map\\Level_00_Test.level");
+	//Load(L"\\map\\Level_01_Test.level");
 
+	//vector<CObj*>& vec = const_cast<vector<CObj*>&>(GetLayer(LAYER_TYPE::OBJ));
 
-	//vector<CObj*>& vec = const_cast<vector<CObj*>&>(GetLayer(LAYER_TYPE::BACKGROUND));
-
-	//std::swap(vec[0], vec[1]);
-	//std::swap(vec[1], vec[2]);
+	//vec[vec.size() - 1]->SetRoom(4);
 
 }
 
@@ -419,12 +417,6 @@ void CLevel_MapEditor::Tick_Derived()
 					{
 						pZip->SetEndPos(vPos);
 						pZip->SetPos(pZip->GetStartPos());
-					}
-
-					CStrawBerry* pSt = dynamic_cast<CStrawBerry*>(m_GameObj);
-					if (pSt)
-					{
-						pSt->SetOriPos(vPos);
 					}
 
 					m_GameObj = nullptr;
