@@ -1,0 +1,54 @@
+[ANIMATION_NAME]
+Player_Fall
+
+[FRAME_DATA]
+Frame_Count : 6
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: fall00
+Texture_Path	: \texture\Player\fall00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: fall01
+Texture_Path	: \texture\Player\fall01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: fall02
+Texture_Path	: \texture\Player\fall02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: fall03
+Texture_Path	: \texture\Player\fall03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: fall02
+Texture_Path	: \texture\Player\fall02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: fall01
+Texture_Path	: \texture\Player\fall01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 10.000000
+

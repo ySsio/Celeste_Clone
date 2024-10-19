@@ -1,0 +1,110 @@
+[ANIMATION_NAME]
+Strawberry_Collected
+
+[FRAME_DATA]
+Frame_Count : 13
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: st_normal07
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal07.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: st_normal08
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal08.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: st_normal09
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal09.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: st_normal10
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal10.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: st_normal11
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal11.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: st_normal12
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal12.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: st_normal13
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal13.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 7
+Flipped : 0
+Texture_Name	: st_normal14
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal14.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 8
+Flipped : 0
+Texture_Name	: st_normal15
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal15.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 9
+Flipped : 0
+Texture_Name	: st_normal16
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal16.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 10
+Flipped : 0
+Texture_Name	: st_normal17
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal17.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 11
+Flipped : 0
+Texture_Name	: st_normal18
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal18.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 12
+Flipped : 0
+Texture_Name	: st_normal19
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal19.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+

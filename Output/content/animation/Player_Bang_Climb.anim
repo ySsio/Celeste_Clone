@@ -1,0 +1,22 @@
+[ANIMATION_NAME]
+Player_Bang_Climb
+
+[FRAME_DATA]
+Frame_Count : 2
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 25
+Duration	: 0.200000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: -5, 25
+Duration	: 0.150000
+

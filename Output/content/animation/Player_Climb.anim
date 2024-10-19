@@ -1,0 +1,62 @@
+[ANIMATION_NAME]
+Player_Climb
+
+[FRAME_DATA]
+Frame_Count : 7
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: climb00
+Texture_Path	: \texture\Player\climb00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: climb01
+Texture_Path	: \texture\Player\climb01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: climb02
+Texture_Path	: \texture\Player\climb02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: climb03
+Texture_Path	: \texture\Player\climb03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: climb04
+Texture_Path	: \texture\Player\climb04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: climb05
+Texture_Path	: \texture\Player\climb05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: climb06
+Texture_Path	: \texture\Player\climb06.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+

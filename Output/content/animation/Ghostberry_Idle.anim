@@ -1,0 +1,62 @@
+[ANIMATION_NAME]
+Ghostberry_Idle
+
+[FRAME_DATA]
+Frame_Count : 7
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: ghost_st_idle00
+Texture_Path	: \texture\Collectables\ghostberry\ghost_st_idle00.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: ghost_st_idle01
+Texture_Path	: \texture\Collectables\ghostberry\ghost_st_idle01.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: ghost_st_idle02
+Texture_Path	: \texture\Collectables\ghostberry\ghost_st_idle02.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: ghost_st_idle03
+Texture_Path	: \texture\Collectables\ghostberry\ghost_st_idle03.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: ghost_st_idle04
+Texture_Path	: \texture\Collectables\ghostberry\ghost_st_idle04.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: ghost_st_idle05
+Texture_Path	: \texture\Collectables\ghostberry\ghost_st_idle05.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: ghost_st_idle06
+Texture_Path	: \texture\Collectables\ghostberry\ghost_st_idle06.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+

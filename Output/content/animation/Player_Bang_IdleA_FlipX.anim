@@ -1,0 +1,102 @@
+[ANIMATION_NAME]
+Player_Bang_IdleA_FlipX
+
+[FRAME_DATA]
+Frame_Count : 12
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: bangs00_FlipX
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 25
+Duration	: 0.150000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: bangs00_FlipX
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 5, 25
+Duration	: 0.150000
+
+Frame_Index : 2
+Flipped : 1
+Texture_Name	: bangs01_FlipX
+Texture_Path	: \texture\Player\bangs01.png
+Texture_Scale	: 50, 50
+Offset	: 10, 25
+Duration	: 0.150000
+
+Frame_Index : 3
+Flipped : 1
+Texture_Name	: bangs02_FlipX
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: 5, 25
+Duration	: 0.150000
+
+Frame_Index : 4
+Flipped : 1
+Texture_Name	: bangs02_FlipX
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: 5, 25
+Duration	: 0.150000
+
+Frame_Index : 5
+Flipped : 1
+Texture_Name	: bangs02_FlipX
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: 5, 30
+Duration	: 0.150000
+
+Frame_Index : 6
+Flipped : 1
+Texture_Name	: bangs02_FlipX
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: 5, 30
+Duration	: 0.150000
+
+Frame_Index : 7
+Flipped : 1
+Texture_Name	: bangs02_FlipX
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: 5, 30
+Duration	: 0.150000
+
+Frame_Index : 8
+Flipped : 1
+Texture_Name	: bangs02_FlipX
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: 5, 30
+Duration	: 0.150000
+
+Frame_Index : 9
+Flipped : 1
+Texture_Name	: bangs01_FlipX
+Texture_Path	: \texture\Player\bangs01.png
+Texture_Scale	: 50, 50
+Offset	: 5, 30
+Duration	: 0.150000
+
+Frame_Index : 10
+Flipped : 1
+Texture_Name	: bangs00_FlipX
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 30
+Duration	: 0.150000
+
+Frame_Index : 11
+Flipped : 1
+Texture_Name	: bangs00_FlipX
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 30
+Duration	: 0.150000
+

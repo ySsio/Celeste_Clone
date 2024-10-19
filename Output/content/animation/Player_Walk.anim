@@ -1,0 +1,102 @@
+[ANIMATION_NAME]
+Player_Walk
+
+[FRAME_DATA]
+Frame_Count : 12
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: walk00
+Texture_Path	: \texture\Player\walk00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: walk01
+Texture_Path	: \texture\Player\walk01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: walk02
+Texture_Path	: \texture\Player\walk02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: walk03
+Texture_Path	: \texture\Player\walk03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: walk04
+Texture_Path	: \texture\Player\walk04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: walk05
+Texture_Path	: \texture\Player\walk05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: walk06
+Texture_Path	: \texture\Player\walk06.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 7
+Flipped : 0
+Texture_Name	: walk07
+Texture_Path	: \texture\Player\walk07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 8
+Flipped : 0
+Texture_Name	: walk08
+Texture_Path	: \texture\Player\walk08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 9
+Flipped : 0
+Texture_Name	: walk09
+Texture_Path	: \texture\Player\walk09.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 10
+Flipped : 0
+Texture_Name	: walk10
+Texture_Path	: \texture\Player\walk10.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 11
+Flipped : 0
+Texture_Name	: walk11
+Texture_Path	: \texture\Player\walk11.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+

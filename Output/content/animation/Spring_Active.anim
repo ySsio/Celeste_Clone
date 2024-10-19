@@ -1,0 +1,54 @@
+[ANIMATION_NAME]
+Spring_Active
+
+[FRAME_DATA]
+Frame_Count : 6
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: white
+Texture_Path	: \texture\Objects\spring\white.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: 01
+Texture_Path	: \texture\Objects\spring\01.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: 02
+Texture_Path	: \texture\Objects\spring\02.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: 03
+Texture_Path	: \texture\Objects\spring\03.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: 04
+Texture_Path	: \texture\Objects\spring\04.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: 05
+Texture_Path	: \texture\Objects\spring\05.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+

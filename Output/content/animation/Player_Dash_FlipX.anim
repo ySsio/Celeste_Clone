@@ -1,0 +1,38 @@
+[ANIMATION_NAME]
+Player_Dash_FlipX
+
+[FRAME_DATA]
+Frame_Count : 4
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: dash00_FlipX
+Texture_Path	: \texture\Player\dash00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: dash01_FlipX
+Texture_Path	: \texture\Player\dash01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 1
+Texture_Name	: dash02_FlipX
+Texture_Path	: \texture\Player\dash02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 1
+Texture_Name	: dash03_FlipX
+Texture_Path	: \texture\Player\dash03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.090000
+

@@ -1,0 +1,14 @@
+[ANIMATION_NAME]
+Spring_Idle
+
+[FRAME_DATA]
+Frame_Count : 1
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: 00
+Texture_Path	: \texture\Objects\spring\00.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+

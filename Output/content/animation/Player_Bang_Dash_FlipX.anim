@@ -1,0 +1,22 @@
+[ANIMATION_NAME]
+Player_Bang_Dash_FlipX
+
+[FRAME_DATA]
+Frame_Count : 2
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: bangs00_FlipX
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: -10, 30
+Duration	: 0.210000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: bangs00_FlipX
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: -10, 35
+Duration	: 0.090000
+

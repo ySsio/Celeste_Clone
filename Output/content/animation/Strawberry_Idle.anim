@@ -1,0 +1,62 @@
+[ANIMATION_NAME]
+Strawberry_Idle
+
+[FRAME_DATA]
+Frame_Count : 7
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: st_normal00
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal00.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: st_normal01
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal01.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: st_normal02
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal02.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: st_normal03
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal03.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: st_normal04
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal04.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: st_normal05
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal05.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: st_normal06
+Texture_Path	: \texture\Collectables\StrawBerry\st_normal06.png
+Texture_Scale	: 80, 80
+Offset	: 0, 0
+Duration	: 0.070000
+

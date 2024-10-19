@@ -1,0 +1,38 @@
+[ANIMATION_NAME]
+Player_Jump_FlipX
+
+[FRAME_DATA]
+Frame_Count : 4
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: jumpSlow00_FlipX
+Texture_Path	: \texture\Player\jumpSlow00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: jumpSlow01_FlipX
+Texture_Path	: \texture\Player\jumpSlow01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 1
+Texture_Name	: jumpSlow02_FlipX
+Texture_Path	: \texture\Player\jumpSlow02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 1
+Texture_Name	: jumpSlow03_FlipX
+Texture_Path	: \texture\Player\jumpSlow03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 1.000000
+

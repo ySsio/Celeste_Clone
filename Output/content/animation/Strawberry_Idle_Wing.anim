@@ -1,0 +1,78 @@
+[ANIMATION_NAME]
+Strawberry_Idle_Wing
+
+[FRAME_DATA]
+Frame_Count : 9
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: st_wings00
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings00.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: st_wings01
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings01.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: st_wings02
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings02.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: st_wings03
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings03.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: st_wings04
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings04.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: st_wings05
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings05.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: st_wings06
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings06.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 7
+Flipped : 0
+Texture_Name	: st_wings07
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings07.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 8
+Flipped : 0
+Texture_Name	: st_wings08
+Texture_Path	: \texture\Collectables\StrawBerry\st_wings08.png
+Texture_Scale	: 200, 120
+Offset	: 0, 0
+Duration	: 0.070000
+

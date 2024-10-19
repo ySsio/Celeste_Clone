@@ -1,0 +1,21 @@
+[ANIMATION_NAME]
+Player_Climb_Warning
+
+[FRAME_DATA]
+Frame_Count : 2
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: climb00
+Texture_Path	: \texture\Player\climb00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: climb_warning00
+Texture_Path	: \texture\Player\climb_warning00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000

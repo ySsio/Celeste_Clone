@@ -1,0 +1,38 @@
+[ANIMATION_NAME]
+Portrait
+
+[FRAME_DATA]
+Frame_Count : 4
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: normal00
+Texture_Path	: \texture\Portraits\madeline\normal00.png
+Texture_Scale	: 180, 180
+Offset	: 0, 0
+Duration	: 2.000000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: normal01
+Texture_Path	: \texture\Portraits\madeline\normal01.png
+Texture_Scale	: 180, 180
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: normal02
+Texture_Path	: \texture\Portraits\madeline\normal02.png
+Texture_Scale	: 180, 180
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: normal03
+Texture_Path	: \texture\Portraits\madeline\normal03.png
+Texture_Scale	: 180, 180
+Offset	: 0, 0
+Duration	: 0.100000
+

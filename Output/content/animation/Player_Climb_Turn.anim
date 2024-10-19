@@ -1,0 +1,22 @@
+[ANIMATION_NAME]
+Player_Climb_Turn
+
+[FRAME_DATA]
+Frame_Count : 2
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: climb07
+Texture_Path	: \texture\Player\climb07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: climb08
+Texture_Path	: \texture\Player\climb08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+

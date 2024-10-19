@@ -1,0 +1,102 @@
+[ANIMATION_NAME]
+Player_IdleA_FlipX
+
+[FRAME_DATA]
+Frame_Count : 12
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: idleA00_FlipX
+Texture_Path	: \texture\Player\idleA00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: idleA01_FlipX
+Texture_Path	: \texture\Player\idleA01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 2
+Flipped : 1
+Texture_Name	: idleA02_FlipX
+Texture_Path	: \texture\Player\idleA02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 3
+Flipped : 1
+Texture_Name	: idleA03_FlipX
+Texture_Path	: \texture\Player\idleA03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 4
+Flipped : 1
+Texture_Name	: idleA04_FlipX
+Texture_Path	: \texture\Player\idleA04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 5
+Flipped : 1
+Texture_Name	: idleA05_FlipX
+Texture_Path	: \texture\Player\idleA05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 6
+Flipped : 1
+Texture_Name	: idleA06_FlipX
+Texture_Path	: \texture\Player\idleA06.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 7
+Flipped : 1
+Texture_Name	: idleA07_FlipX
+Texture_Path	: \texture\Player\idleA07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 8
+Flipped : 1
+Texture_Name	: idleA08_FlipX
+Texture_Path	: \texture\Player\idleA08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 9
+Flipped : 1
+Texture_Name	: idleA09_FlipX
+Texture_Path	: \texture\Player\idleA09.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 10
+Flipped : 1
+Texture_Name	: idleA10_FlipX
+Texture_Path	: \texture\Player\idleA10.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+
+Frame_Index : 11
+Flipped : 1
+Texture_Name	: idleA11_FlipX
+Texture_Path	: \texture\Player\idleA11.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.150000
+

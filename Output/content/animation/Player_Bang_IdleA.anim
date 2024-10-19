@@ -1,0 +1,102 @@
+[ANIMATION_NAME]
+Player_Bang_IdleA
+
+[FRAME_DATA]
+Frame_Count : 12
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 25
+Duration	: 0.150000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: -5, 25
+Duration	: 0.150000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: bangs01
+Texture_Path	: \texture\Player\bangs01.png
+Texture_Scale	: 50, 50
+Offset	: -10, 25
+Duration	: 0.150000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: bangs02
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: -5, 25
+Duration	: 0.150000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: bangs02
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: -5, 25
+Duration	: 0.150000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: bangs02
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: -5, 30
+Duration	: 0.150000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: bangs02
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: -5, 30
+Duration	: 0.150000
+
+Frame_Index : 7
+Flipped : 0
+Texture_Name	: bangs02
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: -5, 30
+Duration	: 0.150000
+
+Frame_Index : 8
+Flipped : 0
+Texture_Name	: bangs02
+Texture_Path	: \texture\Player\bangs02.png
+Texture_Scale	: 50, 50
+Offset	: -5, 30
+Duration	: 0.150000
+
+Frame_Index : 9
+Flipped : 0
+Texture_Name	: bangs01
+Texture_Path	: \texture\Player\bangs01.png
+Texture_Scale	: 50, 50
+Offset	: -5, 30
+Duration	: 0.150000
+
+Frame_Index : 10
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 30
+Duration	: 0.150000
+
+Frame_Index : 11
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 30
+Duration	: 0.150000
+

@@ -1,0 +1,102 @@
+[ANIMATION_NAME]
+Player_Walk_FlipX
+
+[FRAME_DATA]
+Frame_Count : 12
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: walk00_FlipX
+Texture_Path	: \texture\Player\walk00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: walk01_FlipX
+Texture_Path	: \texture\Player\walk01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 2
+Flipped : 1
+Texture_Name	: walk02_FlipX
+Texture_Path	: \texture\Player\walk02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 3
+Flipped : 1
+Texture_Name	: walk03_FlipX
+Texture_Path	: \texture\Player\walk03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 4
+Flipped : 1
+Texture_Name	: walk04_FlipX
+Texture_Path	: \texture\Player\walk04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 5
+Flipped : 1
+Texture_Name	: walk05_FlipX
+Texture_Path	: \texture\Player\walk05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 6
+Flipped : 1
+Texture_Name	: walk06_FlipX
+Texture_Path	: \texture\Player\walk06.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 7
+Flipped : 1
+Texture_Name	: walk07_FlipX
+Texture_Path	: \texture\Player\walk07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 8
+Flipped : 1
+Texture_Name	: walk08_FlipX
+Texture_Path	: \texture\Player\walk08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 9
+Flipped : 1
+Texture_Name	: walk09_FlipX
+Texture_Path	: \texture\Player\walk09.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 10
+Flipped : 1
+Texture_Name	: walk10_FlipX
+Texture_Path	: \texture\Player\walk10.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+
+Frame_Index : 11
+Flipped : 1
+Texture_Name	: walk11_FlipX
+Texture_Path	: \texture\Player\walk11.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.070000
+

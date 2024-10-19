@@ -1,0 +1,46 @@
+[ANIMATION_NAME]
+Player_Bang_Walk
+
+[FRAME_DATA]
+Frame_Count : 5
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 25
+Duration	: 0.070000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 30
+Duration	: 0.210000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 25
+Duration	: 0.140000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 30
+Duration	: 0.280000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: bangs00
+Texture_Path	: \texture\Player\bangs00.png
+Texture_Scale	: 50, 50
+Offset	: 0, 25
+Duration	: 0.140000
+

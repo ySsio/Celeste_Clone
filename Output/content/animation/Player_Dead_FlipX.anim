@@ -1,0 +1,86 @@
+[ANIMATION_NAME]
+Player_Dead_FlipX
+
+[FRAME_DATA]
+Frame_Count : 10
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: death_h00_FlipX
+Texture_Path	: \texture\Player\death_h00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: death_h01_FlipX
+Texture_Path	: \texture\Player\death_h01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 2
+Flipped : 1
+Texture_Name	: death_h03_FlipX
+Texture_Path	: \texture\Player\death_h03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 3
+Flipped : 1
+Texture_Name	: death_h04_FlipX
+Texture_Path	: \texture\Player\death_h04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 4
+Flipped : 1
+Texture_Name	: death_h05_FlipX
+Texture_Path	: \texture\Player\death_h05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 5
+Flipped : 1
+Texture_Name	: death_h07_FlipX
+Texture_Path	: \texture\Player\death_h07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 6
+Flipped : 1
+Texture_Name	: death_h08_FlipX
+Texture_Path	: \texture\Player\death_h08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 7
+Flipped : 1
+Texture_Name	: death_h09_FlipX
+Texture_Path	: \texture\Player\death_h09.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 8
+Flipped : 1
+Texture_Name	: death_h11_FlipX
+Texture_Path	: \texture\Player\death_h11.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.020000
+
+Frame_Index : 9
+Flipped : 1
+Texture_Name	: death_h12_FlipX
+Texture_Path	: \texture\Player\death_h12.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.120000
+

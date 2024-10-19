@@ -1,0 +1,102 @@
+[ANIMATION_NAME]
+Player_Run
+
+[FRAME_DATA]
+Frame_Count : 12
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: runFast00
+Texture_Path	: \texture\Player\runFast00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: runFast01
+Texture_Path	: \texture\Player\runFast01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: runFast02
+Texture_Path	: \texture\Player\runFast02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: runFast03
+Texture_Path	: \texture\Player\runFast03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: runFast04
+Texture_Path	: \texture\Player\runFast04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: runFast05
+Texture_Path	: \texture\Player\runFast05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: runFast06
+Texture_Path	: \texture\Player\runFast06.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 7
+Flipped : 0
+Texture_Name	: runFast07
+Texture_Path	: \texture\Player\runFast07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 8
+Flipped : 0
+Texture_Name	: runFast08
+Texture_Path	: \texture\Player\runFast08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 9
+Flipped : 0
+Texture_Name	: runFast09
+Texture_Path	: \texture\Player\runFast09.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 10
+Flipped : 0
+Texture_Name	: runFast10
+Texture_Path	: \texture\Player\runFast10.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+
+Frame_Index : 11
+Flipped : 0
+Texture_Name	: runFast11
+Texture_Path	: \texture\Player\runFast11.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.050000
+

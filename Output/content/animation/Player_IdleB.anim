@@ -1,0 +1,198 @@
+[ANIMATION_NAME]
+Player_IdleB
+
+[FRAME_DATA]
+Frame_Count : 24
+
+Frame_Index : 0
+Flipped : 0
+Texture_Name	: idleB00
+Texture_Path	: \texture\Player\idleB00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 1
+Flipped : 0
+Texture_Name	: idleB01
+Texture_Path	: \texture\Player\idleB01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 2
+Flipped : 0
+Texture_Name	: idleB02
+Texture_Path	: \texture\Player\idleB02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 3
+Flipped : 0
+Texture_Name	: idleB03
+Texture_Path	: \texture\Player\idleB03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 4
+Flipped : 0
+Texture_Name	: idleB04
+Texture_Path	: \texture\Player\idleB04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 5
+Flipped : 0
+Texture_Name	: idleB05
+Texture_Path	: \texture\Player\idleB05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 6
+Flipped : 0
+Texture_Name	: idleB06
+Texture_Path	: \texture\Player\idleB06.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 7
+Flipped : 0
+Texture_Name	: idleB07
+Texture_Path	: \texture\Player\idleB07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 8
+Flipped : 0
+Texture_Name	: idleB08
+Texture_Path	: \texture\Player\idleB08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 9
+Flipped : 0
+Texture_Name	: idleB09
+Texture_Path	: \texture\Player\idleB09.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 10
+Flipped : 0
+Texture_Name	: idleB10
+Texture_Path	: \texture\Player\idleB10.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 11
+Flipped : 0
+Texture_Name	: idleB11
+Texture_Path	: \texture\Player\idleB11.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 12
+Flipped : 0
+Texture_Name	: idleB12
+Texture_Path	: \texture\Player\idleB12.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 13
+Flipped : 0
+Texture_Name	: idleB13
+Texture_Path	: \texture\Player\idleB13.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 14
+Flipped : 0
+Texture_Name	: idleB14
+Texture_Path	: \texture\Player\idleB14.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 15
+Flipped : 0
+Texture_Name	: idleB15
+Texture_Path	: \texture\Player\idleB15.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 16
+Flipped : 0
+Texture_Name	: idleB16
+Texture_Path	: \texture\Player\idleB16.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 17
+Flipped : 0
+Texture_Name	: idleB17
+Texture_Path	: \texture\Player\idleB17.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 18
+Flipped : 0
+Texture_Name	: idleB18
+Texture_Path	: \texture\Player\idleB18.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 19
+Flipped : 0
+Texture_Name	: idleB19
+Texture_Path	: \texture\Player\idleB19.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 20
+Flipped : 0
+Texture_Name	: idleB20
+Texture_Path	: \texture\Player\idleB20.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 21
+Flipped : 0
+Texture_Name	: idleB21
+Texture_Path	: \texture\Player\idleB21.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 22
+Flipped : 0
+Texture_Name	: idleB22
+Texture_Path	: \texture\Player\idleB22.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 23
+Flipped : 0
+Texture_Name	: idleB23
+Texture_Path	: \texture\Player\idleB23.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+

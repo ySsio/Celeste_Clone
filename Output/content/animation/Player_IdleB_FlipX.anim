@@ -1,0 +1,198 @@
+[ANIMATION_NAME]
+Player_IdleB_FlipX
+
+[FRAME_DATA]
+Frame_Count : 24
+
+Frame_Index : 0
+Flipped : 1
+Texture_Name	: idleB00_FlipX
+Texture_Path	: \texture\Player\idleB00.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 1
+Flipped : 1
+Texture_Name	: idleB01_FlipX
+Texture_Path	: \texture\Player\idleB01.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 2
+Flipped : 1
+Texture_Name	: idleB02_FlipX
+Texture_Path	: \texture\Player\idleB02.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 3
+Flipped : 1
+Texture_Name	: idleB03_FlipX
+Texture_Path	: \texture\Player\idleB03.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 4
+Flipped : 1
+Texture_Name	: idleB04_FlipX
+Texture_Path	: \texture\Player\idleB04.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 5
+Flipped : 1
+Texture_Name	: idleB05_FlipX
+Texture_Path	: \texture\Player\idleB05.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 6
+Flipped : 1
+Texture_Name	: idleB06_FlipX
+Texture_Path	: \texture\Player\idleB06.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 7
+Flipped : 1
+Texture_Name	: idleB07_FlipX
+Texture_Path	: \texture\Player\idleB07.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 8
+Flipped : 1
+Texture_Name	: idleB08_FlipX
+Texture_Path	: \texture\Player\idleB08.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 9
+Flipped : 1
+Texture_Name	: idleB09_FlipX
+Texture_Path	: \texture\Player\idleB09.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 10
+Flipped : 1
+Texture_Name	: idleB10_FlipX
+Texture_Path	: \texture\Player\idleB10.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 11
+Flipped : 1
+Texture_Name	: idleB11_FlipX
+Texture_Path	: \texture\Player\idleB11.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 12
+Flipped : 1
+Texture_Name	: idleB12_FlipX
+Texture_Path	: \texture\Player\idleB12.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 13
+Flipped : 1
+Texture_Name	: idleB13_FlipX
+Texture_Path	: \texture\Player\idleB13.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 14
+Flipped : 1
+Texture_Name	: idleB14_FlipX
+Texture_Path	: \texture\Player\idleB14.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 15
+Flipped : 1
+Texture_Name	: idleB15_FlipX
+Texture_Path	: \texture\Player\idleB15.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 16
+Flipped : 1
+Texture_Name	: idleB16_FlipX
+Texture_Path	: \texture\Player\idleB16.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 17
+Flipped : 1
+Texture_Name	: idleB17_FlipX
+Texture_Path	: \texture\Player\idleB17.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 18
+Flipped : 1
+Texture_Name	: idleB18_FlipX
+Texture_Path	: \texture\Player\idleB18.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 19
+Flipped : 1
+Texture_Name	: idleB19_FlipX
+Texture_Path	: \texture\Player\idleB19.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 20
+Flipped : 1
+Texture_Name	: idleB20_FlipX
+Texture_Path	: \texture\Player\idleB20.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 21
+Flipped : 1
+Texture_Name	: idleB21_FlipX
+Texture_Path	: \texture\Player\idleB21.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 22
+Flipped : 1
+Texture_Name	: idleB22_FlipX
+Texture_Path	: \texture\Player\idleB22.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
+Frame_Index : 23
+Flipped : 1
+Texture_Name	: idleB23_FlipX
+Texture_Path	: \texture\Player\idleB23.png
+Texture_Scale	: 160, 160
+Offset	: 0, 0
+Duration	: 0.100000
+
