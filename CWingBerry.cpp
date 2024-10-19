@@ -11,8 +11,10 @@
 #include "CSaveData.h"
 
 CWingBerry::CWingBerry()
-	: m_OriRoom(-1)
-	, m_FlyAway(false)
+	: m_FlyAway(false)
+	, m_SoundPlayed(false)
+	, m_SoundDuration(0.63f)
+	, m_AccTime(0.f)
 {
 	m_Animator->AddAnimation(L"Strawberry_Idle_Wing", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Strawberry_Idle_Wing.anim"));
 	m_Animator->AddAnimation(L"Ghostberry_Idle_Wing", CAssetMgr::Get()->LoadAsset<CAnimation>(L"\\animation\\Ghostberry_Idle_Wing.anim"));
@@ -38,16 +40,44 @@ void CWingBerry::Tick()
 {
 	if (!m_Touched && !m_Collected && !m_FlyAway)
 	{
-		// 같은 방에 있는 플레이어가 대쉬 하면 위로 날아가서 사라짐
 		CPlayer* pPlayer = CGameMgr::Get()->GetPlayer();
 
-		if (pPlayer && pPlayer->GetRoom() == GetRoom() && KEY_TAP(KEY::X))
+		if (pPlayer && pPlayer->GetRoom() == GetRoom())
 		{
-			m_FlyAway = true;
-			m_OriRoom = GetRoom();
-			StopMove();
-			SetPosSmooth(2.f, GetPos() + Vec2(0.f, -900.f));
+			// 플레어어가 같은 방 안에 있을 때 사운드 재생
+			if (!m_SoundPlayed)
+			{
+				// Sound 재생
+				CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_wingflap_01.wav");
+				pSound->SetVolume(20);
+				pSound->Play();
+				m_SoundPlayed = true;
+			}
+			else
+			{
+				m_AccTime += fDT;
+
+				if (m_AccTime >= m_SoundDuration)
+				{
+					m_SoundPlayed = false;
+					m_AccTime -= m_SoundDuration;
+				}
+			}	
+
+			// 같은 방에 있는 플레이어가 대쉬 하면 위로 날아가서 사라짐
+			if (KEY_TAP(KEY::X))
+			{
+				m_FlyAway = true;
+				StopMove();
+				MoveSmooth(2.f, m_OriPos, m_OriPos + Vec2(0.f, -900.f));
+				m_SoundPlayed = false;
+
+				// Sound 재생
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_laugh.wav")->Play();
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_flyaway.wav")->Play();
+			}
 		}
+		
 	}
 
 	if (m_Touched)
@@ -72,6 +102,9 @@ void CWingBerry::Tick()
 		// 위치 세팅
 		SetPos(vPos);
 
+		// 플레이어가 room 옮기면 딸기도 room을 옮겨야 함
+		SetRoom(CGameMgr::Get()->GetRoom());
+
 		// 플레이어가 땅에 닿으면 Collected 상태로 전환
 		if (m_Target->IsGround())
 		{
@@ -85,8 +118,7 @@ void CWingBerry::Tick()
 				m_Animator->Play(L"Ghostberry_Collected");
 
 			// Sound 재생
-			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav");
-			pSound->Play();
+			CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav")->Play();
 		}
 	}
 
@@ -116,9 +148,10 @@ void CWingBerry::Tick()
 	}
 }
 
-void CWingBerry::Init()
+bool CWingBerry::Init()
 {
-	CStrawBerry::Init();
+	if (!CStrawBerry::Init())
+		return false;
 
 	// 애니메이션 복귀
 	if (!m_Ghost)
@@ -126,10 +159,9 @@ void CWingBerry::Init()
 	else
 		m_Animator->Play(L"Ghostberry_Idle_Wing", true);
 
-	m_FlyAway = false;
+	m_FlyAway = false;	
 
-	// 방 복귀
-	SetRoom(m_OriRoom);
+	return true;
 }
 
 bool CWingBerry::Save(FILE* _pFile)

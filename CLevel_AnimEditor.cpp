@@ -834,7 +834,7 @@ void CLevel_AnimEditor::Tick_Derived()
 	// 에디터 화면으로 이동
 	if (KEY_TAP(KEY::ESC))
 	{
-		ChangeLevel(LEVEL_TYPE::EDITOR);
+		Change_Level(LEVEL_TYPE::EDITOR);
 	}
 
 	// 값의 변화를 감지해서 화면에 표시되는 정보를 실시간 업데이트

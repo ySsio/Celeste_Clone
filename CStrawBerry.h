@@ -23,6 +23,7 @@ protected:
 	bool		m_Collected;
 
 	int			m_StID;
+	int			m_OriRoom;
 
 	bool		m_Ghost;
 
@@ -38,7 +39,7 @@ public:
 	virtual void OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _OtherCol);
 
 public:
-	virtual void Init() override;
+	virtual bool Init() override;
 
 public:
 	virtual bool Save(FILE* _pFile) override;

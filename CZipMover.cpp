@@ -66,8 +66,6 @@ CZipMover::~CZipMover()
 {
 }
 
-
-
 void CZipMover::SetTile(UINT Row, UINT Col)
 {
 	// Row Col을 설정했을 때 모든 기본 값 자동으로 세팅
@@ -130,6 +128,28 @@ void CZipMover::SetTile(UINT Row, UINT Col)
 
 		}
 	}
+}
+
+bool CZipMover::Init()
+{
+	SetPos(m_StartPos);
+	m_AccTime = 0.f;
+	m_Active = false;
+	m_Return = false;
+	m_Reset = false;
+	m_RigidBody->SetVelocity(Vec2(0.f, 0.f));
+
+	m_SoundA = false;
+	m_SoundB = false;
+	m_SoundC = false;
+	m_SoundD = false;
+
+	CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_a_touch_01.wav")->Stop();
+	CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_b_impact_01.wav")->Stop();
+	CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_c_return_01.wav")->Stop();
+	CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_d_reset_01.wav")->Stop();
+
+	return true;
 }
 
 bool CZipMover::Save(FILE* _pFile)
@@ -198,7 +218,7 @@ void CZipMover::Tick()
 
 		if (m_AccTime >= m_StartDuration)
 		{
-			if (!m_SoundA)
+			if (!m_SoundA && GetRoom() == CGameMgr::Get()->GetPlayer()->GetRoom())
 			{
 				// Sound 재생
 				CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_a_touch_01.wav");
@@ -234,7 +254,7 @@ void CZipMover::Tick()
 	// 끝지점에서 시작지점으로 천천히 되돌아온다.
 	if (m_Return)
 	{
-		if (!m_SoundB)
+		if (!m_SoundB && GetRoom() == CGameMgr::Get()->GetPlayer()->GetRoom())
 		{
 			// Sound 재생
 			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_b_impact_01.wav");
@@ -249,7 +269,7 @@ void CZipMover::Tick()
 
 		if (m_AccTime >= m_StopDuration)
 		{
-			if (!m_SoundC)
+			if (!m_SoundC && GetRoom() == CGameMgr::Get()->GetPlayer()->GetRoom())
 			{
 				// Sound 재생
 				CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_c_return_01.wav");
@@ -288,7 +308,7 @@ void CZipMover::Tick()
 	{
 		m_AccTime += fDT;
 
-		if (!m_SoundD)
+		if (!m_SoundD && GetRoom() == CGameMgr::Get()->GetPlayer()->GetRoom())
 		{
 			// Sound 재생
 			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\zipmover\\game_01_zipmover_d_reset_01.wav");
@@ -299,12 +319,7 @@ void CZipMover::Tick()
 
 		if (m_AccTime >= m_StopDuration)
 		{
-			m_Reset = false;
-
-			// 사운드 변수 초기화
-			m_SoundA = m_SoundB = m_SoundC = m_SoundD = false;
-			
-			m_AccTime = 0.f;
+			Init();
 		}
 	}
 

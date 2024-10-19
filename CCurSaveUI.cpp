@@ -18,7 +18,7 @@ CCurSaveUI::CCurSaveUI(CSaveData* _SaveData)
 	// 기능 : 게임매니저에서 현재 세이브 데이터를 설정함
 	SetFunction([=]() {
 		CGameMgr::Get()->SetCurSave(_SaveData); 
-		CLevelMgr::Get()->ChangeLevel(LEVEL_TYPE::SELECT);
+		Change_Level(LEVEL_TYPE::SELECT);
 	});
 
 	// 티켓 부분 (본체)

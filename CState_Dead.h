@@ -18,6 +18,7 @@ private:
 
     Vec2    m_SpawnPoint;
 
+    bool    m_LevelReset;
 
     bool    m_SpreadEffect;
     bool    m_Respawn;

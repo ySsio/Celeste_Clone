@@ -17,6 +17,8 @@ CStrawBerry::CStrawBerry()
 	, m_MoveDuration(0.2f)
 	, m_Touched(false)
 	, m_Collected(false)
+	, m_StID(-1)
+	, m_OriRoom(-1)
 	, m_Ghost(false)
 {
 	m_Animator = AddComponent<CAnimator>();
@@ -67,6 +69,9 @@ void CStrawBerry::Tick()
 		// 위치 세팅
 		SetPos(vPos);
 
+		// 플레이어가 room 옮기면 딸기도 room을 옮겨야 함
+		SetRoom(CGameMgr::Get()->GetRoom());
+
 		// 플레이어가 땅에 닿으면 Collected 상태로 전환
 		if (m_Target->IsGround())
 		{
@@ -80,8 +85,11 @@ void CStrawBerry::Tick()
 				m_Animator->Play(L"Ghostberry_Collected");
 
 			// Sound 재생
-			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav");
-			pSound->Play();
+			if (!m_Ghost)
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_red_get_1000.wav")->Play();
+			else
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_blu_get_1000.wav")->Play();
+
 		}
 	}
 
@@ -127,20 +135,40 @@ void CStrawBerry::OnCollisionEnter(CCollider* _Col, CObj* _Other, CCollider* _Ot
 {
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_Other);
 
-	if (pPlayer && !m_Collected)
+	if (pPlayer && !m_Touched && !m_Collected)
 	{
 		m_Touched = true;
 		m_Target = pPlayer;
+
+		// Sound 재생
+		if (!m_Ghost)
+			CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_touch.wav")->Play();
+		else
+			CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\strawberry\\game_gen_strawberry_blue_touch.wav")->Play();
+
 	}
 }
 
-void CStrawBerry::Init()
+bool CStrawBerry::Init()
 {
+	// 플레이어가 딸기를 건드리고 안 죽은 상태로 룸을 옮기면 호출하지 않음
+	if (m_Touched && m_Target->GetComponent<CStateMachine>()->GetCurState() != m_Target->GetComponent<CStateMachine>()->FindState(L"Dead"))
+		return false;
+
+	// Collected 상태에 진입했으면 Init 하지 않음
+	if (m_Collected)
+		return false;
+
 	m_Touched = false;
 	m_Collected = false;
 
 	StopMove();
-	SetPosSmooth(1.f, m_OriPos);
+	MoveSmooth(1.f, m_OriPos);
+
+	// 방 복귀
+	SetRoom(m_OriRoom);
+
+	return true;
 }
 
 bool CStrawBerry::Save(FILE* _pFile)
@@ -173,6 +201,9 @@ void CStrawBerry::Load(FILE* _pFile)
 	int Room = 0;
 	fread(&Room, sizeof(int), 1, _pFile);
 	SetRoom(Room);
+
+	// 2-1. Ori Room 설정
+	m_OriRoom = Room;
 
 	// 3. 포지션 받아오기
 	Vec2 VecBuff = Vec2();

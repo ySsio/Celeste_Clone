@@ -24,6 +24,8 @@ public:
     float GetfDT() { return m_fDT; }
     
     void Toggle() { m_Play = !m_Play; }
+    void PauseTimer() { m_Play = false; }
+    void ReleaseTimer() { m_Play = true; }
 
 public:
     virtual void Init() override;

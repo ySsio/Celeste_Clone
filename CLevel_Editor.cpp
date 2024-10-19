@@ -42,7 +42,7 @@ void CLevel_Editor::Enter()
 	pButton->SetPos(Vec2(100.f, 100.f));
 	pButton->SetScale(Vec2(200.f, 100.f));
 	pButton->SetName(L"애니메이션 편집");
-	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_ANIM); });
+	pButton->SetFunction([]() {Change_Level(LEVEL_TYPE::EDITOR_ANIM); });
 
 	pPanel->AddChild(pButton);
 
@@ -50,7 +50,7 @@ void CLevel_Editor::Enter()
 	pButton->SetPos(Vec2(500.f, 100.f));
 	pButton->SetScale(Vec2(200.f, 100.f));
 	pButton->SetName(L"맵 편집");
-	pButton->SetFunction([]() {ChangeLevel(LEVEL_TYPE::EDITOR_MAP); });
+	pButton->SetFunction([]() {Change_Level(LEVEL_TYPE::EDITOR_MAP); });
 
 	pPanel->AddChild(pButton);
 }
@@ -59,6 +59,6 @@ void CLevel_Editor::Tick_Derived()
 {
 	if (KEY_TAP(KEY::ESC))
 	{
-		ChangeLevel(LEVEL_TYPE::START);
+		Change_Level(LEVEL_TYPE::START);
 	}
 }

@@ -42,6 +42,11 @@ CKeyMgr::~CKeyMgr()
 
 void CKeyMgr::Init()
 {
+    for (int i = 0; i < (UINT)KEY::END; ++i)
+    {
+        // 눌린적 없는 상태 KEY_STATE::NONE, 이전에 눌려있지 않았다 false로 초기화
+        m_ArrKeyInfo[i] = tKeyInfo{ KEY_STATE::NONE, false };
+    }
 }
 
 void CKeyMgr::Tick()

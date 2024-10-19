@@ -44,7 +44,13 @@ public:
 
 
     void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
-    void SetPosSmooth(float _Duration, Vec2 _Pos);
+
+    // 도착지만 지정하는 SmoothMove
+    void MoveSmooth(float _Duration, Vec2 _Pos);
+
+    // 시작점 도착점 지정하는 SmoothMove
+    void MoveSmooth(float _Duration, Vec2 _StartPos, Vec2 _TargetPos);
+
     void StopMove() { m_Moving = false; }
 
     void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
@@ -107,7 +113,7 @@ public:
     const vector<CComponent*>& GetComponents() { return m_vecComponent; }
 
 public:
-    virtual void Init() {}
+    virtual bool Init() { return true; }
     virtual void Tick() = 0;
     virtual void FinalTick();
     virtual void Render();

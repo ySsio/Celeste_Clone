@@ -3,6 +3,8 @@
 #include "CDebugMgr.h"
 #include "CTaskMgr.h"
 #include "CCamera.h"
+#include "CGameMgr.h"
+#include "CTimeMgr.h"
 
 #ifdef _DEBUG
 void Debug_Render(DEBUG_SHAPE _Shape, PEN_TYPE _Pen, BRUSH_TYPE _Brush, Vec2 _Pos, Vec2 _Scale, float _Duration)
@@ -25,7 +27,19 @@ Vec2 GetRenderPosFromCam(Vec2 _Pos)
     return CCamera::Get()->GetRenderPos(_Pos);
 }
 
-void ChangeLevel(LEVEL_TYPE _Type)
+void Pause_Game()
+{
+    CGameMgr::Get()->PauseGame();
+    CTimeMgr::Get()->PauseTimer();
+}
+
+void Release_Game()
+{
+    CGameMgr::Get()->ReleaseGame();
+    CTimeMgr::Get()->ReleaseTimer();
+}
+
+void Change_Level(LEVEL_TYPE _Type)
 {
 	tTask task{};
 	task.TaskType = TASK_TYPE::CHANGE_LEVEL;
@@ -34,10 +48,22 @@ void ChangeLevel(LEVEL_TYPE _Type)
 	CTaskMgr::Get()->AddTask(task);
 }
 
-void ResetLevel()
+void Reset_Level()
 {
     tTask task{};
     task.TaskType = TASK_TYPE::RESET_LEVEL;
+
+    CTaskMgr::Get()->AddTask(task);
+}
+
+void Move_Room(int _Room)
+{
+    tTask task{};
+    task.TaskType = TASK_TYPE::MOVE_ROOM;
+    task.wParam = (DWORD_PTR)_Room;
+
+    // Game매니저에는 한 프레임 먼저 미리 옮길 Room을 알려줌
+    CGameMgr::Get()->SetRoom(_Room);
 
     CTaskMgr::Get()->AddTask(task);
 }

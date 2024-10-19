@@ -51,7 +51,6 @@ void CCamera::SetCamEffect(CAM_EFFECT _Effect, UINT_PTR _wParam)
 		// wParam : ÁøÆø
 		m_Amplitude = Vec2(_wParam);
 		m_Duration = 0.2f;
-		m_StartPos = m_CamPos;
 	}
 	break;
 	}
@@ -162,14 +161,13 @@ void CCamera::Tick()
 			yDir *= -1.f;
 		}
 
-
-		m_CamPos += ShakeOffset;
-
 		if (m_AccTime >= m_Duration)
 		{
 			ShakeOffset = Vec2(0.f, 0.f);
-			m_CamPos = m_StartPos;
 		}
+
+		m_CamPos += ShakeOffset;
+
 	}
 	break;
 	}

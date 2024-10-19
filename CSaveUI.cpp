@@ -17,7 +17,7 @@ CSaveUI::CSaveUI()
 	SetFunction([]() {
 		CSaveData* pSave = CGameMgr::Get()->AddNewSaveData();
 		CGameMgr::Get()->SetCurSave(pSave);
-		CLevelMgr::Get()->ChangeLevel(LEVEL_TYPE::SELECT);
+		Change_Level(LEVEL_TYPE::SELECT);
 	});
 
 	SetTex(CAssetMgr::Get()->LoadAsset<CTexture>(L"\\texture\\Gui\\FileSelect\\ticket.png")->Scale(0.9f));

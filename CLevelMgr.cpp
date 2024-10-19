@@ -11,6 +11,8 @@
 #include "CLevel_AnimEditor.h"
 #include "CLevel_MapEditor.h"
 
+#include "CSound.h"
+
 #include "CCamera.h"
 #include "CGameMgr.h"
 
@@ -82,6 +84,13 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 	
 	// 플레이어 초기화
 	CGameMgr::Get()->SetPlayer(nullptr);
+
+	// BGM 초기화 (레벨 다르게 이동하는 경우만)
+	if (m_CurLevel->GetLevelType() != _Type && CGameMgr::Get()->GetBGM())
+	{
+		CGameMgr::Get()->GetBGM()->Stop();
+		CGameMgr::Get()->SetBGM(nullptr);
+	}
 
 	m_CurLevel = m_ArrLevel[(UINT)_Type];
 	m_CurLevelType = _Type;

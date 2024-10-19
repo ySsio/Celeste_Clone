@@ -44,13 +44,23 @@ CObj::~CObj()
 
 
 
-void CObj::SetPosSmooth(float _Duration, Vec2 _Pos)
+void CObj::MoveSmooth(float _Duration, Vec2 _Pos)
 {
 	if (m_Moving) return;
 
 	m_Duration = _Duration;
 	m_StartPos = m_Pos;
 	m_TargetPos = _Pos;
+	m_Moving = true;
+}
+
+void CObj::MoveSmooth(float _Duration, Vec2 _StartPos, Vec2 _TargetPos)
+{
+	if (m_Moving) return;
+
+	m_Duration = _Duration;
+	m_StartPos = _StartPos;
+	m_TargetPos = _TargetPos;
 	m_Moving = true;
 }
 

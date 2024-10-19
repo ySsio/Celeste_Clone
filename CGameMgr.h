@@ -4,6 +4,7 @@
 class CStrawBerry;
 class CPlayer;
 class CSaveData;
+class CSound;
 
 class CGameMgr :
     public CManager
@@ -11,10 +12,16 @@ class CGameMgr :
     SINGLE(CGameMgr)
 
 private:
-    CPlayer*        m_Player;
+    CPlayer*            m_Player;
 
     CSaveData*          m_CurSave;
     vector<CSaveData*>  m_Saves;
+
+    int                 m_CurRoom;
+
+    CSound*             m_BGM;
+
+    bool                m_GamePause;
 
     array<int, (int)LEVEL_TYPE::END>  m_StrawberryCntTable;
 
@@ -36,6 +43,16 @@ public:
 	void ClearStrawberryCntTable(LEVEL_TYPE _Type) { m_StrawberryCntTable[(int)_Type] = 0; }
 
     int& GetStrawberryCnt(LEVEL_TYPE _Type) { return m_StrawberryCntTable[(int)_Type]; }
+
+    void SetBGM(CSound* _Sound) { m_BGM = _Sound; }
+    CSound* GetBGM() { return m_BGM; }
+
+    void SetRoom(int _Room) { m_CurRoom = _Room; }
+    int GetRoom() { return m_CurRoom; }
+
+    void PauseGame() { m_GamePause = true; }
+    void ReleaseGame() { m_GamePause = false; }
+    bool IsPause() { return m_GamePause; }
 
 public:
     void Save();

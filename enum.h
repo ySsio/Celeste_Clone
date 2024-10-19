@@ -77,6 +77,7 @@ enum class TASK_TYPE
 	DELETE_OBJECT,	// wParam : Object Address (CObj*)
 	CHANGE_LEVEL,	// wParam : Level Address (CLevel*)
 	RESET_LEVEL,	
+	MOVE_ROOM,		// wParam : Room (int)
 
 };
 

@@ -37,10 +37,16 @@ void CLevel_01_01::Enter()
 	// 현재 룸 설정
 	MoveRoom(0);
 
-	// Sound 재생
+	// BGM 재생
 	CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\bgm\\mus_lvl1_main_synths_loop.wav");
-	pSound->SetPosition(4.f);
-	pSound->PlayToBGM(true);
+	// 이미 재생되는 BGM이 동일하면 그대로 재생
+	if (pSound != CGameMgr::Get()->GetBGM())
+	{
+		pSound->SetPosition(4.f);
+		pSound->SetVolume(60);
+		pSound->PlayToBGM(true);
+		CGameMgr::Get()->SetBGM(pSound);
+	}
 
 	// Player
 	CPlayer* pPlayer = new CPlayer;

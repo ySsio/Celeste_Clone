@@ -54,6 +54,12 @@ void CTaskMgr::ExecuteTask(const tTask& _task)
 		CLevelMgr::Get()->GetCurLevel()->Reset();
 	}
 	break;
+	case TASK_TYPE::MOVE_ROOM:
+	// wParam : Room (int)
+	{
+		CLevelMgr::Get()->GetCurLevel()->MoveRoom((int)_task.wParam);
+	}
+	break;
 	}
 }
 

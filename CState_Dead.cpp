@@ -21,10 +21,11 @@ CState_Dead::CState_Dead()
 	, m_RespawnDuration(1.5f)
 	, m_SpreadDuration(0.2f)
 	, m_GatherWaitTime(1.f)
-	, m_DeadEffect(nullptr)
 	, m_SpreadEffect(false)
+	, m_LevelReset(false)
 	, m_Respawn(false)
 	, m_GatherEffect(false)
+	, m_DeadEffect(nullptr)
 {
 	// 카메라 Respawn 효과가 화면 전체를 가리는 순간이 
 	// Camera의 Duration의 1/2만큼 시간이 지난 시점이기 때문에
@@ -60,9 +61,6 @@ void CState_Dead::Enter()
 {
 	// 게임매니저 데스 카운트 증가
 	CGameMgr::Get()->AddDeathCount();
-
-	// 레벨 Reset
-	ResetLevel();
 
 	// 카메라 진동 효과
 	CCamera::Get()->SetCamEffect(CAM_EFFECT::SHAKE, (UINT_PTR)Vec2(2.f,0.f));
@@ -104,6 +102,15 @@ void CState_Dead::FinalTick()
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 
 	m_AccTime += fDT;
+
+	// 1초 지난 시점 (카메라 효과가 화면 다 가린 시점)에 레벨 reset
+	if (m_AccTime >= 1.f && !m_LevelReset)
+	{
+		// 레벨 Reset
+		Reset_Level();
+
+		m_LevelReset = true;
+	}
 
 	// Animation이 모두 재생된 후 (m_AnimDuration) 빙글빙글 CDeadEffect를 추가함.
 	if (m_AccTime >= m_AnimDuration && !m_SpreadEffect)
@@ -177,6 +184,8 @@ void CState_Dead::FinalTick()
 
 void CState_Dead::Exit()
 {
+	m_LevelReset = false;
+
 	CPlayer* pPlayer = GetOwner();
 	CRigidBody* pRigid = pPlayer->GetRigidBody();
 

@@ -6,6 +6,8 @@
 
 #include "CPlayer.h"
 
+#include "CSound.h"
+
 CCrumbleBlock::CCrumbleBlock()
 	: m_BlockTile(nullptr)
 	, m_OutlineTile(nullptr)
@@ -77,18 +79,32 @@ void CCrumbleBlock::Crumble(bool _b)
 
 void CCrumbleBlock::Active()
 {
-	m_Active = false;
 	m_Touch = false;
+	m_Active = false;
 	m_Collider->SetActive(false);
 	m_AccTime = 0.f;
 	Crumble(false);
+
+	// Sound 재생
+	CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\crumbleblock\\game_gen_fallblock_impact.wav")->Play();
 }
 
 void CCrumbleBlock::Reset()
 {
+	m_Touch = false;
 	m_Active = true;
 	m_Collider->SetActive(true);
 	m_AccTime = 0.f;
+	Crumble(false);
+
+	m_SoundPlayed = false;
+}
+
+bool CCrumbleBlock::Init()
+{
+	Reset();
+
+	return true;
 }
 
 bool CCrumbleBlock::Save(FILE* _pFile)
@@ -139,6 +155,15 @@ void CCrumbleBlock::Tick()
 	// 건드렸을 때 트리거 작동 -> player collision에서 설정
 	if (m_Touch)
 	{
+		if (!m_SoundPlayed)
+		{
+			// Sound 재생
+			CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\obj\\crumbleblock\\game_gen_fallblock_shake.wav")->Play();
+
+			m_SoundPlayed = true;
+		}
+
+
 		m_AccTime += fDT;
 
 		if (m_AccTime >= m_Duration)

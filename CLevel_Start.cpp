@@ -38,7 +38,7 @@ void CLevel_Start::ChangeMode(int _Mode)
 	Vec2 vRes = CEngine::Get()->GetResolution();
 
 	// 패널을 알맞은 위치로 옮김
-	m_PanelUI->SetPosSmooth(0.3f, Vec2(-vRes.x * _Mode, 0.f));
+	m_PanelUI->MoveSmooth(0.3f, Vec2(-vRes.x * _Mode, 0.f));
 
 	SelectBtn(0);
 }
@@ -53,20 +53,20 @@ void CLevel_Start::SelectBtn(int _Idx)
 	case 0:
 	{
 		if (m_BtnIdx != 0)
-			m_Btns[m_UIMode][m_BtnIdx]->SetPosSmooth(0.1f, Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
+			m_Btns[m_UIMode][m_BtnIdx]->MoveSmooth(0.1f, Vec2(MAIN_UI_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 		else
-			m_Btns[m_UIMode][m_BtnIdx]->SetPosSmooth(0.1f, Vec2(MAIN_UI_START_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
+			m_Btns[m_UIMode][m_BtnIdx]->MoveSmooth(0.1f, Vec2(MAIN_UI_START_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 	}
 	break;
 
 	case 1:
 	{
 		// 본체 (티켓) 부분은 우측으로 이동
-		m_Btns[m_UIMode][m_BtnIdx]->SetPosSmooth(0.1f, Vec2(vRes.x * 3.f/2.f + SAVE_UI_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
+		m_Btns[m_UIMode][m_BtnIdx]->MoveSmooth(0.1f, Vec2(vRes.x * 3.f/2.f + SAVE_UI_BTN_POP_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 		
 		// 카드 부분은 좌측으로 이동 (본체의 가장 마지막 자식)
 		const auto& vChild = m_Btns[m_UIMode][m_BtnIdx]->GetChild();
-		vChild[vChild.size()-1]->SetPosSmooth(0.1f, Vec2(-SAVE_UI_BTN_POP_POS_X * 2.f, 0.f));
+		vChild[vChild.size()-1]->MoveSmooth(0.1f, Vec2(-SAVE_UI_BTN_POP_POS_X * 2.f, 0.f));
 	}
 	break;
 	}
@@ -80,20 +80,20 @@ void CLevel_Start::DeselectBtn(int _Idx)
 	case 0:
 	{
 		if (m_BtnIdx != 0)
-			m_Btns[m_UIMode][m_BtnIdx]->SetPosSmooth(0.1f, Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
+			m_Btns[m_UIMode][m_BtnIdx]->MoveSmooth(0.1f, Vec2(MAIN_UI_BTN_ORI_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 		else
-			m_Btns[m_UIMode][m_BtnIdx]->SetPosSmooth(0.1f, Vec2(MAIN_UI_START_BTN_ORI_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
+			m_Btns[m_UIMode][m_BtnIdx]->MoveSmooth(0.1f, Vec2(MAIN_UI_START_BTN_ORI_POS_X, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 	}
 	break;
 
 	case 1 :
 	{
 		// 본체 (티켓) 부분 중앙 정렬
-		m_Btns[m_UIMode][m_BtnIdx]->SetPosSmooth(0.1f, Vec2(vRes.x * 3.f / 2.f, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
+		m_Btns[m_UIMode][m_BtnIdx]->MoveSmooth(0.1f, Vec2(vRes.x * 3.f / 2.f, m_Btns[m_UIMode][m_BtnIdx]->GetPos().y));
 
 		// 카드 부분 중앙 정렬
 		const auto& vChild = m_Btns[m_UIMode][m_BtnIdx]->GetChild();
-		vChild[vChild.size() - 1]->SetPosSmooth(0.1f, Vec2(0.f, 0.f));
+		vChild[vChild.size() - 1]->MoveSmooth(0.1f, Vec2(0.f, 0.f));
 	}
 	break;
 	}
@@ -150,7 +150,7 @@ void CLevel_Start::Enter()
 	pBtn->SetTexOffset(Vec2(-50.f, 20.f));
 	pBtn->SetFont(L"나눔고딕", 48);
 	pBtn->SetName(L"편집");
-	pBtn->SetFunction([=]() {ChangeLevel(LEVEL_TYPE::EDITOR); });
+	pBtn->SetFunction([=]() {Change_Level(LEVEL_TYPE::EDITOR); });
 
 	m_PanelUI->AddChild(pBtn);
 	m_Btns[0].push_back(pBtn);
@@ -207,8 +207,10 @@ void CLevel_Start::Tick_Derived()
 		if (m_BtnIdx > 0)
 		{
 			// Sound 재생
-			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav");
-			pSound->Play();
+			if (m_UIMode == 0)
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav")->Play();
+			else
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_savefile_roll_02.wav")->Play();
 
 			DeselectBtn(m_BtnIdx);
 			SelectBtn(m_BtnIdx - 1);
@@ -219,8 +221,10 @@ void CLevel_Start::Tick_Derived()
 		if (m_BtnIdx < m_Btns[m_UIMode].size() - 1)
 		{
 			// Sound 재생
-			CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav");
-			pSound->Play();
+			if (m_UIMode == 0)
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav")->Play();
+			else
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_savefile_roll_02.wav")->Play();
 
 			DeselectBtn(m_BtnIdx);
 			SelectBtn(m_BtnIdx + 1);
@@ -232,6 +236,8 @@ void CLevel_Start::Tick_Derived()
 	if (KEY_TAP(KEY::C))
 	{
 		function<void(void)> pFunc = m_Btns[m_UIMode][m_BtnIdx]->GetFunction();
+
+		CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_select.wav")->Play();
 
 		if (pFunc)
 			pFunc();		

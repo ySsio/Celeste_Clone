@@ -28,12 +28,7 @@ void CTimeMgr::Init()
 
 void CTimeMgr::Tick()
 {
-	if (!m_Play)
-	{
-		m_fDT = 0.f;
-		m_DT = 0.;
-		return;
-	}
+	
 
 	LARGE_INTEGER PrevCount = m_CurCount;
 	QueryPerformanceCounter(&m_CurCount); // 현재 틱을 받음
@@ -42,11 +37,14 @@ void CTimeMgr::Tick()
 	m_DT = (double)(m_CurCount.QuadPart - PrevCount.QuadPart) / m_Frequency.QuadPart;
 	m_fDT = (float)m_DT;
 
+
 	if (m_DT >= 1.f / 60)
 	{
 		m_DT = 1. / 60;
 		m_fDT = (float)m_DT;
 	}
+
+	
 
 	// 함수 호출 횟수를 통해 FPS를 직접 count
 	static int iCount = 0;
@@ -60,6 +58,12 @@ void CTimeMgr::Tick()
 		iCount = 0;
 	}
 
+	if (!m_Play)
+	{
+		m_fDT = 0.f;
+		m_DT = 0.;
+		return;
+	}
 }
 
 void CTimeMgr::Render()
@@ -77,7 +81,11 @@ void CTimeMgr::Render()
 	text += std::to_wstring(m_FPS) + L", DeltaTime : ";
 	text += std::to_wstring(tempDT);
 
+	COLORREF oldColor = SetTextColor(BackDC, RGB(255, 255, 255));
+
 	TextOut(BackDC, 0, 0, text.c_str(), (int)text.length());
+
+	SetTextColor(BackDC, oldColor);
 }
 
 void CTimeMgr::FinalTick()

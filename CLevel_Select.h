@@ -24,6 +24,9 @@ private:
     CLevelCardUI_Collectable*   m_Card_Collectable; // 수집 레벨카드
 
 
+    float                   m_AccTime;
+    bool                    m_ToGame;
+
 public:
     void ChangeMode(int _Mode);
 

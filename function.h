@@ -38,10 +38,16 @@ void Release_HashMap(unordered_map<T1, T2*>& _map)
 	_map.clear();
 }
 
-// Task
-void ChangeLevel(LEVEL_TYPE _Type);
+// Game
+void Pause_Game();
+void Release_Game();
 
-void ResetLevel();
+// Task
+void Change_Level(LEVEL_TYPE _Type);
+
+void Reset_Level();
+
+void Move_Room(int _Room);
 
 void Add_Object(CObj* _Obj, LAYER_TYPE _Type);
 

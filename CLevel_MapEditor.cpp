@@ -96,7 +96,7 @@ void CLevel_MapEditor::Tick_Derived()
 	// 에디터 화면으로 이동
 	if (KEY_TAP(KEY::ESC))
 	{
-		ChangeLevel(LEVEL_TYPE::EDITOR);
+		Change_Level(LEVEL_TYPE::EDITOR);
 	}
 
 	// 카메라 이동
@@ -196,7 +196,7 @@ void CLevel_MapEditor::Tick_Derived()
 					&& room.Position.y - room.Scale.y / 2.f <= m_MouseRealPos.y
 					&& m_MouseRealPos.y <= room.Position.y + room.Scale.y / 2.f)
 				{
-					MoveRoom(i);
+					Move_Room(i);
 
 					m_Pos = room.Position;
 					m_Scale = room.Scale;
@@ -1413,12 +1413,11 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 
 		if (HIWORD(wParam) == EN_CHANGE) {
 			if (LOWORD(wParam) == IDC_EDIT1 ) {
-				// Edit control(row)에서 값을 받음
+				// Edit control(row)에서 값을 받음 
 				wchar_t szBuff[256]{};
 				GetWindowText(hRowEdit, szBuff, 255);
 				int row = _wtoi(szBuff);
 
-				// Do something with newValue
 				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 				if (pLevel)
 				{
@@ -1436,7 +1435,6 @@ INT_PTR CALLBACK Editor_Game_Obj(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
 				GetWindowText(hColEdit, szBuff, 255);
 				int col = _wtoi(szBuff);
 
-				// Do something with newValue
 				CLevel_MapEditor* pLevel = dynamic_cast<CLevel_MapEditor*>(CLevelMgr::Get()->GetCurLevel());
 				if (pLevel)
 				{

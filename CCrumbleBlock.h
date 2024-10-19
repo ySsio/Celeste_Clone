@@ -16,6 +16,8 @@ private:
     bool                m_Touch;
     bool                m_Active;
 
+    bool                m_SoundPlayed;
+
 public:
     void SetTile(UINT Col); // 무조건 row는 1
 
@@ -25,6 +27,9 @@ public:
 
     void Active();
     void Reset();
+
+public:
+    virtual bool Init() override;
 
 public:
     virtual bool Save(FILE* _pFile) override;

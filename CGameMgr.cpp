@@ -8,10 +8,14 @@
 #include "CLevelMgr.h"
 
 #include "CSaveData.h"
+#include "CPlayer.h"
 
 CGameMgr::CGameMgr()
 	: m_Player(nullptr)
 	, m_CurSave(nullptr)
+	, m_CurRoom(-1)
+	, m_BGM(nullptr)
+	, m_GamePause(false)
 {
 
 }

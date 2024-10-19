@@ -115,9 +115,9 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 	DeleteObject(SelectObject(m_BackBufferDC, m_BackBuffer));
 
 	// 매니저 초기화
-	CSoundMgr::Get()->Init();
 	CKeyMgr::Get()->Init();
 	CTimeMgr::Get()->Init();
+	CSoundMgr::Get()->Init();
 	CPathMgr::Get()->Init();
 	CGameMgr::Get()->Init();
 	CAssetMgr::Get()->Init();
@@ -136,16 +136,19 @@ void CEngine::Init(HWND _hwnd, int _Width, int _Height)
 void CEngine::Progress()
 {
 	// tick
+	CKeyMgr::Get()->Tick();
 	CTimeMgr::Get()->Tick();
 	CGameMgr::Get()->Tick();
-	CKeyMgr::Get()->Tick();
 
 
 	CLevelMgr::Get()->Tick();
-	CLevelMgr::Get()->FinalTick();
-	CCollisionMgr::Get()->Tick();
-	CCamera::Get()->Tick();
-	CUIMgr::Get()->Tick();
+	if (!CGameMgr::Get()->IsPause())
+	{
+		CLevelMgr::Get()->FinalTick();
+		CCollisionMgr::Get()->Tick();
+		CCamera::Get()->Tick();
+		CUIMgr::Get()->Tick();
+	}
 
 #ifdef _DEBUG
 	CDebugMgr::Get()->Tick();

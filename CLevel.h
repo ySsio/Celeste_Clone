@@ -34,6 +34,7 @@ public:
    vector<tRoom>& GetRooms() { return m_Room; }
 
    void SetLevelType(LEVEL_TYPE _Type) { m_Type = _Type; }
+   LEVEL_TYPE GetLevelType() { return m_Type; }
 
    void Reset() { m_ResetCurRoom = true; }
 

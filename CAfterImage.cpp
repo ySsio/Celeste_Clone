@@ -54,9 +54,11 @@ void CAfterImage::SetRGBA(UINT _RGBA)
 	FillAlphaNonZeroAreas(m_Tex->GetBitMap(), m_RGBA);
 }
 
-void CAfterImage::Init()
+bool CAfterImage::Init()
 {
 	Delete_Object(this);
+
+	return true;
 }
 
 void CAfterImage::Tick()

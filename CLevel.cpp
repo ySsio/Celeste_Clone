@@ -282,8 +282,10 @@ void CLevel::Exit()
 
 void CLevel::MoveRoom(int _Room)
 {
-	m_PrevRoom = m_CurRoom;
-	m_CurRoom = _Room;
+	// 게임 매니저 현재 Room 세팅
+	CGameMgr::Get()->SetRoom(_Room);
+
+	SetCurRoom(_Room);
 
 	m_RoomMove = true;
 
@@ -303,6 +305,7 @@ void CLevel::MoveRoom(int _Room)
 	}
 
 	// 배경 이동
+	// (수정) 배경은 Room을 -1로 설정해버리자
 	for (auto bg : m_ArrLayerObj[(UINT)LAYER_TYPE::BACKGROUND])
 	{
 		CPanelUI* pPanel = dynamic_cast<CPanelUI*>(bg);
@@ -362,7 +365,7 @@ void CLevel::Tick()
 			{
 				if (m_CurRoom != i)
 				{
-					MoveRoom(i);
+					Move_Room(i);
 				}
 			}
 		}
@@ -372,6 +375,10 @@ void CLevel::Tick()
 
 	for (auto& Layer : m_ArrLayerObj)
 	{
+		// 게임이 멈추면 UI만 Tick 함
+		if (CGameMgr::Get()->IsPause() && Layer != m_ArrLayerObj[(int)LAYER_TYPE::UI])
+			continue;
+
 		for (auto obj : Layer)
 		{
 			// 오브젝트 초기화 함수 실행 (컴포넌트 초기화도 여기서 처리)
@@ -388,10 +395,10 @@ void CLevel::Tick()
 			}
 
 			// 현재 룸, 이전 룸에 해당하는 오브젝트만 업데이트
-			if (obj->GetRoom() == m_CurRoom
-				|| obj->GetRoom() == m_PrevRoom
-				|| obj->GetRoom() == -1 
-				|| obj->GetRoom() == -2)
+			//if (obj->GetRoom() == m_CurRoom
+			//	|| obj->GetRoom() == -1 
+			//	|| obj->GetRoom() == -2)
+			if (!m_RoomMove)
 				obj->Tick();
 		}
 	}
@@ -417,15 +424,16 @@ void CLevel::FinalTick()
 	{
 		for (auto iter = Layer.begin(); iter != Layer.end();)
 		{
-			// 현재 룸, 이전 룸에 있는 오브젝트가 아니면 넘어감
-			if ((*iter)->GetRoom() == m_CurRoom 
-				|| (*iter)->GetRoom() != m_PrevRoom
-				|| (*iter)->GetRoom() != -1
-				|| (*iter)->GetRoom() != -2)
+			// 콜라이더 때문에 이전 룸에 있는 애도 Final Tick 실행함
+			//if ((*iter)->GetRoom() == m_CurRoom 
+			//	|| (*iter)->GetRoom() == m_PrevRoom
+			//	|| (*iter)->GetRoom() == -1
+			//	|| (*iter)->GetRoom() == -2)
 			{
 				// Final Tick
 				(*iter)->FinalTick();
 			}
+
 
 			++iter;
 		}

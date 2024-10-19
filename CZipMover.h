@@ -51,6 +51,9 @@ public:
     UINT GetCol() { return m_TileMap->GetColCnt(); }
 
 public:
+    virtual bool Init() override;
+
+public:
     virtual bool Save(FILE* _pFile) override;
     virtual void Load(FILE* _pFile) override;
 

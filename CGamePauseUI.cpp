@@ -78,7 +78,6 @@ void CGamePauseUI::Tick_DerivedUI()
 	if (KEY_TAP(KEY::ESC))
 	{
 		m_Activate = !m_Activate;
-		CTimeMgr::Get()->Toggle();
 
 		if (m_Activate)
 		{
@@ -86,25 +85,40 @@ void CGamePauseUI::Tick_DerivedUI()
 			m_BtnIdx = 0;
 		}
 		else
+		{
 			SetRoom(-2);
+		}
 	}
 
 	if (m_Activate)
 	{
-		if (KEY_TAP(KEY::DOWN) && m_BtnIdx < m_Btns.size() - 1)
+		// 게임 정지
+		Pause_Game();
+
+		// BGM 소리 줄임
+		if (CGameMgr::Get()->GetBGM())
+			CGameMgr::Get()->GetBGM()->SetVolume(20);
+
+		if (KEY_TAP(KEY::DOWN) && m_BtnIdx <= m_Btns.size() - 1)
 		{
 			// 이전에 활성화된 텍스트는 다시 흰색 으로 표시
 			m_Btns[m_BtnIdx]->SetColor(RGB(255, 255, 255));
 
-			++m_BtnIdx;
+			if (m_BtnIdx == m_Btns.size()-1)
+				m_BtnIdx = 0;
+			else
+				++m_BtnIdx;
 		}
 
-		if (KEY_TAP(KEY::UP) && m_BtnIdx > 0)
+		if (KEY_TAP(KEY::UP) && m_BtnIdx >= 0)
 		{
 			// 이전에 활성화된 텍스트는 다시 흰색으로 표시
 			m_Btns[m_BtnIdx]->SetColor(RGB(255, 255, 255));
 
-			--m_BtnIdx;
+			if (m_BtnIdx == 0)
+				m_BtnIdx = m_Btns.size() - 1;
+			else
+				--m_BtnIdx;
 		}
 
 		// 현재 활성화된 텍스트는 노란색으로 표시
@@ -117,15 +131,13 @@ void CGamePauseUI::Tick_DerivedUI()
 			case 0:
 			{
 				m_Activate = !m_Activate;
-				CTimeMgr::Get()->Toggle();
 				SetRoom(-2);
-				m_BtnIdx = 0;
+				m_BtnIdx = 0;				
 			}
 			break;
 			case 1:
 			{
 				m_Activate = !m_Activate;
-				CTimeMgr::Get()->Toggle();
 				SetRoom(-2);
 				m_BtnIdx = 0;
 
@@ -139,17 +151,31 @@ void CGamePauseUI::Tick_DerivedUI()
 			break;
 			case 3:
 			{
-				CTimeMgr::Get()->Toggle();
-				CLevelMgr::Get()->ChangeLevel(CLevelMgr::Get()->GetCurLevelType());
+				Release_Game();
+				Change_Level(CLevelMgr::Get()->GetCurLevelType());
 			}
 			break;
 			case 4:
 			{
-				CTimeMgr::Get()->Toggle();
-				CLevelMgr::Get()->ChangeLevel(LEVEL_TYPE::SELECT);
+				Release_Game();
+				Change_Level(LEVEL_TYPE::SELECT);
 			}
 			break;
 			}
+		}
+	}
+	else
+	{
+		// BGM 소리 키움
+		if (CGameMgr::Get()->GetBGM())
+			CGameMgr::Get()->GetBGM()->SetVolume(60);
+
+		// 게임 재개
+		Release_Game();
+
+		for (auto btn : m_Btns)
+		{
+			btn->SetColor(RGB(255, 255, 255));
 		}
 	}
 }

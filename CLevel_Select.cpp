@@ -6,6 +6,8 @@
 #include "CKeyMgr.h"
 #include "CLevelMgr.h"
 #include "CGameMgr.h"
+#include "CTimeMgr.h"
+#include "CCamera.h"
 
 #include "CPanelUI.h"
 #include "CImageUI.h"
@@ -49,6 +51,8 @@ void CLevel_Select::Enter()
 	m_Hover = nullptr;
 	m_Card = nullptr;
 	m_Card_Collectable = nullptr;
+	m_AccTime = 0.f;
+	m_ToGame = false;
 
 	Vec2 vRes = CEngine::Get()->GetResolution();
 
@@ -94,6 +98,22 @@ void CLevel_Select::Enter()
 
 void CLevel_Select::Tick_Derived()
 {
+	if (m_ToGame)
+	{
+		m_AccTime += fDT;
+
+		if (m_AccTime >= 1.f)
+		{
+			// 레벨 진입
+			Change_Level(LEVEL_MAP[m_BtnIdx][0]);
+
+			m_AccTime = 0.f;
+		}
+
+		return;
+	}
+
+
 	if (m_UIMode == 0)
 	{
 		if (KEY_TAP(KEY::LEFT))
@@ -101,15 +121,14 @@ void CLevel_Select::Tick_Derived()
 			if (m_BtnIdx > 0 && !m_Btns[0]->IsMoving())
 			{
 				// Sound 재생
-				CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav");
-				pSound->Play();
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_world_icon_flip_right.wav")->Play();
 
 				--m_BtnIdx;
 
 				// 전체 우측으로 이동
 				for (auto btn : m_Btns)
 				{
-					btn->SetPosSmooth(0.1f, btn->GetPos() + Vec2(Gap, 0.f));
+					btn->MoveSmooth(0.1f, btn->GetPos() + Vec2(Gap, 0.f));
 				}
 			}
 		}
@@ -118,15 +137,14 @@ void CLevel_Select::Tick_Derived()
 			if (m_BtnIdx < m_Btns.size() - 1 && !m_Btns[0]->IsMoving())
 			{
 				// Sound 재생
-				CSound* pSound = CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_main_button_climb.wav");
-				pSound->Play();
+				CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_world_icon_flip_right.wav")->Play();
 
 				++m_BtnIdx;
 
 				// 전체 좌측으로 이동
 				for (auto btn : m_Btns)
 				{
-					btn->SetPosSmooth(0.1f, btn->GetPos() - Vec2(Gap, 0.f));
+					btn->MoveSmooth(0.1f, btn->GetPos() - Vec2(Gap, 0.f));
 				}
 			}
 		}
@@ -142,13 +160,13 @@ void CLevel_Select::Tick_Derived()
 		case 0:
 		{
 			// 전체 위로 이동
-			m_Hover->SetPosSmooth(0.2f, m_Hover->GetPos() - Vec2(0.f, 1.5f * Gap));
+			m_Hover->MoveSmooth(0.2f, m_Hover->GetPos() - Vec2(0.f, 1.5f * Gap));
 			for (int i=0; i<m_Btns.size(); ++i)
 			{
 				if (i == m_BtnIdx)
 					continue;
 				
-				m_Btns[i]->SetPosSmooth(0.5f,  Vec2(Gap * (i - m_BtnIdx), -600.f));
+				m_Btns[i]->MoveSmooth(0.5f,  Vec2(Gap * (i - m_BtnIdx), -600.f));
 			}
 
 			if (1 <= m_BtnIdx && m_BtnIdx <= LEVEL_COUNT)
@@ -157,7 +175,7 @@ void CLevel_Select::Tick_Derived()
 				m_Card_Collectable->SetValueWithLevel(m_BtnIdx);
 
 				// 오른쪽에서 카드 꺼내옴
-				m_Card_Collectable->SetPosSmooth(0.5f, Vec2(vRes.x / 2.f - m_Card_Collectable->GetScale().x / 2.f, -360.f));
+				m_Card_Collectable->MoveSmooth(0.5f, Vec2(vRes.x / 2.f - m_Card_Collectable->GetScale().x / 2.f, -360.f));
 			}
 			else
 			{
@@ -165,12 +183,15 @@ void CLevel_Select::Tick_Derived()
 				m_Card->SetValueWithLevel(m_BtnIdx);
 
 				// 오른쪽에서 카드 꺼내옴
-				m_Card->SetPosSmooth(0.5f, Vec2(vRes.x / 2.f - m_Card->GetScale().x / 2.f, -360.f));
+				m_Card->MoveSmooth(0.5f, Vec2(vRes.x / 2.f - m_Card->GetScale().x / 2.f, -360.f));
 			}
 
 			// 아이콘이 카드 위로 이동
-			m_Btns[m_BtnIdx]->SetPosSmooth(0.5f, Vec2(650.f, -300.f));
+			m_Btns[m_BtnIdx]->MoveSmooth(0.5f, Vec2(650.f, -300.f));
 			
+			// 사운드 재생
+			CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_world_icon_select.wav")->Play();
+
 			// 모드 변경
 			ChangeMode(1);
 		}
@@ -178,7 +199,14 @@ void CLevel_Select::Tick_Derived()
 
 		case 1:
 		{
-			CLevelMgr::Get()->ChangeLevel(LEVEL_MAP[m_BtnIdx][0]);
+			// 카메라 효과
+			CCamera::Get()->SetCamEffect(CAM_EFFECT::RESPAWN);
+
+			// 사운드 재생
+			CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_world_chapter_checkpoint_start.wav")->Play();
+
+			// 게임 진입
+			m_ToGame = true;
 		}
 		break;
 		}
@@ -191,7 +219,7 @@ void CLevel_Select::Tick_Derived()
 		{
 		case 0:
 		{
-			CLevelMgr::Get()->ChangeLevel(LEVEL_TYPE::START);
+			Change_Level(LEVEL_TYPE::START);
 		}
 		break;
 
@@ -201,21 +229,24 @@ void CLevel_Select::Tick_Derived()
 				break;
 
 			// 전체 원래자리로 이동
-			m_Hover->SetPosSmooth(0.2f, m_Hover->GetPos() + Vec2(0.f, 1.5f * Gap));
+			m_Hover->MoveSmooth(0.2f, m_Hover->GetPos() + Vec2(0.f, 1.5f * Gap));
 			for (int i = 0; i < m_Btns.size(); ++i)
 			{
-				m_Btns[i]->SetPosSmooth(0.2f, Vec2(Gap* (i - m_BtnIdx), -350.f));
+				m_Btns[i]->MoveSmooth(0.2f, Vec2(Gap* (i - m_BtnIdx), -350.f));
 			}
 
 			// 오른쪽으로 카드 넣음
 			if (1 <= m_BtnIdx && m_BtnIdx <= LEVEL_COUNT)
 			{
-				m_Card_Collectable->SetPosSmooth(0.15f, Vec2(vRes.x, -360.f));
+				m_Card_Collectable->MoveSmooth(0.15f, Vec2(vRes.x, -360.f));
 			}
 			else
 			{
-				m_Card->SetPosSmooth(0.2f, Vec2(vRes.x, -360.f));
+				m_Card->MoveSmooth(0.2f, Vec2(vRes.x, -360.f));
 			}
+
+			// 사운드 재생
+			CAssetMgr::Get()->LoadAsset<CSound>(L"\\sound\\ui\\ui_world_chapter_back.wav")->Play();
 
 			// 모드 변경
 			ChangeMode(0);

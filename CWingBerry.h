@@ -5,8 +5,11 @@ class CWingBerry :
     public CStrawBerry
 {
 private:
-    int     m_OriRoom;
+
     bool    m_FlyAway;
+    bool    m_SoundPlayed;
+    float   m_SoundDuration;
+    float   m_AccTime;
 
 public:
     virtual void SetGhost(bool _b) override;
@@ -15,7 +18,7 @@ public:
     virtual void Tick() override;
     
 public:
-    virtual void Init() override;
+    virtual bool Init() override;
 
 public:
     virtual bool Save(FILE* _pFile) override;
