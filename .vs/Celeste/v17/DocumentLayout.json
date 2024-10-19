@@ -1,0 +1,2614 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\cpp_Exercise\\GameEngine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\global.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\global.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CKeyMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CKeyMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPathMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPathMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\enum.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\enum.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCamera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCamera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dash.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Dash.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\function.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\function.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGameMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CGameMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_01_01.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_01_01.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGamePauseUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CGamePauseUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStrawBerry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CStrawBerry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CWingBerry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CWingBerry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCrumbleBlock.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCrumbleBlock.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCrumbleBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCrumbleBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CWingBerry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CWingBerry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStrawBerry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CStrawBerry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAfterImage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAfterImage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CZipMover.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CZipMover.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CZipMover.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CZipMover.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAfterImage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAfterImage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CObj.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CObj.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CRigidBody.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CRigidBody.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTimeMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTimeMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\function.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\function.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGameMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CGameMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTimeMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTimeMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CObj.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CObj.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dead.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Dead.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTaskMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTaskMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpring.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSpring.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlatform.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPlatform.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPanelUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPanelUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_MapEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_MapEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_00.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_00.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevelMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevelMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CEngine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CEngine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStateMachine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CStateMachine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSound.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSound.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTextUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGamePauseUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CGamePauseUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTaskMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTaskMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Select.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_Select.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Start.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_Start.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSound.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSound.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Select.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_Select.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dead.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Dead.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSaveUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCurSaveUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCurSaveUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveData.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSaveData.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAssetMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAssetMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAssetMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAssetMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlatform.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPlatform.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlayer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPlayer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCollider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollisionMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCollisionMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCollider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPalette.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPalette.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_MapEditor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_MapEditor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDeadEffect.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CDeadEffect.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDeadEffect.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CDeadEffect.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCamera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCamera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTexture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTexture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Climb.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Climb.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Bounce.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Bounce.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Fall.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Fall.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Idle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Idle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Run.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Run.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTextUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevelCardUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPanelUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPanelUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_01_01.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_01_01.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveData.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSaveData.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI_Collectable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevelCardUI_Collectable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLogMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLogMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLogMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLogMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCurSaveUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCurSaveUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevelCardUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CImageUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CImageUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI_Collectable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevelCardUI_Collectable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CButtonUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CButtonUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpriteRenderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSpriteRenderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpriteRenderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSpriteRenderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CImageUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CImageUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Start.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_Start.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSaveUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_00.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_00.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_AnimEditor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_AnimEditor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Editor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_Editor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_AnimEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_AnimEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTexture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTexture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPathMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPathMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CButtonUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CButtonUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBase.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CBase.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CComponent.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CComponent.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimEditorUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimEditorUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimEditorUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAnimEditorUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextBoxUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTextBoxUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextBoxUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTextBoxUI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpring.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSpring.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CComponent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CComponent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStateMachine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CStateMachine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlayer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPlayer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBackGround.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CBackGround.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAsset.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAsset.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Idle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Idle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Run.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Run.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dash.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Dash.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Climb.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Climb.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Fall.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Fall.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Jump.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Jump.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Bounce.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState_Bounce.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CRigidBody.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CRigidBody.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUIMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CUIMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUIMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CUIMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\new_scalar.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAsset.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CAsset.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CLevel_Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDebugMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CDebugMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBackGround.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CBackGround.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPalette.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CPalette.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\pch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\pch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CTile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CState.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSelectObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSelectObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\xmemory||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GAMEENGINE\\CSOUNDMGR.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GAMEENGINE\\CSOUNDMGR.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSoundMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSoundMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSelectObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CSelectObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDebugMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CDebugMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CKeyMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CKeyMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cpp_Exercise\\WinAPI_52\\WinAPI_52\\CUIMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollisionMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2BDD52F0-096C-46CA-AE25-354FDD6363CF}|GameEngine\\GameEngine.vcxproj|solutionrelative:GameEngine\\CCollisionMgr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\shared\\windowsx.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\utility||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\filesystem||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 206,
+          "SelectedChildIndex": 32,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "CLevel.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel.h",
+              "RelativeToolTip": "GameEngine\\CLevel.h",
+              "ViewState": "AQIAABMAAAAAAAAAAAAuwB8AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:49:47.153Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "CLevel_01_01.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_01_01.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_01_01.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_01_01.h",
+              "RelativeToolTip": "GameEngine\\CLevel_01_01.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T12:50:34.628Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 121,
+              "Title": "CBackGround.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBackGround.h",
+              "RelativeDocumentMoniker": "GameEngine\\CBackGround.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBackGround.h",
+              "RelativeToolTip": "GameEngine\\CBackGround.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-05T05:56:57.005Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "CTileMap.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTileMap.h",
+              "RelativeDocumentMoniker": "GameEngine\\CTileMap.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTileMap.h",
+              "RelativeToolTip": "GameEngine\\CTileMap.h",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAADYAAABhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-08T15:32:14.139Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "CLevel_MapEditor.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_MapEditor.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_MapEditor.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_MapEditor.h",
+              "RelativeToolTip": "GameEngine\\CLevel_MapEditor.h",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAAADwAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-12T12:59:25.662Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CObj.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CObj.h",
+              "RelativeDocumentMoniker": "GameEngine\\CObj.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CObj.h",
+              "RelativeToolTip": "GameEngine\\CObj.h",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAUwHMAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:33:31.911Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 99,
+              "Title": "CLevel_Start.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Start.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_Start.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Start.h",
+              "RelativeToolTip": "GameEngine\\CLevel_Start.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T10:12:24.954Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 108,
+              "Title": "CButtonUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CButtonUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CButtonUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CButtonUI.h",
+              "RelativeToolTip": "GameEngine\\CButtonUI.h",
+              "ViewState": "AQIAAAEAAAAAAAAAAAApwAUAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-12T19:09:17.752Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 97,
+              "Title": "CSpriteRenderer.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpriteRenderer.h",
+              "RelativeDocumentMoniker": "GameEngine\\CSpriteRenderer.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpriteRenderer.h",
+              "RelativeToolTip": "GameEngine\\CSpriteRenderer.h",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACAAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-01T02:44:28.961Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "CUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUI.h",
+              "RelativeToolTip": "GameEngine\\CUI.h",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAACwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-12T19:06:21.663Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "CPanelUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPanelUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CPanelUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPanelUI.h",
+              "RelativeToolTip": "GameEngine\\CPanelUI.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAMAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-12T19:08:59.313Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 102,
+              "Title": "CLevel_00.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_00.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_00.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_00.h",
+              "RelativeToolTip": "GameEngine\\CLevel_00.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-15T06:34:38.683Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "CGameMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGameMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CGameMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGameMgr.h",
+              "RelativeToolTip": "GameEngine\\CGameMgr.h",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAADYAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-07T21:14:33.217Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "CSaveData.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveData.h",
+              "RelativeDocumentMoniker": "GameEngine\\CSaveData.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveData.h",
+              "RelativeToolTip": "GameEngine\\CSaveData.h",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAcwB4AAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-25T01:46:12.403Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "CAnimUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimUI.h",
+              "RelativeToolTip": "GameEngine\\CAnimUI.h",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAawBYAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-25T04:55:34.254Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "CImageUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CImageUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CImageUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CImageUI.h",
+              "RelativeToolTip": "GameEngine\\CImageUI.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-25T04:55:16.403Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 101,
+              "Title": "CSaveUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CSaveUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveUI.h",
+              "RelativeToolTip": "GameEngine\\CSaveUI.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-25T11:03:49.039Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "CCurSaveUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCurSaveUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CCurSaveUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCurSaveUI.h",
+              "RelativeToolTip": "GameEngine\\CCurSaveUI.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-25T11:21:00.474Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "CTextUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CTextUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextUI.h",
+              "RelativeToolTip": "GameEngine\\CTextUI.h",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-21T08:38:58.728Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "CLevel_Select.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Select.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_Select.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Select.h",
+              "RelativeToolTip": "GameEngine\\CLevel_Select.h",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAUwBsAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-25T16:13:35.542Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "CLevelCardUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevelCardUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI.h",
+              "RelativeToolTip": "GameEngine\\CLevelCardUI.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-26T04:47:42.328Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "CLevelCardUI_Collectable.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI_Collectable.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevelCardUI_Collectable.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI_Collectable.h",
+              "RelativeToolTip": "GameEngine\\CLevelCardUI_Collectable.h",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBEAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-26T04:48:26.839Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "CGamePauseUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGamePauseUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CGamePauseUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGamePauseUI.h",
+              "RelativeToolTip": "GameEngine\\CGamePauseUI.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-26T13:59:17.378Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CStrawBerry.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStrawBerry.h",
+              "RelativeDocumentMoniker": "GameEngine\\CStrawBerry.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStrawBerry.h",
+              "RelativeToolTip": "GameEngine\\CStrawBerry.h",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAUwCkAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-07T19:56:27.18Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CWingBerry.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CWingBerry.h",
+              "RelativeDocumentMoniker": "GameEngine\\CWingBerry.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CWingBerry.h",
+              "RelativeToolTip": "GameEngine\\CWingBerry.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-27T02:46:34.984Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CCrumbleBlock.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCrumbleBlock.h",
+              "RelativeDocumentMoniker": "GameEngine\\CCrumbleBlock.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCrumbleBlock.h",
+              "RelativeToolTip": "GameEngine\\CCrumbleBlock.h",
+              "ViewState": "AQIAABMAAAAAAAAAAAArwB8AAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-27T09:09:58.548Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CRigidBody.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CRigidBody.h",
+              "RelativeDocumentMoniker": "GameEngine\\CRigidBody.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CRigidBody.h",
+              "RelativeToolTip": "GameEngine\\CRigidBody.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-09T17:01:48.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CAfterImage.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAfterImage.h",
+              "RelativeDocumentMoniker": "GameEngine\\CAfterImage.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAfterImage.h",
+              "RelativeToolTip": "GameEngine\\CAfterImage.h",
+              "ViewState": "AQIAAAcAAAAAAAAAAAArwBMAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-03T00:47:10.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CZipMover.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CZipMover.h",
+              "RelativeDocumentMoniker": "GameEngine\\CZipMover.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CZipMover.h",
+              "RelativeToolTip": "GameEngine\\CZipMover.h",
+              "ViewState": "AQIAACkAAAAAAAAAAAArwDUAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-08T00:43:24.284Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "enum.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\enum.h",
+              "RelativeDocumentMoniker": "GameEngine\\enum.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\enum.h",
+              "RelativeToolTip": "GameEngine\\enum.h",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAUwGMAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:00:33.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "global.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\global.h",
+              "RelativeDocumentMoniker": "GameEngine\\global.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\global.h",
+              "RelativeToolTip": "GameEngine\\global.h",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAAAIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T16:11:37.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CAnimator.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimator.h",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimator.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimator.h",
+              "RelativeToolTip": "GameEngine\\CAnimator.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T16:09:45.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "CTimeMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTimeMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CTimeMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTimeMgr.h",
+              "RelativeToolTip": "GameEngine\\CTimeMgr.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABsAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T18:58:50.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "CSound.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSound.h",
+              "RelativeDocumentMoniker": "GameEngine\\CSound.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSound.h",
+              "RelativeToolTip": "GameEngine\\CSound.h",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-01T01:50:15.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "CLevelMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevelMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelMgr.h",
+              "RelativeToolTip": "GameEngine\\CLevelMgr.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:57:38.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "CEngine.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CEngine.h",
+              "RelativeDocumentMoniker": "GameEngine\\CEngine.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CEngine.h",
+              "RelativeToolTip": "GameEngine\\CEngine.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T16:13:05.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "define.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\define.h",
+              "RelativeDocumentMoniker": "GameEngine\\define.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\define.h",
+              "RelativeToolTip": "GameEngine\\define.h",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAawFUAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-25T14:45:28.589Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "function.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\function.h",
+              "RelativeDocumentMoniker": "GameEngine\\function.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\function.h",
+              "RelativeToolTip": "GameEngine\\function.h",
+              "ViewState": "AQIAABwAAAAAAAAAAAAUwCkAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T21:26:24.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "CTaskMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTaskMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CTaskMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTaskMgr.h",
+              "RelativeToolTip": "GameEngine\\CTaskMgr.h",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABwAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-09T14:58:58.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "CState_Dead.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dead.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Dead.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dead.h",
+              "RelativeToolTip": "GameEngine\\CState_Dead.h",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-04T19:04:44.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "CAssetMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAssetMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CAssetMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAssetMgr.h",
+              "RelativeToolTip": "GameEngine\\CAssetMgr.h",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAawIoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-01T01:31:47.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "CPlatform.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlatform.h",
+              "RelativeDocumentMoniker": "GameEngine\\CPlatform.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlatform.h",
+              "RelativeToolTip": "GameEngine\\CPlatform.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-08T16:33:45.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "CCollider.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollider.h",
+              "RelativeDocumentMoniker": "GameEngine\\CCollider.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollider.h",
+              "RelativeToolTip": "GameEngine\\CCollider.h",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB4AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-08T11:09:32.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "CDeadEffect.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDeadEffect.h",
+              "RelativeDocumentMoniker": "GameEngine\\CDeadEffect.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDeadEffect.h",
+              "RelativeToolTip": "GameEngine\\CDeadEffect.h",
+              "ViewState": "AQIAACAAAAAAAAAAAAAlwCkAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-04T19:51:32.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "CTexture.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTexture.h",
+              "RelativeDocumentMoniker": "GameEngine\\CTexture.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTexture.h",
+              "RelativeToolTip": "GameEngine\\CTexture.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAawA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-01T01:47:57.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "CCamera.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCamera.h",
+              "RelativeDocumentMoniker": "GameEngine\\CCamera.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCamera.h",
+              "RelativeToolTip": "GameEngine\\CCamera.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABcAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T13:30:39.875Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "CLogMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLogMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLogMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLogMgr.h",
+              "RelativeToolTip": "GameEngine\\CLogMgr.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-02T23:30:14.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "CTile.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTile.h",
+              "RelativeDocumentMoniker": "GameEngine\\CTile.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTile.h",
+              "RelativeToolTip": "GameEngine\\CTile.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-08T15:48:53.138Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 100,
+              "Title": "struct.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\struct.h",
+              "RelativeDocumentMoniker": "GameEngine\\struct.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\struct.h",
+              "RelativeToolTip": "GameEngine\\struct.h",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAAAIIAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T16:11:26.21Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 104,
+              "Title": "CLevel_Editor.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Editor.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_Editor.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Editor.h",
+              "RelativeToolTip": "GameEngine\\CLevel_Editor.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T10:12:34.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 103,
+              "Title": "CLevel_AnimEditor.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_AnimEditor.h",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_AnimEditor.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_AnimEditor.h",
+              "RelativeToolTip": "GameEngine\\CLevel_AnimEditor.h",
+              "ViewState": "AQIAADsAAAAAAAAAAAAAAD4AAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-12T12:59:05.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 107,
+              "Title": "CPathMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPathMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CPathMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPathMgr.h",
+              "RelativeToolTip": "GameEngine\\CPathMgr.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T20:47:29.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 109,
+              "Title": "CAnimation.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimation.h",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimation.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimation.h",
+              "RelativeToolTip": "GameEngine\\CAnimation.h",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-01T01:50:07.718Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 114,
+              "Title": "CAnimEditorUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimEditorUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimEditorUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimEditorUI.h",
+              "RelativeToolTip": "GameEngine\\CAnimEditorUI.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAFoAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-20T23:11:44.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 116,
+              "Title": "CTextBoxUI.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextBoxUI.h",
+              "RelativeDocumentMoniker": "GameEngine\\CTextBoxUI.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextBoxUI.h",
+              "RelativeToolTip": "GameEngine\\CTextBoxUI.h",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAADAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-21T03:30:25.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 117,
+              "Title": "CSpring.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpring.h",
+              "RelativeDocumentMoniker": "GameEngine\\CSpring.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpring.h",
+              "RelativeToolTip": "GameEngine\\CSpring.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-07T22:27:55.495Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 118,
+              "Title": "CComponent.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CComponent.h",
+              "RelativeDocumentMoniker": "GameEngine\\CComponent.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CComponent.h",
+              "RelativeToolTip": "GameEngine\\CComponent.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAUAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-01T02:44:13.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 119,
+              "Title": "CStateMachine.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStateMachine.h",
+              "RelativeDocumentMoniker": "GameEngine\\CStateMachine.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStateMachine.h",
+              "RelativeToolTip": "GameEngine\\CStateMachine.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T16:31:53.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 120,
+              "Title": "CPlayer.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlayer.h",
+              "RelativeDocumentMoniker": "GameEngine\\CPlayer.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlayer.h",
+              "RelativeToolTip": "GameEngine\\CPlayer.h",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAAAG8AAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:37:40.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 122,
+              "Title": "CAsset.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAsset.h",
+              "RelativeDocumentMoniker": "GameEngine\\CAsset.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAsset.h",
+              "RelativeToolTip": "GameEngine\\CAsset.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-01T01:36:12.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 123,
+              "Title": "CState_Idle.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Idle.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Idle.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Idle.h",
+              "RelativeToolTip": "GameEngine\\CState_Idle.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T17:25:47.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 124,
+              "Title": "CState_Run.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Run.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Run.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Run.h",
+              "RelativeToolTip": "GameEngine\\CState_Run.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T18:32:11.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 125,
+              "Title": "CState_Dash.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dash.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Dash.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dash.h",
+              "RelativeToolTip": "GameEngine\\CState_Dash.h",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACEAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T17:26:20.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 126,
+              "Title": "CState_Climb.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Climb.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Climb.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Climb.h",
+              "RelativeToolTip": "GameEngine\\CState_Climb.h",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAABoAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T17:26:11.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 127,
+              "Title": "CState_Fall.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Fall.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Fall.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Fall.h",
+              "RelativeToolTip": "GameEngine\\CState_Fall.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T17:26:00.993Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 128,
+              "Title": "CState_Jump.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Jump.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Jump.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Jump.h",
+              "RelativeToolTip": "GameEngine\\CState_Jump.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-11T17:26:34.603Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 129,
+              "Title": "CState_Bounce.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Bounce.h",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Bounce.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Bounce.h",
+              "RelativeToolTip": "GameEngine\\CState_Bounce.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-07T23:16:13.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 130,
+              "Title": "CBase.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBase.h",
+              "RelativeDocumentMoniker": "GameEngine\\CBase.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBase.h",
+              "RelativeToolTip": "GameEngine\\CBase.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:32:52.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 134,
+              "Title": "CManager.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CManager.h",
+              "RelativeDocumentMoniker": "GameEngine\\CManager.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CManager.h",
+              "RelativeToolTip": "GameEngine\\CManager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:54:16.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 148,
+              "Title": "CSoundMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSoundMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CSoundMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSoundMgr.h",
+              "RelativeToolTip": "GameEngine\\CSoundMgr.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-14T03:55:07.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 132,
+              "Title": "CUIMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUIMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CUIMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUIMgr.h",
+              "RelativeToolTip": "GameEngine\\CUIMgr.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-12T20:35:56.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 141,
+              "Title": "CPalette.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPalette.h",
+              "RelativeDocumentMoniker": "GameEngine\\CPalette.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPalette.h",
+              "RelativeToolTip": "GameEngine\\CPalette.h",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAMwBMAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-06T04:23:43.646Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 150,
+              "Title": "CSelectObject.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSelectObject.h",
+              "RelativeDocumentMoniker": "GameEngine\\CSelectObject.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSelectObject.h",
+              "RelativeToolTip": "GameEngine\\CSelectObject.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-08T14:57:24.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 156,
+              "Title": "windowsx.h",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\shared\\windowsx.h",
+              "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\shared\\windowsx.h",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAcwGAAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-10T04:54:18.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 151,
+              "Title": "pch.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\pch.h",
+              "RelativeDocumentMoniker": "GameEngine\\pch.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\pch.h",
+              "RelativeToolTip": "GameEngine\\pch.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T17:35:49.907Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 152,
+              "Title": "CDebugMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDebugMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CDebugMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDebugMgr.h",
+              "RelativeToolTip": "GameEngine\\CDebugMgr.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAcwA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-08T13:50:56.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 153,
+              "Title": "CKeyMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CKeyMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CKeyMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CKeyMgr.h",
+              "RelativeToolTip": "GameEngine\\CKeyMgr.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-30T18:52:23.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 154,
+              "Title": "CUIMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\WinAPI_52\\WinAPI_52\\CUIMgr.cpp",
+              "RelativeDocumentMoniker": "..\\WinAPI_52\\WinAPI_52\\CUIMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\WinAPI_52\\WinAPI_52\\CUIMgr.cpp",
+              "RelativeToolTip": "..\\WinAPI_52\\WinAPI_52\\CUIMgr.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T23:04:38.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 155,
+              "Title": "CCollisionMgr.h",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollisionMgr.h",
+              "RelativeDocumentMoniker": "GameEngine\\CCollisionMgr.h",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollisionMgr.h",
+              "RelativeToolTip": "GameEngine\\CCollisionMgr.h",
+              "ViewState": "AQIAABQAAAAAAAAAAAD4vycAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-08T11:23:38.166Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 226,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "CLevelMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevelMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CLevelMgr.cpp",
+              "ViewState": "AQIAADoAAAAAAAAAAAAuwD8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T17:57:46.69Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CLevel.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel.cpp",
+              "ViewState": "AQIAAG8BAAAAAAAAAAAUwHoBAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T18:01:18.928Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "CLevel_Start.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Start.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_Start.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Start.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel_Start.cpp",
+              "ViewState": "AQIAAOcAAAAAAAAAAAArwO0AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-07T10:12:50.294Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CGameMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGameMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CGameMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGameMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CGameMgr.cpp",
+              "ViewState": "AQIAAFoAAAAAAAAAAAArwGUAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-07T21:14:40.145Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
+              "Title": "CButtonUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CButtonUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CButtonUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CButtonUI.cpp",
+              "RelativeToolTip": "GameEngine\\CButtonUI.cpp",
+              "ViewState": "AQIAABAAAAAAAAAAAAAAAFQAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-12T19:09:32.072Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "CTextUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CTextUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextUI.cpp",
+              "RelativeToolTip": "GameEngine\\CTextUI.cpp",
+              "ViewState": "AQIAADwAAAAAAAAAAAAMwE0AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-21T08:39:13.75Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CLevel_01_01.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_01_01.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_01_01.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_01_01.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel_01_01.cpp",
+              "ViewState": "AQIAABcAAAAAAAAAAAAuwB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-07T12:50:42.302Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 105,
+              "Title": "CLevel_AnimEditor.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_AnimEditor.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_AnimEditor.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_AnimEditor.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel_AnimEditor.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-12T12:59:08.777Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "CPanelUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPanelUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CPanelUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPanelUI.cpp",
+              "RelativeToolTip": "GameEngine\\CPanelUI.cpp",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAUwDoAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-10T04:57:13.58Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CAnimator.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimator.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimator.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimator.cpp",
+              "RelativeToolTip": "GameEngine\\CAnimator.cpp",
+              "ViewState": "AQIAADcAAAAAAAAAAAAlwEAAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-07T16:09:55.294Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "CLevel_00.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_00.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_00.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_00.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel_00.cpp",
+              "ViewState": "AQIAABcAAAAAAAAAAAAUwCIAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-15T06:34:41.882Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "CSaveData.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveData.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CSaveData.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveData.cpp",
+              "RelativeToolTip": "GameEngine\\CSaveData.cpp",
+              "ViewState": "AQIAACkAAAAAAAAAAAAMwCsAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-25T01:46:33.641Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CPathMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPathMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CPathMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPathMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CPathMgr.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T20:47:32.082Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "CAnimUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimUI.cpp",
+              "RelativeToolTip": "GameEngine\\CAnimUI.cpp",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAowBYAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-25T04:55:37.463Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 98,
+              "Title": "CImageUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CImageUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CImageUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CImageUI.cpp",
+              "RelativeToolTip": "GameEngine\\CImageUI.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-25T04:56:04.921Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "CUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUI.cpp",
+              "RelativeToolTip": "GameEngine\\CUI.cpp",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAuwE4AAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-12T19:06:35.58Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "CSaveUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CSaveUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSaveUI.cpp",
+              "RelativeToolTip": "GameEngine\\CSaveUI.cpp",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAUwBAAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-25T11:05:15.965Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "CCurSaveUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCurSaveUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CCurSaveUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCurSaveUI.cpp",
+              "RelativeToolTip": "GameEngine\\CCurSaveUI.cpp",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAABQAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-25T11:22:12.232Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "CObj.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CObj.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CObj.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CObj.cpp",
+              "RelativeToolTip": "GameEngine\\CObj.cpp",
+              "ViewState": "AQIAAC0AAAAAAAAAAAArwDwAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T17:37:18.683Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CCamera.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCamera.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CCamera.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCamera.cpp",
+              "RelativeToolTip": "GameEngine\\CCamera.cpp",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAAAGkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-07T13:30:44.477Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "CLevel_Select.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Select.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_Select.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Select.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel_Select.cpp",
+              "ViewState": "AQIAAIQAAAAAAAAAAAAAAMkAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-25T16:15:28.276Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "CLevelCardUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevelCardUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI.cpp",
+              "RelativeToolTip": "GameEngine\\CLevelCardUI.cpp",
+              "ViewState": "AQIAACEAAAAAAAAAAAAMwC4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-26T04:48:59.383Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "CLevelCardUI_Collectable.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI_Collectable.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevelCardUI_Collectable.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevelCardUI_Collectable.cpp",
+              "RelativeToolTip": "GameEngine\\CLevelCardUI_Collectable.cpp",
+              "ViewState": "AQIAABcAAAAAAAAAAAAMwB4AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-26T04:48:30.721Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CGamePauseUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGamePauseUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CGamePauseUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CGamePauseUI.cpp",
+              "RelativeToolTip": "GameEngine\\CGamePauseUI.cpp",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAAAJoAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-26T13:59:26.637Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CTimeMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTimeMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CTimeMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTimeMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CTimeMgr.cpp",
+              "ViewState": "AQIAACYAAAAAAAAAAAAuwCoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-26T14:05:54.368Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CStrawBerry.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStrawBerry.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CStrawBerry.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStrawBerry.cpp",
+              "RelativeToolTip": "GameEngine\\CStrawBerry.cpp",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAuwGUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-07T19:56:36.044Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CWingBerry.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CWingBerry.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CWingBerry.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CWingBerry.cpp",
+              "RelativeToolTip": "GameEngine\\CWingBerry.cpp",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAUwJgAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-27T02:46:45.978Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "CState_Dead.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dead.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Dead.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dead.cpp",
+              "RelativeToolTip": "GameEngine\\CState_Dead.cpp",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAuwG0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-04T19:04:57.447Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "CLevel_MapEditor.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_MapEditor.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_MapEditor.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_MapEditor.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel_MapEditor.cpp",
+              "ViewState": "AQIAAJIBAAAAAAAAAAAUwJ0BAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-27T07:16:24.572Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CZipMover.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CZipMover.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CZipMover.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CZipMover.cpp",
+              "RelativeToolTip": "GameEngine\\CZipMover.cpp",
+              "ViewState": "AQIAAIUAAAAAAAAAAAArwJcAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-08T00:43:32.159Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "CAssetMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAssetMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CAssetMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAssetMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CAssetMgr.cpp",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAuwF8AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-01T01:31:49.035Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\main.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\main.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\main.cpp",
+              "RelativeToolTip": "GameEngine\\main.cpp",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAuwFkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-06T12:30:33.34Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 158,
+              "Title": "filesystem",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\filesystem",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\filesystem",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-31T04:07:10.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "CSpring.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpring.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CSpring.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpring.cpp",
+              "RelativeToolTip": "GameEngine\\CSpring.cpp",
+              "ViewState": "AQIAADsAAAAAAAAAAAAUwEYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-07T22:27:58.662Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CCrumbleBlock.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCrumbleBlock.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CCrumbleBlock.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCrumbleBlock.cpp",
+              "RelativeToolTip": "GameEngine\\CCrumbleBlock.cpp",
+              "ViewState": "AQIAAD0AAAAAAAAAAAArwGgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-27T17:04:12.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CAfterImage.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAfterImage.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CAfterImage.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAfterImage.cpp",
+              "RelativeToolTip": "GameEngine\\CAfterImage.cpp",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAUwDsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-03T00:47:19.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "function.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\function.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\function.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\function.cpp",
+              "RelativeToolTip": "GameEngine\\function.cpp",
+              "ViewState": "AQIAAC0AAAAAAAAAAAArwDwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T15:26:21.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CKeyMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CKeyMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CKeyMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CKeyMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CKeyMgr.cpp",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAADAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T18:52:26.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "CPlatform.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlatform.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CPlatform.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlatform.cpp",
+              "RelativeToolTip": "GameEngine\\CPlatform.cpp",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAUwF0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T16:33:54.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CState_Dash.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dash.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Dash.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Dash.cpp",
+              "RelativeToolTip": "GameEngine\\CState_Dash.cpp",
+              "ViewState": "AQIAADAAAAAAAAAAAAArwDsAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T17:26:44.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "CTaskMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTaskMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CTaskMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTaskMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CTaskMgr.cpp",
+              "ViewState": "AQIAABgAAAAAAAAAAAAuwDcAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-09T14:59:00.875Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CEngine.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CEngine.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CEngine.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CEngine.cpp",
+              "RelativeToolTip": "GameEngine\\CEngine.cpp",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAkwJYAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T16:13:11.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "CStateMachine.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStateMachine.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CStateMachine.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CStateMachine.cpp",
+              "RelativeToolTip": "GameEngine\\CStateMachine.cpp",
+              "ViewState": "AQIAAGgAAAAAAAAAAAAuwHMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T16:34:30.65Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "vector",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
+              "ViewState": "AQIAAFkHAAAAAAAAAAAuwGQHAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-27T17:08:16.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "CSound.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSound.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CSound.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSound.cpp",
+              "RelativeToolTip": "GameEngine\\CSound.cpp",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAuwIkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-01T01:56:30.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "CPalette.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPalette.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CPalette.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPalette.cpp",
+              "RelativeToolTip": "GameEngine\\CPalette.cpp",
+              "ViewState": "AQIAAJUAAAAAAAAAAAAuwKAAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-06T04:24:49.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "CTileMap.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTileMap.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CTileMap.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTileMap.cpp",
+              "RelativeToolTip": "GameEngine\\CTileMap.cpp",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAABAAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T15:32:19.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "CPlayer.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlayer.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CPlayer.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CPlayer.cpp",
+              "RelativeToolTip": "GameEngine\\CPlayer.cpp",
+              "ViewState": "AQIAANcBAAAAAAAAAAAUwOUBAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T17:37:51.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "CCollisionMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollisionMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CCollisionMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollisionMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CCollisionMgr.cpp",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAAAGgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T11:23:44.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "CCollider.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollider.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CCollider.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CCollider.cpp",
+              "RelativeToolTip": "GameEngine\\CCollider.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T11:09:37.388Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "CDeadEffect.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDeadEffect.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CDeadEffect.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDeadEffect.cpp",
+              "RelativeToolTip": "GameEngine\\CDeadEffect.cpp",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-04T19:51:41.256Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "CState_Bounce.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Bounce.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Bounce.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Bounce.cpp",
+              "RelativeToolTip": "GameEngine\\CState_Bounce.cpp",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAowBQAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-07T23:16:25.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "CState_Climb.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Climb.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Climb.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Climb.cpp",
+              "RelativeToolTip": "GameEngine\\CState_Climb.cpp",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAowBcAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T17:26:47.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "CState_Fall.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Fall.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Fall.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Fall.cpp",
+              "RelativeToolTip": "GameEngine\\CState_Fall.cpp",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAowBMAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-02T22:57:21.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "CState_Idle.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Idle.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Idle.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Idle.cpp",
+              "RelativeToolTip": "GameEngine\\CState_Idle.cpp",
+              "ViewState": "AQIAAFUAAAAAAAAAAAAowGEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-14T14:59:40.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "CState_Run.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Run.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState_Run.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState_Run.cpp",
+              "RelativeToolTip": "GameEngine\\CState_Run.cpp",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAowBcAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T18:32:16.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 106,
+              "Title": "CTexture.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTexture.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CTexture.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTexture.cpp",
+              "RelativeToolTip": "GameEngine\\CTexture.cpp",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAuwH4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-01T01:49:56.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "CLogMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLogMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLogMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLogMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CLogMgr.cpp",
+              "ViewState": "AQIAABwAAAAAAAAAAAAYwCkAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-02T23:30:16.114Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 96,
+              "Title": "CSpriteRenderer.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpriteRenderer.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CSpriteRenderer.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSpriteRenderer.cpp",
+              "RelativeToolTip": "GameEngine\\CSpriteRenderer.cpp",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAQwFkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-01T02:44:41.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 140,
+              "Title": "CBackGround.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBackGround.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CBackGround.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBackGround.cpp",
+              "RelativeToolTip": "GameEngine\\CBackGround.cpp",
+              "ViewState": "AQIAABEAAAAAAAAAAAApwBwAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-05T05:57:11.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 112,
+              "Title": "CAnimation.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimation.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimation.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimation.cpp",
+              "RelativeToolTip": "GameEngine\\CAnimation.cpp",
+              "ViewState": "AQIAADgAAAAAAAAAAAAuwEQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-01T01:54:47.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 111,
+              "Title": "CComponent.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CComponent.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CComponent.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CComponent.cpp",
+              "RelativeToolTip": "GameEngine\\CComponent.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-14T17:18:07.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 110,
+              "Title": "CBase.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBase.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CBase.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CBase.cpp",
+              "RelativeToolTip": "GameEngine\\CBase.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T17:32:57.881Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 113,
+              "Title": "CAnimEditorUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimEditorUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CAnimEditorUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAnimEditorUI.cpp",
+              "RelativeToolTip": "GameEngine\\CAnimEditorUI.cpp",
+              "ViewState": "AQIAAAYAAAAAAAAAAAApwBkAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-20T23:11:58.305Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 115,
+              "Title": "CTextBoxUI.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextBoxUI.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CTextBoxUI.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTextBoxUI.cpp",
+              "RelativeToolTip": "GameEngine\\CTextBoxUI.cpp",
+              "ViewState": "AQIAAAQAAAAAAAAAAAApwBAAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-21T03:30:45.99Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 131,
+              "Title": "CRigidBody.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CRigidBody.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CRigidBody.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CRigidBody.cpp",
+              "RelativeToolTip": "GameEngine\\CRigidBody.cpp",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAEwAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-09T17:01:50.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 138,
+              "Title": "CLevel_Editor.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Editor.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CLevel_Editor.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CLevel_Editor.cpp",
+              "RelativeToolTip": "GameEngine\\CLevel_Editor.cpp",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACQAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-09T09:21:06.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 149,
+              "Title": "CSoundMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSoundMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CSoundMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSoundMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CSoundMgr.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-14T03:55:06.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 137,
+              "Title": "CAsset.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAsset.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CAsset.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CAsset.cpp",
+              "RelativeToolTip": "GameEngine\\CAsset.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-01T01:36:17.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 135,
+              "Title": "new_scalar.cpp",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\new_scalar.cpp",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\new_scalar.cpp",
+              "ViewState": "AQIAABgAAAAAAAAAAAAuwCQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-15T16:26:22.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 133,
+              "Title": "CUIMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUIMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CUIMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CUIMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CUIMgr.cpp",
+              "ViewState": "AQIAADIAAAAAAAAAAAAAADsAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-12T20:36:12.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 136,
+              "Title": "delete_scalar.cpp",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "ViewState": "AQIAABoAAAAAAAAAAAAawCEAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-15T17:42:05.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 139,
+              "Title": "CDebugMgr.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDebugMgr.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CDebugMgr.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CDebugMgr.cpp",
+              "RelativeToolTip": "GameEngine\\CDebugMgr.cpp",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAcwEcAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T13:51:00.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 142,
+              "Title": "CManager.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CManager.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CManager.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CManager.cpp",
+              "RelativeToolTip": "GameEngine\\CManager.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-30T17:54:20.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 144,
+              "Title": "CTile.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTile.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CTile.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CTile.cpp",
+              "RelativeToolTip": "GameEngine\\CTile.cpp",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAQAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T15:48:57.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 143,
+              "Title": "pch.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\pch.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\pch.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\pch.cpp",
+              "RelativeToolTip": "GameEngine\\pch.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-01T05:10:05.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 145,
+              "Title": "CState.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CState.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CState.cpp",
+              "RelativeToolTip": "GameEngine\\CState.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-11T16:33:09.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 146,
+              "Title": "CSelectObject.cpp",
+              "DocumentMoniker": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSelectObject.cpp",
+              "RelativeDocumentMoniker": "GameEngine\\CSelectObject.cpp",
+              "ToolTip": "D:\\cpp_Exercise\\GameEngine\\GameEngine\\CSelectObject.cpp",
+              "RelativeToolTip": "GameEngine\\CSelectObject.cpp",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-08T14:57:30.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 147,
+              "Title": "xmemory",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\xmemory",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\xmemory",
+              "ViewState": "AQIAAMQCAAAAAAAAAAAuwM8CAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-15T06:27:17.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 157,
+              "Title": "utility",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\utility",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\utility",
+              "ViewState": "AQIAAO0CAAAAAAAAAAAYwPUCAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-11T10:06:49.426Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
